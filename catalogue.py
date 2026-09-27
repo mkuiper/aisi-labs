@@ -1,4 +1,6 @@
 """The launchpad's editable tool, activity and learning catalogue."""
+import json
+from pathlib import Path
 
 TOOLS = [
     {"id": key, "name": name, "command": command, "category": category, "description": description, "mark": mark, "colour": colour}
@@ -159,3 +161,8 @@ LESSONS.extend([
      "question": "An AI assistant opens in a terminal on your laptop. Where does the model run?", "options": ["Always on the laptop.", "Always on a government server.", "It depends on the tool's selected provider and configuration."], "correct": 2,
      "feedback": "A local interface can call an online model. Check configuration and provider documentation before sending public practice material.", "sources": []},
 ])
+
+# Supplemental learning material is plain, version-controlled JSON.
+CONTENT = Path(__file__).resolve().parent / "content"
+LESSONS += json.loads((CONTENT / "lessons.json").read_text())
+WEB_CHATS = json.loads((CONTENT / "web_chats.json").read_text())

@@ -31,6 +31,8 @@ the learner's Linux user and can have wider filesystem/network access.
 | `launch.py` | Start/reuse this checkout's loopback service, safe targeted restart, open Omarchy webapp |
 | `server.py` | HTTP boundary, acknowledgement, project validation, tool launches, progress |
 | `catalogue.py` | Curated tool allowlist, activities, lessons, public references |
+| `content/` | Supplemental lessons, web-chat directory, per-item editorial records and learning changelog |
+| `content_review.py` | Offline fingerprints, review dates and coverage checks; no claim of factual verification |
 | `templates.py` | Authored public starter files and briefs |
 | `policy.py` | Programme rules and acknowledgement version |
 | `configuration.py` | Ephemeral keys, persistent non-secret model overrides, CLI adapters |
@@ -109,6 +111,20 @@ XAI_API_KEY injection without testing existing browser auth, endpoint overrides,
 leader-process environment reuse and key rotation/forgetting on pinned versions.
 
 ## Maintenance and release strategy
+
+Web-chat entries are fixed HTTPS links in content/web_chats.json, not subprocess
+launchers. The UI first requires the programme acknowledgement, then displays
+the destination and an explicit external-navigation link with noopener/noreferrer.
+It carries no prompt, key or project; provider browser cookies may still apply.
+There is no iframe, prefetch, provider login or model call in this integration.
+
+Bootstrap also provides per-item content review metadata. Existing stable lesson
+IDs are preserved. New JSON lessons are appended by catalogue.py, while original
+lessons remain there as their canonical source. The offline editorial audit
+covers lesson text, chats, labs, registered documents and starter templates;
+diagrams/interactions also require manual review. See docs/CONTENT_MAINTENANCE.md
+and skills/aisi-learning-review/SKILL.md. Review dates are never automatically
+refreshed; original content starts as an explicitly unreviewed inventory baseline.
 
 Local inventory executes only `mise ls --json`, never AI bootstrap wrappers.
 Versions describe active Mise records, not a guaranteed next launched binary.

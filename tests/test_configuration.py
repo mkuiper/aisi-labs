@@ -99,7 +99,7 @@ class ConfigurationTests(unittest.TestCase):
             brief = (Path(project['path'])/'BRIEF.md').read_text()
             for phrase in ['ONLY public information','OFFICIAL','NEVER connect','professional development']:
                 self.assertIn(phrase, brief)
-            self.assertEqual(len(hub.bootstrap()['documents']), 6)
+            self.assertEqual(len(hub.bootstrap()['documents']), 8)
 
 
 if __name__ == '__main__':

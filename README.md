@@ -16,6 +16,8 @@ The supplied fictional examples are public practice material.
 - [Department deployment and image plan](docs/DEPLOYMENT.md)
 - [Credentials and configuration](docs/CREDENTIALS.md)
 - [Curriculum and maintenance](docs/CURRICULUM.md)
+- [Open-model field guide](docs/OPEN_MODELS.md)
+- [Content versioning and review skill](docs/CONTENT_MAINTENANCE.md)
 - [Updates, models and releases](docs/MAINTENANCE.md)
 - [Critical review and outstanding release gates](docs/REVIEW.md)
 - [Architecture](ARCHITECTURE.md), [contributing](CONTRIBUTING.md), [agent guidance](AGENTS.md)
@@ -43,7 +45,7 @@ or until its process is stopped. The launcher reuses it on the next visit.
 - A launchpad with 21 curated AI and desktop tools, checked for command availability.
 - Five project starters: first agent session, consultation explorer, data story,
   evidence checking and an open-ended project.
-- Ten short illustrated guides, including an interactive agent-loop replay and
+- Twelve short illustrated guides, including open models, web chat, an interactive agent-loop replay and
   a simulated terminal that never executes commands.
 - Real project folders, starter files, copyable prompts, self-review checklists
   and local page previews. Projects can be reopened with different tools.
@@ -52,6 +54,8 @@ or until its process is stopped. The launcher reuses it on the next visit.
 - A Configuration tab with session-only keys for Codex, Claude Code and Gemini CLI.
 - Model overrides for those three tools plus Grok, with native setup guidance for the other tools.
 - Read-only local version inventory and an opt-in public release check for four core AI tools.
+- Seven regular web-chat links, with explicit external-service reminders and no automatic data sharing.
+- Version-controlled editorial records, an offline content audit and the `aisi-learning-review` skill for future updates.
 
 Use **ONLY public information**. Do not enter OFFICIAL or other non-public
 information. Inclusion of a tool is not agency approval for official work.

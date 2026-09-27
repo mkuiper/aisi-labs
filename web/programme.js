@@ -1,5 +1,27 @@
 /* Programme and credential settings. Never persist API keys in the browser. */
 let afterAcknowledgement = null;
+function chatCard(chat) {
+  return `<article class="tool-card web-chat-card">${mark(chat)}<h3>${esc(chat.name)}</h3><span class="tag">External website · online</span><p>${esc(chat.description)}</p><small>${esc(new URL(chat.url).hostname)}</small><button class="btn secondary" data-web-chat="${esc(chat.id)}">Visit website ↗</button></article>`;
+}
+function webChatsPage() {
+  return `${heading('A conversation is a good place to start','Web chat','The regular chatbot websites, alongside your local AI tools.')}
+    <div class="note"><strong>These are external services, not local apps.</strong> Use ONLY public information—nothing OFFICIAL. NEVER use government accounts or connect this laptop to government networks. Inclusion is not agency approval. Account requirements, models, prices and privacy settings can change.</div>
+    <div class="actions"><a class="btn secondary" href="#learn/web-chat">First conversation guide →</a><a class="btn secondary" href="#learn/open-models">Understand open models →</a></div>
+    <div class="tool-grid web-chat-grid">${data.web_chats.map(chatCard).join('')}</div>
+    <section class="panel"><h2>Chat website ≠ model ≠ local agent</h2><p>The website provides the interface and its own tools and permissions. Your Labs API key and project folder are not sent by these links. Each website manages its own sign-in, privacy settings and billing; existing browser sessions may still be signed in. Check the account before you type.</p><p class="small-note">Try the same fictional public prompt in two services, then compare what you can verify—not just which answer sounds more confident. A hosted open-weight model is still hosted, not local inference.</p></section>`;
+}
+function webChatDialog(id) {
+  const chat=data.web_chats.find(x=>x.id===id);if(!chat)return;
+  withAcknowledgement(()=>openModal(`${modalTop('Open '+chat.name+'?')}<p>You are leaving the local Labs app for <strong>${esc(new URL(chat.url).hostname)}</strong>.</p><div class="note">ONLY public information. Nothing OFFICIAL. Use a dedicated learning account and the separate non-government network. NEVER connect government accounts or internal sources.</div><p class="small-note">Labs sends no prompt, project or API key. The site can use existing browser cookies and sign-in. Its own terms, privacy settings and charges apply. Closing Labs does not sign out of the website.</p><div class="actions"><button class="btn secondary" data-close>Stay in Labs</button><a class="btn" id="external-chat-link" href="${esc(chat.url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Continue to website ↗</a></div>`));
+}
+function learningReviewNote(lesson) {
+  const review=data.content_reviews.find(x=>x.id==='lesson:'+lesson.id);
+  if(!review)return '';
+  return `<p class="small-note content-review">Content revision ${review.revision} · ${review.reviewed_at?'Source review '+esc(review.reviewed_at):'Baseline material; detailed review pending'}${review.status==='changed'?' · Changed since recorded review':review.status==='due'?' · Review due':''}. A review date is not a guarantee of accuracy. <a class="text-link" href="#docs/curriculum">How content is maintained ↗</a></p>`;
+}
+function openModelsDiagram() {
+  return `<div class="diagram"><div class="diagram-label">Two independent choices: release and location</div><div class="diagram-row"><div class="diagram-node"><strong>Model release</strong><small>Weights · code · terms</small></div><span class="diagram-arrow">→</span><div class="diagram-node"><strong>Local runner</strong><small>Inference on the laptop</small></div></div><div class="diagram-row"><div class="diagram-node"><strong>Same model release</strong><small>Openness has not changed</small></div><span class="diagram-arrow">→</span><div class="diagram-node"><strong>Hosted runner</strong><small>Inference on a server</small></div></div><p class="diagram-caption">Check actual endpoints and network features. Both paths remain public-information-only in this programme.</p></div>`;
+}
 function policyDialog(next = null) {
   afterAcknowledgement = next;
   openModal(`${modalTop('A place to learn. A clear boundary.')}<span class="eyebrow">AUSTRALIAN AI SAFETY INSTITUTE</span><p>${esc(data.policy.purpose)}</p><form id="policy-form"><div class="policy-checks"><label><input type="checkbox" required><span>I will input <strong>ONLY public information</strong>. No OFFICIAL or higher-classified material, internal work files or non-public personal information.</span></label><label><input type="checkbox" required><span>I will <strong>NEVER connect this learning laptop to government networks</strong> or use it to connect to government accounts or internal systems.</span></label><label><input type="checkbox" required><span>I will use the tools responsibly, review permissions and outputs, and monitor costs using dedicated learning credentials.</span></label></div><p class="small-note">${esc(data.policy.examples)}</p><p class="small-note">This acknowledgement is for the current hub session. It does not verify your network or permissions.</p><p class="error" id="modal-error" role="alert"></p><div class="actions"><button class="btn secondary" type="button" data-close>Read guides first</button><button class="btn" type="submit">I understand — continue</button></div></form>`);
@@ -92,6 +114,7 @@ document.addEventListener('submit',async event=>{
 });
 document.addEventListener('click',async event=>{
   const button=event.target.closest('button');if(!button)return;
+  if(button.dataset.webChat)webChatDialog(button.dataset.webChat);
   if(button.dataset.settingsSection){const section=document.getElementById(button.dataset.settingsSection);section?.focus({preventScroll:true});section?.scrollIntoView({block:'start'});}
   if(button.dataset.inventory){
     const online=button.dataset.inventory==='online';

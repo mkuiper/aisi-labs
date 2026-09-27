@@ -1,5 +1,13 @@
 # Changes
 
+## 28 September 2026 — web chat, open models and editorial maintenance
+
+- Added a Web chat section for seven official public chatbot destinations, also discoverable from the landing page and search. Programme acknowledgement and destination confirmation precede navigation; no hub secrets or projects are sent.
+- Added web-chat and open-model illustrated lessons plus an open-model field guide/worksheet. Local models do not relax the public-only/no-government-network rule. No downloads, installations or live inference.
+- Added content review records, visible lesson revisions, an offline changed/due/unreviewed audit and a version-controlled editorial changelog. Older units are explicitly queued for detailed review, not falsely re-dated.
+- Added a portable aisi-learning-review skill and content-maintenance instructions. Content remains in the local Git repository; no remote publication or scheduled job.
+- Validation: 45 unit/HTTP tests, skill validation and isolated browser workflows passed. New web-chat and open-model screenshots were inspected. No live sign-in, model calls or hardware claims were tested.
+
 ## 27 September 2026 — AISI AI Labs review and engineering baseline
 
 - Rebranded the app and existing Omarchy launcher; clarified the landing page's purpose and boundaries. Folder and learner-data identifiers are unchanged.

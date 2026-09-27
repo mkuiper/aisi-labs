@@ -1,0 +1,9 @@
+[
+  {"id":"chatgpt","name":"ChatGPT","url":"https://chatgpt.com/","description":"Open ChatGPT’s regular web interface. Compare a public practice answer with a terminal-based workflow.","mark":"C","colour":"sage","source":"https://learn.chatgpt.com/docs/web"},
+  {"id":"claude-chat","name":"Claude","url":"https://claude.ai/","description":"Use Claude in the browser. This is separate from opening Claude Code in your project folder.","mark":"C","colour":"clay","source":"https://claude.ai/"},
+  {"id":"gemini-chat","name":"Gemini","url":"https://gemini.google.com/","description":"Open Google’s Gemini web interface. Use a dedicated learning account, not a government Google account.","mark":"G","colour":"blue","source":"https://gemini.google.com/"},
+  {"id":"grok-chat","name":"Grok","url":"https://grok.com/","description":"Open Grok’s chat website. Website sign-in is separate from the Grok terminal tool’s configuration.","mark":"G","colour":"ink","source":"https://grok.com/"},
+  {"id":"copilot-chat","name":"Microsoft Copilot","url":"https://copilot.microsoft.com/","description":"The public Copilot website—not GitHub Copilot CLI or a government Microsoft 365 workspace. Do not use a government account.","mark":"M","colour":"pink","source":"https://copilot.microsoft.com/"},
+  {"id":"perplexity","name":"Perplexity","url":"https://www.perplexity.ai/","description":"Try a public question in another web interface. Independently check the answer and any linked evidence.","mark":"P","colour":"sage","source":"https://www.perplexity.ai/"},
+  {"id":"mistral-chat","name":"Mistral Vibe Chat","url":"https://chat.mistral.ai/","description":"Mistral’s web chat, formerly Le Chat. A model provider offering open weights does not make this hosted website local.","mark":"M","colour":"clay","source":"https://mistral.ai/products/vibe/"}
+]

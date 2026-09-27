@@ -12,6 +12,7 @@ This directory is the new app; do not edit `../AISI-AI-Learning-Labs` as part of
 - A command being found does not prove installation, health or authentication. Never run bootstrap wrappers just to check versions.
 - Before modifying an adapter, read current official tool documentation and inspect pinned CLI capabilities without changing user configuration. Cover arguments, key scoping, native login, model choice and background processes.
 - Keep frontend/backend changes coordinated and update ARCHITECTURE, programme docs and CHANGELOG for material changes.
+- For learning-content changes, follow docs/CONTENT_MAINTENANCE.md; use the tracked aisi-learning-review skill for requested editorial reviews. Keep review metadata complete, preserve lesson IDs, and never refresh dates without actual source/exercise inspection.
 - Use `apply_patch` for edits. Keep changes focused; preserve unrelated user work.
 - Run unit/HTTP tests, `node --check web/app.js`, `node --check web/programme.js`, and the browser smoke test for UI changes. Do not weaken failing tests to make a release pass.
 - Ask before publishing, adding a remote, making accounts, spending money, changing network controls or creating/distributing an image. Local development is not approval for deployment.

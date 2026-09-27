@@ -56,6 +56,28 @@ try{
   await screenshot('launchpad-desktop');await noOverflow('desktop home');
   assert.equal(await evaluate('document.querySelectorAll(".quick-tool").length'),4);
 
+  await go('#web-chats');
+  assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),7);
+  await screenshot('web-chat-desktop');await noOverflow('web chat');
+  // Exercise the gate without visiting or logging into any external provider.
+  await evaluate('data.acknowledged=false');
+  await click('[data-web-chat=chatgpt]');
+  assert(await evaluate('!!document.querySelector("#policy-form")'));
+  assert.equal(await evaluate('!!document.querySelector("#external-chat-link")'),false);
+  await evaluate('document.querySelectorAll("#policy-form input").forEach(el=>el.checked=true);document.querySelector("#policy-form").requestSubmit()');
+  await waitFor('!!document.querySelector("#external-chat-link")');
+  assert.equal(await evaluate('document.querySelector("#external-chat-link").href'),'https://chatgpt.com/');
+  assert.equal(await evaluate('document.querySelector("#external-chat-link").rel'),'noopener noreferrer');
+  assert(await evaluate('document.querySelector("#modal").textContent.includes("Nothing OFFICIAL")'));
+  await click('[data-close]');
+  await go('#search/Perplexity');assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),1);
+  await go('#learn/open-models');
+  assert(await evaluate('document.querySelector(".diagram").textContent.includes("Hosted runner")'));
+  assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-09-28")'));
+  await click('[data-answer="2"]');
+  assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("That’s it")'));
+  await screenshot('open-models-desktop');
+
   await go('#tools');await click('[data-filter="Desktop tools"]');
   assert.equal(await evaluate('document.querySelectorAll(".tool-card").length'),8);
   await click('[data-tool="terminal"]');
@@ -129,22 +151,22 @@ try{
   await go('#configuration');await click('[data-forget="all"]');
   await waitFor('!document.querySelector("[data-forget=openai]")');
   await screenshot('configuration-desktop');
-  await go('#programme');assert.equal(await evaluate('document.querySelectorAll(".doc-card").length'),6);
+  await go('#programme');assert.equal(await evaluate('document.querySelectorAll(".doc-card").length'),8);
   await screenshot('programme-desktop');
-  for(const id of ['programme','learner','deployment','credentials','curriculum','maintenance']){await go('#docs/'+id);assert(await evaluate('document.querySelector(".document-reader").textContent.length>1000'));}
+  for(const id of ['programme','learner','deployment','credentials','curriculum','maintenance','open-models','content-maintenance']){await go('#docs/'+id);assert(await evaluate('document.querySelector(".document-reader").textContent.length>1000'));}
 
   // Exercise every guide and both keyboard-sized and narrow viewports.
-  for(const id of ['chat-agents','terminal','context','prompting','tools-skills','checking','memory','identity','responsible-use','models-costs']){
+  for(const id of ['chat-agents','terminal','context','prompting','tools-skills','checking','memory','identity','responsible-use','models-costs','web-chat','open-models']){
     await go('#learn/'+id);assert.equal(await evaluate('document.querySelectorAll(".quiz-option").length'),3);await noOverflow('guide '+id);
   }
   await cdp('Emulation.setDeviceMetricsOverride',{width:820,height:900,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#tools','#labs','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
+  for(const hash of ['#home','#web-chats','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#tools','#labs','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
+  for(const hash of ['#home','#web-chats','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
   await go('#home');await screenshot('launchpad-mobile');
   assert.deepEqual(errors,[],'Browser errors');
   assert.equal(serverErrors,'','Server errors');
-  console.log('PASS: launchpad, filters, acknowledgement, credentials without leaks, four model controls/persistence, local inventory, six documents, ten lessons, five project starters, progress, simulations, search and responsive layouts.');
+  console.log('PASS: launchpad, web-chat directory/confirmation/gate/search, open-model diagrams/reviews/quiz, credentials without leaks, model controls/persistence, inventory, eight documents, twelve lessons, five projects, progress, simulations and responsive layouts.');
   console.log('Screenshots: '+reports);
 }finally{
   if(socket)socket.close();

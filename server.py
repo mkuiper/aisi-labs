@@ -17,7 +17,8 @@ import time
 from urllib.parse import urlsplit
 import uuid
 
-from catalogue import LABS, LESSONS, TOOLS
+from catalogue import LABS, LESSONS, TOOLS, WEB_CHATS
+from content_review import review_report
 from templates import starter_files
 from configuration import Configuration
 from policy import POLICY
@@ -117,7 +118,7 @@ class Hub:
             progress = {}
             warnings.append(str(error))
         tools = [{**tool, "available": bool(executable(tool["command"])), "account": "Uses your tool's account and model settings; sign-in or charges may apply." if tool["category"] != "Desktop tools" else "No AI account needed to open this application."} for tool in TOOLS]
-        return {"tools": tools, "labs": LABS, "lessons": LESSONS, "projects": projects, "progress": progress, "warnings": warnings, "playground": str(self.scratch), "policy": POLICY, "acknowledged": self.acknowledged, "configuration": self.configuration.status(), "documents": load_documents()}
+        return {"tools": tools, "web_chats": WEB_CHATS, "content_reviews": review_report(), "labs": LABS, "lessons": LESSONS, "projects": projects, "progress": progress, "warnings": warnings, "playground": str(self.scratch), "policy": POLICY, "acknowledged": self.acknowledged, "configuration": self.configuration.status(), "documents": load_documents()}
 
     def create(self, lab_id, name):
         self.require_acknowledgement()

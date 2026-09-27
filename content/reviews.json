@@ -1,0 +1,233 @@
+{
+  "lesson:chat-agents": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "f1ca5632d5efa35e1a6153e5de3ad227423971bc846c63edfa8c9470c564e0a1",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lesson:terminal": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "317d2540a385422bb7d518de20767d8de2777d6a26b1ba141c786d6478dea58b",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lesson:context": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "5b0e63fcc309660d188a7bf8b8bac397745b4f9420e9ba965907db099835d23c",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lesson:prompting": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "2cbf007d1b610bed003df54ebb4ea17acd22af789cd09fd5f58585bd48600d55",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lesson:tools-skills": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "964089fee1e4405de1b63f93dc3bff02e5d59230e0242f8e0330ec7005e98e6d",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lesson:checking": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "65807de7804b6f0f3399f8c023cc5214f0c7516cca969b496e2e5d0d9c4c8002",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lesson:memory": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "77253fa36e45613f69979504417492cd68b7cf12437356ccf316fa4bb8a5e9c6",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lesson:identity": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "9a73e2784169e26cbfea83c61e1fbb8ea8828811b1379955bb376ce2307c197e",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lesson:responsible-use": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "2d772af97bc72c32a92ebd5d8c19562e7b41e10bea83422c664ab367f259c8c6",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lesson:models-costs": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "72a55781c56f1f1472a69277150137574931b60f5a71a45f514d7f9fbd15f084",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lesson:web-chat": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 90,
+    "sha256": "00bf779e22a205b5c3d95847636a9595302745bd1222e5a5e12a9dc26470bd18",
+    "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained."
+  },
+  "lesson:open-models": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 90,
+    "sha256": "d98aa8107e9330f6896f0baf838f85c7dcf4448b3c067f312e854a43d4688f76",
+    "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained."
+  },
+  "chat:chatgpt": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "fbfe876aea012ed296114d56c0ac079c455b92da85c5f73d2d7d485a3abee3dc",
+    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+  },
+  "chat:claude-chat": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "3398bbb889d9f7f1ba2949becd1ad8fbbd88a2ded686526d8b071de65e0eeeea",
+    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+  },
+  "chat:gemini-chat": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "4363540b1a4f640921348faaa9be65548c661928140ef2b08da025f18b0789c6",
+    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+  },
+  "chat:grok-chat": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "281eb31b941c929f5263f4902f3ee5da21fc9a24cc6ee5b1fd86ec10f4d28d8c",
+    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+  },
+  "chat:copilot-chat": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "7a0f103e4541ad270c476e2f7e884fb17f83a274662661221e0c68180185b596",
+    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+  },
+  "chat:perplexity": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "5611320b5c1d62cc760638de516f4c77f3cfc1c9750fe357873bd7c8745c9e17",
+    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+  },
+  "chat:mistral-chat": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "b189b21d6cb7d9437e1111dbe81e6dfb21e1bc2e7f8cb33e92e36a7453ca3451",
+    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+  },
+  "lab:first-steps": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "9460521e00eb9f7583af0016ef8e787a7372b07557f522d1ed31a7b7742b54d8",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lab:consultation": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "ff4d3ba1c9028563efc603bb3e1163ddd10f6132d8d3b9f422df69610d9a0363",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lab:data-story": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "bacd0afffe4a41edd6717ebc76be961cede09ca711c0d78ee7a453d4c328b0e3",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lab:evidence": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "222801354e371f1cffe1c2d7fb886d241196f36fc9c67a3379d68d3b63a45422",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "lab:blank": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "05a8255c590448876f0796806c54cea59c4a7eca908e8ce5e8011aa681e427ad",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "doc:open-models": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 90,
+    "sha256": "fb0c3a55777e84f840b557df74fa0f4b7bc98bd3e3d3081d02e09fca69da501e",
+    "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained."
+  },
+  "doc:programme": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "bf5d2b415c07ca5be76c006d7bd8463f53c8772c9f68258f27efa32143b2138e",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "doc:learner": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "91d748434910f4ccaf8e18d242948664e2cf711e4003b06ab10bfa4893b6d16b",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "doc:deployment": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "ee0d1db4ec32b0ff53490de034db429fcfc4f43dcaee5b3dd6944c31ed679e8f",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "doc:credentials": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "28e3ca68dde4badbaa8cc82704cefae212c865a9bdc188d1b1ed5430ebb4e10d",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "doc:curriculum": {
+    "revision": 2,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "f2835a0dfe1fd9a4b7b2c476e685175a3e3df760bf227e3af9bb35d36bafbb7c",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Added coverage and review-process pointers; full legacy concept/source review remains pending."
+  },
+  "doc:maintenance": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "d83ae087185071e45a0a691d4070fb80f69a84b3957c0be10adc54510eb4223b",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "starters": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 90,
+    "sha256": "959bdafd3f87ef8f71e4b0796aa87feb3f33700cbe1309ef7f7be243e003172b",
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+  },
+  "doc:content-maintenance": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 90,
+    "sha256": "512fe5cdcc98612b9c64c7eb70beee18cd20374c84cff6e70ce380e3532022a1",
+    "notes": "Authored against current repository behaviour and skill workflow. Offline report and tests verify implementation; no scheduled job or full legacy source review."
+  }
+}

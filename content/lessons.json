@@ -1,0 +1,60 @@
+[
+  {
+    "id": "web-chat",
+    "title": "Start with a conversation",
+    "subtitle": "Use regular chatbot websites and compare answers thoughtfully.",
+    "minutes": 5,
+    "icon": "book",
+    "colour": "clay",
+    "diagram": "web-chat",
+    "lab": "evidence",
+    "intro": "You do not need a terminal to explore AI. A web chatbot lets you ask a question, supply public context and refine an answer through conversation. The Web chat section links to the providers’ own sites; they are separate services, not part of the local Labs app.",
+    "sections": [
+      ["Website, model and agent are different things", "The website is the interface. One or more models generate the response. Search, file analysis and other tools depend on the product and account. Some browser assistants can also take actions or complete multi-step tasks. A chat window does not mean the system is only chatting."],
+      ["Start without connecting anything", "Use a dedicated learning account on the separate learning network. Do not connect government accounts, email, drives, calendars or internal services. Labs does not sign you in, send your API keys or upload your projects when you open a link. The external site can use its own existing browser cookies and login."],
+      ["Give a small public task", "Try: ‘Here is fictional public practice information: a community garden opens Saturday at 10 am, closes at noon, and has free entry. Write a 50-word invitation using only these facts. Identify anything you would need to ask the organiser.’ Check that it did not invent an address, booking link or facilities."],
+      ["Compare the process, not just the prose", "Try the same prompt in two services if you have suitable learning accounts. Record the date, displayed model or mode, tools enabled and answers. Score factual fidelity, missing information, clarity and usefulness. One answer is a learning example, not a reliable model ranking; products can add different hidden instructions and tools."],
+      ["Know what leaves the laptop", "Messages, uploads and connected sources can be processed by the external service. Check the provider’s current privacy, retention, training and account settings; do not assume a private-looking conversation is private storage. A paid chat account and API access can have different billing and entitlements. Never put a key into a prompt."],
+      ["Finish responsibly", "Review sources rather than trusting a citation-shaped link. Avoid public sharing links unless you intend to publish that public practice content. On a shared device, follow the account sign-out/reset procedure. Closing Labs does not sign out of the chatbot. Use ONLY public information, nothing OFFICIAL, and NEVER connect to government networks."]
+    ],
+    "takeaway": "Start with a small public question, understand the site’s permissions, and check the answer yourself. Website branding is not evidence of the model, its accuracy or agency approval.",
+    "question": "You open a chatbot from Labs. What has Labs done with your project files and saved API key?",
+    "options": ["Uploaded both to personalise the chat.", "Opened a link only; uploads and external sign-in are separate actions.", "Made the external website an offline local service."],
+    "correct": 1,
+    "feedback": "The link carries no project or key. The website still has its own network, account and privacy behaviour, including any existing browser sign-in.",
+    "sources": [["ChatGPT: using the web interface", "https://learn.chatgpt.com/docs/web"], ["Claude: web sign-in and product overview", "https://claude.ai/"]]
+  },
+  {
+    "id": "open-models",
+    "title": "Open models, without the confusion",
+    "subtitle": "Weights, licences, local runners and what fits an older laptop.",
+    "minutes": 7,
+    "icon": "layers",
+    "colour": "blue",
+    "diagram": "open-models",
+    "lab": "blank",
+    "intro": "Open models let you explore more of the AI stack: which model files you use, which software runs them and where the computation happens. But ‘open’ is an umbrella term, not a promise of unrestricted use, complete transparency, privacy or quality.",
+    "sections": [
+      ["What are weights?", "Weights are numbers learned during training. They work with the model’s architecture and inference software to generate outputs. Downloading weights is not the same as downloading the original training dataset or being able to reproduce the training process."],
+      ["Open weights versus open source", "Open-weight releases make learned parameters available under specified terms. Those terms differ. The Open Source Initiative’s AI definition goes further: it describes freedoms to use, study, modify and share, with requirements for parameters, code and information about training data. Do not call every downloadable model open source."],
+      ["Openness and location are separate choices", "An open-weight model can run on your laptop or on someone else’s servers. A cloud API is a way to access inference, not a licence category. A local runner is software that loads models; it is not itself the model. Some runners, including Ollama, offer cloud options too. Check the actual model and endpoint."],
+      ["Read the model card before the download button", "Look for the publisher, exact checkpoint, licence and usage conditions, intended tasks, languages, known limitations and evaluation methods. A model card is documentation supplied by its authors, not independent certification. A community conversion may differ from the original release; trace its provenance."],
+      ["Can an old laptop run it?", "Parameter counts such as 1B mean roughly one billion learned parameters, not a quality score. Quantisation stores numbers at reduced precision to lower memory needs, with possible quality tradeoffs. Disk download size is not total RAM or GPU-memory use: the runner, context and other applications also need space. Start with a facilitator-tested small model, short context and measured hardware results; CPU-only use can be slow."],
+      ["Local is not automatic permission", "Local inference can keep the inference step on the device, but web search, plugins, telemetry or cloud fallbacks may still send data away. Models and runners are software supply-chain decisions. Do not execute unreviewed download scripts or enable repository code just because a model page suggests it. No installation or download happens in this lesson."],
+      ["A no-download exercise", "Open the linked Qwen3-0.6B publisher card as a concrete reading example, not a newest-or-best recommendation. In a blank project, record its publisher, checkpoint, licence label, intended task, limitations and a question still unanswered. Decide what you would need to verify before running it. Then read Programme & guides → Open-model field guide for a comparison worksheet."]
+    ],
+    "takeaway": "Check three things separately: what is released and permitted, where inference runs, and what the surrounding tools can access. Even fully offline use in this programme is ONLY for public information—never OFFICIAL material or government-network connections.",
+    "question": "An open-weight model is being used through a hosted website. Where is inference necessarily happening?",
+    "options": ["On your laptop, because the weights are open.", "Nowhere; open models do not need computation.", "Openness does not tell you. Check the service’s actual deployment."],
+    "correct": 2,
+    "feedback": "The licence/release and the deployment location are independent. A website can host an open model remotely; verify the data flow instead of assuming local execution.",
+    "sources": [
+      ["OSI: Open Source AI Definition 1.0", "https://opensource.org/ai/open-source-ai-definition"],
+      ["Hugging Face: model cards", "https://huggingface.co/docs/hub/model-cards"],
+      ["Hugging Face: quantisation overview", "https://huggingface.co/docs/transformers/quantization/overview"],
+      ["Ollama: local and network behaviour", "https://docs.ollama.com/faq"],
+      ["Ollama: cloud models", "https://docs.ollama.com/cloud"],
+      ["Reading example: Qwen3-0.6B publisher card", "https://huggingface.co/Qwen/Qwen3-0.6B"]
+    ]
+  }
+]

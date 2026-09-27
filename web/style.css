@@ -15,6 +15,11 @@
 .setup-row {display:flex;justify-content:space-between;align-items:center;gap:16px;padding:15px 0;border-bottom:1px solid var(--line,#dce1d5)}
 .setup-row p {margin:4px 0 0}
 .model-form {min-width:0;padding:12px 0}
+.web-chat-grid {margin-top:24px}
+.web-chat-card h3 {margin-top:16px}
+.web-chat-card small {overflow-wrap:anywhere}
+.content-review {margin:16px 0}
+.sources {display:flex;flex-wrap:wrap;gap:8px 14px}
 .settings-jumps {display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
 [id$="-settings"] {scroll-margin-top:20px}
 .table-scroll {max-width:100%;overflow-x:auto;margin:18px 0}

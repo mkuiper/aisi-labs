@@ -12,6 +12,8 @@
 - Soul and identity: tool-specific SOUL.md conventions, persona, project instructions, skills and permissions; an explicit ROLE.md comparison exercise.
 - Responsible exploration: public-only information, no government connectivity, permissions, prompt injection and incident response.
 - Models, tokens and where work happens: local versus cloud processing, modalities, cost, model evaluation, older hardware and reviewed updates.
+- Web chat: regular chatbot sites, dedicated learning accounts, safe public prompts, external-service boundaries and comparing configurations fairly.
+- Open models: weights versus open-source definitions, licence/model-card reading, local runners versus hosted inference, quantisation and hardware tradeoffs; a no-download worksheet and optional facilitator-led comparison.
 
 These are introductory explanations and small exercises. They are not a claim to cover every emerging agent feature. Memory and identity conventions vary across tools. SOUL.md is presented as an example from a particular ecosystem, not as a universal standard or a security control.
 
@@ -24,6 +26,14 @@ The five supplied activities cover a first agent session, a consultation explore
 Candidate extensions include a hands-on MCP connection to a public/local practice dataset, creating a simple skill, a repeatable model comparison, image/audio examples, local-model installation and a permission/sandbox demonstration. These need reviewed tools, public assets, clear costs and measurable outcomes before becoming taught activities.
 
 ## Review process
+
+Learning material and its editorial records are in Git. Supplemental lessons and
+chatbot links are in content/; existing lessons remain in catalogue.py. Use
+`python3 scripts/review_content.py` to see changed, unreviewed and due units, and
+invoke `$aisi-learning-review` for a source-based review or authorised refresh.
+See docs/CONTENT_MAINTENANCE.md for scope, records and invocation. The skill is
+on demand, not scheduled. Baseline records deliberately do not claim a fresh
+source review of older material. Content revisions and dates are shown in lessons.
 
 Assign an editorial owner and a tool-release owner. Review major tool or authentication changes before a rollout; use a regular review cycle for the rest of the catalogue. Check official sources, broken links, model availability, costs, instruction-file conventions, and whether the exercise still works for a fresh user. Record what was actually tested and the date.
 

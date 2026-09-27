@@ -1,0 +1,4 @@
+interface:
+  display_name: "AISI learning review"
+  short_description: "Review and refresh AISI Labs learning material"
+  default_prompt: "Use $aisi-learning-review to review and refresh the AISI AI Labs learning material, recording sources, changes and remaining review work."
