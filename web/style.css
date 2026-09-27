@@ -19,6 +19,11 @@
 .web-chat-card h3 {margin-top:16px}
 .web-chat-card small {overflow-wrap:anywhere}
 .content-review {margin:16px 0}
+.mark.has-logo {background:#fffefa;border:1px solid var(--line);overflow:hidden}
+.mark.has-logo .tool-logo {display:block;width:78%;height:78%;object-fit:contain}
+.mark.has-logo .logo-fallback {display:none}
+.mark.has-logo.logo-unavailable .tool-logo {display:none}
+.mark.has-logo.logo-unavailable .logo-fallback {display:inline}
 .sources {display:flex;flex-wrap:wrap;gap:8px 14px}
 .settings-jumps {display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
 [id$="-settings"] {scroll-margin-top:20px}

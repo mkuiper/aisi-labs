@@ -42,6 +42,11 @@ try{
   async function waitFor(expression){for(let i=0;i<80;i++){if(await evaluate(expression))return;await delay(50);}throw new Error('Wait failed: '+expression);}
   async function go(hash){await evaluate(`location.hash=${JSON.stringify(hash)}`);await waitFor(`location.hash===${JSON.stringify(hash)}`);await delay(80);}
   async function click(selector){assert(await evaluate(`!!document.querySelector(${JSON.stringify(selector)})`),'Missing '+selector);await evaluate(`document.querySelector(${JSON.stringify(selector)}).click()`);await delay(80);}
+  async function checkLogos(count){
+    assert.equal(await evaluate('document.querySelectorAll("main .tool-logo").length'),count);
+    await waitFor('[...document.querySelectorAll("main .tool-logo")].every(i=>i.complete&&i.naturalWidth>0)');
+    assert(await evaluate('[...document.querySelectorAll("main .tool-logo")].every(i=>new URL(i.src).origin===location.origin&&i.alt===""&&i.closest(".mark").getAttribute("aria-hidden")==="true")'));
+  }
   async function screenshot(name){const result=await cdp('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});await writeFile(join(reports,name+'.png'),Buffer.from(result.data,'base64'));}
   async function noOverflow(label){const sizes=await evaluate('({width:innerWidth,body:document.documentElement.scrollWidth})');if(sizes.body>sizes.width+1){console.log(await evaluate('[...document.querySelectorAll("body *")].filter(e=>e.getBoundingClientRect().right>innerWidth+1).map(e=>({tag:e.tagName,class:e.className,right:e.getBoundingClientRect().right})).slice(0,15)'));await screenshot('overflow');}assert(sizes.body<=sizes.width+1,`${label}: overflow ${JSON.stringify(sizes)}`);}
   await cdp('Page.enable');await cdp('Runtime.enable');await cdp('Log.enable');
@@ -55,9 +60,15 @@ try{
   await waitFor('!document.querySelector("#modal").open');
   await screenshot('launchpad-desktop');await noOverflow('desktop home');
   assert.equal(await evaluate('document.querySelectorAll(".quick-tool").length'),4);
+  await checkLogos(4);
+  // Exercise the fallback without making an intentional failed network request.
+  await evaluate('document.querySelector(".tool-logo").dispatchEvent(new Event("error"))');
+  assert.equal(await evaluate('getComputedStyle(document.querySelector(".logo-unavailable .tool-logo")).display'),'none');
+  assert.notEqual(await evaluate('getComputedStyle(document.querySelector(".logo-unavailable .logo-fallback")).display'),'none');
 
   await go('#web-chats');
   assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),7);
+  await checkLogos(3);
   await screenshot('web-chat-desktop');await noOverflow('web chat');
   // Exercise the gate without visiting or logging into any external provider.
   await evaluate('data.acknowledged=false');
@@ -78,7 +89,8 @@ try{
   assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("That’s it")'));
   await screenshot('open-models-desktop');
 
-  await go('#tools');await click('[data-filter="Desktop tools"]');
+  await go('#tools');await checkLogos(9);await screenshot('tool-logos-desktop');
+  await click('[data-filter="Desktop tools"]');
   assert.equal(await evaluate('document.querySelectorAll(".tool-card").length'),8);
   await click('[data-tool="terminal"]');
   assert(await evaluate('document.querySelector("#modal").open'));
@@ -166,7 +178,7 @@ try{
   await go('#home');await screenshot('launchpad-mobile');
   assert.deepEqual(errors,[],'Browser errors');
   assert.equal(serverErrors,'','Server errors');
-  console.log('PASS: launchpad, web-chat directory/confirmation/gate/search, open-model diagrams/reviews/quiz, credentials without leaks, model controls/persistence, inventory, eight documents, twelve lessons, five projects, progress, simulations and responsive layouts.');
+  console.log('PASS: bundled tool/chat logos and fallback, launchpad, web-chat confirmation/gate/search, open-model diagrams/reviews/quiz, credentials without leaks, models/persistence, inventory, eight documents, twelve lessons, five projects and responsive layouts.');
   console.log('Screenshots: '+reports);
 }finally{
   if(socket)socket.close();

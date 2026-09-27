@@ -42,6 +42,7 @@ the learner's Linux user and can have wider filesystem/network access.
 | `web/app.js` | Hash routing, labs, tools, learning diagrams, authored simulations |
 | `web/programme.js` | Rules, settings, model preferences, inventory, document renderer |
 | `web/style.css`, `web/icon.svg` | Local visual assets; no CDN or frontend build |
+| `logos.py`, `web/logos/` | Explicit product-to-SVG mappings and bundled assets/provenance; text fallback for unmatched tools |
 | `tests/`, `scripts/smoke.mjs` | Unit/HTTP tests and isolated Chromium integration checks |
 
 `programme.js` loads before `app.js`; its functions use shared app globals only
@@ -74,6 +75,13 @@ mutations require exact Origin and a per-process token. Static files and API
 routes are allowlisted. POST bodies are capped at 8192 bytes; connections have
 a 15-second timeout. CSP prohibits external scripts, frames and remote assets.
 Do not expose this standard-library development server to a LAN or reverse proxy.
+
+Logo requests are exact allowlisted `/logos/<name>.svg` routes, not general
+directory access. Images are decorative beside visible product names, loaded
+from the hub only, and checked for active/external SVG content in tests. A
+capturing error listener restores a text badge if loading fails; no inline
+event handlers or third-party asset requests are introduced. CLI and chatbot
+logo mappings are distinct, so GitHub Copilot is not used for Microsoft Copilot.
 
 POST routes: `/api/acknowledge`, `/api/projects`, `/api/checks`, `/api/progress`,
 `/api/launch`, `/api/configuration/key`, `/api/configuration/forget`,

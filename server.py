@@ -25,6 +25,7 @@ from policy import POLICY
 from documentation import load_documents
 from storage import atomic_json
 from maintenance import inventory
+from logos import LOGO_FILES, logo_catalogue
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_DATA = Path.home() / ".local/share/aisi-labs-2"
@@ -118,7 +119,7 @@ class Hub:
             progress = {}
             warnings.append(str(error))
         tools = [{**tool, "available": bool(executable(tool["command"])), "account": "Uses your tool's account and model settings; sign-in or charges may apply." if tool["category"] != "Desktop tools" else "No AI account needed to open this application."} for tool in TOOLS]
-        return {"tools": tools, "web_chats": WEB_CHATS, "content_reviews": review_report(), "labs": LABS, "lessons": LESSONS, "projects": projects, "progress": progress, "warnings": warnings, "playground": str(self.scratch), "policy": POLICY, "acknowledged": self.acknowledged, "configuration": self.configuration.status(), "documents": load_documents()}
+        return {"tools": tools, "logos": logo_catalogue(), "web_chats": WEB_CHATS, "content_reviews": review_report(), "labs": LABS, "lessons": LESSONS, "projects": projects, "progress": progress, "warnings": warnings, "playground": str(self.scratch), "policy": POLICY, "acknowledged": self.acknowledged, "configuration": self.configuration.status(), "documents": load_documents()}
 
     def create(self, lab_id, name):
         self.require_acknowledgement()
@@ -233,6 +234,7 @@ class Handler(BaseHTTPRequestHandler):
         if route == "/api/bootstrap":
             return self.send_body(200, self.server.hub.bootstrap())
         allowed = {"/": "index.html", "/app.js": "app.js", "/programme.js": "programme.js", "/style.css": "style.css", "/icon.svg": "icon.svg"}
+        allowed.update({"/logos/" + name: "logos/" + name for name in LOGO_FILES})
         if route not in allowed:
             return self.send_body(404, {"error": "Page not found."})
         path = ROOT / "web" / allowed[route]

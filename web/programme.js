@@ -1,7 +1,7 @@
 /* Programme and credential settings. Never persist API keys in the browser. */
 let afterAcknowledgement = null;
 function chatCard(chat) {
-  return `<article class="tool-card web-chat-card">${mark(chat)}<h3>${esc(chat.name)}</h3><span class="tag">External website · online</span><p>${esc(chat.description)}</p><small>${esc(new URL(chat.url).hostname)}</small><button class="btn secondary" data-web-chat="${esc(chat.id)}">Visit website ↗</button></article>`;
+  return `<article class="tool-card web-chat-card">${mark(chat, 'chat')}<h3>${esc(chat.name)}</h3><span class="tag">External website · online</span><p>${esc(chat.description)}</p><small>${esc(new URL(chat.url).hostname)}</small><button class="btn secondary" data-web-chat="${esc(chat.id)}">Visit website ↗</button></article>`;
 }
 function webChatsPage() {
   return `${heading('A conversation is a good place to start','Web chat','The regular chatbot websites, alongside your local AI tools.')}

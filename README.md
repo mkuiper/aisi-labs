@@ -150,6 +150,9 @@ Reviewed 27 September 2026. Links are also included with the relevant lessons.
 - [Agent Skills](https://agentskills.io/what-are-skills)
 
 The diagrams, project scenarios and fictional datasets were authored for this
-app. The tool cards use text marks rather than third-party logo assets. This is
+app. Matching tool and chatbot cards use bundled SVG logos from the original
+app, with text badges for missing or failed assets. Provenance and attribution
+are retained in [web/logos/SOURCES.md](web/logos/SOURCES.md). No remote logo requests
+are made, and the earlier app is unchanged. This is
 a working preview; the next learning-design step is to observe both beginners
 and experienced users trying one complete project.

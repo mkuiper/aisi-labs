@@ -1,5 +1,12 @@
 # Changes
 
+## 28 September 2026 — reused product logos
+
+- Bundled eleven SVG assets from the earlier app's supplied coloured logos, covering nine AI tools and three web-chat entries. The original app is unchanged and not a runtime dependency.
+- Shared marks render logos on tool cards, quick-launch buttons and search results, with separate CLI/chat mappings and accessible text fallbacks for missing or failed assets.
+- Kept logo requests local and explicitly allowlisted; preserved source notes and attribution. No downloads or new model/provider integrations.
+- Added passive-SVG, asset routing, product mapping and browser load/fallback checks.
+
 ## 28 September 2026 — web chat, open models and editorial maintenance
 
 - Added a Web chat section for seven official public chatbot destinations, also discoverable from the landing page and search. Programme acknowledgement and destination confirmation precede navigation; no hub secrets or projects are sent.

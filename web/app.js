@@ -27,7 +27,16 @@ const paths = {
   play: '<path d="m8 4 12 8-12 8z"/>',
 };
 const icon = key => `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${paths[key] || paths.spark}</svg>`;
-const mark = tool => `<span class="mark ${esc(tool.colour)}" aria-hidden="true">${esc(tool.mark)}</span>`;
+const mark = (tool, kind = 'tool') => {
+  const logo = data.logos?.[kind]?.[tool.id];
+  return `<span class="mark ${esc(tool.colour)}${logo?' has-logo':''}" aria-hidden="true"><span class="logo-fallback">${esc(tool.mark)}</span>${logo?`<img class="tool-logo" src="${esc(logo)}" alt="" width="32" height="32" decoding="async">`:''}</span>`;
+};
+// Capture image errors: no inline handlers (CSP), and no retry loop.
+document.addEventListener('error', event => {
+  if(event.target instanceof HTMLImageElement && event.target.classList.contains('tool-logo')) {
+    event.target.closest('.mark')?.classList.add('logo-unavailable');
+  }
+}, true);
 const lessonMark = lesson => `<span class="mark ${esc(lesson.colour)}">${icon(lesson.icon)}</span>`;
 const findLab = id => data.labs.find(x => x.id === id);
 const findLesson = id => data.lessons.find(x => x.id === id);

@@ -9,6 +9,7 @@ from unittest.mock import patch
 from catalogue import LABS, LESSONS, TOOLS
 from server import Hub, make_server
 from policy import POLICY
+from logos import LOGO_FILES, logo_catalogue
 
 
 class ProjectTests(unittest.TestCase):
@@ -141,6 +142,18 @@ class HttpTests(unittest.TestCase):
         code, body, _ = self.request('POST', '/api/progress', {'lesson':'terminal', 'completed':True}, self.auth())
         self.assertEqual(code, 200)
         self.assertTrue(json.loads(body)['terminal'])
+
+    def test_logos_are_explicit_static_assets_not_an_open_directory(self):
+        code, body, _ = self.request('GET', '/api/bootstrap')
+        self.assertEqual(json.loads(body)['logos'], logo_catalogue())
+        for name in LOGO_FILES:
+            code, body, headers = self.request('GET', '/logos/' + name)
+            self.assertEqual(code, 200)
+            self.assertTrue(headers['Content-Type'].startswith('image/svg+xml'))
+            self.assertIn(b'<svg', body)
+        for path in ['/logos/SOURCES.md','/logos/UPSTREAM-SOURCES.md','/logos/../server.py','/logos/missing.svg','/logos/%2e%2e/server.py']:
+            self.assertEqual(self.request('GET', path)[0], 404)
+        self.assertEqual(self.request('GET', '/logos/codex.svg', headers={'Host':'evil.example'})[0], 403)
 
     def test_cross_site_mutation_rejected(self):
         payload = {'tool':'terminal'}
