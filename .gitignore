@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+reports/
+.env
+.env.*
+!.env.example
+*.log
+*.key
+*.pem
+auth.json
+credentials.json
+.venv/
+node_modules/
+dist/
+.local/
+playground/
+projects/
