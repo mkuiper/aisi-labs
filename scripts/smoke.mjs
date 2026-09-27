@@ -24,7 +24,7 @@ try{
   server=spawn('/usr/bin/python3',[join(root,'server.py'),'--port','0','--data-dir',join(temporary,'state')],{cwd:root});
   let serverErrors='';server.stderr.on('data',chunk=>serverErrors+=chunk);
   const url=await captureUntil(server,'stdout',/(http:\/\/127\.0\.0\.1:\d+)/);
-  browser=spawn('/usr/bin/chromium',['--headless','--disable-gpu','--no-first-run','--no-default-browser-check','--disable-background-networking','--remote-debugging-port=0',`--user-data-dir=${join(temporary,'browser')}`,'about:blank']);
+  browser=spawn(process.env.CHROMIUM_BIN||'/usr/bin/chromium',['--headless','--disable-gpu','--no-first-run','--no-default-browser-check','--disable-background-networking','--remote-debugging-port=0',`--user-data-dir=${join(temporary,'browser')}`,'about:blank']);
   const browserWS=await captureUntil(browser,'stderr',/DevTools listening on (ws:\/\/[^\s]+)/);
   const host=new URL(browserWS).host;
   const pages=await (await fetch(`http://${host}/json/list`)).json();
@@ -105,6 +105,17 @@ try{
 
   await go('#configuration');
   assert.equal(await evaluate('document.querySelectorAll(".key-form").length'),3);
+  assert.equal(await evaluate('document.querySelectorAll(".model-form").length'),4);
+  assert(await evaluate('document.body.textContent.includes("Grok’s native sign-in")'));
+  await evaluate('document.querySelector("[data-model-tool=grok] input").value="test-model-id";document.querySelector("[data-model-tool=grok]").requestSubmit()');
+  await waitFor('document.querySelector("#toast").textContent.includes("Model preference saved")');
+  await cdp('Page.reload');await waitFor('!!document.querySelector(".model-form")');
+  assert.equal(await evaluate('document.querySelector("[data-model-tool=grok] input").value'),'test-model-id');
+  await evaluate('document.querySelector("[data-model-tool=grok] input").value="";document.querySelector("[data-model-tool=grok]").requestSubmit()');
+  await waitFor('document.querySelector("#toast").textContent.includes("Model preference saved")');
+  // Local inspection only: no provider/registry traffic in the browser suite.
+  await click('[data-inventory=local]');await waitFor('!!document.querySelector(".inventory-table")');
+  assert.equal(await evaluate('document.querySelectorAll(".inventory-table tbody tr").length'),21);
   const fake='FAKE-BROWSER-TEST-KEY-DO-NOT-USE';
   await evaluate(`document.querySelector('.key-form input').value=${JSON.stringify(fake)};document.querySelector('.key-form').requestSubmit()`);
   await waitFor('!!document.querySelector("[data-forget=openai]")');
@@ -118,9 +129,9 @@ try{
   await go('#configuration');await click('[data-forget="all"]');
   await waitFor('!document.querySelector("[data-forget=openai]")');
   await screenshot('configuration-desktop');
-  await go('#programme');assert.equal(await evaluate('document.querySelectorAll(".doc-card").length'),5);
+  await go('#programme');assert.equal(await evaluate('document.querySelectorAll(".doc-card").length'),6);
   await screenshot('programme-desktop');
-  for(const id of ['programme','learner','deployment','credentials','curriculum']){await go('#docs/'+id);assert(await evaluate('document.querySelector(".document-reader").textContent.length>1000'));}
+  for(const id of ['programme','learner','deployment','credentials','curriculum','maintenance']){await go('#docs/'+id);assert(await evaluate('document.querySelector(".document-reader").textContent.length>1000'));}
 
   // Exercise every guide and both keyboard-sized and narrow viewports.
   for(const id of ['chat-agents','terminal','context','prompting','tools-skills','checking','memory','identity','responsible-use','models-costs']){
@@ -133,7 +144,7 @@ try{
   await go('#home');await screenshot('launchpad-mobile');
   assert.deepEqual(errors,[],'Browser errors');
   assert.equal(serverErrors,'','Server errors');
-  console.log('PASS: launchpad, filters, acknowledgement, credential setup/removal without leaks, five documents, ten lessons, five project starters, progress, simulations, search and responsive layouts.');
+  console.log('PASS: launchpad, filters, acknowledgement, credentials without leaks, four model controls/persistence, local inventory, six documents, ten lessons, five project starters, progress, simulations, search and responsive layouts.');
   console.log('Screenshots: '+reports);
 }finally{
   if(socket)socket.close();

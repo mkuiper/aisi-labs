@@ -6,6 +6,23 @@ Configuration accepts dedicated learning API keys for OpenAI → Codex, Anthropi
 
 Authentication is an explicit exception to the public-content rule: a secret is entered only in a password field to authenticate a permitted learning service. It must not grant access to government systems, and it must never be put in a model prompt, project, memory file or the master image.
 
+## Model preferences and Grok
+
+Model selection is independent of credential storage. Labs can pass an exact
+model ID or alias to Codex, Claude Code, Gemini CLI and Grok on the next launch.
+An empty value leaves native configuration in control. These non-secret values
+persist in models.json; do not put API keys in a model field. The hub does not
+verify availability, account entitlement, current pricing or model quality.
+
+Grok currently uses its native authentication, with guidance in Configuration.
+Its official setup supports browser login and XAI_API_KEY, but Labs does not yet
+inject xAI keys. Validate the installed version's background leader, existing
+login precedence, endpoint configuration and key rotation before adding that
+adapter. A saved model does not authenticate a tool.
+
+Other AI tools use their own configuration and login. Desktop tools need no hub
+API key to open. Do not distribute one provider key to every launcher by default.
+
 ## Storage and removal
 
 Keys are retained only in the running Python hub's memory. They are not written to a hub configuration file, browser storage, a command line or application log, and are never returned by the settings/status API. No provider request is made when a key is set, replaced or forgotten. The key's validity, permissions and balance are not verified by the hub.

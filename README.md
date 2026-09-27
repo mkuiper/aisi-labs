@@ -1,4 +1,4 @@
-# AISI Labs 2
+# AISI AI Labs
 
 An Australian AI Safety Institute launchpad for APS professional development
 and personal upskilling with contemporary AI tools. Built fresh alongside the
@@ -16,6 +16,9 @@ The supplied fictional examples are public practice material.
 - [Department deployment and image plan](docs/DEPLOYMENT.md)
 - [Credentials and configuration](docs/CREDENTIALS.md)
 - [Curriculum and maintenance](docs/CURRICULUM.md)
+- [Updates, models and releases](docs/MAINTENANCE.md)
+- [Critical review and outstanding release gates](docs/REVIEW.md)
+- [Architecture](ARCHITECTURE.md), [contributing](CONTRIBUTING.md), [agent guidance](AGENTS.md)
 
 These are also readable in the app's Programme & guides tab. The application
 does not enforce network separation. A departmental image still needs to be
@@ -23,7 +26,7 @@ built, tested and accepted by its deployment owner; this repo is not that image.
 
 ## Open the app
 
-Search **AISI Labs 2** in the Omarchy application launcher, or run:
+Search **AISI AI Labs** in the Omarchy application launcher, or run:
 
 ```sh
 python3 /home/mike/AISI-labs-2/launch.py
@@ -47,6 +50,8 @@ or until its process is stopped. The launcher reuses it on the next visit.
 - Search, keyboard navigation, responsive layouts and local learning bookmarks.
 - First-use acknowledgement and persistent public-only/no-government-network guidance.
 - A Configuration tab with session-only keys for Codex, Claude Code and Gemini CLI.
+- Model overrides for those three tools plus Grok, with native setup guidance for the other tools.
+- Read-only local version inventory and an opt-in public release check for four core AI tools.
 
 Use **ONLY public information**. Do not enter OFFICIAL or other non-public
 information. Inclusion of a tool is not agency approval for official work.
@@ -60,6 +65,7 @@ Learner state is under `~/.local/share/aisi-labs-2/`:
 - `projects/<activity-date-id>/`: each attempt's files and `.aisi-project.json` metadata.
 - `playground/`: the default working folder for standalone tool launches.
 - `progress.json`: self-reported learning bookmarks for this Linux account.
+- `models.json`: non-secret model preferences; empty means use native tool configuration.
 - `server.log`, `launch.log`: local startup and application-launch diagnostics.
 
 Each attempt has a new ID. No existing project is overwritten. Missing or
@@ -73,6 +79,7 @@ the hub does not run or certify learner-generated code.
 python3 server.py --port 8768
 python3 -m unittest discover -s tests -v
 node scripts/smoke.mjs
+python3 scripts/check_updates.py
 ```
 
 The browser smoke test needs the system Chromium and Node 22+ (for native
@@ -83,7 +90,8 @@ creates test projects, exercises the interface and saves screenshots to
 Edit `catalogue.py` for tools, activities and lessons; `templates.py` for
 starter files; `web/` for the interface. Python changes need a server restart.
 Programme rules live in `policy.py`, credentials in `configuration.py`, and
-the local documentation registry in `documentation.py`.
+the local documentation registry in `documentation.py`. Maintenance checks are in
+`maintenance.py`; private atomic JSON writes are in `storage.py`.
 Refresh the app after frontend changes. To restart only this app, identify its
 service safely and reload the new backend with:
 
@@ -117,9 +125,15 @@ disable confirmation controls. File previews run in the user's browser; inspect
 the generated content before opening it. This first version does not import
 old learner progress, manage accounts, install tools, run model evaluations or
 offer a complete inventory of every Omarchy desktop application. Session API
-keys are scoped to three tested launch adapters; they are never persisted by
+keys are scoped to three launch adapters covered by mocked tests; they are never persisted by
 the hub. Closing the window does not clear them while the server is running.
 See the credential guide for subprocess, shared-account and OS-storage limits.
+
+The optional public release check contacts npm metadata endpoints only when
+requested. It is not an OS updater or model-availability test and installs nothing.
+This app is under local Git version control; no remote repository has been created.
+Do not distribute a laptop image before the open gates in the critical review
+and deployment guide are resolved.
 
 ## Learning references
 

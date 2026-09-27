@@ -7,6 +7,7 @@ DOCUMENTS = [
     ("deployment", "Department deployment guide", "Deployment teams", "A proposed laptop-image architecture and release acceptance checklist.", "DEPLOYMENT.md"),
     ("credentials", "Credentials and configuration", "Learners and facilitators", "How session API keys work, their limits and how to remove them.", "CREDENTIALS.md"),
     ("curriculum", "Curriculum and maintenance", "Content maintainers", "What is covered, where to find it and how to keep it current.", "CURRICULUM.md"),
+    ("maintenance", "Updates, models and releases", "Facilitators and maintainers", "Model choices, version checks, stable teaching images and rollback.", "MAINTENANCE.md"),
 ]
 
 def load_documents():

@@ -10,8 +10,49 @@ function credentialNotice(tool) {
   const provider=configuredFor(tool);
   return provider ? `<p class="credential-notice">${esc(provider.name)} API key set for this hub session. API charges may apply. <a href="#configuration">Manage keys ↗</a></p>` : '';
 }
-function configurationPage() {
+function credentialsPanel() {
   return `${heading('Make the tools work for you','Configuration','Set dedicated learning API keys, or keep using each tool’s own sign-in.')}<div class="note"><strong>Keys are an authentication exception to the public-input rule.</strong> Enter only dedicated learning keys in these password fields. Never put keys in prompts, project files, memory, screenshots or a shared laptop image. Do not use credentials that grant access to government systems.</div><div class="settings-summary"><div><h2>For this hub session only</h2><p>Keys stay in the running hub’s memory and are forgotten when it restarts. Closing the window does not stop the hub. Keys are passed only to the matching tool when launched from Labs; they are never returned to this page.</p></div><button class="btn secondary" data-forget="all">Forget all keys</button></div><div class="provider-grid">${data.configuration.providers.map(p=>`<section class="panel provider-card"><div class="provider-heading"><h2>${esc(p.name)}</h2><span class="badge-count">${p.configured?'Set for session':'Not set in Labs'}</span></div><p><strong>${esc(p.tool_name)}</strong> · ${esc(p.env)}</p><p class="small-note">${esc(p.help)}</p><form class="key-form" data-provider="${p.id}"><label class="field"><span>${p.configured?'Replace learning API key':'Learning API key'}</span><input type="password" name="key" autocomplete="new-password" spellcheck="false" autocapitalize="none" minlength="8" maxlength="4096" required aria-label="${esc(p.name)} learning API key" placeholder="Enter a dedicated learning key"></label><div class="actions"><button class="btn" type="submit">Set for session</button>${p.configured?`<button class="btn secondary" type="button" data-forget="${p.id}">Forget key</button>`:''}</div><p class="key-feedback small-note" role="status">${p.configured?'Stored in memory; not validated with the provider.':'Native tool sign-in is available without adding a key here.'}</p></form><div class="settings-links"><a class="text-link" href="${p.docs}" target="_blank" rel="noopener noreferrer">Authentication guide ↗</a><a class="text-link" href="${p.billing}" target="_blank" rel="noopener noreferrer">Usage and account ↗</a></div></section>`).join('')}</div><section class="panel"><h2>What these settings do</h2><p>Saving a key makes no provider request and does not verify credit, access or model availability. Other AI tools use their own authentication; Labs does not distribute these keys to every tool. A compatible model or an authentication choice inside the tool may be required.</p><p class="small-note">Forgetting a key stops Labs supplying it to new launches. Already-running tools may retain it or save their own credentials. Close those sessions and revoke a key with the provider if necessary. Processes running as this Linux user may access process memory or environment; this is not isolation between users.</p><p class="small-note">API billing can be separate from a chat subscription. Configure budgets and alerts with the provider; Labs does not enforce a spending cap.</p><a class="text-link" href="#docs/credentials">Read the credential guide ↗</a></section>`;
+}
+let maintenanceResult = null;
+function configurationPage() {
+  const jumps=`<nav class="settings-jumps" aria-label="Configuration sections"><button class="btn secondary" data-settings-section="key-settings">API keys</button><button class="btn secondary" data-settings-section="model-settings">Models</button><button class="btn secondary" data-settings-section="native-settings">Tool setup</button><button class="btn secondary" data-settings-section="maintenance-settings">Version checks</button></nav>`;
+  return jumps + `<div id="key-settings" tabindex="-1">${credentialsPanel()}</div>` + modelPanel() + nativeSetupPanel() + maintenancePanel();
+}
+function modelPanel() {
+  return `<section class="panel" id="model-settings" tabindex="-1" aria-labelledby="model-heading">
+    <h2 id="model-heading">Choose your models</h2>
+    <p>Leave a field empty to use the tool’s own default. Set an exact model ID or a supported alias to override it for new launches from Labs. These non-secret preferences are saved on this laptop; API keys are not.</p>
+    <p class="small-note">There is no universal “latest”. A tool update, a new model release and access on your account are different things. Use each tool’s model picker and the official guide. An alias can move; an exact version is more repeatable. Labs does not verify availability, quality or price.</p>
+    ${data.configuration.warning?`<p class="error">${esc(data.configuration.warning)}</p>`:''}
+    <div class="provider-grid">${data.configuration.models.map(tool=>`
+      <form class="model-form" data-model-tool="${tool.id}">
+        <label class="field"><span>${esc(tool.name)} model</span><input name="model" value="${esc(tool.model)}" maxlength="160" autocomplete="off" spellcheck="false" placeholder="Use the tool’s default"></label>
+        <p class="small-note">${esc(tool.help)}</p>
+        <div class="actions"><button class="btn secondary" type="submit">Save model</button><a class="text-link" href="${tool.docs}" target="_blank" rel="noopener noreferrer">Model guide ↗</a></div>
+      </form>`).join('')}</div>
+    <p class="small-note">Model IDs are not secrets. Never paste an API key here. Saving a preference makes no model call and does not change an already-running session.</p>
+  </section>`;
+}
+function nativeSetupPanel() {
+  const managed=new Set(data.configuration.providers.map(p=>p.tool));
+  const native=data.tools.filter(t=>t.category!=='Desktop tools'&&!managed.has(t.id));
+  return `<section class="panel" id="native-settings" tabindex="-1"><h2>Grok and the rest of your toolkit</h2>
+    <p>Every tool has a setup route, but not every tool should receive a key from Labs. Multi-provider tools and account-based products keep their own login, provider selection, permissions, MCP and skills settings.</p>
+    <div class="note"><strong>Grok:</strong> choose the model above, then use Grok’s native sign-in. Its official guide also explains xAI API-key authentication. Labs does not yet inject xAI keys: its background leader and existing login need dedicated acceptance testing first. <a class="text-link" href="https://docs.x.ai/build/overview" target="_blank" rel="noopener noreferrer">Grok setup guide ↗</a></div>
+    <div class="setup-list">${native.map(t=>`<div class="setup-row"><div><strong>${esc(t.name)}</strong><p class="small-note">Native setup · account, provider and permissions inside the tool</p></div><button class="btn secondary" data-tool="${t.id}" ${t.available?'':'disabled'}>Open ${esc(t.name)}</button></div>`).join('')}</div>
+    <p class="small-note">Desktop applications, the editor and terminal use their own preferences and need no hub API key to open. Review any third-party login or extension before connecting it. Do not use government accounts.</p>
+  </section>`;
+}
+function maintenancePanel() {
+  const result=maintenanceResult;
+  return `<section class="panel" id="maintenance-settings" tabindex="-1" aria-labelledby="maintenance-heading"><h2 id="maintenance-heading">Versions and maintenance</h2>
+    <p>Check what this machine can launch, then optionally compare four core AI tools with their public npm release metadata. This does not install or update anything.</p>
+    <div class="actions"><button class="btn secondary" data-inventory="local">Inspect local versions</button><button class="btn secondary" data-inventory="online">Check public releases ↗</button><a class="text-link" href="#docs/maintenance">Update and release guide ↗</a></div>
+    <p class="small-note">The online check contacts registry.npmjs.org over the separate learning network. It sends no API keys, prompts, projects or installed-version list. The registry sees the network address and requested package names.</p>
+    ${result?`<p role="status">${result.online?'Public release check':'Local inspection'}: ${esc(new Date(result.checked_at).toLocaleString())}</p><p class="small-note">${esc(result.scope)} Content reviewed: ${esc(result.content_reviewed)}.</p>${result.warning?`<p class="error">${esc(result.warning)}</p>`:''}
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Tool version inventory"><table class="inventory-table"><thead><tr><th scope="col">Tool</th><th scope="col">Active Mise version</th><th scope="col">Public release</th><th scope="col">Check result</th></tr></thead><tbody>${result.tools.map(t=>`<tr><th scope="row">${esc(t.name)}<small>${t.detected?'Command detected':'Not detected'}${t.dynamic_wrapper?' · May update on launch':''}</small></th><td>${esc(t.version||'Unknown')}</td><td>${t.source?`<a href="${esc(t.source)}" target="_blank" rel="noopener noreferrer">${esc(t.latest||'Not checked')} ↗</a>`:'Manual review'}</td><td>${esc(t.status)}</td></tr>`).join('')}</tbody></table></div>`:''}
+    <p class="small-note">A matching version is not a security approval. Wrappers may select or download another version when opened. Maintain a tested image, review changes, pilot updates and keep a rollback image. OS, desktop apps, plugins, skills and MCP servers need their own checks.</p>
+  </section>`;
 }
 function programmePage() {
   return `${heading('Australian AI Safety Institute','Explore freely. Work responsibly.','Professional development and personal upskilling for Australian Public Service staff.')}<div class="programme-purpose"><h2>Hands-on exposure to contemporary AI tools.</h2><p>Use a dedicated learning laptop to understand how the tools work, make public practice projects and build your own capability. Activities are learning exercises; this is not an environment for processing official work.</p></div><div class="programme-rules">${data.policy.rules.map((rule,i)=>`<section class="panel"><span class="eyebrow">BOUNDARY ${i+1}</span><p>${esc(rule)}</p></section>`).join('')}</div><div class="diagram"><div class="diagram-label">Intended deployment — must be implemented outside the app</div><div class="diagram-row"><div class="diagram-node"><strong>Learning laptop</strong><small>Public practice material</small></div><span class="diagram-arrow">→</span><div class="diagram-node"><strong>Separate network</strong><small>Non-government internet</small></div><span class="diagram-arrow">→</span><div class="diagram-node"><strong>AI providers</strong><small>Dedicated learning accounts</small></div></div><p class="network-boundary">Government networks and systems: NEVER CONNECT</p><p class="diagram-caption">${esc(data.policy.limits)}</p></div><div class="note"><strong>Public means public.</strong> ${esc(data.policy.examples)} Public availability also does not remove privacy, copyright or acceptable-use responsibilities.</div><div class="actions"><button class="btn secondary" data-policy>Review learning rules</button><a class="btn" href="#learn/responsible-use">Learn about responsible use →</a><span class="tiny-label">${data.acknowledged?'Acknowledged for this hub session':'Please acknowledge before launching tools'}</span></div><div class="section-heading"><div><h2>Programme documentation</h2><p>For learners, facilitators and the people preparing departmental laptops.</p></div></div><div class="about-grid">${data.documents.map(d=>`<a class="panel doc-card" href="#docs/${d.id}"><span class="eyebrow">${esc(d.audience)}</span><h2>${esc(d.title)}</h2><p>${esc(d.description)}</p><span class="text-link">Read guide ↗</span></a>`).join('')}</div>`;
@@ -51,6 +92,22 @@ document.addEventListener('submit',async event=>{
 });
 document.addEventListener('click',async event=>{
   const button=event.target.closest('button');if(!button)return;
+  if(button.dataset.settingsSection){const section=document.getElementById(button.dataset.settingsSection);section?.focus({preventScroll:true});section?.scrollIntoView({block:'start'});}
+  if(button.dataset.inventory){
+    const online=button.dataset.inventory==='online';
+    if(online&&!data.acknowledged){policyDialog(()=>{location.hash='#configuration';});return;}
+    button.disabled=true;button.textContent='Checking…';
+    try{maintenanceResult=await api('maintenance',{online});render();toast('Read-only check complete. No software was installed.');}
+    catch(error){button.disabled=false;button.textContent='Try version check again';toast(error.message);}
+  }
   if(button.hasAttribute('data-policy'))policyDialog();
   if(button.dataset.forget){button.disabled=true;try{data.configuration=await api('configuration/forget',{provider:button.dataset.forget});render();toast('Forgotten for future launches. Existing tool sessions may still hold the key.');}catch(error){button.disabled=false;toast(error.message);}}
+});
+document.addEventListener('submit',async event=>{
+  const form=event.target;if(!form.classList.contains('model-form'))return;
+  event.preventDefault();
+  if(!data.acknowledged){policyDialog(()=>{location.hash='#configuration';});return;}
+  const button=form.querySelector('button');button.disabled=true;
+  try{data.configuration=await api('configuration/model',{tool:form.dataset.modelTool,model:form.elements.model.value.trim()});render();toast('Model preference saved for future launches. No model call was made.');}
+  catch(error){toast(error.message);button.disabled=false;}
 });

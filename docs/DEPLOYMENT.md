@@ -23,7 +23,7 @@ Measure usability on representative older laptops: boot time, browser memory, op
 ## Master image contents
 
 - A supported, patched Omarchy installation, with a documented release/version and verified device drivers.
-- AISI Labs 2 source and dependencies: Python 3, Chromium, Ghostty and the desktop-launch integration; Node is used for the browser test suite.
+- AISI AI Labs source and dependencies: Python 3, Chromium, Ghostty and the desktop-launch integration; Node is used for the browser test suite.
 - A curated, versioned tool manifest recording source, licence, version, launch command, authentication method and review date.
 - The authored public learning material and starter datasets only.
 - A portable desktop entry pointing to the installed launch.py and icon. The development entry uses /home/mike; replace that path for the image's actual installation location and account.

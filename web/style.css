@@ -11,3 +11,14 @@
 @media(max-width:900px){.provider-grid,.programme-rules{grid-template-columns:1fr}.programme-banner{padding:12px 28px}.settings-summary{align-items:flex-start;flex-direction:column}}
 @media(max-width:650px){.sidebar nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}.nav-link{white-space:normal;text-align:center;font-size:10px}.programme-banner{padding:12px 20px;gap:5px}.programme-purpose{padding:22px}.programme-purpose h2{font-size:24px}.provider-heading{gap:10px}.settings-links{gap:12px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+/* Configuration and read-only inventory. Horizontal scroll stays inside the card. */
+.setup-row {display:flex;justify-content:space-between;align-items:center;gap:16px;padding:15px 0;border-bottom:1px solid var(--line,#dce1d5)}
+.setup-row p {margin:4px 0 0}
+.model-form {min-width:0;padding:12px 0}
+.settings-jumps {display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+[id$="-settings"] {scroll-margin-top:20px}
+.table-scroll {max-width:100%;overflow-x:auto;margin:18px 0}
+.inventory-table {width:100%;border-collapse:collapse;text-align:left;font-size:.88rem}
+.inventory-table th,.inventory-table td {padding:12px;border-bottom:1px solid #dce1d5;vertical-align:top;min-width:135px}
+.inventory-table th small {display:block;font-weight:400;margin-top:5px;color:#526457}
+@media(max-width:600px){.setup-row{align-items:flex-start;flex-direction:column}.brand strong{font-size:inherit}}

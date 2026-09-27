@@ -1,6 +1,6 @@
 # Programme charter
 
-Australian AI Safety Institute · AISI Labs 2
+Australian AI Safety Institute · AISI AI Labs
 
 ## Purpose
 

@@ -1,0 +1,129 @@
+# AISI AI Labs architecture
+
+Status: local learning preview, reviewed 27 September 2026. This is not a
+multi-user service, government work platform or completed departmental image.
+
+## Purpose and trust boundary
+
+APS professional development with ONLY public information. Nothing OFFICIAL
+or non-public. NEVER connect the device to government networks, accounts or
+internal systems. The app explains this boundary; it cannot enforce it.
+
+```text
+Omarchy desktop entry → launch.py → loopback Python server (server.py)
+                                     ↕ same-origin HTTP + mutation token
+                                local browser interface (web/)
+                                     ↓ explicit launch, argv allowlist
+                            Ghostty / AI CLI / desktop application
+                                     ↓ tool-owned permissions and network
+                              public learning services
+```
+
+The browser interface is privileged: it can request approved local launches.
+Generated project HTML is opened as a file, never served from the hub origin.
+Project folders are working directories, NOT security sandboxes. Tools run as
+the learner's Linux user and can have wider filesystem/network access.
+
+## Component map
+
+| Component | Responsibility |
+| --- | --- |
+| `launch.py` | Start/reuse this checkout's loopback service, safe targeted restart, open Omarchy webapp |
+| `server.py` | HTTP boundary, acknowledgement, project validation, tool launches, progress |
+| `catalogue.py` | Curated tool allowlist, activities, lessons, public references |
+| `templates.py` | Authored public starter files and briefs |
+| `policy.py` | Programme rules and acknowledgement version |
+| `configuration.py` | Ephemeral keys, persistent non-secret model overrides, CLI adapters |
+| `storage.py` | Unique private temporary file + atomic replacement for JSON state |
+| `maintenance.py` | Read-only Mise inventory; opt-in allowlisted public release checks |
+| `documentation.py` | Explicit allowlist of documents presented in the app |
+| `web/app.js` | Hash routing, labs, tools, learning diagrams, authored simulations |
+| `web/programme.js` | Rules, settings, model preferences, inventory, document renderer |
+| `web/style.css`, `web/icon.svg` | Local visual assets; no CDN or frontend build |
+| `tests/`, `scripts/smoke.mjs` | Unit/HTTP tests and isolated Chromium integration checks |
+
+`programme.js` loads before `app.js`; its functions use shared app globals only
+after bootstrap. Preserve that ordering. Templates escape untrusted text with
+`esc`; do not insert project names, provider responses or model IDs as raw HTML.
+Keep dependencies minimal; the backend uses Python's standard library only.
+
+## Data and lifecycle
+
+Default data root: `~/.local/share/aisi-labs-2/`. Display branding is independent
+of this stable identifier. `--data-dir` gives tests a temporary isolated root.
+
+- `projects/<id>/`: user files and `.aisi-project.json`; never overwrite a previous attempt.
+- `playground/`: working directory for tool launches outside a project.
+- `progress.json`: Linux-account-wide learning bookmarks, not scored assessments.
+- `models.json`: non-secret model overrides for four supported launch adapters.
+- `server.log`, `launch.log`, `launch.lock`: diagnostics and launcher coordination.
+- Memory only: API keys, acknowledgement and random mutation token.
+
+Closing the window does not stop the hub. Restart forgets keys/acknowledgement
+but preserves projects, progress and model preferences. Concurrent state writes
+use locks; JSON replaces use unique mode-0600 temporary files. Preserve corrupt
+state and report it instead of silently resetting a learner's work. This is not
+a database transaction spanning an entire project creation.
+
+## HTTP boundary
+
+Bind `127.0.0.1` only. GET requests validate Host and reject cross-site fetches;
+mutations require exact Origin and a per-process token. Static files and API
+routes are allowlisted. POST bodies are capped at 8192 bytes; connections have
+a 15-second timeout. CSP prohibits external scripts, frames and remote assets.
+Do not expose this standard-library development server to a LAN or reverse proxy.
+
+POST routes: `/api/acknowledge`, `/api/projects`, `/api/checks`, `/api/progress`,
+`/api/launch`, `/api/configuration/key`, `/api/configuration/forget`,
+`/api/configuration/model`, `/api/maintenance`. Bootstrap returns catalogue,
+state and key-presence booleans, NEVER key values. The acknowledgement gate
+covers creating projects, launching tools, setting keys/models and online checks.
+Reading guides, forgetting keys and local version inspection do not need it.
+
+These controls reduce browser-origin attacks. They do not isolate hostile
+processes, extensions or people sharing the same Linux account. There is no
+user authentication, per-learner authorisation, input classification or DLP.
+
+## Tool configuration and credentials
+
+Launches are argument arrays with a fixed command allowlist; never `shell=True`.
+Model overrides use validated single arguments (`--model`, ID), independent of
+whether a hub key is set. Empty means no override, not a claim of the newest
+model. Native settings/account entitlements still matter. No model catalogues
+are fetched using learner credentials.
+
+For three key adapters, construct a child environment, scrub known conflicting
+provider variables and insert only the matching key. The secret is not in argv,
+browser storage, API responses or hub-written files. Direct independent Ghostty
+launch bypasses `uwsm-app` for these launches because that daemon does not forward
+per-launch environment. Key-enabled child output is not logged by the hub.
+Codex has a separate official-API provider and no-daemon flag. See CREDENTIALS.
+
+This is not a vault: a same-user process, swap or crash dump may expose secrets;
+external tools may save their own credentials. Forgetting only affects future
+launches. Native authentication/environment on launches without hub keys is not
+sanitised. Never equate “no key in Labs” with “no credentials in the tool”.
+
+Grok currently has a model adapter but native authentication only. Do not add
+XAI_API_KEY injection without testing existing browser auth, endpoint overrides,
+leader-process environment reuse and key rotation/forgetting on pinned versions.
+
+## Maintenance and release strategy
+
+Local inventory executes only `mise ls --json`, never AI bootstrap wrappers.
+Versions describe active Mise records, not a guaranteed next launched binary.
+The online check is explicit and limited to four official npm package metadata
+endpoints. It sends no keys, project contents or local version list; no redirects
+or environment proxies are followed. Responses are size/time bounded. Offline
+failures and unknown versions stay visible. No software is installed by the hub.
+
+See `docs/MAINTENANCE.md` for owners, cadence, tested manifests and rollback.
+Testing, content review and image/network acceptance are separate release gates.
+
+## Verification
+
+Run `python3 -m unittest discover -s tests -v`, JavaScript syntax checks, and
+`node scripts/smoke.mjs`. Tests use fake credentials, temporary state, mocked
+processes and mocked external release metadata. Browser checks do not launch
+real AI tools or call models. Real authentication, tool permissions, accessibility,
+old hardware and network separation require the acceptance tests in DEPLOYMENT.

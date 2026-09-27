@@ -22,6 +22,8 @@ from templates import starter_files
 from configuration import Configuration
 from policy import POLICY
 from documentation import load_documents
+from storage import atomic_json
+from maintenance import inventory
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_DATA = Path.home() / ".local/share/aisi-labs-2"
@@ -34,12 +36,6 @@ def executable(command):
     return shutil.which(command)
 
 
-def atomic_json(path, value):
-    temporary = path.with_name(path.name + ".tmp")
-    temporary.write_text(json.dumps(value, indent=2) + "\n")
-    os.replace(temporary, path)
-
-
 class Hub:
     def __init__(self, data):
         self.data = Path(data).resolve()
@@ -49,7 +45,7 @@ class Hub:
         self.scratch.mkdir(exist_ok=True)
         self.lock = threading.RLock()
         self.token = secrets.token_urlsafe(32)
-        self.configuration = Configuration()
+        self.configuration = Configuration(self.data / "models.json")
         self.acknowledged = False
 
     def acknowledge(self, version):
@@ -172,7 +168,7 @@ class Hub:
         ghostty = executable("ghostty")
         if not ghostty:
             raise ValueError("Ghostty is needed to open a terminal tool on this installation.")
-        args = [ghostty, "--gtk-single-instance=false", "--class=TUI.float", f"--title=AISI Labs 2 · {tool['name']}", f"--working-directory={path}", "--wait-after-command", "-e", command]
+        args = [ghostty, "--gtk-single-instance=false", "--class=TUI.float", f"--title=AISI AI Labs · {tool['name']}", f"--working-directory={path}", "--wait-after-command", "-e", command]
         if executable("uwsm-app"):
             args = [executable("uwsm-app"), "--", *args]
         return args, path
@@ -181,12 +177,12 @@ class Hub:
         self.require_acknowledgement()
         args, path = self.launch_argv(tool_id, project_id)
         env, extra = self.configuration.launch_settings(tool_id)
+        args.extend(extra)
         if env is not None:
             # uwsm-app forwards argv to a daemon, not this process's environment.
             # Start the independent Ghostty process directly to inherit this key.
             if len(args) > 2 and Path(args[0]).name == "uwsm-app":
                 args = args[2:]
-            args.extend(extra)
             process = subprocess.Popen(args, cwd=path, env=env, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
         else:
             with (self.data / "launch.log").open("ab") as log:
@@ -203,6 +199,10 @@ class Hub:
 
 class Handler(BaseHTTPRequestHandler):
     server_version = "AISI-Labs-2"
+
+    def setup(self):
+        super().setup()
+        self.connection.settimeout(15)
 
     def log_message(self, *_args):
         pass
@@ -260,6 +260,15 @@ class Handler(BaseHTTPRequestHandler):
             elif route == "/api/configuration/key":
                 hub.require_acknowledgement()
                 result = hub.configuration.set_key(payload.get("provider"), payload.get("key"))
+            elif route == "/api/configuration/model":
+                hub.require_acknowledgement()
+                result = hub.configuration.set_model(payload.get("tool"), payload.get("model"))
+            elif route == "/api/maintenance":
+                if type(payload.get("online", False)) is not bool:
+                    raise ValueError("Choose a local or online version check.")
+                if payload.get("online"):
+                    hub.require_acknowledgement()
+                result = inventory(executable, online=payload.get("online", False))
             elif route == "/api/configuration/forget":
                 result = hub.configuration.forget(payload.get("provider"))
             elif route == "/api/checks":
@@ -296,7 +305,7 @@ if __name__ == "__main__":
     parser.add_argument("--data-dir", type=Path, default=DEFAULT_DATA)
     args = parser.parse_args()
     server = make_server(args.port, args.data_dir)
-    print(f"AISI Labs 2: http://127.0.0.1:{server.server_port}", flush=True)
+    print(f"AISI AI Labs: http://127.0.0.1:{server.server_port}", flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

@@ -123,7 +123,7 @@ class HttpTests(unittest.TestCase):
         code, body, _ = self.request('GET', '/api/bootstrap')
         self.assertEqual(code, 200)
         self.assertEqual(len(json.loads(body)['tools']), len(TOOLS))
-        for path in ['/', '/app.js', '/style.css', '/icon.svg']:
+        for path in ['/', '/app.js', '/programme.js', '/style.css', '/icon.svg']:
             code, body, headers = self.request('GET', path)
             self.assertEqual(code, 200)
             self.assertIn("frame-ancestors 'none'", headers['Content-Security-Policy'])
@@ -178,6 +178,28 @@ class HttpTests(unittest.TestCase):
             self.assertTrue(0 <= lesson['correct'] < len(lesson['options']))
         for lab in LABS:
             self.assertIn(lab['concept'], {lesson['id'] for lesson in LESSONS})
+
+    def test_model_api_requires_auth_acknowledgement_and_valid_id(self):
+        self.server.hub.acknowledged = False
+        payload = {'tool':'grok','model':'test-model'}
+        self.assertEqual(self.request('POST', '/api/configuration/model', payload)[0], 403)
+        self.assertEqual(self.request('POST', '/api/configuration/model', payload, self.auth())[0], 400)
+        self.server.hub.acknowledge(POLICY['version'])
+        self.assertEqual(self.request('POST', '/api/configuration/model', payload, self.auth())[0], 200)
+        for value in ['--yolo', [], None]:
+            self.assertEqual(self.request('POST', '/api/configuration/model', {**payload,'model':value}, self.auth())[0], 400)
+
+    def test_inventory_gate_and_explicit_online_boolean(self):
+        self.server.hub.acknowledged = False
+        with patch('server.inventory', return_value={'tools':[]}) as inspect:
+            self.assertEqual(self.request('POST', '/api/maintenance', {'online':False}, self.auth())[0], 200)
+            self.assertEqual(self.request('POST', '/api/maintenance', {'online':True}, self.auth())[0], 400)
+            self.assertEqual(self.request('POST', '/api/maintenance', {'online':'yes'}, self.auth())[0], 400)
+            self.assertEqual(self.request('POST', '/api/maintenance', {'online':False})[0], 403)
+            self.assertEqual(inspect.call_count, 1)
+            self.server.hub.acknowledge(POLICY['version'])
+            self.assertEqual(self.request('POST', '/api/maintenance', {'online':True}, self.auth())[0], 200)
+            self.assertTrue(inspect.call_args.kwargs['online'])
 
 
 if __name__ == '__main__':

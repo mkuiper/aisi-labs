@@ -86,5 +86,5 @@ if __name__ == "__main__":
         main(restart=args.restart, open_window=not args.no_open)
     except (OSError, RuntimeError) as error:
         print(error, file=sys.stderr)
-        subprocess.run(["notify-send", "AISI Labs 2 could not open", str(error)], check=False)
+        subprocess.run(["notify-send", "AISI AI Labs could not open", str(error)], check=False)
         sys.exit(1)
