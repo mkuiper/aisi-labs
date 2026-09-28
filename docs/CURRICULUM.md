@@ -2,6 +2,7 @@
 
 ## Current coverage
 
+- AI basics: generating versus looking up, training versus inference, context, uncertainty and API access; twelve short glossary definitions linked to further learning.
 - Chatbots, agents and harnesses: model versus interface, tool execution, feedback loops, workflows and human review; illustrated comparison and authored replay.
 - Terminal foundations: terminal versus shell versus assistant, current directory, listing files, changing directories and reading text; an offline simulation.
 - Context: relevant files, source evidence, context limits and untrusted source instructions.
@@ -14,6 +15,23 @@
 - Models, tokens and where work happens: local versus cloud processing, modalities, cost, model evaluation, older hardware and reviewed updates.
 - Web chat: regular chatbot sites, dedicated learning accounts, safe public prompts, external-service boundaries and comparing configurations fairly.
 - Open models: weights versus open-source definitions, licence/model-card reading, local runners versus hosted inference, quantisation and hardware tradeoffs; a no-download worksheet and optional facilitator-led comparison.
+- Image/video generation: a fictional storyboard, rights and likeness checks, labelling and output review; no installation or generation required for preparation.
+- Reading leaderboards: task, setup, metric and uncertainty; links to public benchmarking and research methods, not a universal model ranking.
+
+## Beginner routes and learning groups
+
+Getting started replaces the time-based First 20 minutes label without changing
+its route identifier. It offers chatbot, desktop and first-project routes.
+Only the project route requires a prepared coding agent. There is no mandatory
+course sequence or claim that the routes have been timed with learners.
+
+Learn groups existing stable lesson IDs into everyday AI, agents/tools and
+models/media/evidence. AI basics introduces the terms used in later guides.
+Its glossary is the single source for the glossary page and term search results.
+The chatbot lesson contains one canonical fictional invitation exercise, prompt,
+review checklist and deliberately flawed offline sample. Prompting, context and
+checking lessons include worked comparisons with explanations that learners can
+reveal. Questions remain optional; no answers or reflections are collected.
 
 These are introductory explanations and small exercises. They are not a claim to cover every emerging agent feature. Memory and identity conventions vary across tools. SOUL.md is presented as an example from a particular ecosystem, not as a universal standard or a security control.
 
@@ -23,7 +41,7 @@ The five supplied activities cover a first agent session, a consultation explore
 
 ## Useful next additions
 
-Candidate extensions include a hands-on MCP connection to a public/local practice dataset, creating a simple skill, a repeatable model comparison, image/audio examples, local-model installation and a permission/sandbox demonstration. These need reviewed tools, public assets, clear costs and measurable outcomes before becoming taught activities.
+Candidate extensions include a hands-on MCP connection to a public/local practice dataset, creating a simple skill, a repeatable model comparison, audio exercises, local-model installation and a permission/sandbox demonstration. These need reviewed tools, public assets, clear costs and measurable outcomes before becoming taught activities.
 
 ## Review process
 

@@ -1,5 +1,57 @@
 # Learning material history
 
+## 2026-09-28 — beginner routes, foundations and worked examples
+
+- Replaced the First 20 minutes label with Getting started while preserving
+  #first-session. Three optional paths now serve chatbot beginners, desktop
+  newcomers and learners ready for an agent project. No timed completion promise,
+  compulsory prerequisites, account connection or installation was introduced.
+- Added lesson:ai-basics, its simplified diagram and twelve glossary definitions.
+  The glossary page and search use that same lesson source. Learn groups all
+  fifteen stable lesson IDs exactly once; existing bookmarks are unchanged.
+- Brought the canonical chatbot exercise to the start of lesson:web-chat with
+  fictional source facts, a prompt, review checks and an intentionally flawed
+  offline sample. Added authored worked comparisons to context, prompting and
+  checking. Native disclosures reveal explanations; no answers are collected.
+  Clarified API, endpoint, inference, dependencies and reading-time estimates.
+- Inspected primary sources on 28 September 2026:
+  - Google ML glossary, generation/training/inference/token entries:
+    https://developers.google.com/machine-learning/glossary
+  - MDN API definition: https://developer.mozilla.org/en-US/docs/Glossary/API
+  - Google API-key distinctions:
+    https://docs.cloud.google.com/docs/authentication/api-keys
+  - Anthropic context engineering:
+    https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+  - Anthropic clarity/constraints guidance (the older be-clear-and-direct URL
+    redirects here; canonical URL used in the lesson):
+    https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
+  - Anthropic unsupported-claim guidance:
+    https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+  - OWASP indirect injection and least-privilege/human-approval guidance:
+    https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+  - Australian Government Style Manual, descriptive headings:
+    https://www.stylemanual.gov.au/structuring-content/headings
+- Source/diagram/scenario reviews completed for AI basics, context, prompting
+  and checking. Local authored workflow reviews completed for both session
+  guides, the maintenance guide and improvement schedule. Reviewed local
+  programme/credential rules, starter briefs and rendering/interaction code.
+  All required sources above were accessible; no live model/account tests or
+  timing studies were performed. Provider recommendations are not universal
+  reliability guarantees. Examples are original teaching material, not outputs
+  observed from services.
+- Web-chat, models-costs, programme, learner and curriculum revisions record
+  partial editorial changes without resetting their earlier full-review dates
+  or fingerprints. No unrelated review dates were refreshed. Audit: 52 units,
+  28 in-date, 14 changed and 10 unreviewed; in-date is not certification.
+- Verification: 60 unit/HTTP tests; JS syntax; isolated Chromium navigation,
+  native disclosure keyboard use, all fifteen quiz feedback sets, canonical
+  group coverage, glossary search/focus, escaped examples, unchanged external
+  navigation gates and no provider requests from reading activities. Desktop,
+  tablet and 320/390-pixel layouts tested, including expanded examples. Fixed
+  glossary links wrapping on 320-pixel screens; screenshots inspected.
+  Screen-reader acceptance, real learner trials and real-device/network checks
+  remain outstanding. See docs/BEGINNER_REVIEW.md for the handover.
+
 ## 2026-09-28 — optional first session and manual handover
 
 - Added guide:first-session and guide:finish-session from one versioned JSON

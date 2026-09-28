@@ -8,11 +8,11 @@ review without introducing a CMS or cloud service.
 ## Source map
 
 - catalogue.py: the original lessons, local tool catalogue and five activity definitions.
-- content/lessons.json: supplemental chat, open-model, image/video and benchmark lessons, with sources and quizzes.
+- content/lessons.json: foundations, chat, open-model, image/video and benchmark lessons, with sources and quizzes. AI basics owns the glossary definitions used by the glossary route and search; do not duplicate them in another source.
 - content/web_chats.json: curated web/media profiles and destinations; links are not approval endorsements.
 - content/resources.json: benchmark and research-discovery resources, reading guidance and primary method links.
 - content/omarchy_help.json: offline desktop cheat sheet, shortcut/version baseline and beginner practice; reviewed as help:omarchy.
-- content/session_guides.json: optional first-session route and manual finish checklist; reviewed as guide:first-session and guide:finish-session. Keep internal links, timing caveats and credential/handover limits aligned with the app.
+- content/session_guides.json: three Getting started paths and manual finish checklist; reviewed as guide:first-session and guide:finish-session. Keep internal links, account/setup caveats and credential/handover limits aligned with the app. Do not restore a timed completion promise without learner evidence.
 - templates.py: authored public starter files, including fictional datasets.
 - docs/: learner/programme material and engineering handover.
 - web/app.js and web/programme.js: illustrated explanations and interactive teaching components.
@@ -99,6 +99,16 @@ For each lesson's scenario question:
   the separate Explored bookmark is not an assessment result.
 - Review question quality manually. Structural tests cannot establish that a
   question is fair, useful or unambiguous.
+
+Keep beginner paths usable without coding. Each should state what setup is
+needed, offer an offline alternative where possible, and end with something
+the learner can inspect or explain. Do not equate trying a terminal with starting
+to learn AI. Explain unfamiliar terms before using them in questions; link to
+the glossary and original concept guides instead of maintaining duplicate lessons.
+Worked examples must label fictional facts and authored outputs, identify the
+actual mismatch, and explain why a revision is better. A reveal is for comparison,
+not a score. Inspect native details/summary keyboard use and expanded narrow
+layouts. Grouped Learn navigation must include every lesson exactly once.
 
 An editorial-only pass is not a complete source/exercise review. Increment the
 revision and explain the scope without refreshing the full-review date. Retain

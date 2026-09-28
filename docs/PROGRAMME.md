@@ -17,8 +17,12 @@ Fullscreen and close-window controls are presented first, with save-work
 cautions. Learn questions use practical scenarios and choice-specific
 explanations; they are optional and do not record answers or scores.
 
-First 20 minutes offers an optional route through the existing first project,
-including offline preparation. Finish session separates manual handover steps
+Getting started offers three optional beginner routes: try a chatbot, learn
+the desktop, or build a first project. The first two need no coding experience;
+the chatbot example and desktop simulation can be reviewed without an account.
+Learn groups the guides by purpose and links to AI basics and a short glossary.
+Worked examples provide evidence to inspect, not just multiple-choice answers.
+Finish session separates manual handover steps
 from the explicit local key-forgetting action; it cannot certify logout or
 device readiness. The improvement schedule sets proposed pilot and deployment
 gates, not approved dates or automatically scheduled work.

@@ -48,7 +48,7 @@ try{
     await waitFor('[...document.querySelectorAll("main .tool-logo")].every(i=>i.complete&&i.naturalWidth>0)');
     assert(await evaluate('[...document.querySelectorAll("main .tool-logo")].every(i=>new URL(i.src).origin===location.origin&&i.alt===""&&i.closest(".mark").getAttribute("aria-hidden")==="true")'));
   }
-  async function screenshot(name){const result=await cdp('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});await writeFile(join(reports,name+'.png'),Buffer.from(result.data,'base64'));}
+  async function screenshot(name){await evaluate('window.scrollTo(0,0)');await delay(50);const result=await cdp('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});await writeFile(join(reports,name+'.png'),Buffer.from(result.data,'base64'));}
   async function noOverflow(label){const sizes=await evaluate('({width:innerWidth,body:document.documentElement.scrollWidth})');if(sizes.body>sizes.width+1){console.log(await evaluate('[...document.querySelectorAll("body *")].filter(e=>e.getBoundingClientRect().right>innerWidth+1).map(e=>({tag:e.tagName,class:e.className,right:e.getBoundingClientRect().right})).slice(0,15)'));await screenshot('overflow');}assert(sizes.body<=sizes.width+1,`${label}: overflow ${JSON.stringify(sizes)}`);}
   await cdp('Page.enable');await cdp('Runtime.enable');await cdp('Log.enable');await cdp('Network.enable');
   await cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1080,deviceScaleFactor:1,mobile:false});
@@ -61,10 +61,58 @@ try{
   const sessionRequestStart=requests.length;
   await click('#first-session-link');await waitFor('!!document.querySelector(".session-guide")');
   assert.equal(await evaluate('data.acknowledged'),false);
-  assert.equal(await evaluate('document.querySelectorAll("[data-session-step]").length'),5);
+  assert.equal(await evaluate('document.querySelectorAll("[data-starting-path]").length'),3);
+  assert.equal(await evaluate('document.querySelector("#first-session-link").textContent'),'Getting started');
+  assert.equal(await evaluate('document.querySelector("h1").textContent'),'Getting started: a guide for beginners');
+  for(const id of ['chat','desktop','build']){
+    await click('a[href="#first-session/'+id+'"]');
+    assert.equal(await evaluate('document.activeElement.id'),'start-'+id);
+    assert(await evaluate('document.activeElement.getBoundingClientRect().top>=0'));
+  }
+  await go('#first-session');
   assert.equal(await evaluate('document.querySelector("#first-session-link").getAttribute("aria-current")'),'page');
   assert(await evaluate('document.querySelector(".session-offline").textContent.includes("not AI-generated work")'));
   await screenshot('first-session-desktop');await noOverflow('first session');
+  await go('#learn/web-chat');
+  assert.equal(await evaluate('document.querySelectorAll(".practice-exercise").length'),1);
+  assert(await evaluate('document.querySelector(".practice-exercise").textContent.includes("fictional")'));
+  await evaluate('document.querySelector(".practice-exercise summary").focus()');
+  assert.equal(await evaluate('document.activeElement.tagName'),'SUMMARY');
+  await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
+  await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
+  assert.equal(await evaluate('document.querySelector(".practice-exercise details").open'),true);
+  assert(await evaluate('document.querySelector(".practice-exercise details").textContent.includes("unsupported additions")'));
+  await screenshot('chatbot-exercise-desktop');
+  await go('#learn/ai-basics');
+  assert.equal(await evaluate('document.querySelectorAll(".diagram-node").length'),3);
+  await go('#glossary');
+  assert.equal(await evaluate('document.querySelectorAll(".glossary-term").length'),12);
+  await click('a[href="#glossary/api"]');
+  assert.equal(await evaluate('document.activeElement.id'),'term-api');
+  await go('#search/endpoint');
+  await click('main a[href="#glossary/endpoint"]');
+  assert.equal(await evaluate('document.activeElement.id'),'term-endpoint');
+  await go('#search/beginners');
+  assert(await evaluate('!!document.querySelector("main a[href=\\\"#first-session\\\"]")'));
+  await go('#learn');
+  assert.equal(await evaluate('document.querySelectorAll(".learning-group").length'),3);
+  assert.equal(await evaluate('document.querySelectorAll(".lesson-card").length'),15);
+  assert.deepEqual(await evaluate('learningGroups.flatMap(g=>g.lessons).sort()'),await evaluate('data.lessons.map(l=>l.id).sort()'));
+  for(const id of ['prompting','checking','context']){
+    await go('#learn/'+id);
+    assert.equal(await evaluate('document.querySelectorAll(".worked-example").length'),1);
+    await click('.worked-example summary');
+    assert.equal(await evaluate('document.querySelector(".worked-example details").open'),true);
+  }
+  // Curated teaching text must still be escaped, including the new renderers.
+  assert(await evaluate(`(()=>{
+    const unsafe='<img src=x onerror=alert(1)>';
+    const example=Object.fromEntries(['title','context','before','after','question','explanation'].map(k=>[k,unsafe]));
+    const exercise={title:unsafe,intro:unsafe,facts:unsafe,prompt:unsafe,steps:[unsafe],checks:[unsafe],sample:unsafe,explanation:unsafe,reflection:unsafe};
+    const node=document.createElement('div');node.innerHTML=workedExample(example)+practiceExercise(exercise);
+    return !node.querySelector('img')&&node.textContent.includes(unsafe);
+  })()`));
+  await go('#first-session');
   await click('a[href="#lab/first-steps"]');await click('[data-create]');
   assert(await evaluate('!!document.querySelector("#policy-form")'));
   await click('[data-close]');
@@ -319,7 +367,7 @@ try{
   // Every answer must explain that choice, allow a retry and leave bookmarks unchanged.
   const progressBeforeQuiz=await evaluate('JSON.stringify(data.progress)');
   // Exercise every guide and both keyboard-sized and narrow viewports.
-  for(const id of ['chat-agents','terminal','context','prompting','tools-skills','checking','memory','identity','responsible-use','models-costs','web-chat','open-models','image-video','reading-leaderboards']){
+  for(const id of ['ai-basics','chat-agents','terminal','context','prompting','tools-skills','checking','memory','identity','responsible-use','models-costs','web-chat','open-models','image-video','reading-leaderboards']){
     await go('#learn/'+id);assert.equal(await evaluate('document.querySelectorAll(".quiz-option").length'),3);await noOverflow('guide '+id);
     const lesson=await evaluate('data.lessons.find(x=>x.id==='+JSON.stringify(id)+')');
     assert.equal(await evaluate('document.querySelectorAll(".quiz-option[aria-pressed=true]").length'),0);
@@ -336,17 +384,24 @@ try{
   await go('#learn');await screenshot('learn-index-desktop');
   await go('#learn/memory');await click('[data-answer="0"]');await screenshot('scenario-feedback-desktop');
   await cdp('Emulation.setDeviceMetricsOverride',{width:820,height:900,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#first-session','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
+  for(const hash of ['#home','#first-session','#glossary','#learn/ai-basics','#learn/web-chat','#learn/context','#learn/checking','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#first-session','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
+  for(const hash of ['#home','#first-session','#glossary','#learn/ai-basics','#learn/web-chat','#learn/context','#learn/checking','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
   await go('#omarchy-help');await screenshot('omarchy-help-mobile');
   assert(await evaluate('document.querySelector("#omarchy-help-link").getBoundingClientRect().width>0'));
   await cdp('Emulation.setDeviceMetricsOverride',{width:320,height:740,deviceScaleFactor:1,mobile:false});
   await noOverflow('Omarchy help small phone');
   await go('#first-session');await noOverflow('first session small phone');
   await go('#finish-session');await noOverflow('finish session small phone');
+  for(const hash of ['#glossary','#learn/ai-basics','#learn/web-chat','#learn/prompting','#learn/checking','#learn/context']){
+    await go(hash);await noOverflow('beginner small phone '+hash);
+    if(await evaluate('!!document.querySelector(".reader details")')){await click('.reader details summary');await noOverflow('expanded example '+hash);}
+  }
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
   await go('#learn/memory');await click('[data-answer="1"]');await screenshot('scenario-feedback-mobile');await noOverflow('mobile scenario feedback');
+  await go('#learn/web-chat');await click('.practice-exercise summary');await screenshot('chatbot-exercise-mobile');
+  await go('#glossary');await screenshot('glossary-mobile');
+  await go('#learn');await screenshot('learn-index-mobile');
   await go('#first-session');await screenshot('first-session-mobile');
   await go('#finish-session');await screenshot('finish-session-mobile');
   assert(await evaluate('document.querySelector("#finish-session-link").getBoundingClientRect().width>0'));
@@ -358,7 +413,7 @@ try{
   await go('#home');await screenshot('launchpad-mobile');
   assert.deepEqual(errors,[],'Browser errors');
   assert.equal(serverErrors,'','Server errors');
-  console.log('PASS: offline Omarchy help before acknowledgement, shortcut guidance/search/recovery, bundled tool/chat logos and fallback, launchpad, web-chat confirmation/gate/search, open-model diagrams/reviews/quiz, credentials without leaks, models/persistence, inventory, optional first-session route, manual finish checklist/key removal/failure/reload checks, nine documents, fourteen lessons, five current-awareness resources, five projects and responsive layouts.');
+  console.log('PASS: offline Omarchy help before acknowledgement, shortcut guidance/search/recovery, bundled tool/chat logos and fallback, launchpad, web-chat confirmation/gate/search, open-model diagrams/reviews/quiz, credentials without leaks, models/persistence, inventory, optional first-session route, manual finish checklist/key removal/failure/reload checks, nine documents, fifteen lessons, three beginner routes, glossary navigation/search, offline chatbot exercise and worked examples, five current-awareness resources, five projects and responsive layouts.');
   console.log('Screenshots: '+reports);
 }finally{
   if(socket)socket.close();

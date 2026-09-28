@@ -1,8 +1,165 @@
 [
   {
+    "id": "ai-basics",
+    "title": "AI basics: a practical starting point",
+    "subtitle": "What a model does, why answers can be wrong and how to start.",
+    "minutes": 5,
+    "icon": "book",
+    "colour": "sage",
+    "diagram": "basics",
+    "lab": "evidence",
+    "intro": "You can begin with an ordinary-language request. This guide explains the few ideas you need before trying a chatbot; the more technical topics can wait.",
+    "sections": [
+      [
+        "Generating is not the same as looking up",
+        "Generative AI produces text, images or other content using patterns learned during training. A language model generates a response from its input; a reply is not automatically a retrieved fact or a checked source."
+      ],
+      [
+        "Training and using a model are different",
+        "Training adjusts a model’s internal parameters using examples. Using a trained model to produce a response is called inference. Supplying a fact in a conversation gives it context for that task; it does not itself demonstrate that the model has been retrained. Separately, check a provider’s terms and settings for retention and any later use of inputs for training."
+      ],
+      [
+        "A convincing answer can still be wrong",
+        "An answer may sound precise while adding a claim that the evidence does not support. Ask for source support and compare it yourself. For a fictional invitation, check the time and entry price before polishing the wording."
+      ],
+      [
+        "Your message is part of the context",
+        "A prompt is your request. Context can also include earlier messages, instructions and selected files or tool results. There is a limit to what fits in a request, often called the context window. Do not assume every earlier detail or every file on the laptop is available."
+      ],
+      [
+        "A website and an API are ways to access software",
+        "A chatbot website offers controls for people. An API—application programming interface—lets software make requests. You do not need to configure an API to do the offline exercise below. If a tool asks for an API key, treat it as a secret credential and ask which learning-account setup applies."
+      ],
+      [
+        "Start with one checkable task",
+        "Use the supplied fictional chatbot exercise. First decide what a correct answer must preserve, then read the reply against those facts. Use ONLY public information, nothing OFFICIAL, and NEVER connect to government networks or accounts. These rules also apply to offline tools."
+      ]
+    ],
+    "takeaway": "Give a small task, supply the relevant facts and check the result. A useful reply is not proof that every statement is true.",
+    "question": "You supply a fictional notice saying entry is free. The draft adds that registration is required, although your notice says nothing about registration. What is the best next step?",
+    "options": [
+      "Ask for a citation supporting registration, then accept the reply if it provides a link.",
+      "Ask it to remove the unsupported condition and list registration as something to confirm.",
+      "Repeat the request in a fresh chat and use the wording that appears most often."
+    ],
+    "correct": 1,
+    "option_feedback": [
+      "A link still needs checking and may refer to a different event. In this source-only task, a missing detail should not become a condition of entry.",
+      "This keeps the draft within its evidence and makes the gap explicit. Check the revised wording yourself; the correction request is not verification.",
+      "Repeated wording can reflect a common pattern rather than a supported fact. Compare the claim with the supplied notice, not its frequency."
+    ],
+    "sources": [
+      [
+        "Google: machine-learning glossary",
+        "https://developers.google.com/machine-learning/glossary"
+      ],
+      [
+        "Anthropic: context engineering",
+        "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"
+      ],
+      [
+        "MDN: API",
+        "https://developer.mozilla.org/en-US/docs/Glossary/API"
+      ],
+      [
+        "Anthropic: reducing unsupported claims",
+        "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations"
+      ],
+      [
+        "Google Cloud: API keys",
+        "https://docs.cloud.google.com/docs/authentication/api-keys"
+      ]
+    ],
+    "next_links": [
+      [
+        "Try the chatbot exercise",
+        "#learn/web-chat"
+      ],
+      [
+        "Look up a term",
+        "#glossary"
+      ]
+    ],
+    "glossary": [
+      {
+        "id": "api",
+        "term": "API",
+        "definition": "Application programming interface: a way for software to request another program’s capabilities.",
+        "lesson": "models-costs"
+      },
+      {
+        "id": "api-key",
+        "term": "API key",
+        "definition": "A credential a service may use to identify or authorise requests and account for usage. In Labs, enter learning keys only in authentication settings, never in a prompt.",
+        "lesson": "models-costs"
+      },
+      {
+        "id": "context",
+        "term": "Context",
+        "definition": "Information available for the current response, including the request, instructions and selected evidence.",
+        "lesson": "context"
+      },
+      {
+        "id": "context-window",
+        "term": "Context window",
+        "definition": "The amount of context a model can handle in a request. A long chat may be shortened or summarised by the application.",
+        "lesson": "context"
+      },
+      {
+        "id": "endpoint",
+        "term": "Endpoint",
+        "definition": "The address a program sends a service request to. Checking it helps identify whether an AI request goes to this laptop or a remote service.",
+        "lesson": "models-costs"
+      },
+      {
+        "id": "inference",
+        "term": "Inference",
+        "definition": "Running a trained model to produce an output from an input.",
+        "lesson": "models-costs"
+      },
+      {
+        "id": "model",
+        "term": "Model",
+        "definition": "The trained component that produces predictions or generated content. It is not the whole application.",
+        "lesson": "chat-agents"
+      },
+      {
+        "id": "prompt",
+        "term": "Prompt",
+        "definition": "The request you give an AI system, including instructions and any supplied material.",
+        "lesson": "prompting"
+      },
+      {
+        "id": "provider",
+        "term": "Provider",
+        "definition": "The organisation supplying a model or service. The app you open and the service it contacts may have different providers.",
+        "lesson": "models-costs"
+      },
+      {
+        "id": "token",
+        "term": "Token",
+        "definition": "A unit processed by a model. For text, it may be a word, part of a word or punctuation.",
+        "lesson": "models-costs"
+      },
+      {
+        "id": "training",
+        "term": "Training",
+        "definition": "Adjusting a model’s parameters using examples. This differs from supplying context for a response.",
+        "lesson": "ai-basics"
+      },
+      {
+        "id": "weights",
+        "term": "Weights",
+        "definition": "Numerical parameters learned during training. Downloadable weights alone do not tell you the licence or where a model will run.",
+        "lesson": "open-models"
+      }
+    ],
+    "feedback": "This keeps the draft within its evidence and makes the gap explicit. Check the revised wording yourself; the correction request is not verification."
+  },
+  {
     "id": "web-chat",
-    "title": "Using and comparing web chatbots",
-    "subtitle": "Use regular chatbot websites and compare answers thoughtfully.",
+    "title": "Try a chatbot and check its answer",
+    "subtitle": "A first exercise without coding, plus guidance for comparing services.",
     "minutes": 5,
     "icon": "book",
     "colour": "clay",
@@ -20,7 +177,7 @@
       ],
       [
         "Give a small public task",
-        "Try: ‘Here is fictional public practice information: a community garden opens Saturday at 10 am, closes at noon, and has free entry. Write a 50-word invitation using only these facts. Identify anything you would need to ask the organiser.’ Check that it did not invent an address, booking link or facilities."
+        "Use the community-garden exercise above. It supplies everything you need, including a prompt and an intentionally flawed example to review without an account. Start with one service; comparing services is optional."
       ],
       [
         "Compare the process, not just the prose",
@@ -58,6 +215,39 @@
       "Relevant citations can improve an answer, but different evidence makes this an uneven model comparison. Trace the claims and record the product settings.",
       "A shared source and explicit criteria make the comparison more informative. Even then, a few outputs compare these observed runs, not model quality in general.",
       "Another model’s preference can be an additional observation, but without the original source it cannot establish factual fidelity or resolve the unequal inputs."
+    ],
+    "exercise": {
+      "title": "Try it: a community-garden invitation",
+      "intro": "An authored fictional exercise. You can review the example offline or try the prompt in a permitted chatbot. No terminal, upload or connected account is needed for the offline version.",
+      "facts": "The community garden opens on Saturday, from 10 am to noon. Entry is free. No address, booking arrangements or facilities have been supplied.",
+      "prompt": "Use only these fictional public practice facts: a community garden opens on Saturday, from 10 am to noon, with free entry. Write an invitation of no more than 50 words. Do not invent missing details. After the invitation, list questions for the organiser separately.",
+      "steps": [
+        "Read the facts and decide what the invitation must preserve.",
+        "For a live attempt, first confirm the permitted learning account, network and costs. Open a chatbot through Web & media and paste only the supplied prompt. Do not connect drives, email or other services.",
+        "Check its answer against the facts. Ask for one correction if needed, then check the revised answer too."
+      ],
+      "checks": [
+        "Are Saturday, 10 am to noon and free entry correct?",
+        "Did it add an address, booking requirement or facility without evidence?",
+        "Is the invitation within 50 words, with unanswered questions kept separate?"
+      ],
+      "sample": "Visit the community garden this Saturday from 10 am to noon. Entry is free. Reserve your place online and enjoy refreshments while you explore.",
+      "explanation": "The day, times and entry price match. Online reservations and refreshments are unsupported additions: plausible does not mean supplied. A follow-up could say: “Remove the booking and refreshments claims. Ask the organiser about them separately.” Then check that the revision really removed both claims.",
+      "reflection": "Which missing detail would you confirm before using the invitation, and why? More polished wording does not resolve missing facts."
+    },
+    "next_links": [
+      [
+        "Choose a chatbot website",
+        "#web-chats"
+      ],
+      [
+        "Learn how to check evidence",
+        "#learn/checking"
+      ],
+      [
+        "Finish session",
+        "#finish-session"
+      ]
     ]
   },
   {

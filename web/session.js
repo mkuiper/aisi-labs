@@ -7,17 +7,18 @@ function sessionLinks(links) {
 }
 function sessionGuideNote(id) {
   const review=data.content_reviews.find(item=>item.id==='guide:'+id);
-  return `<p class="small-note content-review">Revision ${review?.revision||1} · ${esc(review?.status||'unreviewed')}. Authored guidance checked against local app behaviour; not a live sign-in, network or device-handover verification.</p>`;
+  return `<p class="small-note content-review">Revision ${review?.revision||1} · ${esc(review?.status||'unreviewed')}. Local guide review only; account access, network separation and handover still need checks on the device.</p>`;
 }
 function firstSessionPage() {
   const guide=data.session_guides.find(item=>item.id==='first-session');
-  return `<article class="session-guide"><a class="back" href="#home">← Launchpad</a>${heading('Optional orientation',guide.title,guide.subtitle)}
+  return `<article class="session-guide"><a class="back" href="#home">← Launchpad</a>${heading('Optional starting points',guide.title,guide.subtitle)}
     <p class="intro">${esc(guide.intro)}</p>
-    <div class="actions"><a class="btn secondary" href="#tools">Go directly to tools →</a><a class="text-link" href="#learn">Browse concepts →</a></div>
-    <div class="note">${esc(guide.boundary)}</div>
-    <ol class="session-steps">${guide.steps.map((step,index)=>`<li class="panel" data-session-step="${esc(step.id)}"><span class="eyebrow">STEP ${index+1} · ABOUT ${step.minutes} MIN</span><h2>${esc(step.title)}</h2><p>${esc(step.body)}</p><div class="actions">${sessionLinks(step.links)}</div></li>`).join('')}</ol>
+    <div class="actions"><a class="btn secondary" href="#tools">Go directly to tools →</a><a class="text-link" href="#glossary">Look up a term →</a></div>
+    <section class="note"><h2>${esc(guide.steps[0].title)}</h2><p>${esc(guide.boundary)}</p><details><summary>Choosing practice material and getting help</summary><p>${esc(guide.steps[0].body)}</p>${sessionLinks(guide.steps[0].links)}</details></section>
+    <nav class="starting-choices" aria-label="Choose a starting point">${guide.paths.map(path=>`<a class="panel starting-choice" href="#first-session/${esc(path.id)}">${icon(path.id==='chat'?'book':path.id==='desktop'?'terminal':'spark')}<h2>${esc(path.title)}</h2><p>${esc(path.subtitle)}</p><span class="text-link">See this route ↓</span></a>`).join('')}</nav>
+    ${guide.paths.map(path=>`<section class="panel starting-path" id="start-${esc(path.id)}" tabindex="-1" data-starting-path="${esc(path.id)}"><h2>${esc(path.title)}</h2><p>${esc(path.body)}</p><ol class="steps">${path.steps.map(step=>`<li>${esc(step)}</li>`).join('')}</ol><p class="path-check"><strong>What to check:</strong> ${esc(path.check)}</p><div class="actions">${sessionLinks(path.links)}</div></section>`).join('')}
     <section class="panel session-offline"><h2>${esc(guide.offline.title)}</h2><p>${esc(guide.offline.body)}</p><div class="actions">${sessionLinks(guide.offline.links)}</div></section>
-    <div class="note"><strong>Reflection:</strong> ${esc(guide.check)}</div>${sessionGuideNote(guide.id)}
+    <section class="note"><h2>Check your learning and finish</h2><p>${esc(guide.check)}</p><div class="actions">${sessionLinks(guide.next_links)}</div></section>${sessionGuideNote(guide.id)}
   </article>`;
 }
 function finishReviewText() {

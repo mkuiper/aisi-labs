@@ -8,18 +8,26 @@ Input ONLY public information. Do not paste, upload, photograph, dictate, mount 
 
 ## Choose your starting point
 
-The optional First 20 minutes route is available on the launchpad and in the
-header. It connects desktop orientation, one prepared tool, the existing first
-project and result checking. The time is a suggestion, not a deadline; account
-setup and the full project may need longer. Without a ready account or network,
-use the terminal simulation or inspect the supplied starter and brief offline.
-That is preparation, not a completed AI generation task.
+Getting started is available on the launchpad and in the header. Choose one
+route: try a chatbot, get comfortable with this desktop, or build a first
+project. There is no timer or compulsory sequence. Account setup and a full
+project may need a separate session. Without a ready account or network, review
+the authored chatbot example, use the terminal simulation or inspect a project
+brief offline. These are learning activities, not completed AI generation tasks.
 
-- New to AI: read Chatbots, agents & harnesses, then try Your first agent session.
+- New to AI: read AI basics, then open Try a chatbot and check its answer. Use the supplied fictional facts and prompt; no terminal is needed. An offline example is provided if you cannot use a chatbot yet.
 - New to terminals: practise pwd, ls, cd and cat in the simulated terminal. That simulation does not execute commands or access your real files.
 - Ready to build: open Experiments and choose the consultation explorer or data story. Each creates a separate folder containing a brief and source data.
 - Interested in agent configuration: read Tools, MCP & skills, Memory, and Soul, identity & instructions. Try their small exercises in a blank project using public material.
 - Experienced: launch an available tool directly or open your own learning project. The same programme boundaries apply.
+
+Learn groups guides into everyday AI, agents and tools, and models/media/evidence.
+The glossary is linked from Learn and each lesson; search also finds terms such
+as API, endpoint and context. Reading-time estimates exclude optional exercises
+and setup. Worked responses can be revealed after you consider an example.
+No quiz answer or reflection is sent to an AI service or recorded as a score.
+If no facilitator is available, ask the person responsible for the device about
+accounts, network setup and handover. Stay with offline activities until clear.
 
 ## A typical experiment
 

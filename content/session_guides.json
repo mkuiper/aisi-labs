@@ -1,101 +1,130 @@
 [
   {
     "id": "first-session",
-    "title": "First 20 minutes",
-    "subtitle": "An optional route through one public practice task.",
-    "intro": "Use this as a starting point, not a timed assessment. The suggested stages total about 20 minutes with a prepared tool; sign-in, setup and the full project can take longer. You can pause or go directly to Tools, Learn or Experiments.",
+    "title": "Getting started: a guide for beginners",
+    "subtitle": "Choose a starting point that suits you. No coding experience needed for the chatbot or desktop routes.",
+    "intro": "You do not need to learn every term or use a terminal before trying AI. Choose one of the three routes below, then check what you learned. There is no timer or required sequence; account setup and project work may need a separate session.",
     "boundary": "ONLY public information; nothing OFFICIAL or non-public. NEVER connect to government networks or accounts. Use the designated non-government learning network. If you are unsure about the device, network or learning account, ask the facilitator before proceeding.",
     "steps": [
       {
         "id": "boundaries",
-        "minutes": 2,
-        "title": "Confirm the learning boundary",
-        "body": "Use the supplied fictional practice files, not a sanitised work document. Ask which learning network and accounts apply. Reading this guide does not verify your connection or grant permission to use a restricted service.",
+        "title": "Check what information you can use",
+        "body": "Use the supplied fictional examples or independently public material. Do not bring an internal work document, even with names removed. Check which learning network and accounts you may use. If there is no facilitator, ask the person responsible for the device; stay with the offline activities until setup is confirmed.",
         "links": [
           [
-            "Read the programme rules",
+            "Programme rules",
             "#programme"
+          ]
+        ]
+      }
+    ],
+    "paths": [
+      {
+        "id": "chat",
+        "title": "Try a chatbot",
+        "subtitle": "For a first conversation with AI. No terminal or project setup.",
+        "body": "Use a fictional community-garden invitation to practise giving instructions and checking an answer. The exercise includes a prompt, source facts and an example you can review offline.",
+        "steps": [
+          "Open the chatbot exercise and read the supplied facts.",
+          "If a permitted learning account is ready, choose a chatbot from Web & media. Check account settings and costs before pasting the exercise prompt; do not connect other accounts or files.",
+          "Compare the reply with the supplied facts. Ask for one correction and check whether it fixed the problem."
+        ],
+        "check": "You can point to a supported fact, an unsupported addition and a useful follow-up request.",
+        "links": [
+          [
+            "Open the chatbot exercise",
+            "#learn/web-chat"
+          ],
+          [
+            "AI basics",
+            "#learn/ai-basics"
           ]
         ]
       },
       {
         "id": "desktop",
-        "minutes": 3,
-        "title": "Orient yourself on the desktop",
-        "body": "Open Omarchy help and locate the fullscreen, close-window and window-switching guidance. If terminals are unfamiliar, try pwd and ls in the simulation. Return here using the First 20 minutes link in the header.",
+        "title": "Get comfortable with this desktop",
+        "subtitle": "For anyone new to Omarchy or terminals. Works offline.",
+        "body": "Learn how to find an app, switch windows, make a window fullscreen and close it after saving. The terminal practice is a simulation: it does not run commands or read your files.",
+        "steps": [
+          "Open Omarchy help and find fullscreen, close-window and window-switching controls. Save work before trying window controls.",
+          "Open the terminal simulation. Try pwd, ls and cat BRIEF.md.",
+          "Try cd examples, then pwd. Use cd .. to return and read the brief again."
+        ],
+        "check": "You can find the window controls and explain why changing folders changes which files a command can find.",
         "links": [
           [
-            "Omarchy help",
+            "Open Omarchy help",
             "#omarchy-help"
           ],
           [
-            "Terminal simulation",
+            "Try the terminal simulation",
             "#learn/terminal"
           ]
         ]
       },
       {
-        "id": "tool",
-        "minutes": 3,
-        "title": "Choose one prepared tool",
-        "body": "Ask the facilitator which coding agent is ready for this laptop and learning account. Check the sign-in method, selected model and budget before any model call. A detected command is not proof that setup is complete. If it is not ready, use the offline preparation below; do not install tools to complete this guide.",
-        "links": [
-          [
-            "Review tool setup",
-            "#configuration"
-          ]
-        ]
-      },
-      {
-        "id": "experiment",
-        "minutes": 8,
-        "title": "Begin one small project",
-        "body": "Open Your first agent session and create a project. Read BRIEF.md, choose the prepared coding agent in that project and paste its starter prompt inside the assistant—not at the shell prompt. Review proposed actions before approving them. Aim to inspect a first result; allow more time if needed.",
+        "id": "build",
+        "title": "Build your first project",
+        "subtitle": "For learners ready to use a coding agent. Tool setup required.",
+        "body": "A coding agent can change files and run tools. Ask which agent is prepared for this device, how to sign in and what spending limits apply. A detected command alone does not confirm readiness. Do not install software just to finish this route.",
+        "steps": [
+          "Open Your first agent session and create a project. Read BRIEF.md, the text file describing what to make.",
+          "Choose the prepared agent in the project and paste the starter prompt inside the assistant, not at the shell prompt. Review actions before approving them.",
+          "Compare the resulting page with the brief. Try its controls and a narrow window, then ask for a specific correction if needed."
+        ],
+        "check": "You can find your project, demonstrate one check and explain a limitation of the result.",
         "links": [
           [
             "Open the first-project exercise",
             "#lab/first-steps"
-          ]
-        ]
-      },
-      {
-        "id": "review",
-        "minutes": 4,
-        "title": "Check the result and finish",
-        "body": "Compare the page with the brief, try a narrow window and explain one change. Record one limitation or unresolved question in your public practice notes. If you used the offline route, record what you checked and what still needs a live tool. Save your work and use the Finish session checklist.",
-        "links": [
-          [
-            "Return to your projects",
-            "#projects"
           ],
           [
-            "Finish session checklist",
-            "#finish-session"
+            "Check tool setup",
+            "#configuration"
+          ],
+          [
+            "Chatbots and agents explained",
+            "#learn/chat-agents"
           ]
         ]
       }
     ],
     "offline": {
-      "title": "No account or internet? Prepare offline",
-      "body": "You can complete the orientation and terminal simulation without an AI account. You can also create the first-project starter without launching an agent, read BRIEF.md and open the supplied page preview. Compare that starter with the requirements and write down one change you would ask an agent to make. This is preparation and manual review, not AI-generated work; continue with the facilitator when a tool is ready.",
+      "title": "No account or internet? You can still practise",
+      "body": "Use the desktop route, read AI basics or review the chatbot exercise’s authored sample. These are offline learning activities, not AI-generated work. You can also create the first-project starter and inspect its brief without opening an agent. Do not try to bypass missing accounts or network restrictions.",
       "links": [
         [
-          "Use the simulation",
-          "#learn/terminal"
+          "Review the chatbot example",
+          "#learn/web-chat"
         ],
         [
-          "Read the project brief",
-          "#lab/first-steps"
+          "Read AI basics",
+          "#learn/ai-basics"
         ]
       ]
     },
-    "check": "By the end, aim to explain the public-information boundary, find your project, describe what you checked and identify any sign-out or handover steps still outstanding. This authored route has not yet been timed with learners."
+    "check": "Explain one thing you checked rather than only whether you liked the output. When finished, save any work and use the Finish session checklist.",
+    "next_links": [
+      [
+        "Finish session checklist",
+        "#finish-session"
+      ],
+      [
+        "Browse all learning material",
+        "#learn"
+      ],
+      [
+        "Look up a term",
+        "#glossary"
+      ]
+    ]
   },
   {
     "id": "finish-session",
     "title": "Finish session",
     "subtitle": "Save your work, review accounts and prepare for handover.",
-    "intro": "This is a manual checklist, not an automatic logout or device reset. Tick items you have reviewed, including those not applicable. Ticks last only in this browser tab’s memory and reset on reload; they are not saved, scored or evidence that the laptop is safe to hand over.",
+    "intro": "Use this manual checklist before leaving the laptop. It is not an automatic logout or device reset. Tick steps you have reviewed, including those not applicable. Ticks reset on reload and are not saved or scored.",
     "boundary": "Continue to use ONLY public information; nothing OFFICIAL. NEVER connect to government networks or accounts to save, email or transfer your practice work. Follow the facilitator’s approved handover procedure.",
     "steps": [
       {
@@ -140,7 +169,7 @@
       {
         "id": "handover",
         "title": "Check the handover procedure",
-        "body": "Ask the facilitator to apply the agreed account/device handover process. Projects and bookmarks belong to the Linux account and can remain visible to its next user. If the procedure is unclear, do not pass an active learning account to someone else. This page does not reset the device or certify it is clear.",
+        "body": "Follow the agreed account/device handover process with the facilitator or device owner. Projects and bookmarks belong to the Linux account and may be visible to its next user. If the procedure is unclear, do not pass an active learning account to someone else.",
         "links": [
           [
             "Shared-device guidance",

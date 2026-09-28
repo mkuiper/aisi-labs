@@ -87,6 +87,29 @@ No new logout, process termination, revocation, reset or deletion API exists.
 Guide links and strings render as escaped, locally curated content. Guide
 fingerprints are included as guide:<id> in the editorial inventory.
 
+The first-session identifier remains stable but is labelled Getting started.
+Its single setup step and three paths (chat, desktop, build) replace the timed
+five-step route. #first-session/<path> focuses and scrolls to the chosen route;
+unknown path IDs leave the guide available. No path selection is stored.
+The desktop and chatbot offline activities do not require acknowledgement;
+project creation and external destinations retain their existing gates.
+
+Learn uses three suggested groups in web/app.js, with each stable lesson ID
+listed exactly once (checked by the browser suite). These are navigation groups,
+not locked prerequisites or assessment levels. The new ai-basics lesson lives
+in content/lessons.json; its glossary array is the canonical source for
+#glossary, #glossary/<term> and search. Its review fingerprint covers those
+definitions. Term routes focus a validated existing ID; no user text is inserted
+into selectors or HTML. Related links return to the original lesson IDs.
+
+Optional lesson fields: exercise holds authored facts, a prompt, steps, checks,
+a flawed sample, explanation and reflection; worked_example holds context,
+before/after text, a question and explanation; next_links holds internal label/
+destination pairs. The browser renders escaped text and native details/summary
+disclosures. There are no new input stores, model calls or backend APIs. Revealing
+an explanation is local UI state and resets on navigation. No exercise, quiz or
+reflection responses are collected. Lesson reading estimates exclude activities.
+
 Default data root: `~/.local/share/aisi-labs-2/`. Display branding is independent
 of this stable identifier. `--data-dir` gives tests a temporary isolated root.
 

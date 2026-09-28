@@ -14,24 +14,62 @@ class ContentTests(unittest.TestCase):
     def test_session_guides_are_versioned_local_routes_with_clear_limits(self):
         self.assertEqual({guide['id'] for guide in SESSION_GUIDES}, {'first-session','finish-session'})
         allowed = {'#programme','#omarchy-help','#learn/terminal','#configuration',
-                   '#lab/first-steps','#projects','#finish-session','#docs/credentials','#docs/deployment'}
+                   '#lab/first-steps','#projects','#finish-session','#docs/credentials','#docs/deployment',
+                   '#learn/web-chat','#learn/ai-basics','#learn/chat-agents','#learn','#glossary'}
         for guide in SESSION_GUIDES:
             self.assertIn('guide:' + guide['id'], learning_units())
-            self.assertEqual(len(guide['steps']), 5)
-            self.assertEqual(len({step['id'] for step in guide['steps']}), 5)
+            self.assertEqual(len({step['id'] for step in guide['steps']}), len(guide['steps']))
             for phrase in ['ONLY public information', 'OFFICIAL', 'NEVER']:
                 self.assertIn(phrase, guide['boundary'])
-            for step in guide['steps'] + ([guide['offline']] if 'offline' in guide else []):
+            for step in guide['steps'] + guide.get('paths', []) + ([guide['offline']] if 'offline' in guide else []):
                 self.assertTrue(step['title'] and step['body'])
                 for label, destination in step['links']:
                     self.assertTrue(label)
                     self.assertIn(destination, allowed)
         first, finish = SESSION_GUIDES
-        self.assertEqual(sum(step['minutes'] for step in first['steps']), 20)
-        self.assertIn('can take longer', first['intro'])
+        self.assertEqual(first['title'], 'Getting started: a guide for beginners')
+        self.assertEqual([path['id'] for path in first['paths']], ['chat','desktop','build'])
+        self.assertEqual(len(first['steps']), 1)
+        self.assertEqual(len(finish['steps']), 5)
+        self.assertNotIn('minutes', json.dumps(first))
+        self.assertIn('no timer', first['intro'])
+        for path in first['paths']:
+            self.assertEqual(len(path['steps']), 3)
+            self.assertTrue(path['check'])
+        for _, link in first['next_links']:
+            self.assertIn(link, allowed)
         self.assertIn('not AI-generated work', first['offline']['body'])
         self.assertIn('not an automatic logout', finish['intro'])
         self.assertIn('reset on reload', finish['intro'])
+
+    def test_beginner_glossary_and_examples_have_one_canonical_source(self):
+        basics = next(lesson for lesson in LESSONS if lesson['id'] == 'ai-basics')
+        terms = basics['glossary']
+        self.assertEqual(len(terms), 12)
+        self.assertEqual(len({term['id'] for term in terms}), len(terms))
+        self.assertEqual([term['term'] for term in terms], sorted(term['term'] for term in terms))
+        for term in terms:
+            self.assertRegex(term['id'], r'^[a-z]+(?:-[a-z]+)*$')
+            self.assertGreater(len(term['definition']), 30)
+            self.assertIn(term['lesson'], {lesson['id'] for lesson in LESSONS})
+        self.assertIn('lesson:ai-basics', learning_units())
+        self.assertTrue(basics['sources'])
+        self.assertIn('Training', json.dumps(basics))
+        chat = next(lesson for lesson in LESSONS if lesson['id'] == 'web-chat')
+        exercise = chat['exercise']
+        self.assertIn('fictional', exercise['intro'])
+        self.assertIn('offline', exercise['intro'])
+        self.assertEqual(len(exercise['checks']), 3)
+        for field in ['facts','prompt','sample','explanation','reflection']:
+            self.assertGreater(len(exercise[field]), 40)
+        for lesson in LESSONS:
+            if 'worked_example' in lesson:
+                self.assertEqual(set(lesson['worked_example']),
+                                 {'title','context','before','after','question','explanation'})
+                self.assertIn('Authored public practice', lesson['worked_example']['context'])
+            for label, destination in lesson.get('next_links', []):
+                self.assertTrue(label)
+                self.assertIn(destination, {'#learn/web-chat','#learn/checking','#glossary','#web-chats','#finish-session'})
 
     def test_desktop_help_is_versioned_plain_content_with_sources(self):
         self.assertIn('help:omarchy', learning_units())

@@ -1,5 +1,23 @@
 # Changes
 
+## 28 September 2026 — beginner-focused learning restructure
+
+- Renamed First 20 minutes to Getting started; kept its route/bookmarks stable.
+  Added separate chatbot, desktop and first-project paths with offline options.
+- Added AI basics, a searchable twelve-term glossary and three suggested Learn
+  groups. Preserved all original lesson IDs and progress semantics.
+- Put a complete no-code chatbot activity before its background explanation.
+  Added worked examples for prompting, source instructions and checking claims,
+  with optional explanations and no saved answers or model requests.
+- Clarified technical terms, reading-time estimates and manual handover copy.
+  Updated architecture, learner/maintenance documentation and pilot schedule.
+  Source-review scope and remaining debt are recorded in content/CHANGELOG.md.
+- Verification: 60 unit/HTTP tests, JS syntax and isolated Chromium suite passed;
+  desktop/tablet/mobile screenshots inspected. Includes route/term focus, native
+  keyboard disclosures, all fifteen quizzes, public-navigation gates, HTML
+  escaping and 320-pixel layout regression coverage. Not learner, screen-reader,
+  provider-account, network or image acceptance. No tools installed or upgraded.
+
 ## 28 September 2026 — first-session route and finish checklist
 
 - Added optional First 20 minutes guidance, offline preparation, launchpad/Learn

@@ -11,10 +11,11 @@ people, clean devices, learning accounts and explicit operational decisions.
 Status: implemented locally with automated checks and desktop/mobile inspection.
 Observed learner acceptance remains stage 2; no departmental release is implied.
 
-Owner: app/content maintainer. Implement the optional First 20 minutes route
-and prominent Finish session checklist. Connect existing guides and the first
-project instead of duplicating the exercise. Include offline preparation and
-allow experienced learners to skip the route.
+Owner: app/content maintainer. The optional Getting started routes (originally
+labelled First 20 minutes) and prominent Finish session checklist are implemented.
+The beginner follow-up adds a no-code chatbot exercise, desktop route, AI basics,
+glossary, learning groups and worked examples. Existing project activities and
+stable routes are retained. Experienced learners can skip the guidance.
 
 Acceptance: both routes are readable before acknowledgement; reading them and
 ticking checklist items launches nothing and saves no checklist state. The
@@ -32,16 +33,18 @@ learning network and suitable accounts on a clean, approved pilot device.
 Agree any model-call budget before testing; no paid calls are authorised by
 this schedule.
 
-Observe participants finding the first route, opening or preparing a project,
-checking a result and explaining what finishing the session does not clear.
+Observe participants choosing a suitable route, reviewing the offline chatbot
+example or opening/preparing a project, checking a result and explaining what
+finishing the session does not clear. Include people who do not want to code.
 Record task completion, time, points of confusion and assistance needed without
 collecting prompts, keys, account details or official work. Test keyboard-only
 navigation, visible focus, zoom and a screen reader; an automated browser pass
 does not establish accessibility.
 
-Acceptance: each blocked step has a reproducible issue and owner; confirm or
-revise the suggested 20-minute scope using observed times, including setup
-separately. The owner decides whether another pilot is needed before expansion.
+Acceptance: each blocked step has a reproducible issue and owner. Establish
+useful time estimates for each route from observed times, recording setup
+separately. No 20-minute completion target is assumed. The owner decides whether
+another pilot is needed before expansion.
 
 ## Stage 3 — content and real-tool acceptance, proposed weeks 2–3
 
