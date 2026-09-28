@@ -196,11 +196,11 @@
     "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
   },
   "doc:credentials": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "28e3ca68dde4badbaa8cc82704cefae212c865a9bdc188d1b1ed5430ebb4e10d",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Setup-guide addition 2026-09-29: checked the new onboarding section and canonical guide linkage against the UI and current official auth/key documentation. No full revalidation of native adapters or pinned live-tool behaviour; previous full-review date/hash retained."
   },
   "doc:curriculum": {
     "revision": 3,
@@ -224,11 +224,11 @@
     "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
   },
   "doc:content-maintenance": {
-    "revision": 6,
-    "reviewed_at": "2026-09-28",
+    "revision": 7,
+    "reviewed_at": "2026-09-29",
     "review_after_days": 90,
-    "sha256": "2c5a232ef2e02558bad74436154ac2f819d6f31504fb1417e78fed3356ae4d01",
-    "notes": "Read full guide; reviewed the added desktop-help source, fingerprint coverage, 90-day interval and image-release checks. No scheduled monitoring or unrelated source reviews. Follow-up 2026-09-28: reviewed editorial standards for adult learners, aligned per-choice explanations, unscored attempts and honest partial-review metadata against the implemented UI and inventory. Added first/finish-session guidance and proposed improvement stages on 2026-09-28; checked against local implementation. No external sign-out or live learner acceptance. Review 2026-09-28: Reviewed updated source map, single-source glossary, beginner editorial criteria, disclosure interactions and group coverage against current implementation and tests. No automatic review scheduler or unrelated source review. Local unit/HTTP and isolated Chromium verification; scope/evidence in content/CHANGELOG.md."
+    "sha256": "695a707a1d27457d4735b77d3931b4d6296f8a461b799fef752cfa1a7d68120e",
+    "notes": "Read full guide; reviewed the added desktop-help source, fingerprint coverage, 90-day interval and image-release checks. No scheduled monitoring or unrelated source reviews. Follow-up 2026-09-28: reviewed editorial standards for adult learners, aligned per-choice explanations, unscored attempts and honest partial-review metadata against the implemented UI and inventory. Added first/finish-session guidance and proposed improvement stages on 2026-09-28; checked against local implementation. No external sign-out or live learner acceptance. Review 2026-09-28: Reviewed updated source map, single-source glossary, beginner editorial criteria, disclosure interactions and group coverage against current implementation and tests. No automatic review scheduler or unrelated source review. Local unit/HTTP and isolated Chromium verification; scope/evidence in content/CHANGELOG.md. Review 2026-09-29: read complete maintenance guide; checked new setup-guidance source map, stable identifier, 30-day interval and documented-console versus live-account distinction against implementation. No unrelated content review or scheduled monitoring."
   },
   "chat:qwen-chat": {
     "revision": 1,
@@ -362,5 +362,12 @@
     "review_after_days": 90,
     "sha256": "116edbe220891f255149beff90a14ce3cb943b5f17680b8e42dfab7be137ae2a",
     "notes": "Authored foundations and twelve glossary definitions reviewed 2026-09-28 against Google ML glossary (training/inference/generation/tokens), MDN API, Anthropic context engineering and hallucination guidance, Google API-key documentation, and local programme/credential rules. Inspected simplified diagram and fictional scenario. No product login, model call, privacy guarantee or timed learner trial. See content/CHANGELOG.md for exact sources and test scope."
+  },
+  "guide:tool-access": {
+    "revision": 1,
+    "reviewed_at": "2026-09-29",
+    "review_after_days": 30,
+    "sha256": "1e0094cb90fe45f202970d1219cba3882676053c1da6c7f4d42fef3f88238918",
+    "notes": "Reviewed the complete new setup guide against official Codex/Claude Code/Gemini CLI authentication and provider key-creation documentation, local credential handling and programme boundaries. Canonical URLs accompany provider instructions. Console destinations traced to those docs; no signed-in walkthrough. OpenAI console had no readable content and AI Studio console was inaccessible to the review tool. No live accounts, prices, keys, paid prompts or deployment acceptance tested. See content/CHANGELOG.md for UI verification scope."
   }
 }

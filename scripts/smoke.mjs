@@ -48,7 +48,7 @@ try{
     await waitFor('[...document.querySelectorAll("main .tool-logo")].every(i=>i.complete&&i.naturalWidth>0)');
     assert(await evaluate('[...document.querySelectorAll("main .tool-logo")].every(i=>new URL(i.src).origin===location.origin&&i.alt===""&&i.closest(".mark").getAttribute("aria-hidden")==="true")'));
   }
-  async function screenshot(name){await evaluate('window.scrollTo(0,0)');await delay(50);const result=await cdp('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});await writeFile(join(reports,name+'.png'),Buffer.from(result.data,'base64'));}
+  async function screenshot(name,full=true){if(full)await evaluate('window.scrollTo(0,0)');await delay(50);const result=await cdp('Page.captureScreenshot',{format:'png',captureBeyondViewport:full});await writeFile(join(reports,name+'.png'),Buffer.from(result.data,'base64'));}
   async function noOverflow(label){const sizes=await evaluate('({width:innerWidth,body:document.documentElement.scrollWidth})');if(sizes.body>sizes.width+1){console.log(await evaluate('[...document.querySelectorAll("body *")].filter(e=>e.getBoundingClientRect().right>innerWidth+1).map(e=>({tag:e.tagName,class:e.className,right:e.getBoundingClientRect().right})).slice(0,15)'));await screenshot('overflow');}assert(sizes.body<=sizes.width+1,`${label}: overflow ${JSON.stringify(sizes)}`);}
   await cdp('Page.enable');await cdp('Runtime.enable');await cdp('Log.enable');await cdp('Network.enable');
   await cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1080,deviceScaleFactor:1,mobile:false});
@@ -59,6 +59,22 @@ try{
   assert(await evaluate('document.querySelector("#modal").textContent.includes("government networks")'));
   await click('[data-close]');
   const sessionRequestStart=requests.length;
+  await go('#configuration');
+  assert.equal(await evaluate('document.querySelectorAll("main h1").length'),1);
+  assert.equal(await evaluate('data.acknowledged'),false);
+  assert(await evaluate('document.querySelector("#access-settings").textContent.includes("do not need an API key for every tool")'));
+  await click('[data-settings-section=key-settings]');
+  assert.equal(await evaluate('document.activeElement.id'),'key-settings');
+  await evaluate('document.querySelector("[data-setup-provider=openai] summary").focus()');
+  await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
+  await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
+  assert.equal(await evaluate('document.querySelector("[data-setup-provider=openai]").open'),true);
+  await click('[data-key-console=openai]');
+  assert(await evaluate('!!document.querySelector("#policy-form")'));
+  assert.equal(await evaluate('!!document.querySelector("#external-chat-link")'),false);
+  await click('[data-close]');
+  assert.equal(await evaluate('data.acknowledged'),false);
+  assert.equal(requests.length,sessionRequestStart,'Reading setup and cancelling needs no network');
   await click('#first-session-link');await waitFor('!!document.querySelector(".session-guide")');
   assert.equal(await evaluate('data.acknowledged'),false);
   assert.equal(await evaluate('document.querySelectorAll("[data-starting-path]").length'),3);
@@ -309,6 +325,28 @@ try{
   await go('#configuration');
   assert.equal(await evaluate('document.querySelectorAll(".key-form").length'),3);
   assert.equal(await evaluate('document.querySelectorAll(".model-form").length'),4);
+  await screenshot('configuration-intro-desktop',false);
+  const setupRequestStart=requests.length;
+  for(const [provider,destination] of [['openai','https://platform.openai.com/api-keys'],['anthropic','https://platform.claude.com/settings/keys'],['google','https://aistudio.google.com/api-keys']]){
+    await click('[data-setup-provider='+provider+'] summary');
+    await click('[data-key-console='+provider+']');
+    assert.equal(await evaluate('document.querySelector("#external-chat-link").href'),destination);
+    assert.equal(await evaluate('document.querySelector("#external-chat-link").referrerPolicy'),'no-referrer');
+    assert(await evaluate('document.querySelector("#external-chat-link").rel.includes("noopener")'));
+    assert(await evaluate('document.querySelector("#modal").textContent.includes("Nothing OFFICIAL")'));
+    await click('[data-close]');
+  }
+  await click('[data-settings-section=key-settings]');
+  await screenshot('configuration-provider-desktop',false);
+  await evaluate('document.querySelector("[data-key-console=openai]").setAttribute("data-key-console","unrecognised")');
+  await click('[data-key-console=unrecognised]');
+  assert.equal(await evaluate('document.querySelector("#modal").open'),false);
+  assert.equal(requests.length,setupRequestStart,'Setup disclosures/confirmation send no provider requests');
+  assert(await evaluate(`(()=>{
+    const original=data.setup_guidance.intro;
+    try{data.setup_guidance.intro='<img src=x onerror=alert(1)>';const node=document.createElement('div');node.innerHTML=setupGuidePanel();return !node.querySelector('img')&&node.textContent.includes(data.setup_guidance.intro);}
+    finally{data.setup_guidance.intro=original;}
+  })()`));
   assert(await evaluate('document.body.textContent.includes("Grok’s native sign-in")'));
   await evaluate('document.querySelector("[data-model-tool=grok] input").value="test-model-id";document.querySelector("[data-model-tool=grok]").requestSubmit()');
   await waitFor('document.querySelector("#toast").textContent.includes("Model preference saved")');
@@ -391,6 +429,15 @@ try{
   assert(await evaluate('document.querySelector("#omarchy-help-link").getBoundingClientRect().width>0'));
   await cdp('Emulation.setDeviceMetricsOverride',{width:320,height:740,deviceScaleFactor:1,mobile:false});
   await noOverflow('Omarchy help small phone');
+  await go('#configuration');
+  for(const detail of ['#facilitator-access','[data-setup-provider=openai]','[data-setup-provider=anthropic]','[data-setup-provider=google]'])await click(detail+' summary');
+  await noOverflow('expanded setup guide small phone');
+  await evaluate('document.querySelector("[data-settings-section=key-settings]").click()');
+  await screenshot('configuration-keys-mobile',false);
+  await evaluate('document.querySelector("[data-setup-provider=google]").scrollIntoView()');
+  await screenshot('configuration-provider-mobile',false);
+  await click('[data-key-console=google]');await noOverflow('key console confirmation small phone');await click('[data-close]');
+  await go('#configuration');await evaluate('window.scrollTo(0,0)');await screenshot('configuration-mobile',false);
   await go('#first-session');await noOverflow('first session small phone');
   await go('#finish-session');await noOverflow('finish session small phone');
   for(const hash of ['#glossary','#learn/ai-basics','#learn/web-chat','#learn/prompting','#learn/checking','#learn/context']){

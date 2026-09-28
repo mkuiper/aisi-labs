@@ -1,5 +1,33 @@
 # Learning material history
 
+## 2026-09-29 — Configuration as a setup guide
+
+- Added canonical content/setup_guidance.json (guide:tool-access): website versus
+  native sign-in versus API-key choices, three provider walkthroughs, offline
+  activities, account/payer preparation, manual access checks, troubleshooting
+  and facilitator/shared-laptop guidance. Keys remain optional and scoped to the
+  existing three adapters; no new authentication or spending capability.
+- Inspected current primary Codex authentication and OpenAI API quickstart,
+  Claude Code authentication and Claude API overview, Gemini CLI authentication
+  and Gemini API key documentation. Exact URLs are attached to the provider
+  instructions. Console links were traced from those documents. OpenAI's
+  console returned no readable content and AI Studio's console was inaccessible
+  to the review tool; no signed-in console walkthrough is claimed.
+- Provider disclosures use the existing external-destination confirmation for
+  key consoles. Reading the guide and saving a key make no provider request.
+  No account creation, purchase, real key handling or live model test occurred.
+  Current prices, eligibility, quota amounts and image acceptance remain untested.
+- Reviewed the complete new guide and updated maintenance source map. The
+  credential document's new onboarding section is a partial update, retaining
+  its previous full-review date/hash and outstanding native-adapter review.
+  Other units' dates and hashes are unchanged. Programme boundaries remain
+  ONLY public information, nothing OFFICIAL, NEVER government networks/accounts.
+- Verification: 62 unit/HTTP tests, JS syntax and isolated browser smoke passed.
+  Inspected desktop/narrow layouts; tested keyboard disclosures, acknowledgement,
+  destination confirmation/cancellation and no-network reading with fake keys.
+  Audit: 53 units; 29 in-date, 15 changed, nine unreviewed. The credential document
+  moved from unreviewed to changed; its full-review debt was not cleared.
+
 ## 2026-09-28 — beginner routes, foundations and worked examples
 
 - Replaced the First 20 minutes label with Getting started while preserving

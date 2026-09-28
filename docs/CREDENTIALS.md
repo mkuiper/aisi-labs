@@ -1,5 +1,39 @@
 # Credentials and configuration
 
+## Start with the setup guide
+
+Configuration now starts with Set up access to an AI tool, before the optional
+password fields. It distinguishes website accounts, native tool sign-in and
+provider API keys. An API key is not required to read Labs, use the simulations
+or open ordinary desktop tools. Account eligibility still matters for live AI.
+
+Agree the permitted dedicated learning account, payer and budget with the
+facilitator before signing up or enabling billing. ONLY public information;
+nothing OFFICIAL. NEVER use government networks, government accounts, workplace
+SSO or keys connected to internal resources. Use the offline activities when
+access is unavailable; learners should not have to buy access to participate.
+
+Each supported provider card has expandable sign-in alternatives, key-creation
+steps, an official key-console destination and source links. The console button
+requires the session acknowledgement and a destination confirmation. Reading
+the guide is offline; documentation links are labelled as online. No account,
+key or payment is created automatically. Do not enter secrets into the model
+preference fields or copy provider shell examples containing keys into history.
+
+The canonical learner instructions and source URLs are in
+content/setup_guidance.json, reviewed as guide:tool-access. Avoid maintaining a
+second provider walkthrough here. Documentation checked 29 September 2026;
+console destinations were taken from official documentation, not a signed-in
+walkthrough. OpenAI's console returned no readable content and AI Studio's
+console was inaccessible to the review tool. Account/region eligibility,
+current prices and live authentication were not tested.
+
+Check access explains a manual first-use check and common failures. Set for
+session confirms storage only. Any live public prompt is a separate, authorised
+and potentially chargeable action inside the tool. Facilitator preparation and
+the finish-session guide cover separate accounts, image hygiene and cleanup;
+forgetting a Labs key is neither native logout nor provider revocation.
+
 ## Supported integrations
 
 Configuration accepts dedicated learning API keys for OpenAI → Codex, Anthropic → Claude Code, and Google AI Studio → Gemini CLI. Every other tool continues to use its own sign-in and configuration. A key saved for one provider is not passed to unrelated tools or to the standalone terminal/editor launch.

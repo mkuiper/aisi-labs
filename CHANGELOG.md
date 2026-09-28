@@ -1,5 +1,22 @@
 # Changes
 
+## 29 September 2026 — guided tool access in Configuration
+
+- Added sign-in versus API-key choices, dedicated learning account/payer checks,
+  offline alternatives and facilitator preparation before the key fields.
+- Added expandable OpenAI, Anthropic and Google key-creation instructions with
+  official console links and external-site confirmation. Grok and other tools
+  retain native setup; no new key adapter or automatic provider test was added.
+- Added manual access checks, common-error help, cost/permission cautions and
+  clear distinctions between forgetting a key, revoking it and signing out.
+- Version-controlled the guide with source links, a dated review, a 30-day
+  review interval and documented console/live-account verification limits.
+  Updated credential, architecture and maintenance notes.
+- Verification: 62 unit/HTTP tests and JavaScript syntax checks passed. Isolated
+  Chromium checks cover setup before acknowledgement, fixed console destinations,
+  cancellation without network requests, keyboard disclosures, fake-key handling
+  and narrow expanded layouts. No live accounts, model calls or purchases tested.
+
 ## 28 September 2026 — beginner-focused learning restructure
 
 - Renamed First 20 minutes to Getting started; kept its route/bookmarks stable.

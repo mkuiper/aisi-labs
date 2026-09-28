@@ -39,6 +39,21 @@
 .mark.has-logo.logo-unavailable .logo-fallback {display:inline}
 .sources {display:flex;flex-wrap:wrap;gap:8px 14px}
 .settings-jumps {display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.setup-guide{margin-bottom:28px}
+.setup-guide .intro{margin:16px 0}
+.setup-guide .provider-grid{margin:22px 0;grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:1100px){.setup-guide .provider-grid{grid-template-columns:1fr}}
+.setup-guide h3,.provider-setup h3{font-size:18px;margin:18px 0 10px}
+.setup-guide .panel>h3:first-child{margin-top:0}
+.setup-guide .panel p,.setup-guide>p{margin:12px 0}
+.setup-guide .text-link,.provider-setup .btn,.provider-setup a{white-space:normal;text-align:left;overflow-wrap:anywhere}
+.setup-guide details,.provider-setup{margin:18px 0}
+.setup-guide summary,.provider-setup summary{cursor:pointer;font-weight:600;line-height:1.6}
+.setup-guide details p{margin-top:12px}
+.setup-guide li{margin:12px 0;color:var(--muted)}
+.provider-setup .sources{margin-top:18px;padding-top:12px}
+.provider-setup .sources h3{font-size:14px}
+#key-settings>h2{margin-bottom:12px}
 [id$="-settings"] {scroll-margin-top:20px}
 .table-scroll {max-width:100%;overflow-x:auto;margin:18px 0}
 .inventory-table {width:100%;border-collapse:collapse;text-align:left;font-size:.88rem}

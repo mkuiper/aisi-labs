@@ -1,0 +1,50 @@
+{
+  "id": "tool-access",
+  "title": "Set up access to an AI tool",
+  "intro": "You do not need an API key for every tool. Start with one tool and one permitted learning account. An API key is a secret that lets software use a provider account; it can allow spending on that account.",
+  "boundary": "Professional development only: ONLY public information, nothing OFFICIAL. NEVER use government networks, government accounts or credentials connected to internal systems. Ask your facilitator which dedicated learning accounts and services are permitted before signing up or paying.",
+  "routes": [
+    {"title": "Use a chatbot website", "body": "Use the website’s own account and sign-in. Do not enter a Labs API key into a chat. Website access and API access are different products.", "label": "Explore web chat options", "href": "#web-chats"},
+    {"title": "Use a terminal assistant", "body": "Codex, Claude Code and Gemini CLI offer native sign-in as well as API-key routes. Check the provider instructions below: account eligibility and installed versions matter. “Not set in Labs” does not mean the tool is signed out.", "label": "Read provider setup below", "section": "key-settings"},
+    {"title": "Use another tool", "body": "Grok and other AI tools use their own account/provider settings; Labs does not supply their keys. The terminal, editor and desktop apps need no hub API key to open.", "label": "See native tool setup", "section": "native-settings"}
+  ],
+  "before": [
+    {"title": "Agree the account and payer", "body": "Confirm the permitted service, account owner and budget with your facilitator. Do not connect workplace SSO, email, drives or internal sources. If account access is not ready, use the offline activities instead."},
+    {"title": "Check costs before enabling usage", "body": "A paid chat subscription does not necessarily include API credit. Check current prices, model access, quotas and any auto-recharge setting. Set available spending controls and alerts; check whether each is a hard stop or only a warning. Labs cannot enforce a spending cap."},
+    {"title": "Create only the access you need", "body": "Use a dedicated learning project or workspace where available. Prefer the narrowest compatible permissions and expiry. Never use an administrator key or a key connected to government resources. If permissions are unclear, ask the facilitator; do not broaden access just to clear an error."}
+  ],
+  "offline": {"title": "No account yet? You can still start", "body": "Read the guides and practise with authored examples or the terminal simulation. These work offline and make no model calls; they are not live AI responses.", "links": [["Try the public conversation exercise", "#learn/web-chat"], ["Practise in the terminal simulation", "#learn/terminal"]]},
+  "providers": [
+    {
+      "id": "openai",
+      "signin": "For Codex native sign-in, leave the Labs key unset, open Codex from Tools and choose ChatGPT sign-in with an eligible dedicated learning account. API usage is billed separately from ChatGPT subscription access.",
+      "steps": ["Open the OpenAI API key dashboard using your dedicated learning account. Check the selected organisation/project with the facilitator.", "Create a learning API key in that project if authorised. Check permissions, billing and model access before use.", "Copy the secret directly into the OpenAI password field below and choose Set for session. Labs supplies it only to new Codex launches from Labs; it does not replace native sign-in."],
+      "console": {"name": "OpenAI API key dashboard", "url": "https://platform.openai.com/api-keys"},
+      "sources": [["Codex authentication", "https://learn.chatgpt.com/docs/auth"], ["OpenAI API quickstart", "https://developers.openai.com/api/docs/quickstart"]]
+    },
+    {
+      "id": "anthropic",
+      "signin": "For Claude Code native sign-in, leave the Labs key unset and follow the tool’s login with an eligible dedicated learning account. Subscription and Console access differ; available login choices depend on version and account settings.",
+      "steps": ["Open Claude Console’s API keys settings with your dedicated learning account. Confirm the learning workspace and who pays for API use.", "If authorised, create a key for the learning workspace with appropriate permissions and expiry. If key creation is unavailable, ask the facilitator about your account role.", "Copy the secret into the Anthropic password field below and choose Set for session. New Claude Code launches may ask you to approve the key. API billing can apply instead of subscription usage."],
+      "console": {"name": "Claude Console API keys", "url": "https://platform.claude.com/settings/keys"},
+      "sources": [["Claude Code authentication", "https://code.claude.com/docs/en/authentication"], ["Claude API overview and keys", "https://platform.claude.com/docs/en/api/overview"]]
+    },
+    {
+      "id": "google",
+      "signin": "For Gemini CLI native sign-in, leave the Labs key unset, open Gemini CLI and choose Sign in with Google using a permitted dedicated learning account. Eligibility and quotas vary. Google login, AI Studio API keys and Vertex AI are separate routes.",
+      "steps": ["Open Google AI Studio with the dedicated learning account and review its terms. Every Gemini API key belongs to a Google Cloud project; use only a learning project, never an existing government project.", "Open API Keys and create a key in the learning project if authorised. Check its restrictions, billing and quotas; a missing project or disabled creation button needs facilitator help.", "Copy the secret into the Google AI Studio password field below and choose Set for session. Open a new Gemini CLI session from Labs and select Use Gemini API key if prompted."],
+      "console": {"name": "Google AI Studio API keys", "url": "https://aistudio.google.com/api-keys"},
+      "sources": [["Gemini CLI authentication", "https://geminicli.com/docs/get-started/authentication/"], ["Gemini API key creation and restrictions", "https://ai.google.dev/gemini-api/docs/api-key"]]
+    }
+  ],
+  "verify": {"title": "Check access without mistaking storage for success", "body": "“Set for session” means Labs has stored the key, not that the provider accepted it. Open the matching tool from Tools, check the account, authentication method and model it shows, and keep native permission prompts enabled. If your facilitator permits a live check and its cost, send one small public prompt, then inspect provider usage. Stop if the account or charges are unexpected. There is no automatic key test in Labs.", "links": [["Open Tools", "#tools"], ["Finish your session safely", "#finish-session"]]},
+  "problems": [
+    {"title": "Invalid key or authentication failed", "body": "Check that the provider and field match, the key has not expired or been revoked, and the tool is using the intended authentication method. Replace a mistyped key using the password field. Never send the key to a chatbot, support ticket or screenshot."},
+    {"title": "No credit, quota reached or rate limited", "body": "Pause repeated attempts. Check usage, billing and quota in the provider account. Some limits are temporary; others need account changes. Ask the facilitator before adding funds or increasing limits."},
+    {"title": "Model unavailable or permission denied", "body": "Check the tool’s model picker and account access. A saved model name grants no entitlement. Do not remove key restrictions or bypass account policies to make an exercise work; use a permitted model or the offline alternative."},
+    {"title": "The tool still uses an old login", "body": "Labs settings affect new launches only. Close the old tool session and check the next session’s authentication method. Native login, environment and machine policies may affect the result. Ask the facilitator rather than deleting unfamiliar configuration files."},
+    {"title": "A key was exposed or you are handing over the laptop", "body": "Stop the tool session. Forget the key in Labs and revoke an exposed key at its provider; forgetting is not revocation. Sign out of native tools and websites separately. Follow the finish-session guide, including clipboard/history handling. Closing the Labs window does not clear its keys."}
+  ],
+  "facilitator": {"title": "For facilitators: prepare access before the session", "steps": ["Agree permitted providers, account ownership, payer and learner budget before the workshop. Provide a no-account activity when access is unavailable; do not require learners to purchase a subscription.", "Use separate learner accounts/profiles as appropriate. Do not share one unrestricted key or bake credentials, browser sessions or native logins into the laptop image.", "Pilot the pinned tool version with the intended authentication route and a small authorised public task. Record the model, observed cost and cleanup procedure without recording secrets. Unit tests do not establish live account access.", "Check the separate non-government network and applicable device/product restrictions. Explain who can revoke keys, handle unexpected spend and prepare the laptop for the next learner."]},
+  "limits": "Provider documentation checked 29 September 2026; console layouts, entitlements and prices can change. Key-console destinations come from official documentation, not a signed-in walkthrough. OpenAI’s console returned no readable content and AI Studio’s console was inaccessible to the review tool. No accounts, purchases, real keys or live model requests were tested. This is setup guidance, not service approval."
+}

@@ -13,6 +13,7 @@ review without introducing a CMS or cloud service.
 - content/resources.json: benchmark and research-discovery resources, reading guidance and primary method links.
 - content/omarchy_help.json: offline desktop cheat sheet, shortcut/version baseline and beginner practice; reviewed as help:omarchy.
 - content/session_guides.json: three Getting started paths and manual finish checklist; reviewed as guide:first-session and guide:finish-session. Keep internal links, account/setup caveats and credential/handover limits aligned with the app. Do not restore a timed completion promise without learner evidence.
+- content/setup_guidance.json: Configuration onboarding, provider sign-in/key steps, fixed console destinations and troubleshooting; reviewed as guide:tool-access every 30 days. Check primary documentation and distinguish documented destinations from a live signed-in walkthrough. Do not test real credentials or enable billing during an editorial review.
 - templates.py: authored public starter files, including fictional datasets.
 - docs/: learner/programme material and engineering handover.
 - web/app.js and web/programme.js: illustrated explanations and interactive teaching components.

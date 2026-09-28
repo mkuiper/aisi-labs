@@ -6,11 +6,47 @@ import sys
 import unittest
 from urllib.parse import urlsplit
 
-from catalogue import LABS, LESSONS, WEB_CHATS, RESOURCES, OMARCHY_HELP, SESSION_GUIDES
+from catalogue import LABS, LESSONS, WEB_CHATS, RESOURCES, OMARCHY_HELP, SESSION_GUIDES, SETUP_GUIDANCE
+from configuration import PROVIDERS
 from content_review import ROOT, fingerprint, learning_units, review_report
 
 
 class ContentTests(unittest.TestCase):
+    def test_setup_guide_matches_key_adapters_and_safe_destinations(self):
+        guide = SETUP_GUIDANCE
+        self.assertEqual(guide['id'], 'tool-access')
+        self.assertIn('guide:tool-access', learning_units())
+        self.assertEqual([p['id'] for p in guide['providers']], [p['id'] for p in PROVIDERS])
+        self.assertEqual({p['console']['url'] for p in guide['providers']}, {
+            'https://platform.openai.com/api-keys',
+            'https://platform.claude.com/settings/keys',
+            'https://aistudio.google.com/api-keys'})
+        for provider in guide['providers']:
+            self.assertTrue(provider['signin'])
+            self.assertEqual(len(provider['steps']), 3)
+            self.assertEqual(len(provider['sources']), 2)
+            for label, href in provider['sources'] + [(provider['console']['name'], provider['console']['url'])]:
+                self.assertTrue(label)
+                url = urlsplit(href)
+                self.assertEqual(url.scheme, 'https')
+                self.assertFalse(url.username or url.password or url.query or url.fragment)
+
+    def test_setup_guide_preserves_boundaries_and_offline_options(self):
+        guide = SETUP_GUIDANCE
+        for phrase in ['ONLY public information', 'nothing OFFICIAL', 'NEVER', 'government accounts']:
+            self.assertIn(phrase, guide['boundary'])
+        self.assertIn('do not need an API key for every tool', guide['intro'])
+        self.assertIn('no model calls', guide['offline']['body'])
+        self.assertIn('no automatic key test', guide['verify']['body'])
+        self.assertIn('not revocation', guide['problems'][-1]['body'])
+        self.assertEqual(len(guide['problems']), 5)
+        for label, href in guide['offline']['links'] + guide['verify']['links']:
+            self.assertTrue(label)
+            self.assertIn(href, {'#learn/web-chat', '#learn/terminal', '#tools', '#finish-session'})
+        for route in guide['routes']:
+            self.assertNotEqual('href' in route, 'section' in route)
+            self.assertIn(route.get('href', route.get('section')), {'#web-chats', 'key-settings', 'native-settings'})
+
     def test_session_guides_are_versioned_local_routes_with_clear_limits(self):
         self.assertEqual({guide['id'] for guide in SESSION_GUIDES}, {'first-session','finish-session'})
         allowed = {'#programme','#omarchy-help','#learn/terminal','#configuration',
@@ -100,7 +136,7 @@ class ContentTests(unittest.TestCase):
     def test_review_inventory_covers_every_unit(self):
         records = json.loads((ROOT / 'content/reviews.json').read_text())
         # Fixed date tests structure, not whether a future editorial deadline passes.
-        report = review_report(records, today=date(2026, 9, 28))
+        report = review_report(records, today=date(2026, 9, 29))
         self.assertEqual({row['id'] for row in report}, set(learning_units()))
         self.assertTrue(any(row['status'] == 'unreviewed' for row in report))
 

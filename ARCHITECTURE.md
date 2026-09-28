@@ -228,6 +228,20 @@ failures and unknown versions stay visible. No software is installed by the hub.
 See `docs/MAINTENANCE.md` for owners, cadence, tested manifests and rollback.
 Testing, content review and image/network acceptance are separate release gates.
 
+## Configuration access guide
+
+Configuration onboarding has one plain-data source, content/setup_guidance.json,
+loaded by catalogue.py and exposed as bootstrap.setup_guidance independently of
+configuration.status(). Key save/forget responses therefore do not replace the
+guide. content_review.py fingerprints it as guide:tool-access. web/programme.js
+renders the guide and provider disclosures using escaped text; fixed provider IDs
+resolve console destinations from that data through the existing acknowledgement
+and external-site confirmation. Never accept a destination URL from user input.
+Reading, expanding or navigating the guide makes no provider request. There is
+no account provisioning, billing integration, credential validation or automatic
+test prompt. Existing key scopes, native launch adapters and persistence remain
+unchanged. Keep provider guide IDs aligned with configuration.PROVIDERS.
+
 ## Verification
 
 Run `python3 -m unittest discover -s tests -v`, JavaScript syntax checks, and

@@ -125,6 +125,9 @@ class HttpTests(unittest.TestCase):
         self.assertEqual(code, 200)
         self.assertEqual(len(json.loads(body)['tools']), len(TOOLS))
         self.assertEqual(json.loads(body)['omarchy_help'], OMARCHY_HELP)
+        self.assertEqual(json.loads(body)['setup_guidance']['id'], 'tool-access')
+        self.assertEqual([p['id'] for p in json.loads(body)['setup_guidance']['providers']],
+                         ['openai', 'anthropic', 'google'])
         self.assertEqual({r['id'] for r in json.loads(body)['resources']},
                          {'artificial-analysis','arena','helm','swe-bench','hf-papers'})
         self.assertEqual({guide['id'] for guide in json.loads(body)['session_guides']},
