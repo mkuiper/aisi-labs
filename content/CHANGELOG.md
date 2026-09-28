@@ -1,5 +1,12 @@
 # Learning material history
 
+## 2026-09-28 — Omarchy first-day help
+
+- Added a single versioned desktop-help source: Super/Enter key meanings, three essential shortcuts, window/workspace and copy/paste guidance, a tiling illustration, recovery tips and an optional no-command practice. No shortcuts are intercepted or executed by Labs.
+- Read the official Omarchy hotkeys, navigation and Windows/Mac transition pages, installed default Lua bindings and user overrides. Read-only Omarchy version and active Hyprland bindings confirmed the 4.0.4-1 baseline; notably Super+Space is the Omarchy menu and Super+Alt+Space the apps-only menu. URLs remain in the guide. Do not generalise this to older or customised images.
+- Source/config inspection only: no real keyboard actions, window closure, locking, OS configuration changes or learner credentials were exercised. The practice is authored, not evidence of old-laptop acceptance.
+- Added help:omarchy review coverage with a 90-day interval plus image-release checks. Updated the maintenance guide and a small programme orientation note; no unrelated legacy reviews were cleared.
+
 ## 2026-09-28 — creative media and reading the evidence
 
 - Added four Web & media profiles: Adobe Firefly, Midjourney, Runway and ComfyUI. ComfyUI links to documentation, not a claimed local installation. Existing profile IDs and DeepSeek's reference-only guard are preserved.

@@ -1,5 +1,12 @@
 # Changes
 
+## 28 September 2026 — beginner Omarchy help
+
+- Added persistent Omarchy help in the header, a sidebar invitation and search discovery. The offline guide explains essential keys, tiled windows/workspaces, safe copying/pasting and getting unstuck, with a route into terminal practice.
+- Bundled an explicitly dated Omarchy 4 baseline rather than claiming runtime shortcut detection. No new desktop commands, installations, settings changes or launch permissions.
+- Extended the editorial inventory and image-review guidance to the desktop cheat sheet.
+- Verification: 55 unit/HTTP tests, JavaScript syntax, offline review coverage and isolated Chromium checks passed. Covered pre-acknowledgement access, search, recovery disclosure, terminal-practice navigation, local read-only requests and 320/390/820-pixel layouts. Desktop/mobile screenshots inspected; no actual desktop shortcut actions performed.
+
 ## 28 September 2026 — creative media and Keep current
 
 - Expanded Web chat to Web & media without breaking its route. Added four sourced creative profiles with bundled logos and two illustrated lessons on media generation and benchmark literacy.

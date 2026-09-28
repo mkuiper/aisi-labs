@@ -1,5 +1,19 @@
 /* Programme and credential settings. Never persist API keys in the browser. */
 let afterAcknowledgement = null;
+function omarchyHelpPage() {
+  const help=data.omarchy_help, review=data.content_reviews.find(x=>x.id==='help:omarchy');
+  const keys=shortcut=>`<span class="shortcut-keys">${shortcut.keys.map(key=>`<kbd>${esc(key)}</kbd>`).join('<span aria-hidden="true"> + </span>')}</span>`;
+  return `<article class="desktop-help"><a class="back" href="#home">← Back to Labs</a>${heading('Your desktop, explained',help.title,help.subtitle)}
+    <p class="intro">${esc(help.intro)}</p><div class="note"><strong>What is Super?</strong> ${esc(help.key_hint)}</div>
+    <section aria-labelledby="essentials-heading"><h2 id="essentials-heading">${esc(help.groups[0].title)}</h2><div class="shortcut-essentials">${help.groups[0].shortcuts.map(s=>`<div class="panel shortcut-card" data-shortcut="${esc(s.id)}">${keys(s)}<h3>${esc(s.action)}</h3><p>${esc(s.detail)}</p></div>`).join('')}</div></section>
+    <p class="small-note content-review">Revision ${review?.revision||1} · ${review?.reviewed_at?'Source/config review '+esc(review.reviewed_at):'Review pending'} · ${esc(review?.status||'unreviewed')}. ${esc(help.baseline)}</p>
+    <section class="panel"><h2>${esc(help.layout.title)}</h2><p>${esc(help.layout.body)}</p><figure class="workspace-example"><div class="workspace-label">One workspace</div><div class="workspace-panes"><div><strong>AISI AI Labs</strong><span>Read the guide</span></div><div><strong>Terminal</strong><span>Work in a separate app</span></div></div><figcaption>${esc(help.layout.caption)}</figcaption></figure></section>
+    ${help.groups.slice(1).map(group=>`<section class="shortcut-section"><h2>${esc(group.title)}</h2><table class="shortcut-table"><caption class="sr-only">${esc(group.title)} — keyboard shortcuts</caption><thead><tr><th scope="col">Keys</th><th scope="col">What happens</th></tr></thead><tbody>${group.shortcuts.map(s=>`<tr data-shortcut="${esc(s.id)}"><td>${keys(s)}</td><th scope="row"><strong>${esc(s.action)}</strong><p>${esc(s.detail)}</p></th></tr>`).join('')}</tbody></table></section>`).join('')}
+    <section class="panel"><h2>Getting unstuck</h2>${help.tips.map(t=>`<details><summary>${esc(t.title)}</summary><p>${esc(t.body)}</p></details>`).join('')}</section>
+    <section class="panel"><h2>${esc(help.practice.title)}</h2><ol class="steps">${help.practice.steps.map(step=>`<li>${esc(step)}</li>`).join('')}</ol><p class="small-note"><strong>Your check:</strong> ${esc(help.practice.check)}</p></section>
+    <div class="note">${esc(help.boundary)}</div><div class="actions"><a class="btn" href="#learn/terminal">Try the pretend terminal →</a><a class="btn secondary" href="#tools">Explore the tools →</a></div>
+    <div class="sources"><h2>Official help · opens online</h2><p>The cheat sheet above works offline. These links leave Labs. Reading help here does not launch apps, send keystrokes or change the desktop.</p>${help.sources.map(([title,url])=>`<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">${esc(title)} ↗</a>`).join('')}</div></article>`;
+}
 function chatCard(chat) {
   const label=chat.kind==='reference'?'Reference only · restricted product':chat.kind==='library'?'Model library · online':chat.kind==='creative'?(chat.id==='comfyui'?'Workflow guide · no installation':'Image & video · hosted'):'Hosted chat · online';
   return `<article class="tool-card web-chat-card">${mark(chat, 'chat')}<h3>${esc(chat.name)}</h3><span class="tag">${label}</span><p>${esc(chat.description)}</p><div class="actions"><a class="btn secondary" href="#web-tool/${esc(chat.id)}">About this tool →</a>${chat.url&&chat.kind!=='reference'?`<button class="btn secondary" data-web-chat="${esc(chat.id)}">Visit website ↗</button>`:''}</div></article>`;

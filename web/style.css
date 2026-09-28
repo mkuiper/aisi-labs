@@ -45,3 +45,29 @@
 .inventory-table th,.inventory-table td {padding:12px;border-bottom:1px solid #dce1d5;vertical-align:top;min-width:135px}
 .inventory-table th small {display:block;font-weight:400;margin-top:5px;color:#526457}
 @media(max-width:600px){.setup-row{align-items:flex-start;flex-direction:column}.brand strong{font-size:inherit}}
+
+/* Offline desktop orientation. Keyboard labels are text, never active shortcuts. */
+.topbar{flex-wrap:wrap}
+.desktop-help-link{flex-shrink:0;white-space:nowrap}
+.desktop-help-link[aria-current="page"]{border-color:var(--green);background:#e9eddf}
+.desktop-help{max-width:960px;margin:auto}
+.desktop-help>.intro{font-size:16px;max-width:760px}
+.shortcut-essentials{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.shortcut-card h3{margin:18px 0 10px}
+.shortcut-keys{display:inline-flex;align-items:center;flex-wrap:wrap;gap:5px}
+.shortcut-keys kbd{font-size:12px;padding:5px 8px;color:var(--ink);background:#f5f5ee;border:1px solid #c8d0c2;border-bottom-width:3px;border-radius:5px}
+.shortcut-section{margin:30px 0}
+.shortcut-table{width:100%;border-collapse:collapse;margin-top:15px;font-size:13px;text-align:left}
+.shortcut-table td,.shortcut-table th{padding:14px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.shortcut-table td{width:38%}
+.shortcut-table tbody th{font-weight:400}
+.shortcut-table p{margin-top:5px;font-size:12px}
+.workspace-example{margin:20px 0 0;border:1px solid #b6c4a5;border-radius:10px;padding:15px;background:#edf0e5}
+.workspace-label{font-size:12px;margin-bottom:10px}
+.workspace-panes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.workspace-panes>div{background:var(--white);border:1px solid var(--line);border-radius:7px;padding:20px 12px}
+.workspace-panes strong,.workspace-panes span{display:block;font-size:13px}
+.workspace-panes span{font-size:11px;color:var(--muted);margin-top:8px}
+.workspace-example figcaption{font-size:11px;color:var(--muted);margin-top:10px}
+@media(max-width:900px){.topbar form{flex:1 1 180px;width:auto}.shortcut-essentials{grid-template-columns:1fr}}
+@media(max-width:650px){.topbar{gap:10px}.topbar form{min-width:0}.desktop-help-link{padding:9px 11px}.shortcut-table td,.shortcut-table th{padding:12px 5px}.shortcut-keys{gap:3px}.shortcut-keys kbd{font-size:11px;padding:4px 5px}}

@@ -30,11 +30,12 @@ try{
   const pages=await (await fetch(`http://${host}/json/list`)).json();
   socket=new WebSocket(pages.find(p=>p.type==='page').webSocketDebuggerUrl);
   await new Promise((resolve,reject)=>{socket.addEventListener('open',resolve,{once:true});socket.addEventListener('error',reject,{once:true});});
-  let nextID=0;const pending=new Map();const errors=[];
+  let nextID=0;const pending=new Map();const errors=[];const requests=[];
   socket.addEventListener('message',event=>{
     const msg=JSON.parse(event.data);
     if(msg.id){const call=pending.get(msg.id);if(call){pending.delete(msg.id);clearTimeout(call.timer);msg.error?call.reject(new Error(JSON.stringify(msg.error))):call.resolve(msg.result);}}
     else if(msg.method==='Runtime.exceptionThrown')errors.push(msg.params.exceptionDetails.text+' '+JSON.stringify(msg.params.exceptionDetails.exception));
+    else if(msg.method==='Network.requestWillBeSent')requests.push({url:msg.params.request.url,method:msg.params.request.method});
     else if(msg.method==='Log.entryAdded'&&msg.params.entry.level==='error')errors.push(msg.params.entry.text);
   });
   function cdp(method,params={}){return new Promise((resolve,reject)=>{const id=++nextID;const timer=setTimeout(()=>{pending.delete(id);reject(new Error('CDP timeout: '+method));},10000);pending.set(id,{resolve,reject,timer});socket.send(JSON.stringify({id,method,params}));});}
@@ -49,13 +50,33 @@ try{
   }
   async function screenshot(name){const result=await cdp('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});await writeFile(join(reports,name+'.png'),Buffer.from(result.data,'base64'));}
   async function noOverflow(label){const sizes=await evaluate('({width:innerWidth,body:document.documentElement.scrollWidth})');if(sizes.body>sizes.width+1){console.log(await evaluate('[...document.querySelectorAll("body *")].filter(e=>e.getBoundingClientRect().right>innerWidth+1).map(e=>({tag:e.tagName,class:e.className,right:e.getBoundingClientRect().right})).slice(0,15)'));await screenshot('overflow');}assert(sizes.body<=sizes.width+1,`${label}: overflow ${JSON.stringify(sizes)}`);}
-  await cdp('Page.enable');await cdp('Runtime.enable');await cdp('Log.enable');
+  await cdp('Page.enable');await cdp('Runtime.enable');await cdp('Log.enable');await cdp('Network.enable');
   await cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1080,deviceScaleFactor:1,mobile:false});
   await cdp('Page.navigate',{url});
   await waitFor('!!document.querySelector(".hero")');
   await waitFor('!!document.querySelector("#policy-form")');
   assert(await evaluate('document.querySelector("#modal").textContent.includes("ONLY public information")'));
   assert(await evaluate('document.querySelector("#modal").textContent.includes("government networks")'));
+  await click('[data-close]');
+  const helpRequestStart=requests.length;
+  await click('#omarchy-help-link');await waitFor('!!document.querySelector(".desktop-help")');
+  assert.equal(await evaluate('data.acknowledged'),false);
+  assert.equal(await evaluate('document.querySelector("#modal").open'),false);
+  assert.equal(await evaluate('document.querySelector("#omarchy-help-link").getAttribute("aria-current")'),'page');
+  assert.equal(await evaluate('document.querySelectorAll(".shortcut-card").length'),3);
+  assert.equal(await evaluate('document.querySelectorAll("[data-shortcut]").length'),15);
+  assert.equal(await evaluate('document.querySelectorAll("main button").length'),0);
+  assert(await evaluate('document.querySelector("[data-shortcut=menu]").textContent.includes("Omarchy menu")'));
+  assert(await evaluate('document.querySelector(".content-review").textContent.includes("4.0.4-1")'));
+  assert(await evaluate('[...document.querySelectorAll(".desktop-help .sources a")].every(a=>a.href.startsWith("https://omarchy.org/manual/")&&a.target==="_blank"&&a.rel==="noopener noreferrer")'));
+  await click('.desktop-help details summary');
+  assert(await evaluate('document.querySelector(".desktop-help details").open'));
+  await noOverflow('Omarchy help desktop');await screenshot('omarchy-help-desktop');
+  assert(requests.slice(helpRequestStart).every(r=>r.method==='GET'&&new URL(r.url).origin===url),'Help must stay read-only and local');
+  await click('a[href="#learn/terminal"]');await waitFor('!!document.querySelector("#terminal-form")');
+  await go('#search/workspace');
+  assert(await evaluate('!!document.querySelector("main a[href=\\"#omarchy-help\\"]")'));
+  await go('#home');await evaluate('policyDialog()');
   await evaluate('document.querySelectorAll("#policy-form input").forEach(el=>el.checked=true);document.querySelector("#policy-form").requestSubmit()');
   await waitFor('!document.querySelector("#modal").open');
   await screenshot('launchpad-desktop');await noOverflow('desktop home');
@@ -231,9 +252,14 @@ try{
     await go('#learn/'+id);assert.equal(await evaluate('document.querySelectorAll(".quiz-option").length'),3);await noOverflow('guide '+id);
   }
   await cdp('Emulation.setDeviceMetricsOverride',{width:820,height:900,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
+  for(const hash of ['#home','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
+  for(const hash of ['#home','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
+  await go('#omarchy-help');await screenshot('omarchy-help-mobile');
+  assert(await evaluate('document.querySelector("#omarchy-help-link").getBoundingClientRect().width>0'));
+  await cdp('Emulation.setDeviceMetricsOverride',{width:320,height:740,deviceScaleFactor:1,mobile:false});
+  await noOverflow('Omarchy help small phone');
+  await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
   await go('#keep-current');await screenshot('keep-current-mobile');
   await go('#learn/image-video');await screenshot('image-video-mobile');
   await go('#web-tool/perplexity');await screenshot('tool-profile-mobile');
@@ -242,7 +268,7 @@ try{
   await go('#home');await screenshot('launchpad-mobile');
   assert.deepEqual(errors,[],'Browser errors');
   assert.equal(serverErrors,'','Server errors');
-  console.log('PASS: bundled tool/chat logos and fallback, launchpad, web-chat confirmation/gate/search, open-model diagrams/reviews/quiz, credentials without leaks, models/persistence, inventory, eight documents, fourteen lessons, five current-awareness resources, five projects and responsive layouts.');
+  console.log('PASS: offline Omarchy help before acknowledgement, shortcut guidance/search/recovery, bundled tool/chat logos and fallback, launchpad, web-chat confirmation/gate/search, open-model diagrams/reviews/quiz, credentials without leaks, models/persistence, inventory, eight documents, fourteen lessons, five current-awareness resources, five projects and responsive layouts.');
   console.log('Screenshots: '+reports);
 }finally{
   if(socket)socket.close();

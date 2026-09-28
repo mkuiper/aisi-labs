@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import re
 
-from catalogue import LABS, LESSONS, WEB_CHATS, RESOURCES
+from catalogue import LABS, LESSONS, WEB_CHATS, RESOURCES, OMARCHY_HELP
 from documentation import DOCUMENTS
 
 ROOT = Path(__file__).resolve().parent
@@ -17,7 +17,7 @@ def fingerprint(value):
 
 
 def learning_units():
-    units = {}
+    units = {"help:omarchy": fingerprint(OMARCHY_HELP)}
     for kind, items in (("lesson", LESSONS), ("chat", WEB_CHATS), ("resource", RESOURCES), ("lab", LABS)):
         for item in items:
             key = f"{kind}:{item['id']}"
@@ -36,7 +36,7 @@ def review_report(records=None, today=None, units=None):
     if records is None:
         records = json.loads((ROOT / "content" / "reviews.json").read_text())
     if not isinstance(records, dict) or set(records) != set(units):
-        raise ValueError("Review records must exactly cover lessons, web/media profiles, resources, labs, documents and starters.")
+        raise ValueError("Review records must exactly cover desktop help, lessons, web/media profiles, resources, labs, documents and starters.")
     result = []
     for identifier, digest in units.items():
         entry = records[identifier]

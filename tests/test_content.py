@@ -6,11 +6,34 @@ import sys
 import unittest
 from urllib.parse import urlsplit
 
-from catalogue import LABS, LESSONS, WEB_CHATS, RESOURCES
+from catalogue import LABS, LESSONS, WEB_CHATS, RESOURCES, OMARCHY_HELP
 from content_review import ROOT, fingerprint, learning_units, review_report
 
 
 class ContentTests(unittest.TestCase):
+    def test_desktop_help_is_versioned_plain_content_with_sources(self):
+        self.assertIn('help:omarchy', learning_units())
+        self.assertIn('4.0.4-1', OMARCHY_HELP['baseline'])
+        self.assertIn('not a live scan', OMARCHY_HELP['baseline'])
+        shortcuts = [s for group in OMARCHY_HELP['groups'] for s in group['shortcuts']]
+        self.assertEqual(len(shortcuts), len({s['id'] for s in shortcuts}))
+        self.assertEqual(len(OMARCHY_HELP['groups'][0]['shortcuts']), 3)
+        for shortcut in shortcuts:
+            self.assertEqual(set(shortcut), {'id','keys','action','detail'})
+            self.assertTrue(all(isinstance(key, str) and key for key in shortcut['keys']))
+            self.assertTrue(shortcut['action'] and shortcut['detail'])
+        indexed = {s['id']:s for s in shortcuts}
+        self.assertEqual(indexed['menu']['keys'], ['Super','Space'])
+        self.assertEqual(indexed['apps']['keys'], ['Super','Alt','Space'])
+        self.assertEqual(indexed['bindings']['keys'], ['Super','K'])
+        self.assertIn('Save first', indexed['close']['detail'])
+        self.assertIn('OFFICIAL', OMARCHY_HELP['boundary'])
+        self.assertIn('NEVER', OMARCHY_HELP['boundary'])
+        for title, url in OMARCHY_HELP['sources']:
+            self.assertTrue(title)
+            self.assertEqual(urlsplit(url).scheme, 'https')
+            self.assertEqual(urlsplit(url).hostname, 'omarchy.org')
+
     def test_review_inventory_covers_every_unit(self):
         records = json.loads((ROOT / 'content/reviews.json').read_text())
         # Fixed date tests structure, not whether a future editorial deadline passes.

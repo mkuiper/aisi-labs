@@ -1,0 +1,211 @@
+{
+  "id": "omarchy",
+  "title": "Omarchy help",
+  "subtitle": "A small cheat sheet for your first day on this desktop.",
+  "baseline": "Checked against Omarchy 4.0.4-1 on 28 September 2026, the official manual and this workstation’s active bindings. This is a bundled guide, not a live scan of your laptop. Older versions, keyboard layouts and departmental images may differ. Use Super + K to check your own shortcuts.",
+  "intro": "Omarchy is the desktop around Labs. It is keyboard-first, but you can still use the mouse inside apps. There is no Windows-style Start button or desktop shortcut collection: use the Omarchy menu to find an app.",
+  "key_hint": "Super is usually the Windows-logo key on a PC keyboard, or Command on an Apple keyboard. Return means Enter. A plus sign means hold the keys together—do not type the + character. Release them after the action.",
+  "groups": [
+    {
+      "title": "Remember these three",
+      "id": "essentials",
+      "shortcuts": [
+        {
+          "id": "menu",
+          "keys": [
+            "Super",
+            "Space"
+          ],
+          "action": "Find an app",
+          "detail": "Open the Omarchy menu and type an app name. To return here later, search for AISI AI Labs. Choose the matching entry; Escape dismisses the menu."
+        },
+        {
+          "id": "terminal",
+          "keys": [
+            "Super",
+            "Enter"
+          ],
+          "action": "Open a terminal",
+          "detail": "A terminal is a text window, not automatically an AI chat. For a particular Labs project, use that project’s Open terminal button instead."
+        },
+        {
+          "id": "bindings",
+          "keys": [
+            "Super",
+            "K"
+          ],
+          "action": "See the desktop shortcuts",
+          "detail": "Open Omarchy’s own keybinding list. Check it when a shortcut in this sheet behaves differently."
+        }
+      ]
+    },
+    {
+      "title": "Find and arrange your windows",
+      "id": "windows",
+      "shortcuts": [
+        {
+          "id": "apps",
+          "keys": [
+            "Super",
+            "Alt",
+            "Space"
+          ],
+          "action": "Apps-only menu",
+          "detail": "Omarchy 4 shortcut. Earlier Omarchy releases use different menu arrangements."
+        },
+        {
+          "id": "browser",
+          "keys": [
+            "Super",
+            "Shift",
+            "Enter"
+          ],
+          "action": "Open a browser",
+          "detail": "Use only dedicated learning accounts. A browser may reuse an existing signed-in session."
+        },
+        {
+          "id": "files",
+          "keys": [
+            "Super",
+            "Shift",
+            "F"
+          ],
+          "action": "Open Files",
+          "detail": "Browse folders. Use the Files button inside a Labs project to go straight to that project."
+        },
+        {
+          "id": "cycle",
+          "keys": [
+            "Alt",
+            "Tab"
+          ],
+          "action": "Switch windows",
+          "detail": "Cycle through windows on the current workspace. Switching does not close them."
+        },
+        {
+          "id": "focus",
+          "keys": [
+            "Super",
+            "← / → / ↑ / ↓"
+          ],
+          "action": "Focus a neighbouring window",
+          "detail": "Choose the direction of the window you want to type into."
+        },
+        {
+          "id": "fullscreen",
+          "keys": [
+            "Super",
+            "F"
+          ],
+          "action": "Toggle fullscreen",
+          "detail": "Press the same shortcut again to return. Omarchy fullscreen is separate from an app’s own fullscreen mode."
+        },
+        {
+          "id": "workspace",
+          "keys": [
+            "Super",
+            "1–9"
+          ],
+          "action": "Switch workspace",
+          "detail": "Use the number row. Workspaces are extra desktops; your other windows remain open."
+        },
+        {
+          "id": "move-workspace",
+          "keys": [
+            "Super",
+            "Shift",
+            "1–9"
+          ],
+          "action": "Move the active window",
+          "detail": "Move it to that numbered workspace and follow it. This moves the window, not its files."
+        },
+        {
+          "id": "close",
+          "keys": [
+            "Super",
+            "W"
+          ],
+          "action": "Close the active window",
+          "detail": "Save first. Closing a terminal can stop the program inside it. Closing Labs does not stop its hub or sign out of external websites."
+        }
+      ]
+    },
+    {
+      "title": "Copy, paste and step away",
+      "id": "everyday",
+      "shortcuts": [
+        {
+          "id": "copy",
+          "keys": [
+            "Super",
+            "C"
+          ],
+          "action": "Copy selected text",
+          "detail": "Omarchy’s unified copy shortcut also handles terminals. Select the text first."
+        },
+        {
+          "id": "paste",
+          "keys": [
+            "Super",
+            "V"
+          ],
+          "action": "Paste",
+          "detail": "Check the destination before pasting. A terminal can execute pasted commands; do not paste code you do not understand."
+        },
+        {
+          "id": "lock",
+          "keys": [
+            "Super",
+            "Ctrl",
+            "L"
+          ],
+          "action": "Lock the laptop",
+          "detail": "Use when stepping away. Locking does not sign out of accounts or stop running tools."
+        }
+      ]
+    }
+  ],
+  "layout": {
+    "title": "Why did the windows rearrange?",
+    "body": "In the usual tiling layout, opening another window makes room for it alongside the first. You do not need to drag it out from behind another window. A workspace is one collection of open windows; switching workspace changes the collection you see.",
+    "caption": "Illustration only: two tiled windows on one workspace. Actual layouts can differ, including floating or scrolling windows."
+  },
+  "tips": [
+    {
+      "title": "Where did my window go?",
+      "body": "Try Alt + Tab on the current workspace, then check the workspace indicators in the top bar or use Super + a workspace number. If one window fills the screen, try Super + F to leave Omarchy fullscreen. Avoid closing windows just to find another one."
+    },
+    {
+      "title": "Copying from a terminal feels different",
+      "body": "Use Super + C and Super + V here. Many terminals also use Ctrl + Shift + C / V. Ctrl + C usually interrupts a command rather than copying; inside an AI assistant, follow that tool’s controls. Interrupting is not an undo and may leave partial work."
+    },
+    {
+      "title": "Something is stuck or unfamiliar",
+      "body": "Save what you can and ask the facilitator. Do not try random reset commands, force-close all windows, install software or update the image as a troubleshooting experiment. The desktop’s menus offer actions beyond this learning programme’s permissions."
+    }
+  ],
+  "practice": {
+    "title": "A one-minute, no-command practice",
+    "steps": [
+      "Note your current workspace. Open the Omarchy menu and search for AISI AI Labs, then dismiss it with Escape without launching a second copy.",
+      "Open a terminal with Super + Enter. Notice how the windows share the workspace. Do not type a command.",
+      "Use Alt + Tab to return to Labs. If you wish to close the new empty terminal, focus it first and press Super + W. Do not close a terminal that is doing work."
+    ],
+    "check": "You can find Labs, identify the focused window and return to the guide. This is an optional authored exercise; desktop actions have not been automated or tested on every laptop."
+  },
+  "boundary": "ONLY public information; nothing OFFICIAL. NEVER connect to government networks or accounts. Ask the facilitator about the designated learning network—this guide does not change or verify network settings. Do not paste API keys into a terminal, chat or practice exercise.",
+  "sources": [
+    [
+      "Official Omarchy hotkeys",
+      "https://omarchy.org/manual/hotkeys/"
+    ],
+    [
+      "Coming from Windows or Mac",
+      "https://omarchy.org/manual/coming-from-mac-or-windows/"
+    ],
+    [
+      "Omarchy navigation",
+      "https://omarchy.org/manual/navigation/"
+    ]
+  ]
+}

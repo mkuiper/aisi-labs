@@ -10,6 +10,10 @@ Provide Australian Public Service staff with hands-on exposure to contemporary A
 
 The audience includes people new to terminals and coding, as well as experienced technical staff. Direct tool launch and open projects support experienced learners. Short illustrated explanations, public practice datasets, guided projects and a simulated terminal support beginners. Learners can move between these approaches without completing a mandatory course sequence.
 
+The persistent Omarchy help link gives first-time users an offline desktop
+orientation and shortcut cheat sheet, with a link to the pretend terminal.
+Facilitators must verify the bindings on their particular learning image.
+
 ## Creative media and keeping current
 
 Web & media includes image/video learning profiles and a no-install workflow

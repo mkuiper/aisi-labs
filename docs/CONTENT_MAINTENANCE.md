@@ -11,6 +11,7 @@ review without introducing a CMS or cloud service.
 - content/lessons.json: supplemental chat, open-model, image/video and benchmark lessons, with sources and quizzes.
 - content/web_chats.json: curated web/media profiles and destinations; links are not approval endorsements.
 - content/resources.json: benchmark and research-discovery resources, reading guidance and primary method links.
+- content/omarchy_help.json: offline desktop cheat sheet, shortcut/version baseline and beginner practice; reviewed as help:omarchy.
 - templates.py: authored public starter files, including fictional datasets.
 - docs/: learner/programme material and engineering handover.
 - web/app.js and web/programme.js: illustrated explanations and interactive teaching components.
@@ -20,7 +21,7 @@ review without introducing a CMS or cloud service.
 
 ## Review records
 
-Each lesson, web/media profile, resource, lab, registered in-app document and the starter
+Desktop help, each lesson, web/media profile, resource, lab, registered in-app document and the starter
 template bundle has a stable review identifier. A SHA-256 fingerprint detects
 changes since its record was written. It is not a security signature or a test
 of factual accuracy. Revision numbers count content changes, not model releases.
@@ -51,6 +52,13 @@ structure and coverage without failing solely because calendar time has passed.
 Web/media and resource links start with a 30-day review interval and lessons with 90 days. Review
 immediately when a material provider/protocol change is known; the interval is
 not a reason to ignore changes. This script makes no network requests.
+
+Desktop help uses a 90-day review interval and must also be checked before each
+image release. Compare the installed Omarchy version, default bindings, local
+overrides and active bindings with the official manual. Do not assume older
+menu shortcuts still match. Inspect shortcuts read-only; do not trigger close,
+lock, reset or update actions as incidental tests. Record source/config inspection
+separately from actual keyboard/hardware acceptance, which a facilitator must do.
 
 ## Use the skill
 

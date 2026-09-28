@@ -6,7 +6,7 @@ import threading
 import unittest
 from unittest.mock import patch
 
-from catalogue import LABS, LESSONS, TOOLS
+from catalogue import LABS, LESSONS, TOOLS, OMARCHY_HELP
 from server import Hub, make_server
 from policy import POLICY
 from logos import LOGO_FILES, logo_catalogue
@@ -124,6 +124,7 @@ class HttpTests(unittest.TestCase):
         code, body, _ = self.request('GET', '/api/bootstrap')
         self.assertEqual(code, 200)
         self.assertEqual(len(json.loads(body)['tools']), len(TOOLS))
+        self.assertEqual(json.loads(body)['omarchy_help'], OMARCHY_HELP)
         self.assertEqual({r['id'] for r in json.loads(body)['resources']},
                          {'artificial-analysis','arena','helm','swe-bench','hf-papers'})
         for path in ['/', '/app.js', '/programme.js', '/style.css', '/icon.svg']:

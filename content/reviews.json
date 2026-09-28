@@ -175,11 +175,11 @@
     "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained."
   },
   "doc:programme": {
-    "revision": 3,
+    "revision": 4,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "bf5d2b415c07ca5be76c006d7bd8463f53c8772c9f68258f27efa32143b2138e",
-    "notes": "Added source-backed device-restriction boundary and advanced revision. Full programme source/exercise review remains pending; baseline fingerprint and absent review date intentionally retained. Added creative-media/current-awareness scope; full legacy review remains pending."
+    "notes": "Added source-backed device-restriction boundary and advanced revision. Full programme source/exercise review remains pending; baseline fingerprint and absent review date intentionally retained. Added creative-media/current-awareness scope; full legacy review remains pending. Added beginner desktop-help orientation; full review still pending."
   },
   "doc:learner": {
     "revision": 1,
@@ -224,11 +224,11 @@
     "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
   },
   "doc:content-maintenance": {
-    "revision": 2,
+    "revision": 3,
     "reviewed_at": "2026-09-28",
     "review_after_days": 90,
-    "sha256": "082d4546477f676ae9748dcf0492e48220bde1294a9eaad53eb27488d66487f5",
-    "notes": "Read the full guide and verified the expanded source map, resource inventory, review intervals and offline audit semantics. No claim of automatic monitoring or full legacy curriculum review."
+    "sha256": "10c212b8534cc1d5f1390a1776ed59d8d6242dee2c26b77a16d37d73c4baef17",
+    "notes": "Read full guide; reviewed the added desktop-help source, fingerprint coverage, 90-day interval and image-release checks. No scheduled monitoring or unrelated source reviews."
   },
   "chat:qwen-chat": {
     "revision": 1,
@@ -327,5 +327,12 @@
     "review_after_days": 90,
     "sha256": "2ffc79a64606c83d8173e86a345d2e2759aa9d8946afb64df394d6d3b5d533a2",
     "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results."
+  },
+  "help:omarchy": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 90,
+    "sha256": "c25fb653e6004b4c0af761e8e177b1e7af36370ccda6509ff25bf8d5414672c7",
+    "notes": "Read official Omarchy hotkeys/navigation/Windows-Mac transition docs, installed 4.0.4-1 Lua defaults and user overrides; inspected active bindings with hyprctl read-only. Authored exercise and diagram inspected; no real keyboard actions, locking, closure or hardware acceptance. Recheck on each image release."
   }
 }

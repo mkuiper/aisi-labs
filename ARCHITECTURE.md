@@ -59,6 +59,15 @@ acknowledgement/destination confirmation; source citations open labelled online
 links. `resource:<id>` records join the exact editorial coverage check. No new
 API-key adapters, model calls or installation commands are introduced.
 
+`#omarchy-help` is an offline orientation page available from a persistent
+header link and the sidebar invitation, including before acknowledgement.
+Its single content source is `content/omarchy_help.json` (`OMARCHY_HELP` in
+bootstrap), tracked as `help:omarchy`. Search includes the guide. Keyboard
+labels are inert text: no simulated keypresses, desktop dispatchers, config
+reads or shell commands run when viewing it. The version note is an editorial
+baseline, not detection of the current image. Recheck installed defaults,
+active bindings and the official manual when preparing a new laptop image.
+
 ## Data and lifecycle
 
 Default data root: `~/.local/share/aisi-labs-2/`. Display branding is independent
