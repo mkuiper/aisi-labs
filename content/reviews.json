@@ -84,53 +84,53 @@
     "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained."
   },
   "chat:chatgpt": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 30,
-    "sha256": "fbfe876aea012ed296114d56c0ac079c455b92da85c5f73d2d7d485a3abee3dc",
-    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+    "sha256": "83a9dc367ffda8d76207c8b201da5f6f0c4a3db63746fb97f5e8b1ee3556fd76",
+    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
   },
   "chat:claude-chat": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 30,
-    "sha256": "3398bbb889d9f7f1ba2949becd1ad8fbbd88a2ded686526d8b071de65e0eeeea",
-    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+    "sha256": "ca796176eafe76742310bf9fc84671ed1ebedc37038b43b2f3f594a51e26a00a",
+    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
   },
   "chat:gemini-chat": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 30,
-    "sha256": "4363540b1a4f640921348faaa9be65548c661928140ef2b08da025f18b0789c6",
-    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+    "sha256": "9938becd6573e38fddfbf171a29c3b4b946cf1fcd80f7f0df6dee60d3cdaf251",
+    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
   },
   "chat:grok-chat": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 30,
-    "sha256": "281eb31b941c929f5263f4902f3ee5da21fc9a24cc6ee5b1fd86ec10f4d28d8c",
-    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+    "sha256": "9336ddd1f78b4ffc46fc4c5bd39d57c37b69b1961e546a25fab65bd0481b9ef4",
+    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive. Historical Ofcom announcement, not a verified current investigation outcome."
   },
   "chat:copilot-chat": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 30,
-    "sha256": "7a0f103e4541ad270c476e2f7e884fb17f83a274662661221e0c68180185b596",
-    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+    "sha256": "e2a8da3803e30db7e4341198b8e45fd0d51ada138faf6dc8b8c444689a1b4aee",
+    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
   },
   "chat:perplexity": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 30,
-    "sha256": "5611320b5c1d62cc760638de516f4c77f3cfc1c9750fe357873bd7c8745c9e17",
-    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+    "sha256": "f719fb9e4df413903ac3097081394ae2c5af85c19da99ff7079d7a2b2ce6ef24",
+    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive. Cloudflare report is attributed; Perplexity response could not be inspected (403)."
   },
   "chat:mistral-chat": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 30,
-    "sha256": "b189b21d6cb7d9437e1111dbe81e6dfb21e1bc2e7f8cb33e92e36a7453ca3451",
-    "notes": "Official public destination/source inspected; no account sign-in, feature, pricing or regional-access test."
+    "sha256": "5d750061b57dd89fdd2c1f369e3f150a8d6d6c681d54ba4ee5bc437b9003d646",
+    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
   },
   "lab:first-steps": {
     "revision": 1,
@@ -175,11 +175,11 @@
     "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained."
   },
   "doc:programme": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "bf5d2b415c07ca5be76c006d7bd8463f53c8772c9f68258f27efa32143b2138e",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Added source-backed device-restriction boundary and advanced revision. Full programme source/exercise review remains pending; baseline fingerprint and absent review date intentionally retained."
   },
   "doc:learner": {
     "revision": 1,
@@ -229,5 +229,26 @@
     "review_after_days": 90,
     "sha256": "512fe5cdcc98612b9c64c7eb70beee18cd20374c84cff6e70ce380e3532022a1",
     "notes": "Authored against current repository behaviour and skill workflow. Offline report and tests verify implementation; no scheduled job or full legacy source review."
+  },
+  "chat:qwen-chat": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "92a3e31a9368a0c66ea8f04826f49c382d078018c0af992d28a3f763b62827d3",
+    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
+  },
+  "chat:huggingface": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "0e6837e376432ee88ef43154f22393495876915ea609237d72ab5ce51c8e6786",
+    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
+  },
+  "chat:deepseek": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "db5eadb72287c46198eff85fbbf94de56fda027dc59bb3241963f631989e6277",
+    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive. Reference-only; no service URL, installation or inference."
   }
 }

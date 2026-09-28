@@ -67,8 +67,10 @@ try{
   assert.notEqual(await evaluate('getComputedStyle(document.querySelector(".logo-unavailable .logo-fallback")).display'),'none');
 
   await go('#web-chats');
-  assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),7);
-  await checkLogos(3);
+  await delay(6100); // Let the acknowledgement toast expire before visual evidence.
+  assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),10);
+  assert.equal(await evaluate('document.querySelectorAll("[data-web-chat]").length'),9);
+  await checkLogos(10);
   await screenshot('web-chat-desktop');await noOverflow('web chat');
   // Exercise the gate without visiting or logging into any external provider.
   await evaluate('data.acknowledged=false');
@@ -81,6 +83,25 @@ try{
   assert.equal(await evaluate('document.querySelector("#external-chat-link").rel'),'noopener noreferrer');
   assert(await evaluate('document.querySelector("#modal").textContent.includes("Nothing OFFICIAL")'));
   await click('[data-close]');
+  for(const id of ['chatgpt','claude-chat','gemini-chat','grok-chat','copilot-chat','perplexity','mistral-chat','qwen-chat','huggingface','deepseek']){
+    await go('#web-tool/'+id);await checkLogos(1);
+    assert(await evaluate('document.querySelector("main").textContent.includes("Concerns and context")'));
+    assert(await evaluate('document.querySelector("main").textContent.includes("A small learning exercise")'));
+    assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-09-28")'));
+    assert(await evaluate('document.querySelectorAll(".sources a").length>0'));
+    assert.equal(await evaluate('document.querySelector(".nav-link[aria-current]").hash'),'#web-chats');
+    if(id==='deepseek'){
+      assert.equal(await evaluate('document.querySelectorAll("[data-web-chat]").length'),0);
+      await evaluate('webChatDialog("deepseek")');
+      assert.equal(await evaluate('document.querySelector("#modal").open'),false);
+      assert(await evaluate('document.querySelector("main").textContent.includes("001-2025")'));
+      await screenshot('deepseek-profile-desktop');
+    }else{
+      await click('[data-web-chat="'+id+'"]');
+      assert.equal(await evaluate('document.querySelector("#external-chat-link").href'),await evaluate('data.web_chats.find(x=>x.id==='+JSON.stringify(id)+').url'));
+      await click('[data-close]');
+    }
+  }
   await go('#search/Perplexity');assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),1);
   await go('#learn/open-models');
   assert(await evaluate('document.querySelector(".diagram").textContent.includes("Hosted runner")'));
@@ -172,9 +193,10 @@ try{
     await go('#learn/'+id);assert.equal(await evaluate('document.querySelectorAll(".quiz-option").length'),3);await noOverflow('guide '+id);
   }
   await cdp('Emulation.setDeviceMetricsOverride',{width:820,height:900,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#web-chats','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
+  for(const hash of ['#home','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#web-chats','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
+  for(const hash of ['#home','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
+  await go('#web-tool/perplexity');await screenshot('tool-profile-mobile');
   await go('#home');await screenshot('launchpad-mobile');
   assert.deepEqual(errors,[],'Browser errors');
   assert.equal(serverErrors,'','Server errors');

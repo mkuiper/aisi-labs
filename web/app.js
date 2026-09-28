@@ -161,11 +161,11 @@ function render(moveFocus = false) {
   if (!data) return;
   const [page,id] = route();
   const nav = [['home','home','Launchpad'],['tools','nodes','Tools'],['web-chats','book','Web chat'],['labs','spark','Experiments'],['learn','book','Learn'],['projects','folder','My projects'],['configuration','tools','Configuration'],['programme','check','Programme & guides']];
-  const active = {lab:'labs',project:'projects',docs:'programme',about:'programme'}[page]||page;
+  const active = {lab:'labs',project:'projects',docs:'programme',about:'programme','web-tool':'web-chats'}[page]||page;
   document.querySelector('#navigation').innerHTML = nav.map(([key,ico,title])=>`<a class="nav-link ${key===active?'active':''}" href="#${key}" ${key===active?'aria-current="page"':''}>${icon(ico)}<span>${title}</span>${key==='projects'&&data.projects.length?`<span class="nav-count">${data.projects.length}</span>`:''}</a>`).join('');
   document.querySelector('#breadcrumb').textContent = nav.find(x=>x[0]===active)?.[2]||({search:'Search',about:'About this space'}[page]||'The launchpad');
   const fallback = '<div class="empty"><h2>We couldn’t find that page.</h2><p>It may have moved, or the project folder may be missing.</p><a class="btn" href="#home">Back to the launchpad</a></div>';
-  const pages = {home,'web-chats':webChatsPage,tools:toolsPage,labs:labsPage,learn:()=>id?(findLesson(id)?lessonPage(findLesson(id)):fallback):learnPage(),lab:()=>findLab(id)?labPage(findLab(id)):fallback,projects:projectsPage,project:()=>findProject(id)?projectPage(findProject(id)):fallback,search:()=>searchPage(id),about:programmePage,programme:programmePage,configuration:configurationPage,docs:()=>documentPage(id)};
+  const pages = {home,'web-chats':webChatsPage,'web-tool':()=>webToolPage(id),tools:toolsPage,labs:labsPage,learn:()=>id?(findLesson(id)?lessonPage(findLesson(id)):fallback):learnPage(),lab:()=>findLab(id)?labPage(findLab(id)):fallback,projects:projectsPage,project:()=>findProject(id)?projectPage(findProject(id)):fallback,search:()=>searchPage(id),about:programmePage,programme:programmePage,configuration:configurationPage,docs:()=>documentPage(id)};
   main.innerHTML = (data.warnings||[]).map(w=>`<p class="error">${esc(w)}</p>`).join('') + (pages[page]||(()=>fallback))();
   document.title = `${main.querySelector('h1')?.textContent||'Launchpad'} · AISI AI Labs`;
   if (page==='learn'&&id==='terminal') {simFolder='';simHistory=[];}

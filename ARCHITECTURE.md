@@ -126,6 +126,14 @@ the destination and an explicit external-navigation link with noopener/noreferre
 It carries no prompt, key or project; provider browser cookies may still apply.
 There is no iframe, prefetch, provider login or model call in this integration.
 
+The same directory holds hosted-chat, model-library and reference-only entries.
+Each has an offline #web-tool/<id> profile with authored exercises, limitations,
+openness/hosting distinctions, attributed concerns and primary-source links.
+DeepSeek is reference-only with a null destination: both cards and the dialog
+guard refuse a launch. This is an educational UI decision, not an OS/network
+block. Device restrictions may apply even on the separate learning network.
+Profiles are fingerprinted as chat:<id> units; keep source-review limits explicit.
+
 Bootstrap also provides per-item content review metadata. Existing stable lesson
 IDs are preserved. New JSON lessons are appended by catalogue.py, while original
 lessons remain there as their canonical source. The offline editorial audit

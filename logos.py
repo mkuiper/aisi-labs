@@ -12,6 +12,13 @@ TOOL_LOGOS = {
     "hermes": "hermesagent.svg",
 }
 CHAT_LOGOS = {
+    "chatgpt": "openai.svg",
+    "perplexity": "perplexity.svg",
+    "copilot-chat": "microsoftcopilot.svg",
+    "mistral-chat": "mistral.svg",
+    "qwen-chat": "qwen.svg",
+    "huggingface": "huggingface.svg",
+    "deepseek": "deepseek.svg",
     "claude-chat": "claude.svg",
     "gemini-chat": "googlegemini.svg",
     "grok-chat": "grok.svg",

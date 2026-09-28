@@ -41,13 +41,30 @@ class ContentTests(unittest.TestCase):
 
     def test_chat_destinations_are_fixed_https_without_payloads(self):
         self.assertEqual(len({x['id'] for x in WEB_CHATS}), len(WEB_CHATS))
-        expected = {'chatgpt.com','claude.ai','gemini.google.com','grok.com','copilot.microsoft.com','www.perplexity.ai','chat.mistral.ai'}
-        self.assertEqual({urlsplit(x['url']).hostname for x in WEB_CHATS}, expected)
+        expected = {'chatgpt.com','claude.ai','gemini.google.com','grok.com','copilot.microsoft.com','www.perplexity.ai','chat.mistral.ai','chat.qwen.ai','huggingface.co'}
+        self.assertEqual({urlsplit(x['url']).hostname for x in WEB_CHATS if x['url']}, expected)
         for chat in WEB_CHATS:
+            if chat['kind'] == 'reference':
+                self.assertIsNone(chat['url'])
+                continue
             url = urlsplit(chat['url'])
             self.assertEqual(url.scheme, 'https')
             self.assertFalse(url.username or url.password or url.query or url.fragment)
             self.assertTrue(chat['source'].startswith('https://'))
+
+    def test_profiles_have_teaching_context_and_primary_source_links(self):
+        for chat in WEB_CHATS:
+            self.assertIn(chat['kind'], {'chat', 'library', 'reference'})
+            for field in ['description', 'openness', 'useful_for', 'exercise', 'limits', 'considerations']:
+                self.assertGreater(len(chat[field]), 30)
+            self.assertTrue(chat['sources'])
+            for title, url in chat['sources']:
+                self.assertTrue(title)
+                self.assertEqual(urlsplit(url).scheme, 'https')
+        deepseek = next(x for x in WEB_CHATS if x['id']=='deepseek')
+        self.assertEqual(deepseek['kind'], 'reference')
+        self.assertIsNone(deepseek['url'])
+        self.assertIn('001-2025', deepseek['considerations'])
 
     def test_new_lessons_are_connected_and_have_sources_and_checks(self):
         ids = [lesson['id'] for lesson in LESSONS]

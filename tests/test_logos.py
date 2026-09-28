@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class LogoTests(unittest.TestCase):
     def test_mappings_reference_known_products_and_bundled_assets(self):
         self.assertLessEqual(set(TOOL_LOGOS), {t['id'] for t in TOOLS})
-        self.assertLessEqual(set(CHAT_LOGOS), {t['id'] for t in WEB_CHATS})
+        self.assertEqual(set(CHAT_LOGOS), {t['id'] for t in WEB_CHATS})
         self.assertEqual(LOGO_FILES, {p.name for p in (ROOT/'web/logos').glob('*.svg')})
         for mapping in logo_catalogue().values():
             for url in mapping.values():
@@ -22,7 +22,8 @@ class LogoTests(unittest.TestCase):
     def test_product_variants_are_not_mislabelled(self):
         self.assertNotEqual(TOOL_LOGOS['claude'], CHAT_LOGOS['claude-chat'])
         self.assertNotEqual(TOOL_LOGOS['gemini'], CHAT_LOGOS['gemini-chat'])
-        self.assertNotIn('copilot-chat', CHAT_LOGOS)  # Not GitHub Copilot.
+        self.assertNotEqual(TOOL_LOGOS['copilot'], CHAT_LOGOS['copilot-chat'])
+        self.assertNotEqual(TOOL_LOGOS['codex'], CHAT_LOGOS['chatgpt'])
         self.assertNotIn('omp', TOOL_LOGOS)  # Not Pi.
 
     def test_svg_assets_are_passive_local_artwork(self):

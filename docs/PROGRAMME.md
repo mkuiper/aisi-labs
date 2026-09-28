@@ -21,6 +21,13 @@ The audience includes people new to terminals and coding, as well as experienced
 
 These are programme rules set for this learning environment. They do not purport to summarise every department's policy or determine whether a product is approved for official work.
 
+A separate network and public-only inputs do not exempt a government-owned
+learning laptop from applicable product or device restrictions. The deployment
+owner must check those requirements before enabling services. The Web chat
+directory includes a reference-only DeepSeek profile explaining PSPF Direction
+001-2025; it provides no chat launch or model installation. Educational inclusion
+is not permission to use a restricted product through another host.
+
 ## Deployment model
 
 A department installs a reviewed learning image on suitable repurposed laptops. Devices use a separate non-government learning network with internet access for cloud tools. The hub, learning material and authored simulations run locally. Some tools use cloud models; local model inference is optional and must be tested against the hardware available.

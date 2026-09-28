@@ -1,9 +1,236 @@
 [
-  {"id":"chatgpt","name":"ChatGPT","url":"https://chatgpt.com/","description":"Open ChatGPT’s regular web interface. Compare a public practice answer with a terminal-based workflow.","mark":"C","colour":"sage","source":"https://learn.chatgpt.com/docs/web"},
-  {"id":"claude-chat","name":"Claude","url":"https://claude.ai/","description":"Use Claude in the browser. This is separate from opening Claude Code in your project folder.","mark":"C","colour":"clay","source":"https://claude.ai/"},
-  {"id":"gemini-chat","name":"Gemini","url":"https://gemini.google.com/","description":"Open Google’s Gemini web interface. Use a dedicated learning account, not a government Google account.","mark":"G","colour":"blue","source":"https://gemini.google.com/"},
-  {"id":"grok-chat","name":"Grok","url":"https://grok.com/","description":"Open Grok’s chat website. Website sign-in is separate from the Grok terminal tool’s configuration.","mark":"G","colour":"ink","source":"https://grok.com/"},
-  {"id":"copilot-chat","name":"Microsoft Copilot","url":"https://copilot.microsoft.com/","description":"The public Copilot website—not GitHub Copilot CLI or a government Microsoft 365 workspace. Do not use a government account.","mark":"M","colour":"pink","source":"https://copilot.microsoft.com/"},
-  {"id":"perplexity","name":"Perplexity","url":"https://www.perplexity.ai/","description":"Try a public question in another web interface. Independently check the answer and any linked evidence.","mark":"P","colour":"sage","source":"https://www.perplexity.ai/"},
-  {"id":"mistral-chat","name":"Mistral Vibe Chat","url":"https://chat.mistral.ai/","description":"Mistral’s web chat, formerly Le Chat. A model provider offering open weights does not make this hosted website local.","mark":"M","colour":"clay","source":"https://mistral.ai/products/vibe/"}
+  {
+    "id": "chatgpt",
+    "name": "ChatGPT",
+    "url": "https://chatgpt.com/",
+    "description": "Explore ideas, practise prompting, and turn public practice material into drafts and explanations.",
+    "mark": "C",
+    "colour": "sage",
+    "kind": "chat",
+    "openness": "Hosted assistant. Using ChatGPT does not give you downloadable model weights or make inference local.",
+    "useful_for": "A useful starting exercise is iterative writing: give a clear goal, ask for a draft, then request a specific revision. Web features also support research and creating files; availability depends on your account.",
+    "exercise": "Ask for a 150-word invitation to a fictional community science night. Request a plain-English revision and check that it has not invented a venue or date.",
+    "limits": "Confident wording is not evidence. Verify facts, calculations and citations. A browser conversation is not the same workflow as a terminal agent with access to a project.",
+    "considerations": "Review account privacy, saved context and connected tools before use. Do not connect government storage or grant broad permissions just to complete a learning exercise. These are practical risk checks, not a comprehensive controversy review.",
+    "sources": [
+      [
+        "OpenAI: ChatGPT on the web",
+        "https://learn.chatgpt.com/docs/web"
+      ]
+    ],
+    "source": "https://learn.chatgpt.com/docs/web"
+  },
+  {
+    "id": "claude-chat",
+    "name": "Claude",
+    "url": "https://claude.ai/",
+    "description": "Practise drafting, explaining code and iterating on small visual or written artefacts.",
+    "mark": "C",
+    "colour": "clay",
+    "kind": "chat",
+    "openness": "Hosted Anthropic assistant. Claude in the browser is distinct from the Claude Code harness on your laptop.",
+    "useful_for": "Try revising a public passage for a different audience or creating a simple webpage with Artifacts. Inspect the result rather than assuming a polished artefact is correct.",
+    "exercise": "Ask for a one-page fictional community garden FAQ. Ask which statements require evidence, then check or remove them.",
+    "limits": "Generated text and code need review. Features and usage limits vary by plan. A preview of a webpage does not prove its accessibility, security or correctness.",
+    "considerations": "The product offers integrations and connected knowledge. In this programme, do not connect work email, government accounts or internal MCP servers. Check the service's current privacy terms; no finding that it is controversy-free is made here.",
+    "sources": [
+      [
+        "Anthropic: Claude features and plans",
+        "https://claude.ai/"
+      ]
+    ],
+    "source": "https://claude.ai/"
+  },
+  {
+    "id": "gemini-chat",
+    "name": "Gemini",
+    "url": "https://gemini.google.com/",
+    "description": "Explore Google's assistant with public text and fictional examples, keeping accounts separate.",
+    "mark": "G",
+    "colour": "blue",
+    "kind": "chat",
+    "openness": "Hosted Google assistant. Gemini the service is not interchangeable with a downloadable open-weight model.",
+    "useful_for": "Try explaining a public concept at different levels of detail and comparing how the same prompt works across assistants.",
+    "exercise": "Ask for an explanation of a solar eclipse for a ten-year-old and for an adult beginner. Verify both against a public science source.",
+    "limits": "Responses can be inaccurate. Connected apps and account settings change what context the assistant can use; keep government accounts and services disconnected.",
+    "considerations": "Google's Gemini privacy notice describes activity use for service improvement and human review, with behaviour depending on settings. Deleting activity does not necessarily delete material already reviewed. Inspect the Privacy Hub before using any upload or screen-sharing feature.",
+    "sources": [
+      [
+        "Google: Gemini Apps Privacy Hub",
+        "https://support.google.com/gemini/answer/13594961?hl=en"
+      ]
+    ],
+    "source": "https://support.google.com/gemini/answer/13594961?hl=en"
+  },
+  {
+    "id": "grok-chat",
+    "name": "Grok",
+    "url": "https://grok.com/",
+    "description": "Compare another assistant's explanations and its handling of uncertainty and evidence.",
+    "mark": "G",
+    "colour": "ink",
+    "kind": "chat",
+    "openness": "Hosted xAI chat. The website is separate from the Grok terminal tool and its model configuration.",
+    "useful_for": "Use the same public question as in another assistant, then compare factual support, uncertainty and tone—not just fluency.",
+    "exercise": "Ask it to explain the difference between a comet and an asteroid, list uncertainties and identify sources you can check.",
+    "limits": "A conversational style or current-looking answer is not proof of accuracy. Do not treat social posts or generated images as verified evidence.",
+    "considerations": "Documented controversy: on 12 January 2026, Ofcom opened an investigation into X concerning Grok-generated sexualised imagery. That announcement is not a final finding against the standalone Grok website; this profile does not establish the investigation's present outcome. Do not generate intimate images, impersonations or harmful material.",
+    "sources": [
+      [
+        "xAI: Grok website",
+        "https://grok.com/"
+      ],
+      [
+        "Ofcom: investigation announcement, 12 January 2026",
+        "https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/ofcom-launches-investigation-into-x-over-grok-sexualised-imagery"
+      ]
+    ],
+    "source": "https://grok.com/"
+  },
+  {
+    "id": "copilot-chat",
+    "name": "Microsoft Copilot",
+    "url": "https://copilot.microsoft.com/",
+    "description": "Explore the public assistant—not GitHub Copilot CLI or your government's Microsoft 365 environment.",
+    "mark": "M",
+    "colour": "pink",
+    "kind": "chat",
+    "openness": "Hosted Microsoft consumer assistant. Similar product names do not imply the same account boundary or data protections.",
+    "useful_for": "Practise brainstorming and checking a short explanatory answer. Learn to identify exactly which Copilot product and account you are using.",
+    "exercise": "Request a checklist for a fictional neighbourhood book swap. Check for unnecessary collection of personal information.",
+    "limits": "Outputs can contain mistakes. Do not assume consumer Copilot has the same terms or protections as an agency-approved work service.",
+    "considerations": "Microsoft publishes separate privacy guidance for individual and work/school experiences. Check the signed-in account and permissions before typing. Use only a dedicated learning account; do not sign into an organisational workspace.",
+    "sources": [
+      [
+        "Microsoft: transparency note for individuals",
+        "https://support.microsoft.com/en-us/privacy/microsoft-copilot/transparency-note"
+      ],
+      [
+        "Microsoft: privacy controls for individuals",
+        "https://support.microsoft.com/en-us/privacy/microsoft-copilot/privacy-controls"
+      ]
+    ],
+    "source": "https://support.microsoft.com/en-us/privacy/microsoft-copilot/transparency-note"
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity",
+    "url": "https://www.perplexity.ai/",
+    "description": "Explore search-led answers and practise checking the sources behind a summary.",
+    "mark": "P",
+    "colour": "sage",
+    "kind": "chat",
+    "openness": "Hosted search-and-answer interface. An interface can offer multiple models without itself being an open model.",
+    "useful_for": "Find starting points for a public topic and practise following citations back to their original context. Search features and model choices depend on the account.",
+    "exercise": "Ask how rainbows form. Open two cited sources and check whether each actually supports the attached claim.",
+    "limits": "Citations make checking possible; they do not guarantee that a summary is accurate, complete or fairly represents a source.",
+    "considerations": "Documented dispute: Cloudflare reported in August 2025 that Perplexity-associated crawling bypassed website preferences. This is Cloudflare's attributed technical account, not a court finding. We could not inspect Perplexity's linked response during this review, so this is not a resolved or complete account. Discuss source consent and attribution as well as answer quality.",
+    "sources": [
+      [
+        "Perplexity: Pro Search and citations",
+        "https://www.perplexity.ai/help-center/en/articles/10352903-what-is-pro-search"
+      ],
+      [
+        "Cloudflare: crawling report, 4 August 2025",
+        "https://blog.cloudflare.com/perplexity-is-using-stealth-undeclared-crawlers-to-evade-website-no-crawl-directives/"
+      ]
+    ],
+    "source": "https://www.perplexity.ai/help-center/en/articles/10352903-what-is-pro-search"
+  },
+  {
+    "id": "mistral-chat",
+    "name": "Mistral Vibe Chat",
+    "url": "https://chat.mistral.ai/",
+    "description": "Mistral's hosted assistant, formerly Le Chat. Explore another route from conversation to a reviewed draft.",
+    "mark": "M",
+    "colour": "clay",
+    "kind": "chat",
+    "openness": "A hosted service from a provider that also releases model weights. A provider's open releases do not make every product open-source or local.",
+    "useful_for": "Try drafting a short public guide and asking follow-up questions. Compare a chat workflow with the separate coding-agent workflow.",
+    "exercise": "Draft a fictional walking-club welcome note. Ask for a shorter version and check that accessibility claims are not invented.",
+    "limits": "Availability of agent features, connectors and usage limits varies by plan. Verify answers and permissions before taking actions.",
+    "considerations": "Distinguish claims about enterprise self-hosting or data residency from the terms of the public chat website. Do not connect government tools. Check the licence of any specific model release separately; a brand name is not a licence or approval.",
+    "sources": [
+      [
+        "Mistral: Vibe, formerly Le Chat",
+        "https://mistral.ai/products/vibe/"
+      ]
+    ],
+    "source": "https://mistral.ai/products/vibe/"
+  },
+  {
+    "id": "qwen-chat",
+    "name": "Qwen Chat",
+    "url": "https://chat.qwen.ai/",
+    "description": "Explore a hosted assistant from the Qwen team and learn how chat services differ from released model weights.",
+    "mark": "Q",
+    "colour": "blue",
+    "kind": "chat",
+    "openness": "Qwen releases include open-weight models. For example, Qwen3-0.6B has an Apache 2.0 licence. This dated example is not a claim about every Qwen release or the model currently serving Qwen Chat.",
+    "useful_for": "Compare explanations or simple coding suggestions across model families. Use the release documentation to practise reading a model card and licence.",
+    "exercise": "Ask for pseudocode to sort a fictional book list. Separately read the Qwen3-0.6B model licence and identify what it does—and does not—tell you about hosted chat privacy.",
+    "limits": "Hosted chat sends input to a service; it is not local inference. Benchmark claims do not demonstrate reliability on your exercise or performance on an old laptop.",
+    "considerations": "Evaluate the operator, processing location, retention, content filtering and account terms before use, as for every provider. This review verified the release example, not Qwen Chat's data residency or agency approval. Do not infer privacy from open weights.",
+    "sources": [
+      [
+        "Qwen team: Qwen3 release and chat link, 29 April 2025",
+        "https://qwenlm.github.io/blog/qwen3/"
+      ],
+      [
+        "Qwen3-0.6B: specific model licence",
+        "https://huggingface.co/Qwen/Qwen3-0.6B/blob/main/LICENSE"
+      ]
+    ],
+    "source": "https://qwenlm.github.io/blog/qwen3/"
+  },
+  {
+    "id": "huggingface",
+    "name": "Hugging Face Models",
+    "url": "https://huggingface.co/models",
+    "description": "Browse model cards, release files and licences. This is a model library, not one chatbot.",
+    "mark": "H",
+    "colour": "clay",
+    "kind": "library",
+    "openness": "A hub contains releases with different licences and levels of openness. Being listed does not certify a model as open-source, safe or suitable.",
+    "useful_for": "Learn to identify the publisher, intended task, licence, limitations and hardware requirements before selecting a model.",
+    "exercise": "Browse a model card without downloading anything. Write down its publisher, licence and stated limitations. Note any missing information rather than guessing.",
+    "limits": "Community descriptions and benchmark tables need scrutiny. Downloads can be large; some workflows execute repository code. Do not run unfamiliar install commands or enable remote code casually.",
+    "considerations": "Repository availability is not publisher verification or agency approval. Check provenance, model-card completeness, licence restrictions and whether a demo sends data to an external host. Do not download restricted products through another hosting site.",
+    "sources": [
+      [
+        "Hugging Face: the Model Hub",
+        "https://huggingface.co/docs/hub/en/models-the-hub"
+      ]
+    ],
+    "source": "https://huggingface.co/docs/hub/en/models-the-hub"
+  },
+  {
+    "id": "deepseek",
+    "name": "DeepSeek",
+    "url": null,
+    "description": "Learn about an open-weight model family and why technical openness does not override government restrictions.",
+    "mark": "D",
+    "colour": "blue",
+    "kind": "reference",
+    "openness": "DeepSeek-R1 is a dated open-weight example with MIT-licensed code and weights; distilled variants also have base-model licence considerations. This is not a blanket claim about every DeepSeek release.",
+    "useful_for": "An educational case study in separating model capabilities, release licences, hosting privacy and device-use policy. No service launch or model download is offered here.",
+    "exercise": "Using the policy summary and source references below, explain why public inputs and a separate network do not by themselves authorise use of a restricted product.",
+    "limits": "Do not access, install or run DeepSeek on government systems or devices contrary to applicable directions. Moving a model to a different host or running it locally is not an assumed exception.",
+    "considerations": "Australian PSPF Direction 001-2025 requires government entities to prevent DeepSeek use/installation on government systems and devices. A repurposed learning laptop may still be in scope even off-network. The deployment owner must establish applicable requirements and any authorised exception. Separately, DeepSeek's February 2026 privacy policy says service personal data is processed and stored in the People's Republic of China. The hosted-service policy is distinct from model licensing.",
+    "sources": [
+      [
+        "Australian Government: DeepSeek direction",
+        "https://www.protectivesecurity.gov.au/publications-library/direction-001-2025-deepseek-products-applications-and-web-services"
+      ],
+      [
+        "DeepSeek: R1 release and licence notes (reference, not an installation task)",
+        "https://github.com/deepseek-ai/DeepSeek-R1"
+      ],
+      [
+        "DeepSeek: privacy policy, 10 February 2026",
+        "https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html"
+      ]
+    ],
+    "source": "https://www.protectivesecurity.gov.au/publications-library/direction-001-2025-deepseek-products-applications-and-web-services"
+  }
 ]

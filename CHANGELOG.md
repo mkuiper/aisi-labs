@@ -1,5 +1,13 @@
 # Changes
 
+## 28 September 2026 — sourced web-tool profiles and open-model directory
+
+- Added ten local learning profiles with suggested uses, public exercises, limitations, hosting/openness distinctions, attributed concerns and review dates.
+- Added Qwen Chat and Hugging Face Models; DeepSeek is reference-only without a launch destination because device restrictions are not removed by network separation.
+- Completed all ten directory logos using seven additional pinned Lobe Icons SVGs, with preserved MIT licence and provenance. No remote images at runtime.
+- Added coverage for profile completeness, all logo mappings, navigation, source links, restricted-entry guards and responsive profile layouts. No live account access, paid calls or model downloads.
+- Verification: 50 unit/HTTP tests, JavaScript syntax checks, offline metadata audit and isolated Chromium smoke checks passed. Desktop directory/profile screenshots were inspected. Legacy content review debt remains visible.
+
 ## 28 September 2026 — reused product logos
 
 - Bundled eleven SVG assets from the earlier app's supplied coloured logos, covering nine AI tools and three web-chat entries. The original app is unchanged and not a runtime dependency.
