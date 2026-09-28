@@ -290,5 +290,105 @@
       ]
     ],
     "source": "https://www.protectivesecurity.gov.au/publications-library/direction-001-2025-deepseek-products-applications-and-web-services"
+  },
+  {
+    "id": "firefly",
+    "name": "Adobe Firefly",
+    "url": "https://firefly.adobe.com/",
+    "mark": "Ff",
+    "colour": "clay",
+    "kind": "creative",
+    "description": "Explore generated images, visual edits and short video in a hosted creative workspace.",
+    "openness": "A hosted Adobe service with Adobe and partner models. A model available in the same interface can have different terms and data handling; this is not local inference.",
+    "useful_for": "Practise turning a visual brief into an illustration, changing a composition and comparing image-to-video with text-to-video.",
+    "exercise": "Write a brief for an illustrated fictional community garden poster, with no real people, logos or text inside the image. If you have a suitable learning account and an agreed budget, try one image; add accessible text yourself in a desktop editor. Check the result against the brief.",
+    "limits": "Access, credits and available models vary by account. Do not assume generated lettering, objects or factual details are reliable; inspect outputs and check the selected model before each task.",
+    "considerations": "Adobe describes its own Firefly models as designed for commercial safety. That is a provider claim, not blanket permission for every output or partner model, nor agency approval. Check input rights, model-specific terms and any sharing settings; never upload work files.",
+    "sources": [
+      [
+        "Adobe Firefly product overview",
+        "https://www.adobe.com/products/firefly.html"
+      ]
+    ],
+    "source": "https://www.adobe.com/products/firefly.html"
+  },
+  {
+    "id": "midjourney",
+    "name": "Midjourney",
+    "url": "https://www.midjourney.com/",
+    "mark": "Mj",
+    "colour": "blue",
+    "kind": "creative",
+    "description": "Learn visual prompting through image generation and animation of a starting image.",
+    "openness": "A hosted creative service, not a locally installed open-model runner. Its website and Discord routes have their own accounts, subscriptions and visibility settings.",
+    "useful_for": "Explore composition, colour, lighting and how a reference image changes a result. Useful for learning mood boards and fictional storyboards, not verifying how a real event looked.",
+    "exercise": "Draft two prompts for the same imaginary reading nook: one watercolour and one geometric illustration. Predict the differences before optionally generating within an agreed budget. Record which parts of the brief each output actually followed.",
+    "limits": "Visual appeal is not factual accuracy. Repeated generations can change details; image animation does not guarantee continuity or physically plausible motion. Check current account access and costs.",
+    "considerations": "Midjourney is open by default: images and videos can potentially appear on its Explore page, including creations from private Discord servers or direct messages. Stealth has account conditions and does not hide posts in shared Discord channels. Treat learning outputs as potentially public; avoid identifiable people and material you lack permission to use.",
+    "sources": [
+      [
+        "Midjourney getting started",
+        "https://docs.midjourney.com/hc/en-us/articles/33329261836941-Getting-Started-Guide"
+      ],
+      [
+        "Midjourney creation visibility",
+        "https://docs.midjourney.com/hc/en-us/articles/28014645615373-Keeping-Your-Creations-Private"
+      ]
+    ],
+    "source": "https://docs.midjourney.com/hc/en-us/articles/33329261836941-Getting-Started-Guide"
+  },
+  {
+    "id": "runway",
+    "name": "Runway",
+    "url": "https://app.runwayml.com/",
+    "mark": "Rw",
+    "colour": "sage",
+    "kind": "creative",
+    "description": "Explore hosted generative video: plan a shot, supply a prompt or starting image, then review motion.",
+    "openness": "The linked Runway app runs as a hosted service. Models and tools available in its interface depend on the product and account; opening this link installs nothing.",
+    "useful_for": "Learn shot planning, camera instructions, text-to-video and image-to-video. Compare whether a clip preserves the intended subject, movement and scene.",
+    "exercise": "Storyboard one five-second shot of a fictional paper boat on an empty pond. Specify subject, movement, camera and a success check. Optionally generate once after checking the displayed credit cost, then inspect the beginning, middle and end for continuity.",
+    "limits": "Video can contain changing objects, distorted anatomy, impossible motion or inconsistent details. Generation consumes credits under the selected model and plan; retries and longer clips can add cost.",
+    "considerations": "Realistic video can mislead even when made for practice. Do not imitate public officials, clone a colleague or fabricate a government announcement. Use rights-cleared public or fictional inputs, label synthetic practice outputs and review before any sharing. Check provider terms and account settings.",
+    "sources": [
+      [
+        "Runway generative video guide",
+        "https://help.runwayml.com/hc/en-us/articles/37425232841875-Getting-Started-with-Generative-Video"
+      ],
+      [
+        "Runway credits",
+        "https://help.runwayml.com/hc/en-us/articles/15124877443219-How-do-credits-work"
+      ]
+    ],
+    "source": "https://help.runwayml.com/hc/en-us/articles/37425232841875-Getting-Started-with-Generative-Video"
+  },
+  {
+    "id": "comfyui",
+    "name": "ComfyUI",
+    "url": "https://docs.comfy.org/",
+    "mark": "C",
+    "colour": "violet",
+    "kind": "creative",
+    "description": "A visual, node-based workflow interface for generative media. Start with documentation, not an installation.",
+    "openness": "ComfyUI can run locally, on a server or in the cloud. The interface connects models and processing steps; each model has separate release and licence conditions. Partner nodes can call remote services.",
+    "useful_for": "Understand the difference between a model and the software around it. Trace how inputs move through nodes, where a model is loaded and which operations might send data away.",
+    "exercise": "Without downloading anything, read the workflow and partner-node guides. Draw three boxes: input, generation, output. Label the execution location of each; mark unknown locations as questions for a facilitator rather than assuming they are local.",
+    "limits": "Workflows, model files and hardware requirements vary. An older laptop may not suit a chosen image/video model. Labs neither installs ComfyUI nor claims it is available or tested on this machine.",
+    "considerations": "Custom nodes are executable software, not harmless pictures. Ask the deployment owner to review dependencies, models and workflows before installation; do not run unfamiliar setup scripts. Local-looking nodes can still contact cloud APIs, incur costs or expose inputs. The public-only rule still applies offline.",
+    "sources": [
+      [
+        "ComfyUI overview",
+        "https://docs.comfy.org/"
+      ],
+      [
+        "ComfyUI custom nodes",
+        "https://docs.comfy.org/basic-concepts/custom-nodes"
+      ],
+      [
+        "ComfyUI partner nodes",
+        "https://docs.comfy.org/tutorials/partner-nodes/overview"
+      ]
+    ],
+    "source": "https://docs.comfy.org/"
   }
 ]

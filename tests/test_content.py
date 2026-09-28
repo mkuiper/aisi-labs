@@ -6,7 +6,7 @@ import sys
 import unittest
 from urllib.parse import urlsplit
 
-from catalogue import LABS, LESSONS, WEB_CHATS
+from catalogue import LABS, LESSONS, WEB_CHATS, RESOURCES
 from content_review import ROOT, fingerprint, learning_units, review_report
 
 
@@ -41,7 +41,7 @@ class ContentTests(unittest.TestCase):
 
     def test_chat_destinations_are_fixed_https_without_payloads(self):
         self.assertEqual(len({x['id'] for x in WEB_CHATS}), len(WEB_CHATS))
-        expected = {'chatgpt.com','claude.ai','gemini.google.com','grok.com','copilot.microsoft.com','www.perplexity.ai','chat.mistral.ai','chat.qwen.ai','huggingface.co'}
+        expected = {'chatgpt.com','claude.ai','gemini.google.com','grok.com','copilot.microsoft.com','www.perplexity.ai','chat.mistral.ai','chat.qwen.ai','huggingface.co','firefly.adobe.com','www.midjourney.com','app.runwayml.com','docs.comfy.org'}
         self.assertEqual({urlsplit(x['url']).hostname for x in WEB_CHATS if x['url']}, expected)
         for chat in WEB_CHATS:
             if chat['kind'] == 'reference':
@@ -54,7 +54,7 @@ class ContentTests(unittest.TestCase):
 
     def test_profiles_have_teaching_context_and_primary_source_links(self):
         for chat in WEB_CHATS:
-            self.assertIn(chat['kind'], {'chat', 'library', 'reference'})
+            self.assertIn(chat['kind'], {'chat', 'library', 'reference', 'creative'})
             for field in ['description', 'openness', 'useful_for', 'exercise', 'limits', 'considerations']:
                 self.assertGreater(len(chat[field]), 30)
             self.assertTrue(chat['sources'])
@@ -72,12 +72,39 @@ class ContentTests(unittest.TestCase):
         for lesson in LESSONS:
             self.assertIn(lesson['lab'], {lab['id'] for lab in LABS})
             self.assertTrue(0 <= lesson['correct'] < len(lesson['options']))
-        for identifier in ['web-chat','open-models']:
+        for identifier in ['web-chat','open-models','image-video','reading-leaderboards']:
             lesson = next(x for x in LESSONS if x['id'] == identifier)
             self.assertTrue(lesson['sources'])
             self.assertGreater(len(lesson['sections']), 3)
             for _, url in lesson['sources']:
                 self.assertEqual(urlsplit(url).scheme, 'https')
+
+    def test_resources_are_reviewed_fixed_destinations_with_reading_guidance(self):
+        self.assertEqual(len(RESOURCES), 5)
+        self.assertEqual(len({r['id'] for r in RESOURCES}), len(RESOURCES))
+        self.assertEqual({urlsplit(r['url']).hostname for r in RESOURCES},
+                         {'artificialanalysis.ai','arena.ai','crfm.stanford.edu','www.swebench.com','huggingface.co'})
+        units = learning_units()
+        for resource in RESOURCES:
+            self.assertIn('resource:' + resource['id'], units)
+            for field in ['description','check','caution']:
+                self.assertGreater(len(resource[field]), 40)
+            for destination in [resource['url'], resource['source'][1]]:
+                url = urlsplit(destination)
+                self.assertEqual(url.scheme, 'https')
+                self.assertFalse(url.username or url.password or url.query or url.fragment)
+
+    def test_creative_profiles_keep_hosted_and_installation_boundaries_clear(self):
+        creative = {p['id']: p for p in WEB_CHATS if p['kind']=='creative'}
+        self.assertEqual(set(creative), {'firefly','midjourney','runway','comfyui'})
+        self.assertEqual(creative['comfyui']['url'], 'https://docs.comfy.org/')
+        self.assertIn('neither installs', creative['comfyui']['limits'])
+        self.assertIn('open by default', creative['midjourney']['considerations'])
+        self.assertIn('provider claim', creative['firefly']['considerations'])
+        for identifier in ['image-video','reading-leaderboards']:
+            lesson = next(x for x in LESSONS if x['id']==identifier)
+            self.assertIn('OFFICIAL', json.dumps(lesson))
+            self.assertIn('authored', json.dumps(lesson).lower())
 
     def test_hugging_face_has_actionable_source_backed_risk_checks(self):
         profile = next(x for x in WEB_CHATS if x['id']=='huggingface')

@@ -1,5 +1,19 @@
 # Reused product logos
 
+## Creative tools — 28 September 2026
+
+Four unchanged SVGs (plus a final newline) from the same pinned Lobe Icons
+1.95.1 collection below. MIT notice remains in LOBE-LICENSE.txt; marks identify
+products, not endorsement. No remote images are fetched at app runtime.
+
+- firefly.svg: https://unpkg.com/@lobehub/icons-static-svg@1.95.1/icons/adobefirefly-color.svg — sha256-MJ/+5AT2PhB2wrIGI7UhmUmBOfDRgnaUXJZcU8Gr3QA=
+- midjourney.svg: https://unpkg.com/@lobehub/icons-static-svg@1.95.1/icons/midjourney.svg — sha256-4JZAzL9vZDtGJOVA8ZjNcEpr89ddxDsJOGKMr06Ywws=
+- runway.svg: https://unpkg.com/@lobehub/icons-static-svg@1.95.1/icons/runway.svg — sha256-26NFkmSve0//tcS/yQl0jh7B8SL/yvCo+7YmeBiI6vI=
+- comfyui.svg: https://unpkg.com/@lobehub/icons-static-svg@1.95.1/icons/comfyui-color.svg — sha256-LxQWGwxs4cMUtmyseFrIGUi/KzS3hLEU5d8Jtnl4lMY=
+
+Package gitHead: 49a2130df7bfa5eb1b088261bff20a37e2967789.
+The image owner must still review brand/distribution requirements before release.
+
 ## Desktop icons — 28 September 2026
 
 All eight desktop entries now have locally bundled artwork. Product names remain

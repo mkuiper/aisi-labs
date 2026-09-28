@@ -166,3 +166,4 @@ LESSONS.extend([
 CONTENT = Path(__file__).resolve().parent / "content"
 LESSONS += json.loads((CONTENT / "lessons.json").read_text())
 WEB_CHATS = json.loads((CONTENT / "web_chats.json").read_text())
+RESOURCES = json.loads((CONTENT / "resources.json").read_text())

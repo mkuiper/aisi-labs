@@ -175,11 +175,11 @@
     "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained."
   },
   "doc:programme": {
-    "revision": 2,
+    "revision": 3,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "bf5d2b415c07ca5be76c006d7bd8463f53c8772c9f68258f27efa32143b2138e",
-    "notes": "Added source-backed device-restriction boundary and advanced revision. Full programme source/exercise review remains pending; baseline fingerprint and absent review date intentionally retained."
+    "notes": "Added source-backed device-restriction boundary and advanced revision. Full programme source/exercise review remains pending; baseline fingerprint and absent review date intentionally retained. Added creative-media/current-awareness scope; full legacy review remains pending."
   },
   "doc:learner": {
     "revision": 1,
@@ -224,11 +224,11 @@
     "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
   },
   "doc:content-maintenance": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 90,
-    "sha256": "512fe5cdcc98612b9c64c7eb70beee18cd20374c84cff6e70ce380e3532022a1",
-    "notes": "Authored against current repository behaviour and skill workflow. Offline report and tests verify implementation; no scheduled job or full legacy source review."
+    "sha256": "082d4546477f676ae9748dcf0492e48220bde1294a9eaad53eb27488d66487f5",
+    "notes": "Read the full guide and verified the expanded source map, resource inventory, review intervals and offline audit semantics. No claim of automatic monitoring or full legacy curriculum review."
   },
   "chat:qwen-chat": {
     "revision": 1,
@@ -250,5 +250,82 @@
     "review_after_days": 30,
     "sha256": "db5eadb72287c46198eff85fbbf94de56fda027dc59bb3241963f631989e6277",
     "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive. Reference-only; no service URL, installation or inference."
+  },
+  "chat:firefly": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "9de3fee7e794ecfed3bbb1547438c66f63c0f086324188fccfe609e947ff48c2",
+    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results."
+  },
+  "chat:midjourney": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "6ba90b9fdbff6679efb35b29df6d9caaa25b1111d8509c04d02b3f1cf5749709",
+    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results."
+  },
+  "chat:runway": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "2e269d3e56a4753023f03cc8bb77b0720114a63afcb4380768c22c15650f5088",
+    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results."
+  },
+  "chat:comfyui": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "cc60ab9d2039ec20af709f640543dbf0895a329e7fbc591183289b1802d46d47",
+    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results."
+  },
+  "resource:artificial-analysis": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "3f3e5f86f12db05f932058a59472638d66cc94ecac6155dbfd36e5ec27560baa",
+    "notes": "Inspected linked primary directory and method/discovery documentation on 2026-09-28. Reviewed the scoped description and reading guidance, not the correctness of every live result. No account access, model calls or benchmark code execution."
+  },
+  "resource:arena": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "b4b1991d5cc030d66f76c4c6b49cefa4e15e2e5194839a71ea4e9943ac37cbf7",
+    "notes": "Inspected linked primary directory and method/discovery documentation on 2026-09-28. Reviewed the scoped description and reading guidance, not the correctness of every live result. No account access, model calls or benchmark code execution."
+  },
+  "resource:helm": {
+    "revision": 1,
+    "reviewed_at": null,
+    "review_after_days": 30,
+    "sha256": "556762e2668cb6f240af7e46b49f0d331b6c5506d31fe84b7f7355a5fbff8039",
+    "notes": "Partial inspection on 2026-09-28: the 2022 foundational explanation was readable and supports the scoped method notes. The live JavaScript suite directory/results did not render. Full resource review remains pending; no fresh completed-review date claimed."
+  },
+  "resource:swe-bench": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "3b4a146b3b7f136fb3f3db2a6e871d60eef0270b7b006932ad8d57a869064579",
+    "notes": "Inspected linked primary directory and method/discovery documentation on 2026-09-28. Reviewed the scoped description and reading guidance, not the correctness of every live result. No account access, model calls or benchmark code execution."
+  },
+  "resource:hf-papers": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 30,
+    "sha256": "2df4e0756a2ba675be07c7b93771f71d0d4a59adf8efd0c70e1afac9791b96b7",
+    "notes": "Inspected linked primary directory and method/discovery documentation on 2026-09-28. Reviewed the scoped description and reading guidance, not the correctness of every live result. No account access, model calls or benchmark code execution."
+  },
+  "lesson:image-video": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 90,
+    "sha256": "59336227129302cf107a6b44051ceef78094755ae5024e832078b5c47a8e551f",
+    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results."
+  },
+  "lesson:reading-leaderboards": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 90,
+    "sha256": "2ffc79a64606c83d8173e86a345d2e2759aa9d8946afb64df394d6d3b5d533a2",
+    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results."
   }
 }

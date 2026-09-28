@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import re
 
-from catalogue import LABS, LESSONS, WEB_CHATS
+from catalogue import LABS, LESSONS, WEB_CHATS, RESOURCES
 from documentation import DOCUMENTS
 
 ROOT = Path(__file__).resolve().parent
@@ -18,7 +18,7 @@ def fingerprint(value):
 
 def learning_units():
     units = {}
-    for kind, items in (("lesson", LESSONS), ("chat", WEB_CHATS), ("lab", LABS)):
+    for kind, items in (("lesson", LESSONS), ("chat", WEB_CHATS), ("resource", RESOURCES), ("lab", LABS)):
         for item in items:
             key = f"{kind}:{item['id']}"
             if key in units:
@@ -36,7 +36,7 @@ def review_report(records=None, today=None, units=None):
     if records is None:
         records = json.loads((ROOT / "content" / "reviews.json").read_text())
     if not isinstance(records, dict) or set(records) != set(units):
-        raise ValueError("Review records must exactly cover lessons, chats, labs, documents and starters.")
+        raise ValueError("Review records must exactly cover lessons, web/media profiles, resources, labs, documents and starters.")
     result = []
     for identifier, digest in units.items():
         entry = records[identifier]

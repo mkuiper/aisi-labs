@@ -10,19 +10,50 @@
     "lab": "evidence",
     "intro": "You do not need a terminal to explore AI. A web chatbot lets you ask a question, supply public context and refine an answer through conversation. The Web chat section links to the providers’ own sites; they are separate services, not part of the local Labs app.",
     "sections": [
-      ["Website, model and agent are different things", "The website is the interface. One or more models generate the response. Search, file analysis and other tools depend on the product and account. Some browser assistants can also take actions or complete multi-step tasks. A chat window does not mean the system is only chatting."],
-      ["Start without connecting anything", "Use a dedicated learning account on the separate learning network. Do not connect government accounts, email, drives, calendars or internal services. Labs does not sign you in, send your API keys or upload your projects when you open a link. The external site can use its own existing browser cookies and login."],
-      ["Give a small public task", "Try: ‘Here is fictional public practice information: a community garden opens Saturday at 10 am, closes at noon, and has free entry. Write a 50-word invitation using only these facts. Identify anything you would need to ask the organiser.’ Check that it did not invent an address, booking link or facilities."],
-      ["Compare the process, not just the prose", "Try the same prompt in two services if you have suitable learning accounts. Record the date, displayed model or mode, tools enabled and answers. Score factual fidelity, missing information, clarity and usefulness. One answer is a learning example, not a reliable model ranking; products can add different hidden instructions and tools."],
-      ["Know what leaves the laptop", "Messages, uploads and connected sources can be processed by the external service. Check the provider’s current privacy, retention, training and account settings; do not assume a private-looking conversation is private storage. A paid chat account and API access can have different billing and entitlements. Never put a key into a prompt."],
-      ["Finish responsibly", "Review sources rather than trusting a citation-shaped link. Avoid public sharing links unless you intend to publish that public practice content. On a shared device, follow the account sign-out/reset procedure. Closing Labs does not sign out of the chatbot. Use ONLY public information, nothing OFFICIAL, and NEVER connect to government networks."]
+      [
+        "Website, model and agent are different things",
+        "The website is the interface. One or more models generate the response. Search, file analysis and other tools depend on the product and account. Some browser assistants can also take actions or complete multi-step tasks. A chat window does not mean the system is only chatting."
+      ],
+      [
+        "Start without connecting anything",
+        "Use a dedicated learning account on the separate learning network. Do not connect government accounts, email, drives, calendars or internal services. Labs does not sign you in, send your API keys or upload your projects when you open a link. The external site can use its own existing browser cookies and login."
+      ],
+      [
+        "Give a small public task",
+        "Try: ‘Here is fictional public practice information: a community garden opens Saturday at 10 am, closes at noon, and has free entry. Write a 50-word invitation using only these facts. Identify anything you would need to ask the organiser.’ Check that it did not invent an address, booking link or facilities."
+      ],
+      [
+        "Compare the process, not just the prose",
+        "Try the same prompt in two services if you have suitable learning accounts. Record the date, displayed model or mode, tools enabled and answers. Score factual fidelity, missing information, clarity and usefulness. One answer is a learning example, not a reliable model ranking; products can add different hidden instructions and tools."
+      ],
+      [
+        "Know what leaves the laptop",
+        "Messages, uploads and connected sources can be processed by the external service. Check the provider’s current privacy, retention, training and account settings; do not assume a private-looking conversation is private storage. A paid chat account and API access can have different billing and entitlements. Never put a key into a prompt."
+      ],
+      [
+        "Finish responsibly",
+        "Review sources rather than trusting a citation-shaped link. Avoid public sharing links unless you intend to publish that public practice content. On a shared device, follow the account sign-out/reset procedure. Closing Labs does not sign out of the chatbot. Use ONLY public information, nothing OFFICIAL, and NEVER connect to government networks."
+      ]
     ],
     "takeaway": "Start with a small public question, understand the site’s permissions, and check the answer yourself. Website branding is not evidence of the model, its accuracy or agency approval.",
     "question": "You open a chatbot from Labs. What has Labs done with your project files and saved API key?",
-    "options": ["Uploaded both to personalise the chat.", "Opened a link only; uploads and external sign-in are separate actions.", "Made the external website an offline local service."],
+    "options": [
+      "Uploaded both to personalise the chat.",
+      "Opened a link only; uploads and external sign-in are separate actions.",
+      "Made the external website an offline local service."
+    ],
     "correct": 1,
     "feedback": "The link carries no project or key. The website still has its own network, account and privacy behaviour, including any existing browser sign-in.",
-    "sources": [["ChatGPT: using the web interface", "https://learn.chatgpt.com/docs/web"], ["Claude: web sign-in and product overview", "https://claude.ai/"]]
+    "sources": [
+      [
+        "ChatGPT: using the web interface",
+        "https://learn.chatgpt.com/docs/web"
+      ],
+      [
+        "Claude: web sign-in and product overview",
+        "https://claude.ai/"
+      ]
+    ]
   },
   {
     "id": "open-models",
@@ -35,26 +66,209 @@
     "lab": "blank",
     "intro": "Open models let you explore more of the AI stack: which model files you use, which software runs them and where the computation happens. But ‘open’ is an umbrella term, not a promise of unrestricted use, complete transparency, privacy or quality.",
     "sections": [
-      ["What are weights?", "Weights are numbers learned during training. They work with the model’s architecture and inference software to generate outputs. Downloading weights is not the same as downloading the original training dataset or being able to reproduce the training process."],
-      ["Open weights versus open source", "Open-weight releases make learned parameters available under specified terms. Those terms differ. The Open Source Initiative’s AI definition goes further: it describes freedoms to use, study, modify and share, with requirements for parameters, code and information about training data. Do not call every downloadable model open source."],
-      ["Openness and location are separate choices", "An open-weight model can run on your laptop or on someone else’s servers. A cloud API is a way to access inference, not a licence category. A local runner is software that loads models; it is not itself the model. Some runners, including Ollama, offer cloud options too. Check the actual model and endpoint."],
-      ["Read the model card before the download button", "Look for the publisher, exact checkpoint, licence and usage conditions, intended tasks, languages, known limitations and evaluation methods. A model card is documentation supplied by its authors, not independent certification. A community conversion may differ from the original release; trace its provenance."],
-      ["Can an old laptop run it?", "Parameter counts such as 1B mean roughly one billion learned parameters, not a quality score. Quantisation stores numbers at reduced precision to lower memory needs, with possible quality tradeoffs. Disk download size is not total RAM or GPU-memory use: the runner, context and other applications also need space. Start with a facilitator-tested small model, short context and measured hardware results; CPU-only use can be slow."],
-      ["Local is not automatic permission", "Local inference can keep the inference step on the device, but web search, plugins, telemetry or cloud fallbacks may still send data away. Models and runners are software supply-chain decisions. Do not execute unreviewed download scripts or enable repository code just because a model page suggests it. No installation or download happens in this lesson."],
-      ["A no-download exercise", "Open the linked Qwen3-0.6B publisher card as a concrete reading example, not a newest-or-best recommendation. In a blank project, record its publisher, checkpoint, licence label, intended task, limitations and a question still unanswered. Decide what you would need to verify before running it. Then read Programme & guides → Open-model field guide for a comparison worksheet."]
+      [
+        "What are weights?",
+        "Weights are numbers learned during training. They work with the model’s architecture and inference software to generate outputs. Downloading weights is not the same as downloading the original training dataset or being able to reproduce the training process."
+      ],
+      [
+        "Open weights versus open source",
+        "Open-weight releases make learned parameters available under specified terms. Those terms differ. The Open Source Initiative’s AI definition goes further: it describes freedoms to use, study, modify and share, with requirements for parameters, code and information about training data. Do not call every downloadable model open source."
+      ],
+      [
+        "Openness and location are separate choices",
+        "An open-weight model can run on your laptop or on someone else’s servers. A cloud API is a way to access inference, not a licence category. A local runner is software that loads models; it is not itself the model. Some runners, including Ollama, offer cloud options too. Check the actual model and endpoint."
+      ],
+      [
+        "Read the model card before the download button",
+        "Look for the publisher, exact checkpoint, licence and usage conditions, intended tasks, languages, known limitations and evaluation methods. A model card is documentation supplied by its authors, not independent certification. A community conversion may differ from the original release; trace its provenance."
+      ],
+      [
+        "Can an old laptop run it?",
+        "Parameter counts such as 1B mean roughly one billion learned parameters, not a quality score. Quantisation stores numbers at reduced precision to lower memory needs, with possible quality tradeoffs. Disk download size is not total RAM or GPU-memory use: the runner, context and other applications also need space. Start with a facilitator-tested small model, short context and measured hardware results; CPU-only use can be slow."
+      ],
+      [
+        "Local is not automatic permission",
+        "Local inference can keep the inference step on the device, but web search, plugins, telemetry or cloud fallbacks may still send data away. Models and runners are software supply-chain decisions. Do not execute unreviewed download scripts or enable repository code just because a model page suggests it. No installation or download happens in this lesson."
+      ],
+      [
+        "A no-download exercise",
+        "Open the linked Qwen3-0.6B publisher card as a concrete reading example, not a newest-or-best recommendation. In a blank project, record its publisher, checkpoint, licence label, intended task, limitations and a question still unanswered. Decide what you would need to verify before running it. Then read Programme & guides → Open-model field guide for a comparison worksheet."
+      ]
     ],
     "takeaway": "Check three things separately: what is released and permitted, where inference runs, and what the surrounding tools can access. Even fully offline use in this programme is ONLY for public information—never OFFICIAL material or government-network connections.",
     "question": "An open-weight model is being used through a hosted website. Where is inference necessarily happening?",
-    "options": ["On your laptop, because the weights are open.", "Nowhere; open models do not need computation.", "Openness does not tell you. Check the service’s actual deployment."],
+    "options": [
+      "On your laptop, because the weights are open.",
+      "Nowhere; open models do not need computation.",
+      "Openness does not tell you. Check the service’s actual deployment."
+    ],
     "correct": 2,
     "feedback": "The licence/release and the deployment location are independent. A website can host an open model remotely; verify the data flow instead of assuming local execution.",
     "sources": [
-      ["OSI: Open Source AI Definition 1.0", "https://opensource.org/ai/open-source-ai-definition"],
-      ["Hugging Face: model cards", "https://huggingface.co/docs/hub/model-cards"],
-      ["Hugging Face: quantisation overview", "https://huggingface.co/docs/transformers/quantization/overview"],
-      ["Ollama: local and network behaviour", "https://docs.ollama.com/faq"],
-      ["Ollama: cloud models", "https://docs.ollama.com/cloud"],
-      ["Reading example: Qwen3-0.6B publisher card", "https://huggingface.co/Qwen/Qwen3-0.6B"]
+      [
+        "OSI: Open Source AI Definition 1.0",
+        "https://opensource.org/ai/open-source-ai-definition"
+      ],
+      [
+        "Hugging Face: model cards",
+        "https://huggingface.co/docs/hub/model-cards"
+      ],
+      [
+        "Hugging Face: quantisation overview",
+        "https://huggingface.co/docs/transformers/quantization/overview"
+      ],
+      [
+        "Ollama: local and network behaviour",
+        "https://docs.ollama.com/faq"
+      ],
+      [
+        "Ollama: cloud models",
+        "https://docs.ollama.com/cloud"
+      ],
+      [
+        "Reading example: Qwen3-0.6B publisher card",
+        "https://huggingface.co/Qwen/Qwen3-0.6B"
+      ]
+    ]
+  },
+  {
+    "id": "image-video",
+    "title": "Make images and video responsibly",
+    "subtitle": "From a visual brief to a checked, clearly labelled practice output.",
+    "minutes": 7,
+    "icon": "play",
+    "colour": "clay",
+    "diagram": "media",
+    "lab": "blank",
+    "intro": "Generative media tools can create an image from text, edit an existing picture or generate moving scenes. This is a useful way to learn visual communication—and why a convincing picture is not evidence. Start with a storyboard; no account, purchase or generation is required for this lesson.",
+    "sections": [
+      [
+        "Four different operations",
+        "Text-to-image starts with a written description. Image editing transforms supplied material. Text-to-video describes a moving scene; image-to-video uses a starting image to guide a clip. A creative website is the interface, not necessarily a single model. Record the model or mode actually selected."
+      ],
+      [
+        "Write a brief before pressing Generate",
+        "Specify the subject, composition, style, aspect ratio and what must not appear. For video, add the intended action, camera movement and duration. Set a cost limit and check the displayed price or credit estimate before every attempt; Labs does not enforce that limit. Change one instruction at a time so you can learn what mattered."
+      ],
+      [
+        "Keep the inputs safe",
+        "Use ONLY public information, nothing OFFICIAL, and NEVER government networks or accounts. Public availability is not permission to reuse a person’s likeness or someone else’s creative work. Prefer your own fictional scenes with no identifiable people. Inspect files and metadata before upload; avoid staff photos, work screenshots, official branding and account details."
+      ],
+      [
+        "Keep the output honest",
+        "Do not impersonate officials, clone colleagues’ voices or fabricate agency announcements. Label shared practice work as AI-generated or AI-assisted as appropriate. Check people, objects, text and implied facts; for video, review the whole clip for changing details and misleading motion. Add accurate captions, an accessible text description and readable text yourself where needed."
+      ],
+      [
+        "Provenance is not proof of truth",
+        "A label or provenance record may help explain how a file was made; it does not make the depicted event real or the content accurate. Do not rely on a watermark, a provider’s commercial-safety claim or an attractive result as permission to publish. Check rights, terms and the programme’s sharing procedure separately."
+      ],
+      [
+        "A small authored exercise",
+        "In a blank project, write a three-shot storyboard for an imaginary community garden: an empty gate, seedlings and a watering can. Use no people, logos or real addresses. For each shot, record the prompt, intended movement and one failure to watch for. This no-generation version is a complete exercise."
+      ],
+      [
+        "Optional experiment, then an observable check",
+        "If you have an appropriate learning account and an agreed budget, choose one hosted tool from Web & media and create just one image or short clip. Record date, displayed model/mode, prompt, settings and actual credits used. Compare against the storyboard, identify at least one limitation and add an accessible description plus a synthetic-media label. This is an authored suggestion, not a live-tested provider result."
+      ],
+      [
+        "Where desktop tools fit",
+        "Pinta can help with image edits, Blender with 3D scenes and OBS with recording a demonstration. They are not interchangeable with image/video generation models. ComfyUI illustrates node-based workflows, but reading its guide does not install it. Ask a facilitator to assess hardware and code before trying local models or custom nodes."
+      ]
+    ],
+    "takeaway": "Brief → generate only if appropriate → review and label. Learning to spot a convincing failure is as valuable as making an attractive output.",
+    "question": "A generated clip looks realistic and includes a provenance label. What does that establish?",
+    "options": [
+      "The event really happened.",
+      "It is approved for government publication.",
+      "Neither truth nor approval: inspect the content, rights and context separately."
+    ],
+    "correct": 2,
+    "feedback": "A label can help explain origin. It does not verify depicted events, consent, rights or agency approval.",
+    "sources": [
+      [
+        "Adobe Firefly overview",
+        "https://www.adobe.com/products/firefly.html"
+      ],
+      [
+        "Runway video guide",
+        "https://help.runwayml.com/hc/en-us/articles/37425232841875-Getting-Started-with-Generative-Video"
+      ],
+      [
+        "Midjourney visibility defaults",
+        "https://docs.midjourney.com/hc/en-us/articles/28014645615373-Keeping-Your-Creations-Private"
+      ],
+      [
+        "ComfyUI overview",
+        "https://docs.comfy.org/"
+      ]
+    ]
+  },
+  {
+    "id": "reading-leaderboards",
+    "title": "Keep current without chasing the hype",
+    "subtitle": "Read benchmarks, release claims and research with a useful dose of scepticism.",
+    "minutes": 6,
+    "icon": "chart",
+    "colour": "blue",
+    "diagram": "benchmark",
+    "lab": "evidence",
+    "intro": "SOTA means state of the art: the strongest demonstrated result under particular conditions. It is not a permanent title or a universal best model. The Keep current page gives you a small set of public starting points; this lesson helps you ask what their results actually mean.",
+    "sections": [
+      [
+        "Start with the task, not the winner",
+        "Choose what you want to learn: factual question answering, a coding agent, an image or a video. Read how success is scored. Human preference measures which output people favour; a task benchmark measures performance under a defined test. Neither alone establishes safety, accuracy across all tasks or suitability for APS work."
+      ],
+      [
+        "Read the small print",
+        "Record the benchmark and version, evaluation date, exact model, mode, prompts, tools, harness, attempt budget and sample size where disclosed. A confidence interval communicates uncertainty; closely ranked systems may not have a meaningful separation. If a detail is missing, mark it unknown rather than guessing."
+      ],
+      [
+        "Ask what could distort the comparison",
+        "Look for narrow task coverage, unrepresentative prompts, judge bias, overlap between training and test data, and different compute or retry budgets. These are questions to investigate, not accusations against every benchmark. A composite index combines choices about tasks and weighting; inspect those choices."
+      ],
+      [
+        "A score is not your whole decision",
+        "Compare cost, latency, accessibility, data handling, licence conditions and account availability separately. An API endpoint, a chat product and a coding-agent harness can use related models but behave differently. Never use a leaderboard to bypass agency restrictions or the programme’s public-only boundary."
+      ],
+      [
+        "Use a light weekly routine",
+        "Spend ten minutes: inspect one relevant leaderboard, read one primary release note or model card linked from a tool profile, then skim one research paper’s method and limitations. Record what changed and one uncertainty. This is a suggested learner habit, not an automatic feed or update service in Labs."
+      ],
+      [
+        "An authored reading exercise—no model calls",
+        "Use Keep current to pick two entries on the same task-specific board. In an Evidence check project, record the URL, date, metric, model/version, evaluation setup and uncertainty. Then find a second source. Explain one agreement or disagreement and one thing neither source measures. Do not download benchmark code or submit prompts to complete this exercise."
+      ],
+      [
+        "Check yourself",
+        "A good note separates a measured result, a publisher’s claim and your interpretation. Write: ‘On this task, using this setup, source X reports Y as of this date.’ Avoid ‘model A is best at everything’. The original HELM explanation is historical context; always check the selected suite’s own dates for current results."
+      ]
+    ],
+    "takeaway": "A leaderboard is a map of some measured capabilities, not a safety certificate or procurement recommendation. ONLY public information; nothing OFFICIAL. NEVER government networks or accounts.",
+    "question": "One coding agent tops a leaderboard. What is the most defensible conclusion?",
+    "options": [
+      "It performed strongly on that task and setup; broader suitability still needs checking.",
+      "Its underlying model is best at every task.",
+      "It is approved to process OFFICIAL information."
+    ],
+    "correct": 0,
+    "feedback": "The task, model, harness and evaluation conditions matter. A high score does not establish general superiority, security or agency approval.",
+    "sources": [
+      [
+        "Artificial Analysis methodology",
+        "https://artificialanalysis.ai/methodology"
+      ],
+      [
+        "Arena ranking uncertainty",
+        "https://arena.ai/blog/ranking-method"
+      ],
+      [
+        "SWE-bench evaluation suites",
+        "https://www.swebench.com/"
+      ],
+      [
+        "HELM’s evaluation approach (2022)",
+        "https://crfm.stanford.edu/2022/11/17/helm.html"
+      ]
     ]
   }
 ]

@@ -8,8 +8,9 @@ review without introducing a CMS or cloud service.
 ## Source map
 
 - catalogue.py: the original lessons, local tool catalogue and five activity definitions.
-- content/lessons.json: supplemental web-chat and open-model lessons, with sources and quizzes.
-- content/web_chats.json: curated public chatbot destinations; links are not approval endorsements.
+- content/lessons.json: supplemental chat, open-model, image/video and benchmark lessons, with sources and quizzes.
+- content/web_chats.json: curated web/media profiles and destinations; links are not approval endorsements.
+- content/resources.json: benchmark and research-discovery resources, reading guidance and primary method links.
 - templates.py: authored public starter files, including fictional datasets.
 - docs/: learner/programme material and engineering handover.
 - web/app.js and web/programme.js: illustrated explanations and interactive teaching components.
@@ -19,7 +20,7 @@ review without introducing a CMS or cloud service.
 
 ## Review records
 
-Each lesson, chatbot entry, lab, registered in-app document and the starter
+Each lesson, web/media profile, resource, lab, registered in-app document and the starter
 template bundle has a stable review identifier. A SHA-256 fingerprint detects
 changes since its record was written. It is not a security signature or a test
 of factual accuracy. Revision numbers count content changes, not model releases.
@@ -47,7 +48,7 @@ current fingerprint for a maintainer to record after an actual review.
 Exit codes: normally 0 for a valid report, even with review debt; 1 with --strict
 when work is outstanding; 2 for invalid metadata or missing coverage. Tests check
 structure and coverage without failing solely because calendar time has passed.
-Chat links start with a 30-day review interval and lessons with 90 days. Review
+Web/media and resource links start with a 30-day review interval and lessons with 90 days. Review
 immediately when a material provider/protocol change is known; the interval is
 not a reason to ignore changes. This script makes no network requests.
 

@@ -1,5 +1,12 @@
 # Changes
 
+## 28 September 2026 — creative media and Keep current
+
+- Expanded Web chat to Web & media without breaking its route. Added four sourced creative profiles with bundled logos and two illustrated lessons on media generation and benchmark literacy.
+- Added a searchable Keep current directory of five benchmark/research resources, with method links, caveats, source-review dates and guarded destination confirmation. No live rankings or automatic feeds.
+- Extended editorial inventory to resource records and documented the data/UI boundary. No new provider adapters, local installations or changes to learner state.
+- Verification: 54 unit/HTTP tests, JavaScript syntax checks, offline editorial audit and isolated Chromium checks passed. New profiles, resource confirmations/search, both lesson quizzes, logos and tablet/mobile layouts are covered. Screenshots were inspected. HELM's full resource review remains pending after a rendering limitation; pre-existing curriculum review debt is retained.
+
 ## 28 September 2026 — desktop icons and Hugging Face safeguards
 
 - Added local icons for all eight desktop tools; Terminal matches Ghostty, while Files uses a generic folder for the system-selected file manager.

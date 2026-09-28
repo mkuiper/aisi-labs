@@ -31,7 +31,7 @@ the learner's Linux user and can have wider filesystem/network access.
 | `launch.py` | Start/reuse this checkout's loopback service, safe targeted restart, open Omarchy webapp |
 | `server.py` | HTTP boundary, acknowledgement, project validation, tool launches, progress |
 | `catalogue.py` | Curated tool allowlist, activities, lessons, public references |
-| `content/` | Supplemental lessons, web-chat directory, per-item editorial records and learning changelog |
+| `content/` | Supplemental lessons, web/media profiles, benchmark/research directory, per-item editorial records and learning changelog |
 | `content_review.py` | Offline fingerprints, review dates and coverage checks; no claim of factual verification |
 | `templates.py` | Authored public starter files and briefs |
 | `policy.py` | Programme rules and acknowledgement version |
@@ -49,6 +49,15 @@ the learner's Linux user and can have wider filesystem/network access.
 after bootstrap. Preserve that ordering. Templates escape untrusted text with
 `esc`; do not insert project names, provider responses or model IDs as raw HTML.
 Keep dependencies minimal; the backend uses Python's standard library only.
+
+The `web-chats` route retains its stable identifier but is labelled Web & media.
+Creative profiles reuse its guarded external navigation; ComfyUI points to docs,
+not a local installation. `keep-current` renders `RESOURCES` from bootstrap and
+participates in search. These are curated local records, never embedded external
+pages, scraped rankings or automatic feeds. Resource buttons share the existing
+acknowledgement/destination confirmation; source citations open labelled online
+links. `resource:<id>` records join the exact editorial coverage check. No new
+API-key adapters, model calls or installation commands are introduced.
 
 ## Data and lifecycle
 

@@ -68,9 +68,9 @@ try{
 
   await go('#web-chats');
   await delay(6100); // Let the acknowledgement toast expire before visual evidence.
-  assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),10);
-  assert.equal(await evaluate('document.querySelectorAll("[data-web-chat]").length'),9);
-  await checkLogos(10);
+  assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),14);
+  assert.equal(await evaluate('document.querySelectorAll("[data-web-chat]").length'),13);
+  await checkLogos(14);
   await screenshot('web-chat-desktop');await noOverflow('web chat');
   // Exercise the gate without visiting or logging into any external provider.
   await evaluate('data.acknowledged=false');
@@ -83,7 +83,7 @@ try{
   assert.equal(await evaluate('document.querySelector("#external-chat-link").rel'),'noopener noreferrer');
   assert(await evaluate('document.querySelector("#modal").textContent.includes("Nothing OFFICIAL")'));
   await click('[data-close]');
-  for(const id of ['chatgpt','claude-chat','gemini-chat','grok-chat','copilot-chat','perplexity','mistral-chat','qwen-chat','huggingface','deepseek']){
+  for(const id of ['chatgpt','claude-chat','gemini-chat','grok-chat','copilot-chat','perplexity','mistral-chat','qwen-chat','huggingface','deepseek','firefly','midjourney','runway','comfyui']){
     await go('#web-tool/'+id);await checkLogos(1);
     assert(await evaluate('document.querySelector("main").textContent.includes("Concerns and context")'));
     assert(await evaluate('document.querySelector("main").textContent.includes("A small learning exercise")'));
@@ -108,6 +108,36 @@ try{
       assert.equal(await evaluate('document.querySelector("#external-chat-link").href'),await evaluate('data.web_chats.find(x=>x.id==='+JSON.stringify(id)+').url'));
       await click('[data-close]');
     }
+  }
+  await go('#web-tool/runway');await screenshot('creative-profile-desktop');
+  await go('#keep-current');
+  assert.equal(await evaluate('document.querySelectorAll(".resource-card").length'),5);
+  assert.equal(await evaluate('document.querySelector(".nav-link[aria-current]").hash'),'#keep-current');
+  assert(await evaluate('[...document.querySelectorAll(".resource-card")].find(el=>el.querySelector("h2").textContent==="Stanford HELM").textContent.includes("Review pending")'));
+  await screenshot('keep-current-desktop');await noOverflow('keep current');
+  await evaluate('data.acknowledged=false');
+  await click('[data-resource=artificial-analysis]');
+  assert(await evaluate('!!document.querySelector("#policy-form")'));
+  await evaluate('document.querySelectorAll("#policy-form input").forEach(el=>el.checked=true);document.querySelector("#policy-form").requestSubmit()');
+  await waitFor('!!document.querySelector("#external-chat-link")');
+  assert.equal(await evaluate('document.querySelector("#external-chat-link").href'),'https://artificialanalysis.ai/');
+  assert.equal(await evaluate('document.querySelector("#external-chat-link").rel'),'noopener noreferrer');
+  await click('[data-close]');
+  for(const id of ['arena','helm','swe-bench','hf-papers']){
+    await click('[data-resource="'+id+'"]');
+    assert.equal(await evaluate('document.querySelector("#external-chat-link").href'),await evaluate('data.resources.find(x=>x.id==='+JSON.stringify(id)+').url'));
+    await click('[data-close]');
+  }
+  await go('#search/Artificial%20Analysis');
+  assert.equal(await evaluate('document.querySelectorAll(".resource-card").length'),1);
+  await go('#search/Runway');
+  assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),1);
+  for(const [id,answer] of [['image-video',2],['reading-leaderboards',0]]){
+    await go('#learn/'+id);
+    assert.equal(await evaluate('document.querySelectorAll(".diagram-node").length'),3);
+    await click('[data-answer="'+answer+'"]');
+    assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("That’s it")'));
+    await screenshot(id+'-desktop');
   }
   await go('#search/Perplexity');assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),1);
   await go('#learn/open-models');
@@ -197,20 +227,22 @@ try{
   for(const id of ['programme','learner','deployment','credentials','curriculum','maintenance','open-models','content-maintenance']){await go('#docs/'+id);assert(await evaluate('document.querySelector(".document-reader").textContent.length>1000'));}
 
   // Exercise every guide and both keyboard-sized and narrow viewports.
-  for(const id of ['chat-agents','terminal','context','prompting','tools-skills','checking','memory','identity','responsible-use','models-costs','web-chat','open-models']){
+  for(const id of ['chat-agents','terminal','context','prompting','tools-skills','checking','memory','identity','responsible-use','models-costs','web-chat','open-models','image-video','reading-leaderboards']){
     await go('#learn/'+id);assert.equal(await evaluate('document.querySelectorAll(".quiz-option").length'),3);await noOverflow('guide '+id);
   }
   await cdp('Emulation.setDeviceMetricsOverride',{width:820,height:900,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
+  for(const hash of ['#home','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
+  for(const hash of ['#home','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
+  await go('#keep-current');await screenshot('keep-current-mobile');
+  await go('#learn/image-video');await screenshot('image-video-mobile');
   await go('#web-tool/perplexity');await screenshot('tool-profile-mobile');
   await go('#web-tool/huggingface');await noOverflow('mobile Hugging Face risks');await screenshot('huggingface-risks-mobile');
   await go('#tools');await click('[data-filter="Desktop tools"]');await checkLogos(8);await noOverflow('mobile desktop logos');
   await go('#home');await screenshot('launchpad-mobile');
   assert.deepEqual(errors,[],'Browser errors');
   assert.equal(serverErrors,'','Server errors');
-  console.log('PASS: bundled tool/chat logos and fallback, launchpad, web-chat confirmation/gate/search, open-model diagrams/reviews/quiz, credentials without leaks, models/persistence, inventory, eight documents, twelve lessons, five projects and responsive layouts.');
+  console.log('PASS: bundled tool/chat logos and fallback, launchpad, web-chat confirmation/gate/search, open-model diagrams/reviews/quiz, credentials without leaks, models/persistence, inventory, eight documents, fourteen lessons, five current-awareness resources, five projects and responsive layouts.');
   console.log('Screenshots: '+reports);
 }finally{
   if(socket)socket.close();

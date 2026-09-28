@@ -10,6 +10,16 @@ Provide Australian Public Service staff with hands-on exposure to contemporary A
 
 The audience includes people new to terminals and coding, as well as experienced technical staff. Direct tool launch and open projects support experienced learners. Short illustrated explanations, public practice datasets, guided projects and a simulated terminal support beginners. Learners can move between these approaches without completing a mandatory course sequence.
 
+## Creative media and keeping current
+
+Web & media includes image/video learning profiles and a no-install workflow
+introduction. Learners can start with a fictional storyboard without generating
+anything. Optional hosted exercises require appropriate learning accounts and
+cost checks; review likeness, rights, public-sharing settings and output labels.
+Keep current links to benchmark methods and research discovery. Rankings are
+task-specific evidence, not government approval or a procurement shortlist.
+These additions neither install creative software nor automatically update tools.
+
 ## Non-negotiable boundaries
 
 - Input ONLY public information. Never enter OFFICIAL or higher-classified material, internal work files, or non-public personal information.

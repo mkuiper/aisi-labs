@@ -124,6 +124,8 @@ class HttpTests(unittest.TestCase):
         code, body, _ = self.request('GET', '/api/bootstrap')
         self.assertEqual(code, 200)
         self.assertEqual(len(json.loads(body)['tools']), len(TOOLS))
+        self.assertEqual({r['id'] for r in json.loads(body)['resources']},
+                         {'artificial-analysis','arena','helm','swe-bench','hf-papers'})
         for path in ['/', '/app.js', '/programme.js', '/style.css', '/icon.svg']:
             code, body, headers = self.request('GET', path)
             self.assertEqual(code, 200)

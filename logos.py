@@ -20,6 +20,10 @@ TOOL_LOGOS = {
     "obs": "obsstudio.svg",
 }
 CHAT_LOGOS = {
+    "firefly": "firefly.svg",
+    "midjourney": "midjourney.svg",
+    "runway": "runway.svg",
+    "comfyui": "comfyui.svg",
     "chatgpt": "openai.svg",
     "perplexity": "perplexity.svg",
     "copilot-chat": "microsoftcopilot.svg",

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "artificial-analysis",
+    "name": "Artificial Analysis",
+    "kind": "Benchmarks · speed · price",
+    "url": "https://artificialanalysis.ai/",
+    "description": "A starting point for comparing model capabilities, measured endpoint performance and pricing, with image/video comparisons as well.",
+    "check": "Choose the task and modality first. Read the index methodology, model version, evaluation date and inference settings. API price/performance is not the same as a consumer chat subscription or your laptop’s performance.",
+    "caution": "Composite scores hide trade-offs. A preference-based media score does not establish factual accuracy, rights clearance or suitability for government use.",
+    "source": [
+      "Artificial Analysis methodology",
+      "https://artificialanalysis.ai/methodology"
+    ]
+  },
+  {
+    "id": "arena",
+    "name": "Arena",
+    "kind": "Comparisons · human preference",
+    "url": "https://arena.ai/leaderboard",
+    "description": "Explore task-specific leaderboards, including text, images and video. Preference comparisons are one useful signal about how people judge outputs.",
+    "check": "Read the selected board’s method: do not assume every score uses the same evaluation. For preference rankings, inspect the confidence interval and rank spread as well as the displayed rank.",
+    "caution": "A popular or persuasive answer can still be wrong. Small rank differences with overlapping uncertainty do not establish a clear winner; check task coverage and evaluation conditions.",
+    "source": [
+      "Arena ranking method",
+      "https://arena.ai/blog/ranking-method"
+    ]
+  },
+  {
+    "id": "helm",
+    "name": "Stanford HELM",
+    "kind": "Research · evaluation coverage",
+    "url": "https://crfm.stanford.edu/helm/",
+    "description": "Holistic Evaluation of Language Models encourages comparison across scenarios and multiple metrics, rather than one overall number.",
+    "check": "Select a suite and inspect its release date, included models, scenarios and measures. The linked foundational explanation is from 2022: it explains the approach, not today’s best models.",
+    "caution": "Coverage is deliberately incomplete. Do not treat an unlisted model as worse or transfer a result to a different task. The live JavaScript results were not independently verified in this content review.",
+    "source": [
+      "Stanford’s HELM approach (2022)",
+      "https://crfm.stanford.edu/2022/11/17/helm.html"
+    ]
+  },
+  {
+    "id": "swe-bench",
+    "name": "SWE-bench",
+    "kind": "Benchmarks · coding agents",
+    "url": "https://www.swebench.com/",
+    "description": "Explore evaluations of systems resolving software-repository issues. Useful when learning about coding agents and their surrounding harnesses.",
+    "check": "Compare like-for-like suites and settings. Record the model, agent/harness, tools, attempt budget and result verification. Read which subset or variant the score refers to.",
+    "caution": "A resolved-issue score measures that evaluation setup, not all programming ability, deployment security or general AI quality. A model and an agent system are not interchangeable leaderboard entries.",
+    "source": [
+      "SWE-bench tasks and leaderboards",
+      "https://www.swebench.com/"
+    ]
+  },
+  {
+    "id": "hf-papers",
+    "name": "Hugging Face Papers",
+    "kind": "Discovery · research papers",
+    "url": "https://huggingface.co/papers",
+    "description": "A community research feed for discovering papers and following links to the original work. A complement to leaderboards, not another quality ranking.",
+    "check": "Read the original paper’s date, methods, limitations and publication status. Look for reproducible evidence and later corrections; use the linked publisher model card and release notes for availability claims.",
+    "caution": "Trending is not peer review or safety approval. Linked code, datasets, models and Spaces require separate review. Reading a paper does not require downloading a model or running its repository.",
+    "source": [
+      "Hugging Face Papers feed",
+      "https://huggingface.co/papers"
+    ]
+  }
+]

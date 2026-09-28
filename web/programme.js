@@ -1,13 +1,13 @@
 /* Programme and credential settings. Never persist API keys in the browser. */
 let afterAcknowledgement = null;
 function chatCard(chat) {
-  const label=chat.kind==='reference'?'Reference only · restricted product':chat.kind==='library'?'Model library · online':'Hosted chat · online';
+  const label=chat.kind==='reference'?'Reference only · restricted product':chat.kind==='library'?'Model library · online':chat.kind==='creative'?(chat.id==='comfyui'?'Workflow guide · no installation':'Image & video · hosted'):'Hosted chat · online';
   return `<article class="tool-card web-chat-card">${mark(chat, 'chat')}<h3>${esc(chat.name)}</h3><span class="tag">${label}</span><p>${esc(chat.description)}</p><div class="actions"><a class="btn secondary" href="#web-tool/${esc(chat.id)}">About this tool →</a>${chat.url&&chat.kind!=='reference'?`<button class="btn secondary" data-web-chat="${esc(chat.id)}">Visit website ↗</button>`:''}</div></article>`;
 }
 function webToolPage(id) {
   const chat=data.web_chats.find(x=>x.id===id);if(!chat)return '<p>Tool profile not found.</p>';
   const review=data.content_reviews.find(x=>x.id==='chat:'+id);
-  return `<article class="reader tool-profile"><a class="back" href="#web-chats">← Web chat and open models</a>${mark(chat,'chat')}<h1>${esc(chat.name)}</h1><p class="intro">${esc(chat.description)}</p>
+  return `<article class="reader tool-profile"><a class="back" href="#web-chats">← Web & media</a>${mark(chat,'chat')}<h1>${esc(chat.name)}</h1><p class="intro">${esc(chat.description)}</p>
     <p class="small-note content-review">Revision ${review?.revision||1} · ${review?.reviewed_at?'Source review '+esc(review.reviewed_at):'Detailed review pending'} · ${esc(review?.status||'unreviewed')}. This is a learning profile, not procurement advice or approval.</p>
     ${chat.kind==='reference'?'<div class="note"><strong>Reference only — no launch or download.</strong> Device restrictions can still apply on a separate network. Ask the deployment owner; do not assume a learning-purpose exception.</div>':''}
     ${[['Useful learning uses',chat.useful_for],['What is open—and where does it run?',chat.openness],['Limitations',chat.limits],['Concerns and context',chat.considerations]].map(([title,body])=>`<section class="article-section"><h2>${title}</h2><p>${esc(body)}</p></section>`).join('')}
@@ -17,17 +17,32 @@ function webToolPage(id) {
     <div class="actions">${chat.url&&chat.kind!=='reference'?`<button class="btn" data-web-chat="${esc(chat.id)}">Visit website ↗</button>`:''}<a class="btn secondary" href="#learn/open-models">Understand open models →</a></div></article>`;
 }
 function webChatsPage() {
-  return `${heading('A conversation is a good place to start','Web chat','The regular chatbot websites, alongside your local AI tools.')}
-    <div class="note"><strong>These are external services, not local apps.</strong> Use ONLY public information—nothing OFFICIAL. NEVER use government accounts or connect this laptop to government networks. Inclusion is not agency approval. Account requirements, models, prices and privacy settings can change.</div>
+  return `${heading('Explore different ways to create','Web & media','Chatbot websites, image/video tools and open-model learning resources.')}
+    <div class="note"><strong>These links open external websites, not local apps.</strong> Use ONLY public information—nothing OFFICIAL. NEVER use government accounts or connect this laptop to government networks. Inclusion is not agency approval. Account requirements, models, prices and privacy settings can change.</div>
     <div class="actions"><a class="btn secondary" href="#learn/web-chat">First conversation guide →</a><a class="btn secondary" href="#learn/open-models">Understand open models →</a></div>
     <section class="panel"><h2>Learn how to choose, not just what to click</h2><p>Read each profile for useful exercises, limitations and sourced concerns. These are learning suggestions, not rankings or agency approvals. No listed controversy does not mean no risk. A government-owned laptop can remain subject to product restrictions even on a separate learning network.</p></section>
     <h2>Hosted assistants</h2><div class="tool-grid web-chat-grid">${data.web_chats.filter(x=>x.kind==='chat').map(chatCard).join('')}</div>
-    <h2>Explore open-model releases</h2><p>Start with model cards and licences. Qwen and Mistral above also illustrate why a hosted chat service is different from a model release. Browsing this directory installs nothing.</p><div class="tool-grid web-chat-grid">${data.web_chats.filter(x=>x.kind!=='chat').map(chatCard).join('')}</div>
+    <h2>Image & video</h2><p>Explore visual briefs, generation and review. ComfyUI links to documentation only; no local installation is implied.</p><p><a class="text-link" href="#learn/image-video">Learn to make media responsibly →</a></p><div class="tool-grid web-chat-grid">${data.web_chats.filter(x=>x.kind==='creative').map(chatCard).join('')}</div>
+    <h2>Explore open-model releases</h2><p>Start with model cards and licences. Qwen and Mistral above also illustrate why a hosted chat service is different from a model release. Browsing this directory installs nothing.</p><div class="tool-grid web-chat-grid">${data.web_chats.filter(x=>x.kind==='library'||x.kind==='reference').map(chatCard).join('')}</div>
     <section class="panel"><h2>Chat website ≠ model ≠ local agent</h2><p>The website provides the interface and its own tools and permissions. Your Labs API key and project folder are not sent by these links. Each website manages its own sign-in, privacy settings and billing; existing browser sessions may still be signed in. Check the account before you type.</p><p class="small-note">Try the same fictional public prompt in two services, then compare what you can verify—not just which answer sounds more confident. A hosted open-weight model is still hosted, not local inference.</p></section>`;
 }
 function webChatDialog(id) {
   const chat=data.web_chats.find(x=>x.id===id);if(!chat||chat.kind==='reference'||!chat.url)return;
+  externalSiteDialog(chat);
+}
+function externalSiteDialog(chat) {
   withAcknowledgement(()=>openModal(`${modalTop('Open '+chat.name+'?')}<p>You are leaving the local Labs app for <strong>${esc(new URL(chat.url).hostname)}</strong>.</p><div class="note">ONLY public information. Nothing OFFICIAL. Use a dedicated learning account and the separate non-government network. NEVER connect government accounts or internal sources.</div><p class="small-note">Labs sends no prompt, project or API key. The site can use existing browser cookies and sign-in. Its own terms, privacy settings and charges apply. Closing Labs does not sign out of the website.</p><div class="actions"><button class="btn secondary" data-close>Stay in Labs</button><a class="btn" id="external-chat-link" href="${esc(chat.url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Continue to website ↗</a></div>`));
+}
+function resourceCard(resource) {
+  const review=data.content_reviews.find(x=>x.id==='resource:'+resource.id);
+  return `<article class="panel resource-card"><span class="eyebrow">${esc(resource.kind)}</span><h2>${esc(resource.name)}</h2><p>${esc(resource.description)}</p><h3>How to read it</h3><p>${esc(resource.check)}</p><div class="note">${esc(resource.caution)}</div><p class="small-note content-review">Revision ${review?.revision||1} · ${review?.reviewed_at?'Source review '+esc(review.reviewed_at):'Review pending'} · ${esc(review?.status||'unreviewed')}. Links and methods reviewed, not every live result.</p><div class="actions"><button class="btn secondary" data-resource="${esc(resource.id)}">Explore resource ↗</button><a class="text-link" href="${esc(resource.source[1])}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">${esc(resource.source[0])} ↗</a></div>${resource.id==='hf-papers'?'<p><a class="text-link" href="#web-tool/huggingface">Read the Hugging Face risk checklist →</a></p>':''}</article>`;
+}
+function keepCurrentPage() {
+  return `${heading('A small window onto a fast-moving field','Keep current','Understand the evidence behind “state of the art”—not just the top-ranked name.')}
+    <div class="note"><strong>Discovery, not approval.</strong> These are external public resources. ONLY public information; nothing OFFICIAL. NEVER government networks or accounts. Inclusion is not an endorsement. No prompts, files or API keys are sent by Labs; external sites have their own cookies and terms.</div>
+    <div class="actions"><a class="btn" href="#learn/reading-leaderboards">How to read a leaderboard →</a><a class="btn secondary" href="#web-chats">Explore tools and primary sources →</a></div>
+    <section class="panel"><h2>A ten-minute learning habit</h2><ol class="steps"><li>Choose a task, then inspect a relevant leaderboard and its method.</li><li>Check a primary release note or publisher model card for what is actually available.</li><li>Write down the date, evidence, one trade-off and one unanswered question.</li></ol><p class="small-note">SOTA = state of the art under stated conditions. We link to live sources, not a cached winner list. This page is a curated directory, not a live feed or automatic monitor.</p></section>
+    <div class="resource-grid">${data.resources.map(resourceCard).join('')}</div>`;
 }
 function learningReviewNote(lesson) {
   const review=data.content_reviews.find(x=>x.id==='lesson:'+lesson.id);
@@ -130,6 +145,7 @@ document.addEventListener('submit',async event=>{
 document.addEventListener('click',async event=>{
   const button=event.target.closest('button');if(!button)return;
   if(button.dataset.webChat)webChatDialog(button.dataset.webChat);
+  if(button.dataset.resource){const resource=data.resources.find(x=>x.id===button.dataset.resource);if(resource)externalSiteDialog(resource);}
   if(button.dataset.settingsSection){const section=document.getElementById(button.dataset.settingsSection);section?.focus({preventScroll:true});section?.scrollIntoView({block:'start'});}
   if(button.dataset.inventory){
     const online=button.dataset.inventory==='online';

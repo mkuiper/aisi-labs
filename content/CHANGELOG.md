@@ -1,5 +1,14 @@
 # Learning material history
 
+## 2026-09-28 — creative media and reading the evidence
+
+- Added four Web & media profiles: Adobe Firefly, Midjourney, Runway and ComfyUI. ComfyUI links to documentation, not a claimed local installation. Existing profile IDs and DeepSeek's reference-only guard are preserved.
+- Added image/video and leaderboard-reading lessons with diagrams, quizzes, no-generation exercises and optional explicitly budgeted hosted practice. Explained visibility, synthetic-media labelling, likeness/rights, output inspection and local-versus-cloud workflow risks. Exercises are authored suggestions, not live-tested provider results.
+- Added five curated resources: Artificial Analysis, Arena, Stanford HELM, SWE-bench and Hugging Face Papers. Each explains what to inspect and limits of inference. No cached ranks, universal best-model claim, automatic feed or model/benchmark execution.
+- Inspected linked primary product guides, Midjourney visibility documentation, Runway credit guidance, ComfyUI custom/partner-node documentation, Artificial Analysis methods, Arena rank uncertainty, SWE-bench suites, HELM's foundational explanation and the HF Papers feed. Canonical URLs remain attached to content. HELM's JavaScript results were not readable as a live ranking; its historical explanation is explicitly dated and used only for the evaluation approach.
+- Added resource fingerprints and review coverage; new profiles/resources use 30-day intervals and lessons 90 days. HELM remains pending after partial inspection, without a completed-review date. Reviewed the maintenance guide's updated source map. The programme charter addition advances its revision but does not clear the pending full legacy review. No other legacy dates were refreshed.
+- No accounts, API integrations, paid generation, model downloads or hardware acceptance tested. Public-only, nothing-OFFICIAL and never-government-network/account boundaries remain unchanged.
+
 ## 2026-09-28 — Hugging Face risk guidance
 
 - Revised only chat:huggingface (revision 2), using current Hugging Face primary documentation: Model Hub, security, pickle scanning, Transformers model loading, safetensors, Spaces networking and model cards. URLs are attached to the profile/checklist.
