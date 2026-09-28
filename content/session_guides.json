@@ -1,0 +1,154 @@
+[
+  {
+    "id": "first-session",
+    "title": "First 20 minutes",
+    "subtitle": "An optional route through one public practice task.",
+    "intro": "Use this as a starting point, not a timed assessment. The suggested stages total about 20 minutes with a prepared tool; sign-in, setup and the full project can take longer. You can pause or go directly to Tools, Learn or Experiments.",
+    "boundary": "ONLY public information; nothing OFFICIAL or non-public. NEVER connect to government networks or accounts. Use the designated non-government learning network. If you are unsure about the device, network or learning account, ask the facilitator before proceeding.",
+    "steps": [
+      {
+        "id": "boundaries",
+        "minutes": 2,
+        "title": "Confirm the learning boundary",
+        "body": "Use the supplied fictional practice files, not a sanitised work document. Ask which learning network and accounts apply. Reading this guide does not verify your connection or grant permission to use a restricted service.",
+        "links": [
+          [
+            "Read the programme rules",
+            "#programme"
+          ]
+        ]
+      },
+      {
+        "id": "desktop",
+        "minutes": 3,
+        "title": "Orient yourself on the desktop",
+        "body": "Open Omarchy help and locate the fullscreen, close-window and window-switching guidance. If terminals are unfamiliar, try pwd and ls in the simulation. Return here using the First 20 minutes link in the header.",
+        "links": [
+          [
+            "Omarchy help",
+            "#omarchy-help"
+          ],
+          [
+            "Terminal simulation",
+            "#learn/terminal"
+          ]
+        ]
+      },
+      {
+        "id": "tool",
+        "minutes": 3,
+        "title": "Choose one prepared tool",
+        "body": "Ask the facilitator which coding agent is ready for this laptop and learning account. Check the sign-in method, selected model and budget before any model call. A detected command is not proof that setup is complete. If it is not ready, use the offline preparation below; do not install tools to complete this guide.",
+        "links": [
+          [
+            "Review tool setup",
+            "#configuration"
+          ]
+        ]
+      },
+      {
+        "id": "experiment",
+        "minutes": 8,
+        "title": "Begin one small project",
+        "body": "Open Your first agent session and create a project. Read BRIEF.md, choose the prepared coding agent in that project and paste its starter prompt inside the assistant—not at the shell prompt. Review proposed actions before approving them. Aim to inspect a first result; allow more time if needed.",
+        "links": [
+          [
+            "Open the first-project exercise",
+            "#lab/first-steps"
+          ]
+        ]
+      },
+      {
+        "id": "review",
+        "minutes": 4,
+        "title": "Check the result and finish",
+        "body": "Compare the page with the brief, try a narrow window and explain one change. Record one limitation or unresolved question in your public practice notes. If you used the offline route, record what you checked and what still needs a live tool. Save your work and use the Finish session checklist.",
+        "links": [
+          [
+            "Return to your projects",
+            "#projects"
+          ],
+          [
+            "Finish session checklist",
+            "#finish-session"
+          ]
+        ]
+      }
+    ],
+    "offline": {
+      "title": "No account or internet? Prepare offline",
+      "body": "You can complete the orientation and terminal simulation without an AI account. You can also create the first-project starter without launching an agent, read BRIEF.md and open the supplied page preview. Compare that starter with the requirements and write down one change you would ask an agent to make. This is preparation and manual review, not AI-generated work; continue with the facilitator when a tool is ready.",
+      "links": [
+        [
+          "Use the simulation",
+          "#learn/terminal"
+        ],
+        [
+          "Read the project brief",
+          "#lab/first-steps"
+        ]
+      ]
+    },
+    "check": "By the end, aim to explain the public-information boundary, find your project, describe what you checked and identify any sign-out or handover steps still outstanding. This authored route has not yet been timed with learners."
+  },
+  {
+    "id": "finish-session",
+    "title": "Finish session",
+    "subtitle": "Save your work, review accounts and prepare for handover.",
+    "intro": "This is a manual checklist, not an automatic logout or device reset. Tick items you have reviewed, including those not applicable. Ticks last only in this browser tab’s memory and reset on reload; they are not saved, scored or evidence that the laptop is safe to hand over.",
+    "boundary": "Continue to use ONLY public information; nothing OFFICIAL. NEVER connect to government networks or accounts to save, email or transfer your practice work. Follow the facilitator’s approved handover procedure.",
+    "steps": [
+      {
+        "id": "save",
+        "title": "Save and locate your work",
+        "body": "Save changes in the editor or tool and confirm you can find the project in My projects. Do not assume an assistant’s final message means every file was saved. Agree how public practice work is retained before an account reset; this checklist does not delete or export anything.",
+        "links": [
+          [
+            "View your projects",
+            "#projects"
+          ]
+        ]
+      },
+      {
+        "id": "stop",
+        "title": "Stop tasks and close tools",
+        "body": "Use each tool’s own controls to stop active requests or jobs, then close the intended windows after saving. Check for background tasks with the facilitator if unsure. Closing the Labs window does not stop its hub, other tools or provider-side jobs.",
+        "links": [
+          [
+            "Desktop controls",
+            "#omarchy-help"
+          ]
+        ]
+      },
+      {
+        "id": "keys",
+        "title": "Review keys held by Labs",
+        "body": "Use Forget keys held by Labs below. This prevents Labs supplying those keys to future launches; it does not remove credentials already held or saved by tools, revoke provider keys, or sign out accounts. Review this step even if you did not enter a key here.",
+        "links": [
+          [
+            "Credential handling guide",
+            "#docs/credentials"
+          ]
+        ]
+      },
+      {
+        "id": "accounts",
+        "title": "Sign out of external accounts",
+        "body": "Sign out of any learning websites and native tools you used, following the local shared-device procedure. Check the actual service or tool rather than assuming a closed window ended the login. Labs cannot inspect or verify those sign-outs, browser cookies or tool credential stores.",
+        "links": []
+      },
+      {
+        "id": "handover",
+        "title": "Check the handover procedure",
+        "body": "Ask the facilitator to apply the agreed account/device handover process. Projects and bookmarks belong to the Linux account and can remain visible to its next user. If the procedure is unclear, do not pass an active learning account to someone else. This page does not reset the device or certify it is clear.",
+        "links": [
+          [
+            "Shared-device guidance",
+            "#docs/deployment"
+          ]
+        ]
+      }
+    ],
+    "incident": "If you suspect non-public information or a key was exposed, stop the task and contact the facilitator/deployment owner using the agreed incident process. Do not paste the material into another AI tool or a support form. If connected to a government network, disconnect the learning device and report it. Exposed keys may need provider revocation; forgetting them here is not revocation."
+  }
+]

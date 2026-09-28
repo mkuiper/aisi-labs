@@ -58,6 +58,37 @@ try{
   assert(await evaluate('document.querySelector("#modal").textContent.includes("ONLY public information")'));
   assert(await evaluate('document.querySelector("#modal").textContent.includes("government networks")'));
   await click('[data-close]');
+  const sessionRequestStart=requests.length;
+  await click('#first-session-link');await waitFor('!!document.querySelector(".session-guide")');
+  assert.equal(await evaluate('data.acknowledged'),false);
+  assert.equal(await evaluate('document.querySelectorAll("[data-session-step]").length'),5);
+  assert.equal(await evaluate('document.querySelector("#first-session-link").getAttribute("aria-current")'),'page');
+  assert(await evaluate('document.querySelector(".session-offline").textContent.includes("not AI-generated work")'));
+  await screenshot('first-session-desktop');await noOverflow('first session');
+  await click('a[href="#lab/first-steps"]');await click('[data-create]');
+  assert(await evaluate('!!document.querySelector("#policy-form")'));
+  await click('[data-close]');
+  await click('#finish-session-link');await waitFor('!!document.querySelector("[data-session-review]")');
+  assert.equal(await evaluate('data.acknowledged'),false);
+  assert.equal(await evaluate('document.querySelector("#finish-session-link").getAttribute("aria-current")'),'page');
+  await evaluate('document.querySelector("[data-session-review]").focus()');
+  await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
+  await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
+  assert.equal(await evaluate('document.querySelector("[data-session-review]").checked'),true);
+  await go('#home');await go('#finish-session');
+  assert.equal(await evaluate('document.querySelector("[data-session-review]").checked'),true);
+  assert.equal(await evaluate('localStorage.length+sessionStorage.length'),0);
+  assert(requests.slice(sessionRequestStart).every(r=>r.method==='GET'&&new URL(r.url).origin===url),'Reading guides and ticks must not mutate state or contact providers');
+  await click('[data-session-forget]');
+  await waitFor('document.querySelector("#session-key-result").textContent.includes("Labs has forgotten")');
+  assert.equal(await evaluate('data.acknowledged'),false);
+  assert.equal(await evaluate('document.querySelector("[data-session-review=keys]").checked'),false);
+  await cdp('Page.reload');await waitFor('!!document.querySelector("[data-session-review]")');
+  if(await evaluate('document.querySelector("#modal").open'))await click('[data-close]');
+  assert.equal(await evaluate('document.querySelectorAll("[data-session-review]:checked").length'),0);
+  await go('#search/handover');
+  assert(await evaluate('!!document.querySelector("main a[href=\\\"#finish-session\\\"]")'));
+  await go('#home');
   const helpRequestStart=requests.length;
   await click('#omarchy-help-link');await waitFor('!!document.querySelector(".desktop-help")');
   assert.equal(await evaluate('data.acknowledged'),false);
@@ -250,12 +281,40 @@ try{
   await go('#tools');await click('[data-filter="All tools"]');await click('[data-tool="codex"]');
   assert(await evaluate('document.querySelector("#modal").textContent.includes("API charges may apply")'));
   await click('[data-close]');
+
+  await evaluate('api("configuration/key",{provider:"anthropic",key:"FAKE-FINISH-KEY-NOT-REAL"})');
+  await evaluate('api("configuration/key",{provider:"google",key:"FAKE-FINISH-KEY-NOT-REAL"})');
+  const beforeFinish=await evaluate('fetch("/api/bootstrap").then(r=>r.json()).then(d=>JSON.stringify([d.projects,d.progress,d.configuration.models,d.acknowledged]))');
+  await go('#finish-session');await click('[data-session-review=save]');
+  await evaluate('window.originalSessionApi=api;api=async()=>{throw new Error("Simulated request failure")};');
+  await click('[data-session-forget]');
+  await waitFor('document.querySelector("#session-key-result").textContent.includes("could not confirm")');
+  assert(await evaluate('fetch("/api/bootstrap").then(r=>r.json()).then(d=>d.configuration.providers.every(p=>p.configured))'));
+  assert.equal(await evaluate('document.querySelector("[data-session-forget]").disabled'),false);
+  assert.equal(await evaluate('document.querySelector("[data-session-review=save]").checked'),true);
+  await evaluate('api=window.originalSessionApi;delete window.originalSessionApi;');
+  const finishRequestStart=requests.length;
+  await click('[data-session-forget]');
+  await waitFor('document.querySelector("#session-key-result").textContent.includes("Labs has forgotten")');
+  assert.equal(requests.slice(finishRequestStart).filter(r=>r.method==='POST').length,1);
+  assert(requests.slice(finishRequestStart).every(r=>new URL(r.url).origin===url&&new URL(r.url).pathname==='/api/configuration/forget'));
+  assert(await evaluate('fetch("/api/bootstrap").then(r=>r.json()).then(d=>d.configuration.providers.every(p=>!p.configured))'));
+  assert.equal(await evaluate('document.querySelector("[data-session-review=keys]").checked'),false);
+  for(const id of ['stop','keys','accounts','handover'])await click('[data-session-review="'+id+'"]');
+  assert(await evaluate('document.querySelector("#finish-review-status").textContent.includes("does not verify")'));
+  await delay(6100); // Let the action status toast expire before visual evidence.
+  await screenshot('finish-session-desktop');await noOverflow('finish session');
+  const tickRequestStart=requests.length;
+  await click('[data-session-clear]');
+  assert.equal(await evaluate('document.querySelectorAll("[data-session-review]:checked").length'),0);
+  assert.equal(requests.length,tickRequestStart);
+  assert.equal(await evaluate('fetch("/api/bootstrap").then(r=>r.json()).then(d=>JSON.stringify([d.projects,d.progress,d.configuration.models,d.acknowledged]))'),beforeFinish);
   await go('#configuration');await click('[data-forget="all"]');
   await waitFor('!document.querySelector("[data-forget=openai]")');
   await screenshot('configuration-desktop');
-  await go('#programme');assert.equal(await evaluate('document.querySelectorAll(".doc-card").length'),8);
+  await go('#programme');assert.equal(await evaluate('document.querySelectorAll(".doc-card").length'),9);
   await screenshot('programme-desktop');
-  for(const id of ['programme','learner','deployment','credentials','curriculum','maintenance','open-models','content-maintenance']){await go('#docs/'+id);assert(await evaluate('document.querySelector(".document-reader").textContent.length>1000'));}
+  for(const id of ['programme','learner','deployment','credentials','curriculum','maintenance','open-models','content-maintenance','improvement-schedule']){await go('#docs/'+id);assert(await evaluate('document.querySelector(".document-reader").textContent.length>1000'));}
 
   // Every answer must explain that choice, allow a retry and leave bookmarks unchanged.
   const progressBeforeQuiz=await evaluate('JSON.stringify(data.progress)');
@@ -277,15 +336,20 @@ try{
   await go('#learn');await screenshot('learn-index-desktop');
   await go('#learn/memory');await click('[data-answer="0"]');await screenshot('scenario-feedback-desktop');
   await cdp('Emulation.setDeviceMetricsOverride',{width:820,height:900,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
+  for(const hash of ['#home','#first-session','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
+  for(const hash of ['#home','#first-session','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
   await go('#omarchy-help');await screenshot('omarchy-help-mobile');
   assert(await evaluate('document.querySelector("#omarchy-help-link").getBoundingClientRect().width>0'));
   await cdp('Emulation.setDeviceMetricsOverride',{width:320,height:740,deviceScaleFactor:1,mobile:false});
   await noOverflow('Omarchy help small phone');
+  await go('#first-session');await noOverflow('first session small phone');
+  await go('#finish-session');await noOverflow('finish session small phone');
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
   await go('#learn/memory');await click('[data-answer="1"]');await screenshot('scenario-feedback-mobile');await noOverflow('mobile scenario feedback');
+  await go('#first-session');await screenshot('first-session-mobile');
+  await go('#finish-session');await screenshot('finish-session-mobile');
+  assert(await evaluate('document.querySelector("#finish-session-link").getBoundingClientRect().width>0'));
   await go('#keep-current');await screenshot('keep-current-mobile');
   await go('#learn/image-video');await screenshot('image-video-mobile');
   await go('#web-tool/perplexity');await screenshot('tool-profile-mobile');
@@ -294,7 +358,7 @@ try{
   await go('#home');await screenshot('launchpad-mobile');
   assert.deepEqual(errors,[],'Browser errors');
   assert.equal(serverErrors,'','Server errors');
-  console.log('PASS: offline Omarchy help before acknowledgement, shortcut guidance/search/recovery, bundled tool/chat logos and fallback, launchpad, web-chat confirmation/gate/search, open-model diagrams/reviews/quiz, credentials without leaks, models/persistence, inventory, eight documents, fourteen lessons, five current-awareness resources, five projects and responsive layouts.');
+  console.log('PASS: offline Omarchy help before acknowledgement, shortcut guidance/search/recovery, bundled tool/chat logos and fallback, launchpad, web-chat confirmation/gate/search, open-model diagrams/reviews/quiz, credentials without leaks, models/persistence, inventory, optional first-session route, manual finish checklist/key removal/failure/reload checks, nine documents, fourteen lessons, five current-awareness resources, five projects and responsive layouts.');
   console.log('Screenshots: '+reports);
 }finally{
   if(socket)socket.close();

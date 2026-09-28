@@ -41,11 +41,12 @@ the learner's Linux user and can have wider filesystem/network access.
 | `documentation.py` | Explicit allowlist of documents presented in the app |
 | `web/app.js` | Hash routing, labs, tools, learning diagrams, authored simulations |
 | `web/programme.js` | Rules, settings, model preferences, inventory, document renderer |
+| `web/session.js` | Optional first-session route and temporary manual handover checklist |
 | `web/style.css`, `web/icon.svg` | Local visual assets; no CDN or frontend build |
 | `logos.py`, `web/logos/` | Explicit product-to-SVG mappings and bundled assets/provenance; text fallback for unmatched tools |
 | `tests/`, `scripts/smoke.mjs` | Unit/HTTP tests and isolated Chromium integration checks |
 
-`programme.js` loads before `app.js`; its functions use shared app globals only
+`programme.js` and `session.js` load before `app.js`; their functions use shared app globals only
 after bootstrap. Preserve that ordering. Templates escape untrusted text with
 `esc`; do not insert project names, provider responses or model IDs as raw HTML.
 Keep dependencies minimal; the backend uses Python's standard library only.
@@ -69,6 +70,22 @@ baseline, not detection of the current image. Recheck installed defaults,
 active bindings and the official manual when preparing a new laptop image.
 
 ## Data and lifecycle
+
+The offline routes #first-session and #finish-session use the single curated
+content/session_guides.json source, provided by bootstrap as session_guides.
+They are reachable before acknowledgement and from persistent header links,
+the launchpad/Learn starting route and search. They do not launch tools or
+create projects automatically; existing project/action gates still apply.
+
+Finish-session ticks live only in a JavaScript Set for the current tab,
+survive in-tab navigation and reset on reload. They are not stored in browser
+storage or sent to the server, and do not affect learning bookmarks. The
+explicit Forget keys held by Labs button reuses /api/configuration/forget;
+it does not require acknowledgement. On failure it makes no removal claim.
+Successful forgetting does not auto-tick a step or verify external sign-out.
+No new logout, process termination, revocation, reset or deletion API exists.
+Guide links and strings render as escaped, locally curated content. Guide
+fingerprints are included as guide:<id> in the editorial inventory.
 
 Default data root: `~/.local/share/aisi-labs-2/`. Display branding is independent
 of this stable identifier. `--data-dir` gives tests a temporary isolated root.

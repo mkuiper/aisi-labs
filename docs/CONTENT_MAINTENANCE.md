@@ -12,6 +12,7 @@ review without introducing a CMS or cloud service.
 - content/web_chats.json: curated web/media profiles and destinations; links are not approval endorsements.
 - content/resources.json: benchmark and research-discovery resources, reading guidance and primary method links.
 - content/omarchy_help.json: offline desktop cheat sheet, shortcut/version baseline and beginner practice; reviewed as help:omarchy.
+- content/session_guides.json: optional first-session route and manual finish checklist; reviewed as guide:first-session and guide:finish-session. Keep internal links, timing caveats and credential/handover limits aligned with the app.
 - templates.py: authored public starter files, including fictional datasets.
 - docs/: learner/programme material and engineering handover.
 - web/app.js and web/programme.js: illustrated explanations and interactive teaching components.
@@ -21,7 +22,7 @@ review without introducing a CMS or cloud service.
 
 ## Review records
 
-Desktop help, each lesson, web/media profile, resource, lab, registered in-app document and the starter
+Session guides, desktop help, each lesson, web/media profile, resource, lab, registered in-app document and the starter
 template bundle has a stable review identifier. A SHA-256 fingerprint detects
 changes since its record was written. It is not a security signature or a test
 of factual accuracy. Revision numbers count content changes, not model releases.

@@ -8,6 +8,13 @@ Input ONLY public information. Do not paste, upload, photograph, dictate, mount 
 
 ## Choose your starting point
 
+The optional First 20 minutes route is available on the launchpad and in the
+header. It connects desktop orientation, one prepared tool, the existing first
+project and result checking. The time is a suggestion, not a deadline; account
+setup and the full project may need longer. Without a ready account or network,
+use the terminal simulation or inspect the supplied starter and brief offline.
+That is preparation, not a completed AI generation task.
+
 - New to AI: read Chatbots, agents & harnesses, then try Your first agent session.
 - New to terminals: practise pwd, ls, cd and cat in the simulated terminal. That simulation does not execute commands or access your real files.
 - Ready to build: open Experiments and choose the consultation explorer or data story. Each creates a separate folder containing a brief and source data.
@@ -37,6 +44,13 @@ Never paste a key into a chat, skill, memory file, source code or screenshot. Do
 - Watch costs; repeated agent steps can produce multiple model requests.
 
 ## End your session
+
+Open Finish session from the persistent header link. It provides separate
+checks for saving work, stopping tools, Labs-held keys, external sign-out and
+device handover. Ticks are temporary self-reports in this browser tab, reset
+on reload, and do not verify any external action. You may clear the ticks
+without deleting work. The only automated action is explicitly forgetting
+keys held by Labs, using the same operation as Configuration.
 
 Use Forget all keys in Configuration, close running AI tools and sign out of any tool accounts when handing the laptop to someone else. Removing keys from Labs does not revoke them at the provider or erase credentials a tool saved itself. Follow the local reset procedure for shared devices. Your projects and progress belong to the Linux account; a shared account is not private storage between learners.
 

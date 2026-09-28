@@ -17,6 +17,12 @@ Fullscreen and close-window controls are presented first, with save-work
 cautions. Learn questions use practical scenarios and choice-specific
 explanations; they are optional and do not record answers or scores.
 
+First 20 minutes offers an optional route through the existing first project,
+including offline preparation. Finish session separates manual handover steps
+from the explicit local key-forgetting action; it cannot certify logout or
+device readiness. The improvement schedule sets proposed pilot and deployment
+gates, not approved dates or automatically scheduled work.
+
 ## Creative media and keeping current
 
 Web & media includes image/video learning profiles and a no-install workflow

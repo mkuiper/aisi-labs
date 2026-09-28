@@ -1,5 +1,30 @@
 # Learning material history
 
+## 2026-09-28 — optional first session and manual handover
+
+- Added guide:first-session and guide:finish-session from one versioned JSON
+  source. The first route connects existing programme rules, desktop help,
+  simulation, tool setup and the first-project exercise; its approximate timing
+  excludes unpredictable setup and allows offline preparation without claiming
+  AI generation. No existing lesson or lab IDs changed.
+- The finish guide separates saving work, stopping tasks, Labs-held keys,
+  external sign-out and facilitator handover. Its ticks are temporary
+  self-reports, never evidence of device clearance. The only explicit operation
+  reuses local key-forgetting, with no claim of revocation or external logout.
+- Primary sources for this authored local workflow: server.py acknowledgement,
+  project/bootstrap and forget routes; configuration.py status/forget semantics;
+  catalogue.py first-steps activity; templates.py public starter brief; existing
+  learner, credential, programme and deployment guides. Inspected these against
+  rendered pages and isolated tests, without live accounts, provider calls,
+  real desktop actions, network checks or timed learner trials.
+- Added a proposed improvement schedule in Programme & guides with stages,
+  owner roles and acceptance gates. Weeks are relative to an agreed kickoff;
+  later pilots, accounts, budgets, infrastructure and distribution still require
+  separate decisions. No scheduler, remote publication or image build added.
+- Advanced the learner/programme documentation revisions without clearing
+  their prior full-review debt. Reviewed maintenance inventory changes and the
+  new authored guides/schedule; unrelated content review dates are unchanged.
+
 ## 2026-09-28 — professional tone and scenario-based learning checks
 
 - Read all fourteen Learn lessons and their associated diagrams/interactions.

@@ -175,18 +175,18 @@
     "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained."
   },
   "doc:programme": {
-    "revision": 5,
+    "revision": 6,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "bf5d2b415c07ca5be76c006d7bd8463f53c8772c9f68258f27efa32143b2138e",
-    "notes": "Added source-backed device-restriction boundary and advanced revision. Full programme source/exercise review remains pending; baseline fingerprint and absent review date intentionally retained. Added creative-media/current-awareness scope; full legacy review remains pending. Added beginner desktop-help orientation; full review still pending. Editorial follow-up 2026-09-28: replaced pretend-terminal wording and described priority window controls and unscored scenario checks. Full charter review remains pending."
+    "notes": "Added source-backed device-restriction boundary and advanced revision. Full programme source/exercise review remains pending; baseline fingerprint and absent review date intentionally retained. Added creative-media/current-awareness scope; full legacy review remains pending. Added beginner desktop-help orientation; full review still pending. Editorial follow-up 2026-09-28: replaced pretend-terminal wording and described priority window controls and unscored scenario checks. Full charter review remains pending. Added first/finish-session guidance and proposed improvement stages on 2026-09-28; checked against local implementation. No external sign-out or live learner acceptance. Existing full-review debt and earlier fingerprint/date retained."
   },
   "doc:learner": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "91d748434910f4ccaf8e18d242948664e2cf711e4003b06ab10bfa4893b6d16b",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Added first/finish-session guidance and proposed improvement stages on 2026-09-28; checked against local implementation. No external sign-out or live learner acceptance. Existing full-review debt and earlier fingerprint/date retained."
   },
   "doc:deployment": {
     "revision": 1,
@@ -224,11 +224,11 @@
     "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
   },
   "doc:content-maintenance": {
-    "revision": 4,
+    "revision": 5,
     "reviewed_at": "2026-09-28",
     "review_after_days": 90,
-    "sha256": "78d65116b2ca91cb06b04ddfd895bd6ee3bba7f984a2471b2187d2e1a5cab314",
-    "notes": "Read full guide; reviewed the added desktop-help source, fingerprint coverage, 90-day interval and image-release checks. No scheduled monitoring or unrelated source reviews. Follow-up 2026-09-28: reviewed editorial standards for adult learners, aligned per-choice explanations, unscored attempts and honest partial-review metadata against the implemented UI and inventory."
+    "sha256": "ebed46f979ee1d0bb79576cb1e2ba8b37fad6974b9af8ce806aa4d010b1676be",
+    "notes": "Read full guide; reviewed the added desktop-help source, fingerprint coverage, 90-day interval and image-release checks. No scheduled monitoring or unrelated source reviews. Follow-up 2026-09-28: reviewed editorial standards for adult learners, aligned per-choice explanations, unscored attempts and honest partial-review metadata against the implemented UI and inventory. Added first/finish-session guidance and proposed improvement stages on 2026-09-28; checked against local implementation. No external sign-out or live learner acceptance."
   },
   "chat:qwen-chat": {
     "revision": 1,
@@ -334,5 +334,26 @@
     "review_after_days": 90,
     "sha256": "8f7df54d53c621e108551577313f4fa48044a08848bea1be23b730ea6d3dd069",
     "notes": "Read official Omarchy hotkeys/navigation/Windows-Mac transition docs, installed 4.0.4-1 Lua defaults and user overrides; inspected active bindings with hyprctl read-only. Authored exercise and diagram inspected; no real keyboard actions, locking, closure or hardware acceptance. Recheck on each image release. Follow-up 2026-09-28: promoted fullscreen and close, inspected the official hotkeys page, installed defaults and active Super+F/Super+W bindings read-only; reviewed authored practice. No actual window actions or hardware acceptance."
+  },
+  "guide:first-session": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 90,
+    "sha256": "d71202310f717beaf5855d4a4f1be193aa37d67b569e25fb21d5ad178f13330e",
+    "notes": "Authored and inspected 2026-09-28 against local primary sources: server/configuration endpoints, project templates, programme/learner/deployment guidance and UI implementation. Scoped local app guidance/planning, not provider-specific advice. No live accounts, model calls, desktop actions, network verification or timed learner pilot. Future phases are proposals, not scheduled or authorised operations."
+  },
+  "guide:finish-session": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 90,
+    "sha256": "dafb2e78e6f15e4d8bea7d5d82dba41746dc637776fb279f30ef14b4cb6617dc",
+    "notes": "Authored and inspected 2026-09-28 against local primary sources: server/configuration endpoints, project templates, programme/learner/deployment guidance and UI implementation. Scoped local app guidance/planning, not provider-specific advice. No live accounts, model calls, desktop actions, network verification or timed learner pilot. Future phases are proposals, not scheduled or authorised operations."
+  },
+  "doc:improvement-schedule": {
+    "revision": 1,
+    "reviewed_at": "2026-09-28",
+    "review_after_days": 90,
+    "sha256": "6269877d96bfd15e097766f80ab0ccc0ef5e444556c8525f2579bc82acca660c",
+    "notes": "Authored and inspected 2026-09-28 against local primary sources: server/configuration endpoints, project templates, programme/learner/deployment guidance and UI implementation. Scoped local app guidance/planning, not provider-specific advice. No live accounts, model calls, desktop actions, network verification or timed learner pilot. Future phases are proposals, not scheduled or authorised operations."
   }
 }

@@ -6,11 +6,33 @@ import sys
 import unittest
 from urllib.parse import urlsplit
 
-from catalogue import LABS, LESSONS, WEB_CHATS, RESOURCES, OMARCHY_HELP
+from catalogue import LABS, LESSONS, WEB_CHATS, RESOURCES, OMARCHY_HELP, SESSION_GUIDES
 from content_review import ROOT, fingerprint, learning_units, review_report
 
 
 class ContentTests(unittest.TestCase):
+    def test_session_guides_are_versioned_local_routes_with_clear_limits(self):
+        self.assertEqual({guide['id'] for guide in SESSION_GUIDES}, {'first-session','finish-session'})
+        allowed = {'#programme','#omarchy-help','#learn/terminal','#configuration',
+                   '#lab/first-steps','#projects','#finish-session','#docs/credentials','#docs/deployment'}
+        for guide in SESSION_GUIDES:
+            self.assertIn('guide:' + guide['id'], learning_units())
+            self.assertEqual(len(guide['steps']), 5)
+            self.assertEqual(len({step['id'] for step in guide['steps']}), 5)
+            for phrase in ['ONLY public information', 'OFFICIAL', 'NEVER']:
+                self.assertIn(phrase, guide['boundary'])
+            for step in guide['steps'] + ([guide['offline']] if 'offline' in guide else []):
+                self.assertTrue(step['title'] and step['body'])
+                for label, destination in step['links']:
+                    self.assertTrue(label)
+                    self.assertIn(destination, allowed)
+        first, finish = SESSION_GUIDES
+        self.assertEqual(sum(step['minutes'] for step in first['steps']), 20)
+        self.assertIn('can take longer', first['intro'])
+        self.assertIn('not AI-generated work', first['offline']['body'])
+        self.assertIn('not an automatic logout', finish['intro'])
+        self.assertIn('reset on reload', finish['intro'])
+
     def test_desktop_help_is_versioned_plain_content_with_sources(self):
         self.assertIn('help:omarchy', learning_units())
         self.assertIn('4.0.4-1', OMARCHY_HELP['baseline'])

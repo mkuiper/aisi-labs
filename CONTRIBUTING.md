@@ -9,6 +9,7 @@ and all public-only/no-government-network boundaries.
 python3 -m unittest discover -s tests -v
 node --check web/app.js
 node --check web/programme.js
+node --check web/session.js
 node scripts/smoke.mjs
 git diff --check
 ```

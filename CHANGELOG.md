@@ -1,5 +1,21 @@
 # Changes
 
+## 28 September 2026 — first-session route and finish checklist
+
+- Added optional First 20 minutes guidance, offline preparation, launchpad/Learn
+  entry points and persistent first/finish-session header links with search.
+- Added a manual finish checklist with tab-memory-only ticks and an explicit
+  Labs-key-forgetting action. Failure is visible; successful removal does not
+  claim external logout, revoke keys, stop tools or erase learner work.
+- Added a proposed improvement schedule, editorial records, learner guidance,
+  architecture notes and syntax-check coverage for the new session UI module.
+- Verification: 59 unit/HTTP tests and isolated Chromium checks passed.
+  Browser coverage includes pre-acknowledgement access and project gating,
+  keyboard checkbox use, read-only navigation/ticks, reload reset, failure/retry,
+  all-provider fake-key forgetting and unchanged projects/bookmarks/models.
+  Desktop, tablet and 320/390-pixel layouts checked; screenshots inspected.
+  No provider accounts, paid tasks, real tool closure or device reset tested.
+
 ## 28 September 2026 — Learn editorial review and window controls
 
 - Reworked all fourteen lesson questions into practical scenarios with plausible

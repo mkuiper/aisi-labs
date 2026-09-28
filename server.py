@@ -17,7 +17,7 @@ import time
 from urllib.parse import urlsplit
 import uuid
 
-from catalogue import LABS, LESSONS, TOOLS, WEB_CHATS, RESOURCES, OMARCHY_HELP
+from catalogue import LABS, LESSONS, TOOLS, WEB_CHATS, RESOURCES, OMARCHY_HELP, SESSION_GUIDES
 from content_review import review_report
 from templates import starter_files
 from configuration import Configuration
@@ -119,7 +119,7 @@ class Hub:
             progress = {}
             warnings.append(str(error))
         tools = [{**tool, "available": bool(executable(tool["command"])), "account": "Uses your tool's account and model settings; sign-in or charges may apply." if tool["category"] != "Desktop tools" else "No AI account needed to open this application."} for tool in TOOLS]
-        return {"tools": tools, "logos": logo_catalogue(), "web_chats": WEB_CHATS, "resources": RESOURCES, "omarchy_help": OMARCHY_HELP, "content_reviews": review_report(), "labs": LABS, "lessons": LESSONS, "projects": projects, "progress": progress, "warnings": warnings, "playground": str(self.scratch), "policy": POLICY, "acknowledged": self.acknowledged, "configuration": self.configuration.status(), "documents": load_documents()}
+        return {"tools": tools, "logos": logo_catalogue(), "web_chats": WEB_CHATS, "resources": RESOURCES, "omarchy_help": OMARCHY_HELP, "session_guides": SESSION_GUIDES, "content_reviews": review_report(), "labs": LABS, "lessons": LESSONS, "projects": projects, "progress": progress, "warnings": warnings, "playground": str(self.scratch), "policy": POLICY, "acknowledged": self.acknowledged, "configuration": self.configuration.status(), "documents": load_documents()}
 
     def create(self, lab_id, name):
         self.require_acknowledgement()
@@ -233,7 +233,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send_body(200, {"app": "aisi-labs-2", "root": str(ROOT)})
         if route == "/api/bootstrap":
             return self.send_body(200, self.server.hub.bootstrap())
-        allowed = {"/": "index.html", "/app.js": "app.js", "/programme.js": "programme.js", "/style.css": "style.css", "/icon.svg": "icon.svg"}
+        allowed = {"/": "index.html", "/app.js": "app.js", "/programme.js": "programme.js", "/session.js": "session.js", "/style.css": "style.css", "/icon.svg": "icon.svg"}
         allowed.update({"/logos/" + name: "logos/" + name for name in LOGO_FILES})
         if route not in allowed:
             return self.send_body(404, {"error": "Page not found."})

@@ -127,7 +127,9 @@ class HttpTests(unittest.TestCase):
         self.assertEqual(json.loads(body)['omarchy_help'], OMARCHY_HELP)
         self.assertEqual({r['id'] for r in json.loads(body)['resources']},
                          {'artificial-analysis','arena','helm','swe-bench','hf-papers'})
-        for path in ['/', '/app.js', '/programme.js', '/style.css', '/icon.svg']:
+        self.assertEqual({guide['id'] for guide in json.loads(body)['session_guides']},
+                         {'first-session', 'finish-session'})
+        for path in ['/', '/app.js', '/programme.js', '/session.js', '/style.css', '/icon.svg']:
             code, body, headers = self.request('GET', path)
             self.assertEqual(code, 200)
             self.assertIn("frame-ancestors 'none'", headers['Content-Security-Policy'])
@@ -145,6 +147,23 @@ class HttpTests(unittest.TestCase):
         code, body, _ = self.request('POST', '/api/progress', {'lesson':'terminal', 'completed':True}, self.auth())
         self.assertEqual(code, 200)
         self.assertTrue(json.loads(body)['terminal'])
+
+    def test_forget_all_needs_origin_token_but_not_acknowledgement(self):
+        hub = self.server.hub
+        hub.acknowledged = False
+        for provider in ['openai','anthropic','google']:
+            hub.configuration.set_key(provider, 'FAKE-SESSION-TEST-KEY-NOT-REAL')
+        before = hub.bootstrap()
+        self.assertEqual(self.request('POST', '/api/configuration/forget', {'provider':'all'})[0], 403)
+        self.assertTrue(all(p['configured'] for p in hub.configuration.status()['providers']))
+        code, body, _ = self.request('POST', '/api/configuration/forget', {'provider':'all'}, self.auth())
+        self.assertEqual(code, 200)
+        self.assertFalse(any(p['configured'] for p in json.loads(body)['providers']))
+        self.assertNotIn(b'FAKE-SESSION', body)
+        after = hub.bootstrap()
+        for field in ['projects','progress','acknowledged']:
+            self.assertEqual(before[field], after[field])
+        self.assertEqual(before['configuration']['models'], after['configuration']['models'])
 
     def test_logos_are_explicit_static_assets_not_an_open_directory(self):
         code, body, _ = self.request('GET', '/api/bootstrap')

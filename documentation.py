@@ -10,6 +10,7 @@ DOCUMENTS = [
     ("curriculum", "Curriculum and maintenance", "Content maintainers", "What is covered, where to find it and how to keep it current.", "CURRICULUM.md"),
     ("maintenance", "Updates, models and releases", "Facilitators and maintainers", "Model choices, version checks, stable teaching images and rollback.", "MAINTENANCE.md"),
     ("content-maintenance", "Maintaining the learning material", "Content maintainers", "Version history, editorial records and the on-demand review skill.", "CONTENT_MAINTENANCE.md"),
+    ("improvement-schedule", "Improvement schedule", "Programme and delivery teams", "Proposed stages, owners and acceptance gates from session guidance to a departmental pilot.", "IMPROVEMENT_SCHEDULE.md"),
 ]
 
 def load_documents():
