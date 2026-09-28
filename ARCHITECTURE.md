@@ -82,6 +82,10 @@ from the hub only, and checked for active/external SVG content in tests. A
 capturing error listener restores a text badge if loading fails; no inline
 event handlers or third-party asset requests are introduced. CLI and chatbot
 logo mappings are distinct, so GitHub Copilot is not used for Microsoft Copilot.
+All eight desktop entries have local icons. Terminal uses Ghostty (the actual
+launcher); Files uses an authored generic folder because xdg-open selects the
+system default. SVG tests allow the passive masks/filters in native VS Code
+artwork, never scripts, external images or embedded HTML.
 
 POST routes: `/api/acknowledge`, `/api/projects`, `/api/checks`, `/api/progress`,
 `/api/launch`, `/api/configuration/key`, `/api/configuration/forget`,
@@ -133,6 +137,9 @@ DeepSeek is reference-only with a null destination: both cards and the dialog
 guard refuse a launch. This is an educational UI decision, not an OS/network
 block. Device restrictions may apply even on the separate learning network.
 Profiles are fingerprinted as chat:<id> units; keep source-review limits explicit.
+Optional risk_checks contain plain-text titles/bodies and cited source pairs,
+rendered as an escaped checklist. Hugging Face uses this for repository-code,
+file-format, scanner, demo-hosting and licence boundaries; no model is executed.
 
 Bootstrap also provides per-item content review metadata. Existing stable lesson
 IDs are preserved. New JSON lessons are appended by catalogue.py, while original

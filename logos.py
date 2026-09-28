@@ -10,6 +10,14 @@ TOOL_LOGOS = {
     "cursor": "cursor.svg",
     "grok": "grok.svg",
     "hermes": "hermesagent.svg",
+    "terminal": "ghostty.svg",
+    "editor": "vscode.svg",
+    "files": "folder.svg",
+    "blender": "blender.svg",
+    "libreoffice": "libreoffice.svg",
+    "pinta": "pinta.svg",
+    "obsidian": "obsidian.svg",
+    "obs": "obsstudio.svg",
 }
 CHAT_LOGOS = {
     "chatgpt": "openai.svg",

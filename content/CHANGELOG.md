@@ -1,5 +1,12 @@
 # Learning material history
 
+## 2026-09-28 — Hugging Face risk guidance
+
+- Revised only chat:huggingface (revision 2), using current Hugging Face primary documentation: Model Hub, security, pickle scanning, Transformers model loading, safetensors, Spaces networking and model cards. URLs are attached to the profile/checklist.
+- Explained that loading pickle/custom model code can execute code, scan results are not assurance, safetensors does not approve surrounding code, and Spaces can communicate with external services.
+- Added practical stop/check guidance for publishers, exact revisions, file types, rights, credentials and applicable product restrictions. These are risk mechanisms and learning boundaries, not an allegation that every repository is malicious.
+- Reworked the exercise to inspect documentation/file lists only, with no download, execution, demo use, live login or model call. Other profiles and legacy review debt remain unchanged.
+
 ## 2026-09-28 — useful, critical tool profiles
 
 - Expanded all seven existing chat entries and added Qwen Chat, Hugging Face Models and a reference-only DeepSeek case study. Each has an authored public exercise, practical uses, limitations, openness/hosting distinctions and source links.

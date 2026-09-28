@@ -1,5 +1,12 @@
 # Changes
 
+## 28 September 2026 — desktop icons and Hugging Face safeguards
+
+- Added local icons for all eight desktop tools; Terminal matches Ghostty, while Files uses a generic folder for the system-selected file manager.
+- Preserved pinned collection licences, native artwork attribution and text fallbacks. No remote icon requests or new tool integrations.
+- Expanded the Hugging Face learning profile with a source-backed checklist covering executable model files/custom code, scan limitations, hosted demo data flows, provenance, licences and restricted products. The exercise remains read-only, with no downloads or execution.
+- Verification: 52 unit/HTTP tests, JavaScript syntax checks, offline review metadata audit and isolated Chromium workflows passed. Desktop icons and the mobile Hugging Face checklist were visually inspected; no real desktop tools or provider services were launched.
+
 ## 28 September 2026 — sourced web-tool profiles and open-model directory
 
 - Added ten local learning profiles with suggested uses, public exercises, limitations, hosting/openness distinctions, attributed concerns and review dates.

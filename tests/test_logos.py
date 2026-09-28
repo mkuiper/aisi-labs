@@ -26,8 +26,18 @@ class LogoTests(unittest.TestCase):
         self.assertNotEqual(TOOL_LOGOS['codex'], CHAT_LOGOS['chatgpt'])
         self.assertNotIn('omp', TOOL_LOGOS)  # Not Pi.
 
+    def test_every_desktop_entry_has_an_appropriate_icon(self):
+        desktop = {t['id'] for t in TOOLS if t['category']=='Desktop tools'}
+        self.assertEqual(len(desktop), 8)
+        self.assertLessEqual(desktop, TOOL_LOGOS.keys())
+        self.assertEqual(TOOL_LOGOS['files'], 'folder.svg')  # System default, not a fixed file manager.
+        self.assertEqual(TOOL_LOGOS['terminal'], 'ghostty.svg')
+
     def test_svg_assets_are_passive_local_artwork(self):
         allowed = {'svg','title','path','g','defs','linearGradient','radialGradient','stop','rect','circle','ellipse','polygon','polyline','line','clipPath'}
+        # Passive visual effects used by the native VS Code artwork; no feImage,
+        # scripts, animation, foreignObject or externally loaded resources.
+        allowed |= {'mask','filter','feFlood','feColorMatrix','feOffset','feGaussianBlur','feBlend'}
         for name in LOGO_FILES:
             with self.subTest(name=name):
                 body = (ROOT/'web/logos'/name).read_text()

@@ -90,6 +90,13 @@ try{
     assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-09-28")'));
     assert(await evaluate('document.querySelectorAll(".sources a").length>0'));
     assert.equal(await evaluate('document.querySelector(".nav-link[aria-current]").hash'),'#web-chats');
+    if(id==='huggingface'){
+      assert.equal(await evaluate('document.querySelectorAll(".risk-checks li").length'),4);
+      assert(await evaluate('document.querySelector(".risk-checks").textContent.includes("trust_remote_code=True")'));
+      assert(await evaluate('document.querySelector(".risk-checks").textContent.includes("not a safety certificate")'));
+      assert(await evaluate('[...document.querySelectorAll(".risk-checks a")].every(a=>new URL(a.href).hostname==="huggingface.co"&&a.rel==="noopener noreferrer")'));
+      await screenshot('huggingface-risks-desktop');
+    }
     if(id==='deepseek'){
       assert.equal(await evaluate('document.querySelectorAll("[data-web-chat]").length'),0);
       await evaluate('webChatDialog("deepseek")');
@@ -110,9 +117,10 @@ try{
   assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("That’s it")'));
   await screenshot('open-models-desktop');
 
-  await go('#tools');await checkLogos(9);await screenshot('tool-logos-desktop');
+  await go('#tools');await checkLogos(17);await screenshot('tool-logos-desktop');
   await click('[data-filter="Desktop tools"]');
   assert.equal(await evaluate('document.querySelectorAll(".tool-card").length'),8);
+  await checkLogos(8);await screenshot('desktop-tool-logos');
   await click('[data-tool="terminal"]');
   assert(await evaluate('document.querySelector("#modal").open'));
   // Do not submit the launch form: no external app/account interaction in smoke tests.
@@ -197,6 +205,8 @@ try{
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
   for(const hash of ['#home','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
   await go('#web-tool/perplexity');await screenshot('tool-profile-mobile');
+  await go('#web-tool/huggingface');await noOverflow('mobile Hugging Face risks');await screenshot('huggingface-risks-mobile');
+  await go('#tools');await click('[data-filter="Desktop tools"]');await checkLogos(8);await noOverflow('mobile desktop logos');
   await go('#home');await screenshot('launchpad-mobile');
   assert.deepEqual(errors,[],'Browser errors');
   assert.equal(serverErrors,'','Server errors');

@@ -187,22 +187,80 @@
     "id": "huggingface",
     "name": "Hugging Face Models",
     "url": "https://huggingface.co/models",
-    "description": "Browse model cards, release files and licences. This is a model library, not one chatbot.",
+    "description": "Explore model cards and licences—not a vetted software store. Start with reading, not downloads or demos.",
     "mark": "H",
     "colour": "clay",
     "kind": "library",
     "openness": "A hub contains releases with different licences and levels of openness. Being listed does not certify a model as open-source, safe or suitable.",
     "useful_for": "Learn to identify the publisher, intended task, licence, limitations and hardware requirements before selecting a model.",
-    "exercise": "Browse a model card without downloading anything. Write down its publisher, licence and stated limitations. Note any missing information rather than guessing.",
-    "limits": "Community descriptions and benchmark tables need scrutiny. Downloads can be large; some workflows execute repository code. Do not run unfamiliar install commands or enable remote code casually.",
-    "considerations": "Repository availability is not publisher verification or agency approval. Check provenance, model-card completeness, licence restrictions and whether a demo sends data to an external host. Do not download restricted products through another hosting site.",
+    "exercise": "Without downloading or running anything, inspect a model card and file list. Record the publisher, exact revision, licence, file formats, custom-code requirements and scan warnings. Mark anything unknown. Explain why a clean scan or a safetensors file alone cannot approve the whole workflow.",
+    "limits": "Model cards, benchmark tables and popularity are not independent assurance. Downloads may be large, and an old laptop may not have enough memory. A repository's licence, code, model behaviour and hosting arrangements each need separate checks.",
+    "considerations": "Treat community repositories and demos as untrusted until reviewed. Hugging Face provides security checks, but its documentation explicitly warns that scanning is not foolproof and custom model code can be malicious. Being hosted on the Hub is not government approval. Start by reading model cards; ask your facilitator before downloading weights, running commands or entering data into a demo.",
     "sources": [
       [
         "Hugging Face: the Model Hub",
-        "https://huggingface.co/docs/hub/en/models-the-hub"
+        "https://huggingface.co/docs/hub/models-the-hub"
+      ],
+      [
+        "Hugging Face: security features",
+        "https://huggingface.co/docs/hub/security"
+      ],
+      [
+        "Hugging Face: loading and custom model precautions",
+        "https://huggingface.co/docs/transformers/models"
+      ],
+      [
+        "Hugging Face: pickle risks and scanner limitations",
+        "https://huggingface.co/docs/hub/security-pickle"
+      ],
+      [
+        "Hugging Face: Spaces and networking",
+        "https://huggingface.co/docs/hub/spaces-overview"
+      ],
+      [
+        "Hugging Face: model cards and licence metadata",
+        "https://huggingface.co/docs/hub/model-cards"
+      ],
+      [
+        "Hugging Face: safetensors format",
+        "https://huggingface.co/docs/safetensors/index"
       ]
     ],
-    "source": "https://huggingface.co/docs/hub/en/models-the-hub"
+    "source": "https://huggingface.co/docs/hub/en/models-the-hub",
+    "risk_checks": [
+      {
+        "title": "Loading can execute code",
+        "body": "Some model files use Python pickle, which can execute code when loaded. trust_remote_code=True permits repository-supplied model code to run. Do not enable it or run copied install/notebook commands just to make an example work. A reviewed, pinned revision limits unexpected changes; it does not make malicious code safe.",
+        "source": [
+          "Hugging Face: loading and custom model precautions",
+          "https://huggingface.co/docs/transformers/models"
+        ]
+      },
+      {
+        "title": "A scan badge is not a safety certificate",
+        "body": "An unflagged file may still be unsafe. Prefer safetensors where supported to avoid pickle's code-loading mechanism, but that does not validate surrounding scripts, dependencies, model behaviour or data rights. Stop at a warning or an unclear file format and ask for review.",
+        "source": [
+          "Hugging Face: pickle risks and scanner limitations",
+          "https://huggingface.co/docs/hub/security-pickle"
+        ]
+      },
+      {
+        "title": "Spaces are other people's applications",
+        "body": "A Space can be a community-built app with outbound network access. Treat prompts and uploads as information supplied to its operator, potentially forwarded to another service. Check who runs it and where information goes. Never paste API tokens into an unfamiliar demo, and never send OFFICIAL or non-public material.",
+        "source": [
+          "Hugging Face: Spaces and networking",
+          "https://huggingface.co/docs/hub/spaces-overview"
+        ]
+      },
+      {
+        "title": "Open access is not permission or suitability",
+        "body": "Check the exact model's licence, provenance, intended use and limitations. Do not infer lawful training data, unbiased outputs or acceptable safeguards from a model card or download count. Device/product restrictions still apply to models obtained through a mirror or third-party host. Missing information is a reason to pause, not guess.",
+        "source": [
+          "Hugging Face: model cards and licence metadata",
+          "https://huggingface.co/docs/hub/model-cards"
+        ]
+      }
+    ]
   },
   {
     "id": "deepseek",

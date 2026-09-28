@@ -1,5 +1,39 @@
 # Reused product logos
 
+## Desktop icons — 28 September 2026
+
+All eight desktop entries now have locally bundled artwork. Product names remain
+visible and fallback text remains available. Neither inclusion nor an icon means
+endorsement, licensing approval or a verified installation.
+
+- ghostty.svg, blender.svg, libreoffice.svg, obsstudio.svg: Simple Icons 16.33.0,
+  https://unpkg.com/simple-icons@16.33.0/icons/<filename>.
+  Repository https://github.com/simple-icons/simple-icons, package commit
+  5828a6df55f0afded88fce0b94ce801903ddefe8. Shapes unchanged; explicit display
+  fills added (#3551F3, #E87D0D, #18A303, #302E31 respectively).
+  Collection licence preserved in SIMPLE-ICONS-LICENSE.txt (CC0-1.0);
+  trademarks remain with their owners.
+- obsidian.svg: unchanged Lobe Icons 1.95.1 obsidian-color.svg,
+  https://unpkg.com/@lobehub/icons-static-svg@1.95.1/icons/obsidian-color.svg.
+  MIT notice in LOBE-LICENSE.txt; same pinned repository commit as below.
+- vscode.svg: unchanged installed Visual Studio Code artwork from
+  /usr/share/code/resources/app/out/media/vscode-icon.svg,
+  visual-studio-code-bin 1.138.0-1. Microsoft product identity, not a new Labs
+  mark. Brand reference: https://code.visualstudio.com/brand. Do not assume the
+  application's source-code licence licenses Microsoft trademarks.
+- pinta.svg: installed Pinta 3.1.2-2 icon from
+  /usr/share/icons/hicolor/scalable/apps/com.github.PintaProject.Pinta.svg.
+  Preserved artwork; removed editor/RDF metadata and added a 48x48 viewBox.
+  Original SVG credits Jakub Steiner/Tango and CC BY-SA 2.0; attribution,
+  licence link and extracted metadata are preserved in PINTA-ATTRIBUTION.txt.
+- folder.svg: original simple folder drawing for this app, not a third-party
+  product logo. Files invokes the system default through xdg-open, so identifying
+  it as a specific file-manager brand would be misleading.
+
+Terminal really launches through Ghostty. These asset additions do not change
+launch commands, desktop settings or the installed applications. Verify
+applicable brand/distribution requirements before publishing a laptop image.
+
 ## Additional directory logos — 28 September 2026
 
 Seven further product marks were imported unchanged (apart from a final newline)

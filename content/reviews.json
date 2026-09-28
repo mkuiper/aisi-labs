@@ -238,11 +238,11 @@
     "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
   },
   "chat:huggingface": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 30,
-    "sha256": "0e6837e376432ee88ef43154f22393495876915ea609237d72ab5ce51c8e6786",
-    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
+    "sha256": "7bf4d9644414d7a5cd4a23df582a28600b3c44f7903435152b07a0ccc3281f8a",
+    "notes": "Reviewed Hugging Face Hub, security/pickle scanning, Transformers model loading, safetensors, Spaces networking and model-card primary documentation. Added actionable risk checks and a no-download exercise. No model, repository code, hosted demo, login or credential use tested. Other profiles and legacy review debt unchanged."
   },
   "chat:deepseek": {
     "revision": 1,

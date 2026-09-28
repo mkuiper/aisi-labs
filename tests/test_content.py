@@ -79,6 +79,18 @@ class ContentTests(unittest.TestCase):
             for _, url in lesson['sources']:
                 self.assertEqual(urlsplit(url).scheme, 'https')
 
+    def test_hugging_face_has_actionable_source_backed_risk_checks(self):
+        profile = next(x for x in WEB_CHATS if x['id']=='huggingface')
+        self.assertEqual(len(profile['risk_checks']), 4)
+        for check in profile['risk_checks']:
+            self.assertTrue(check['title'] and check['body'])
+            self.assertIn(check['source'], profile['sources'])
+            self.assertEqual(urlsplit(check['source'][1]).hostname, 'huggingface.co')
+        text = json.dumps(profile)
+        for phrase in ['trust_remote_code=True', 'pickle', 'safetensors', 'outbound network',
+                       'not government approval', 'Without downloading or running']:
+            self.assertIn(phrase, text)
+
     def test_audit_is_read_only_and_strict_reports_review_debt(self):
         path = ROOT / 'content/reviews.json'
         before = path.read_bytes()

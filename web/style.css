@@ -20,6 +20,10 @@
 .tool-profile > .mark {margin-top:24px}
 .tool-profile .sources {display:block}
 .tool-profile .sources a {display:block;margin:12px 0;overflow-wrap:anywhere}
+.risk-checks ul {padding-left:20px;margin:0}
+.risk-checks li + li {margin-top:24px}
+.risk-checks h3 {font-size:17px;margin-bottom:8px}
+.risk-checks .text-link {white-space:normal;overflow-wrap:anywhere;margin-top:8px}
 .web-chat-card h3 {margin-top:16px}
 .web-chat-card small {overflow-wrap:anywhere}
 .content-review {margin:16px 0}
