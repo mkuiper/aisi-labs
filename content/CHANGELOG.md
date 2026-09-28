@@ -1,5 +1,43 @@
 # Learning material history
 
+## 2026-09-28 — professional tone and scenario-based learning checks
+
+- Read all fourteen Learn lessons and their associated diagrams/interactions.
+  Replaced recall questions and implausible alternatives with public/fictional
+  scenarios, plausible incomplete approaches and an explanation for every choice.
+  Questions remain optional, unscored and unsaved; existing lesson IDs/bookmarks
+  and all programme information/network boundaries are unchanged.
+- Simplified lesson headings and promotional or patronising wording across
+  learning, navigation, project and programme screens. Added an explicit editorial
+  standard to the maintenance guide for subsequent human or agent reviews.
+- Promoted fullscreen (Super+F) and close (Super+W) to the top of Omarchy help;
+  included save-work/focused-window cautions, an optional fullscreen practice
+  step and a terminal-lesson explanation that shortcuts are not shell commands.
+  Checked the official hotkeys page, installed 4.0.4-1 defaults and active bindings
+  read-only. No real window actions or desktop settings changes were performed.
+- Targeted primary-source checks: Anthropic's building-effective-agents and
+  effective-context-engineering-for-ai-agents articles; MCP introduction; Agent
+  Skills overview; OpenClaw memory and agent-workspace documentation; OSI AI
+  definition; Ollama cloud documentation; Arena ranking-method explanation.
+  These support concept checks, not a new survey of current provider products.
+  Canonical links remain with lessons; additional inspection links are below.
+  GNU's Bourne-shell web page was inaccessible; installed Bash help for pwd, cd
+  and exit was used instead. No provider login, model call, download or paid
+  exercise was tested.
+- This is a scoped editorial refresh, not full factual revalidation of every
+  lesson. Lesson revisions advance but earlier full-review dates/fingerprints
+  remain, leaving changed/pending work visible. Unrelated review debt is retained.
+
+Additional inspection sources:
+
+- https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+- https://docs.openclaw.ai/concepts/memory
+- https://docs.openclaw.ai/concepts/agent-workspace
+- https://opensource.org/ai/open-source-ai-definition
+- https://docs.ollama.com/cloud
+- https://arena.ai/blog/ranking-method
+- https://omarchy.org/manual/hotkeys/
+
 ## 2026-09-28 — Omarchy first-day help
 
 - Added a single versioned desktop-help source: Super/Enter key meanings, three essential shortcuts, window/workspace and copy/paste guidance, a tiling illustration, recovery tips and an optional no-command practice. No shortcuts are intercepted or executed by Labs.

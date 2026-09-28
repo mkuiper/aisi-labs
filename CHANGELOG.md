@@ -1,5 +1,21 @@
 # Changes
 
+## 28 September 2026 — Learn editorial review and window controls
+
+- Reworked all fourteen lesson questions into practical scenarios with plausible
+  alternatives and individual explanations. Removed patronising and promotional
+  copy from lesson headings, feedback and related app screens.
+- Answers remain unscored and unsaved, with accessible selection state and
+  retries. Existing lesson identifiers and progress bookmarks are unchanged.
+- Put fullscreen and close-window shortcuts first in Omarchy help, with
+  focus/save-work cautions and matching terminal-lesson guidance.
+- Documented question-writing standards and the data/UI contract. Advanced
+  editorial revisions without clearing incomplete full-source review records.
+- Verification: 57 unit/HTTP tests, JavaScript syntax and isolated Chromium
+  checks passed, including all 42 choices, retries, unchanged bookmarks,
+  terminal navigation and desktop/tablet/mobile layouts. Screenshots inspected.
+  No live model calls, paid tasks or real desktop shortcut actions were tested.
+
 ## 28 September 2026 — beginner Omarchy help
 
 - Added persistent Omarchy help in the header, a sidebar invitation and search discovery. The offline guide explains essential keys, tiled windows/workspaces, safe copying/pasting and getting unstuck, with a route into terminal practice.

@@ -7,7 +7,7 @@
   "key_hint": "Super is usually the Windows-logo key on a PC keyboard, or Command on an Apple keyboard. Return means Enter. A plus sign means hold the keys together—do not type the + character. Release them after the action.",
   "groups": [
     {
-      "title": "Remember these three",
+      "title": "Menus and terminal",
       "id": "essentials",
       "shortcuts": [
         {
@@ -98,7 +98,7 @@
             "F"
           ],
           "action": "Toggle fullscreen",
-          "detail": "Press the same shortcut again to return. Omarchy fullscreen is separate from an app’s own fullscreen mode."
+          "detail": "Focus the window you want to enlarge, then press Super + F. Press the same shortcut again to return to the previous layout. Omarchy fullscreen is separate from an app’s own fullscreen mode."
         },
         {
           "id": "workspace",
@@ -126,7 +126,7 @@
             "W"
           ],
           "action": "Close the active window",
-          "detail": "Save first. Closing a terminal can stop the program inside it. Closing Labs does not stop its hub or sign out of external websites."
+          "detail": "Save first, then focus the intended window and press Super + W. Closing a terminal can stop the program inside it. Closing Labs does not stop its hub or sign out of external websites."
         }
       ]
     },
@@ -185,10 +185,11 @@
     }
   ],
   "practice": {
-    "title": "A one-minute, no-command practice",
+    "title": "Window navigation practice",
     "steps": [
       "Note your current workspace. Open the Omarchy menu and search for AISI AI Labs, then dismiss it with Escape without launching a second copy.",
       "Open a terminal with Super + Enter. Notice how the windows share the workspace. Do not type a command.",
+      "With the new empty terminal focused, press Super + F to make it fullscreen. Press Super + F again to return to the previous layout.",
       "Use Alt + Tab to return to Labs. If you wish to close the new empty terminal, focus it first and press Super + W. Do not close a terminal that is doing work."
     ],
     "check": "You can find Labs, identify the focused window and return to the guide. This is an optional authored exercise; desktop actions have not been automated or tested on every laptop."
@@ -207,5 +208,9 @@
       "Omarchy navigation",
       "https://omarchy.org/manual/navigation/"
     ]
+  ],
+  "priority_shortcuts": [
+    "fullscreen",
+    "close"
   ]
 }

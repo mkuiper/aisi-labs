@@ -26,6 +26,9 @@ class ContentTests(unittest.TestCase):
         self.assertEqual(indexed['menu']['keys'], ['Super','Space'])
         self.assertEqual(indexed['apps']['keys'], ['Super','Alt','Space'])
         self.assertEqual(indexed['bindings']['keys'], ['Super','K'])
+        self.assertEqual(OMARCHY_HELP['priority_shortcuts'], ['fullscreen','close'])
+        self.assertEqual(indexed['fullscreen']['keys'], ['Super','F'])
+        self.assertEqual(indexed['close']['keys'], ['Super','W'])
         self.assertIn('Save first', indexed['close']['detail'])
         self.assertIn('OFFICIAL', OMARCHY_HELP['boundary'])
         self.assertIn('NEVER', OMARCHY_HELP['boundary'])
@@ -101,6 +104,24 @@ class ContentTests(unittest.TestCase):
             self.assertGreater(len(lesson['sections']), 3)
             for _, url in lesson['sources']:
                 self.assertEqual(urlsplit(url).scheme, 'https')
+
+    def test_every_lesson_has_choice_specific_explanations(self):
+        for lesson in LESSONS:
+            with self.subTest(lesson=lesson['id']):
+                self.assertEqual(len(lesson['options']), 3)
+                self.assertEqual(len(set(lesson['options'])), 3)
+                self.assertEqual(len(lesson['option_feedback']), 3)
+                self.assertEqual(len(set(lesson['option_feedback'])), 3)
+                self.assertEqual(lesson['feedback'], lesson['option_feedback'][lesson['correct']])
+                self.assertTrue(all(isinstance(text, str) and len(text) > 40
+                                    for text in lesson['option_feedback']))
+
+    def test_terminal_lesson_distinguishes_shortcuts_from_shell_commands(self):
+        terminal = next(lesson for lesson in LESSONS if lesson['id'] == 'terminal')
+        section = next(body for title, body in terminal['sections']
+                       if title == 'Fullscreen and closing a window')
+        for phrase in ['Super + F', 'Super + W', 'Save work', 'not commands to type']:
+            self.assertIn(phrase, section)
 
     def test_resources_are_reviewed_fixed_destinations_with_reading_guidance(self):
         self.assertEqual(len(RESOURCES), 5)

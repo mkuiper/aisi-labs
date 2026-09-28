@@ -1,87 +1,87 @@
 {
   "lesson:chat-agents": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "f1ca5632d5efa35e1a6153e5de3ad227423971bc846c63edfa8c9470c564e0a1",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "lesson:terminal": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "317d2540a385422bb7d518de20767d8de2777d6a26b1ba141c786d6478dea58b",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "lesson:context": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "5b0e63fcc309660d188a7bf8b8bac397745b4f9420e9ba965907db099835d23c",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "lesson:prompting": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "2cbf007d1b610bed003df54ebb4ea17acd22af789cd09fd5f58585bd48600d55",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "lesson:tools-skills": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "964089fee1e4405de1b63f93dc3bff02e5d59230e0242f8e0330ec7005e98e6d",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "lesson:checking": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "65807de7804b6f0f3399f8c023cc5214f0c7516cca969b496e2e5d0d9c4c8002",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "lesson:memory": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "77253fa36e45613f69979504417492cd68b7cf12437356ccf316fa4bb8a5e9c6",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "lesson:identity": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "9a73e2784169e26cbfea83c61e1fbb8ea8828811b1379955bb376ce2307c197e",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "lesson:responsible-use": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "2d772af97bc72c32a92ebd5d8c19562e7b41e10bea83422c664ab367f259c8c6",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "lesson:models-costs": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "72a55781c56f1f1472a69277150137574931b60f5a71a45f514d7f9fbd15f084",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "lesson:web-chat": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 90,
     "sha256": "00bf779e22a205b5c3d95847636a9595302745bd1222e5a5e12a9dc26470bd18",
-    "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained."
+    "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "lesson:open-models": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 90,
     "sha256": "d98aa8107e9330f6896f0baf838f85c7dcf4448b3c067f312e854a43d4688f76",
-    "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained."
+    "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "chat:chatgpt": {
     "revision": 2,
@@ -175,11 +175,11 @@
     "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained."
   },
   "doc:programme": {
-    "revision": 4,
+    "revision": 5,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "bf5d2b415c07ca5be76c006d7bd8463f53c8772c9f68258f27efa32143b2138e",
-    "notes": "Added source-backed device-restriction boundary and advanced revision. Full programme source/exercise review remains pending; baseline fingerprint and absent review date intentionally retained. Added creative-media/current-awareness scope; full legacy review remains pending. Added beginner desktop-help orientation; full review still pending."
+    "notes": "Added source-backed device-restriction boundary and advanced revision. Full programme source/exercise review remains pending; baseline fingerprint and absent review date intentionally retained. Added creative-media/current-awareness scope; full legacy review remains pending. Added beginner desktop-help orientation; full review still pending. Editorial follow-up 2026-09-28: replaced pretend-terminal wording and described priority window controls and unscored scenario checks. Full charter review remains pending."
   },
   "doc:learner": {
     "revision": 1,
@@ -224,11 +224,11 @@
     "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
   },
   "doc:content-maintenance": {
-    "revision": 3,
+    "revision": 4,
     "reviewed_at": "2026-09-28",
     "review_after_days": 90,
-    "sha256": "10c212b8534cc1d5f1390a1776ed59d8d6242dee2c26b77a16d37d73c4baef17",
-    "notes": "Read full guide; reviewed the added desktop-help source, fingerprint coverage, 90-day interval and image-release checks. No scheduled monitoring or unrelated source reviews."
+    "sha256": "78d65116b2ca91cb06b04ddfd895bd6ee3bba7f984a2471b2187d2e1a5cab314",
+    "notes": "Read full guide; reviewed the added desktop-help source, fingerprint coverage, 90-day interval and image-release checks. No scheduled monitoring or unrelated source reviews. Follow-up 2026-09-28: reviewed editorial standards for adult learners, aligned per-choice explanations, unscored attempts and honest partial-review metadata against the implemented UI and inventory."
   },
   "chat:qwen-chat": {
     "revision": 1,
@@ -315,24 +315,24 @@
     "notes": "Inspected linked primary directory and method/discovery documentation on 2026-09-28. Reviewed the scoped description and reading guidance, not the correctness of every live result. No account access, model calls or benchmark code execution."
   },
   "lesson:image-video": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 90,
     "sha256": "59336227129302cf107a6b44051ceef78094755ae5024e832078b5c47a8e551f",
-    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results."
+    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "lesson:reading-leaderboards": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 90,
     "sha256": "2ffc79a64606c83d8173e86a345d2e2759aa9d8946afb64df394d6d3b5d533a2",
-    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results."
+    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "help:omarchy": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-09-28",
     "review_after_days": 90,
-    "sha256": "c25fb653e6004b4c0af761e8e177b1e7af36370ccda6509ff25bf8d5414672c7",
-    "notes": "Read official Omarchy hotkeys/navigation/Windows-Mac transition docs, installed 4.0.4-1 Lua defaults and user overrides; inspected active bindings with hyprctl read-only. Authored exercise and diagram inspected; no real keyboard actions, locking, closure or hardware acceptance. Recheck on each image release."
+    "sha256": "8f7df54d53c621e108551577313f4fa48044a08848bea1be23b730ea6d3dd069",
+    "notes": "Read official Omarchy hotkeys/navigation/Windows-Mac transition docs, installed 4.0.4-1 Lua defaults and user overrides; inspected active bindings with hyprctl read-only. Authored exercise and diagram inspected; no real keyboard actions, locking, closure or hardware acceptance. Recheck on each image release. Follow-up 2026-09-28: promoted fullscreen and close, inspected the official hotkeys page, installed defaults and active Super+F/Super+W bindings read-only; reviewed authored practice. No actual window actions or hardware acceptance."
   }
 }

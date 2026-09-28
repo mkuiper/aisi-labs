@@ -53,6 +53,7 @@
 .desktop-help{max-width:960px;margin:auto}
 .desktop-help>.intro{font-size:16px;max-width:760px}
 .shortcut-essentials{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.shortcut-essentials.window-controls{grid-template-columns:repeat(2,minmax(0,1fr))}
 .shortcut-card h3{margin:18px 0 10px}
 .shortcut-keys{display:inline-flex;align-items:center;flex-wrap:wrap;gap:5px}
 .shortcut-keys kbd{font-size:12px;padding:5px 8px;color:var(--ink);background:#f5f5ee;border:1px solid #c8d0c2;border-bottom-width:3px;border-radius:5px}
@@ -69,5 +70,5 @@
 .workspace-panes strong,.workspace-panes span{display:block;font-size:13px}
 .workspace-panes span{font-size:11px;color:var(--muted);margin-top:8px}
 .workspace-example figcaption{font-size:11px;color:var(--muted);margin-top:10px}
-@media(max-width:900px){.topbar form{flex:1 1 180px;width:auto}.shortcut-essentials{grid-template-columns:1fr}}
+@media(max-width:900px){.topbar form{flex:1 1 180px;width:auto}.shortcut-essentials,.shortcut-essentials.window-controls{grid-template-columns:1fr}}
 @media(max-width:650px){.topbar{gap:10px}.topbar form{min-width:0}.desktop-help-link{padding:9px 11px}.shortcut-table td,.shortcut-table th{padding:12px 5px}.shortcut-keys{gap:3px}.shortcut-keys kbd{font-size:11px;padding:4px 5px}}

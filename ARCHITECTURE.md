@@ -159,8 +159,19 @@ Optional risk_checks contain plain-text titles/bodies and cited source pairs,
 rendered as an escaped checklist. Hugging Face uses this for repository-code,
 file-format, scanner, demo-hosting and licence boundaries; no model is executed.
 
-Bootstrap also provides per-item content review metadata. Existing stable lesson
-IDs are preserved. New JSON lessons are appended by catalogue.py, while original
+Bootstrap also provides per-item content review metadata. Lesson
+questions use options, a zero-based correct index and aligned option_feedback
+strings. Feedback is escaped plain text; the general feedback remains a fallback.
+Answer selection is page-local, permits retries and uses aria-pressed plus
+explicit text, not colour alone. It sends no answer or score to the server.
+The separate Explored bookmark retains its existing persisted semantics.
+
+The Omarchy help priority_shortcuts array references stable shortcut IDs in
+groups. Fullscreen and close render first, without duplicating them in the
+remaining tables. This is display-only guidance, not a desktop command adapter.
+
+Existing stable lesson IDs are preserved. New JSON lessons are appended by
+catalogue.py, while original
 lessons remain there as their canonical source. The offline editorial audit
 covers lesson text, chats, labs, registered documents and starter templates;
 diagrams/interactions also require manual review. See docs/CONTENT_MAINTENANCE.md

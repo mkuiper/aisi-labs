@@ -63,8 +63,12 @@ try{
   assert.equal(await evaluate('data.acknowledged'),false);
   assert.equal(await evaluate('document.querySelector("#modal").open'),false);
   assert.equal(await evaluate('document.querySelector("#omarchy-help-link").getAttribute("aria-current")'),'page');
-  assert.equal(await evaluate('document.querySelectorAll(".shortcut-card").length'),3);
+  assert.equal(await evaluate('document.querySelectorAll(".shortcut-card").length'),5);
   assert.equal(await evaluate('document.querySelectorAll("[data-shortcut]").length'),15);
+  assert.deepEqual(await evaluate('[...document.querySelectorAll(".window-controls [data-shortcut]")].map(el=>el.dataset.shortcut)'),['fullscreen','close']);
+  assert.equal(await evaluate('document.querySelector("[data-shortcut=fullscreen] .shortcut-keys").textContent'),'Super + F');
+  assert.equal(await evaluate('document.querySelector("[data-shortcut=close] .shortcut-keys").textContent'),'Super + W');
+  assert(await evaluate('document.querySelector("[data-shortcut=close]").textContent.includes("Save first")'));
   assert.equal(await evaluate('document.querySelectorAll("main button").length'),0);
   assert(await evaluate('document.querySelector("[data-shortcut=menu]").textContent.includes("Omarchy menu")'));
   assert(await evaluate('document.querySelector(".content-review").textContent.includes("4.0.4-1")'));
@@ -157,7 +161,7 @@ try{
     await go('#learn/'+id);
     assert.equal(await evaluate('document.querySelectorAll(".diagram-node").length'),3);
     await click('[data-answer="'+answer+'"]');
-    assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("That’s it")'));
+    assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("Best fit.")'));
     await screenshot(id+'-desktop');
   }
   await go('#search/Perplexity');assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),1);
@@ -165,7 +169,7 @@ try{
   assert(await evaluate('document.querySelector(".diagram").textContent.includes("Hosted runner")'));
   assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-09-28")'));
   await click('[data-answer="2"]');
-  assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("That’s it")'));
+  assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("Best fit.")'));
   await screenshot('open-models-desktop');
 
   await go('#tools');await checkLogos(17);await screenshot('tool-logos-desktop');
@@ -184,7 +188,7 @@ try{
   await click('[data-trace="1"]');
   assert(await evaluate('document.querySelector("#trace-title").textContent.includes("requests a tool")'));
   await click('[data-answer="1"]');
-  assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("That’s it")'));
+  assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("Best fit.")'));
   await click('[data-complete]');
   await waitFor('document.querySelector("[data-complete]").textContent.includes("undo")');
   await screenshot('concept-guide-desktop');
@@ -194,6 +198,12 @@ try{
   assert(await evaluate('document.querySelector("#terminal-output").textContent.includes("/practice/my-project")'));
   await click('[data-command="cd examples"]');await click('[data-command="pwd"]');
   assert(await evaluate('document.querySelector("#terminal-output").textContent.includes("/practice/my-project/examples")'));
+  await click('[data-command="cat BRIEF.md"]');
+  assert(await evaluate('document.querySelector("#terminal-output").textContent.trim().endsWith("File or folder not found in the current simulated folder. Use pwd and ls to check the location.")'));
+  await click('[data-command="cd .."]');await click('[data-command="pwd"]');
+  assert(await evaluate('document.querySelector("#terminal-output").textContent.trim().endsWith("/practice/my-project")'));
+  await click('[data-command="cat BRIEF.md"]');
+  assert(await evaluate('document.querySelector("#terminal-output").textContent.includes("Build a welcome page for a fictional community learning day.")'));
   await evaluate('document.querySelector("#terminal-command").value="touch forbidden";document.querySelector("#terminal-form").requestSubmit()');
   assert(await evaluate('document.querySelector("#terminal-output").textContent.includes("Nothing was executed")'));
 
@@ -214,7 +224,7 @@ try{
   await cdp('Page.reload');await waitFor('!!document.querySelector("[data-check]")');
   assert(await evaluate('document.querySelectorAll("[data-check]")[0].checked'));
   await go('#learn/chat-agents');assert(await evaluate('document.querySelector("[data-complete]").textContent.includes("undo")'));
-  await go('#search/terminal');assert(await evaluate('document.querySelector("main").textContent.includes("A terminal, without the mystery")'));
+  await go('#search/terminal');assert(await evaluate('document.querySelector("main").textContent.includes("Using the terminal")'));
   await go('#projects');assert.equal(await evaluate('document.querySelectorAll(".project-row").length'),5);
 
   await go('#configuration');
@@ -247,10 +257,25 @@ try{
   await screenshot('programme-desktop');
   for(const id of ['programme','learner','deployment','credentials','curriculum','maintenance','open-models','content-maintenance']){await go('#docs/'+id);assert(await evaluate('document.querySelector(".document-reader").textContent.length>1000'));}
 
+  // Every answer must explain that choice, allow a retry and leave bookmarks unchanged.
+  const progressBeforeQuiz=await evaluate('JSON.stringify(data.progress)');
   // Exercise every guide and both keyboard-sized and narrow viewports.
   for(const id of ['chat-agents','terminal','context','prompting','tools-skills','checking','memory','identity','responsible-use','models-costs','web-chat','open-models','image-video','reading-leaderboards']){
     await go('#learn/'+id);assert.equal(await evaluate('document.querySelectorAll(".quiz-option").length'),3);await noOverflow('guide '+id);
+    const lesson=await evaluate('data.lessons.find(x=>x.id==='+JSON.stringify(id)+')');
+    assert.equal(await evaluate('document.querySelectorAll(".quiz-option[aria-pressed=true]").length'),0);
+    for(const answer of [0,1,2,lesson.correct]){
+      await click('[data-answer="'+answer+'"]');
+      assert.equal(await evaluate('document.querySelector("#quiz-feedback").textContent'),(answer===lesson.correct?'Best fit. ':'Not the best fit. ')+lesson.option_feedback[answer]);
+      assert.equal(await evaluate('document.querySelectorAll(".quiz-option[aria-pressed=true]").length'),1);
+      assert.equal(await evaluate('document.querySelectorAll(".quiz-option.correct").length'),Number(answer===lesson.correct));
+      assert.equal(await evaluate('document.querySelectorAll(".quiz-option.incorrect").length'),Number(answer!==lesson.correct));
+    }
   }
+  assert.equal(await evaluate('JSON.stringify(data.progress)'),progressBeforeQuiz);
+  assert.equal(await evaluate("fetch('/api/bootstrap').then(r=>r.json()).then(d=>JSON.stringify(d.progress))"),progressBeforeQuiz);
+  await go('#learn');await screenshot('learn-index-desktop');
+  await go('#learn/memory');await click('[data-answer="0"]');await screenshot('scenario-feedback-desktop');
   await cdp('Emulation.setDeviceMetricsOverride',{width:820,height:900,deviceScaleFactor:1,mobile:false});
   for(const hash of ['#home','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
@@ -260,6 +285,7 @@ try{
   await cdp('Emulation.setDeviceMetricsOverride',{width:320,height:740,deviceScaleFactor:1,mobile:false});
   await noOverflow('Omarchy help small phone');
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
+  await go('#learn/memory');await click('[data-answer="1"]');await screenshot('scenario-feedback-mobile');await noOverflow('mobile scenario feedback');
   await go('#keep-current');await screenshot('keep-current-mobile');
   await go('#learn/image-video');await screenshot('image-video-mobile');
   await go('#web-tool/perplexity');await screenshot('tool-profile-mobile');

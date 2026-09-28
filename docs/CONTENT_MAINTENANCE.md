@@ -80,6 +80,30 @@ Any scheduled review job needs a separately agreed owner, scope and permissions.
 
 ## Editorial acceptance
 
+Write for capable adults who may be new to the tools. Use plain, direct headings
+and explain unfamiliar terms without jokes, motivational slogans or exaggerated
+praise. Introductory material need not have trivial questions.
+
+For each lesson's scenario question:
+
+- State the goal and enough context to make one choice the best fit.
+- Test applying a concept, diagnosing a problem or weighing evidence, not merely
+  remembering a label.
+- Make alternative answers plausible mistakes or incomplete approaches. Avoid
+  absurd distractors, trick wording and an obviously longer or more detailed
+  correct answer.
+- Supply an option_feedback entry for every option, explaining why it fits or
+  what it misses. Keep the entries aligned with options and correct when editing.
+- Let learners compare explanations and retry. Answers are not scored or saved;
+  the separate Explored bookmark is not an assessment result.
+- Review question quality manually. Structural tests cannot establish that a
+  question is fair, useful or unambiguous.
+
+An editorial-only pass is not a complete source/exercise review. Increment the
+revision and explain the scope without refreshing the full-review date. Retain
+the earlier fingerprint when factual/source review remains incomplete, so the
+changed status stays visible.
+
 Read current primary sources; inspect licences rather than inferring them from
 brand names; qualify model/account/cost claims; try the exercise where authorised.
 Use public or authored fictional inputs only. Record what was not tested.

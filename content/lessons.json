@@ -1,14 +1,14 @@
 [
   {
     "id": "web-chat",
-    "title": "Start with a conversation",
+    "title": "Using and comparing web chatbots",
     "subtitle": "Use regular chatbot websites and compare answers thoughtfully.",
     "minutes": 5,
     "icon": "book",
     "colour": "clay",
     "diagram": "web-chat",
     "lab": "evidence",
-    "intro": "You do not need a terminal to explore AI. A web chatbot lets you ask a question, supply public context and refine an answer through conversation. The Web chat section links to the providers’ own sites; they are separate services, not part of the local Labs app.",
+    "intro": "You do not need a terminal to explore AI. A web chatbot lets you ask a question, supply public context and refine an answer through conversation. The Web & media section links to the providers’ own sites; they are separate services, not part of the local Labs app.",
     "sections": [
       [
         "Website, model and agent are different things",
@@ -36,14 +36,14 @@
       ]
     ],
     "takeaway": "Start with a small public question, understand the site’s permissions, and check the answer yourself. Website branding is not evidence of the model, its accuracy or agency approval.",
-    "question": "You open a chatbot from Labs. What has Labs done with your project files and saved API key?",
+    "question": "Two chatbot sites produce different summaries of the same public report. One searched the web; the other used only the supplied extract. How should you interpret the comparison?",
     "options": [
-      "Uploaded both to personalise the chat.",
-      "Opened a link only; uploads and external sign-in are separate actions.",
-      "Made the external website an offline local service."
+      "Prefer the searched answer if its citations are relevant, and record that model as stronger.",
+      "Record the different evidence and tool settings, then compare fidelity against a common source.",
+      "Ask a third chatbot to choose the better summary without showing it the original report."
     ],
     "correct": 1,
-    "feedback": "The link carries no project or key. The website still has its own network, account and privacy behaviour, including any existing browser sign-in.",
+    "feedback": "A shared source and explicit criteria make the comparison more informative. Even then, a few outputs compare these observed runs, not model quality in general.",
     "sources": [
       [
         "ChatGPT: using the web interface",
@@ -53,11 +53,16 @@
         "Claude: web sign-in and product overview",
         "https://claude.ai/"
       ]
+    ],
+    "option_feedback": [
+      "Relevant citations can improve an answer, but different evidence makes this an uneven model comparison. Trace the claims and record the product settings.",
+      "A shared source and explicit criteria make the comparison more informative. Even then, a few outputs compare these observed runs, not model quality in general.",
+      "Another model’s preference can be an additional observation, but without the original source it cannot establish factual fidelity or resolve the unequal inputs."
     ]
   },
   {
     "id": "open-models",
-    "title": "Open models, without the confusion",
+    "title": "Understanding open models",
     "subtitle": "Weights, licences, local runners and what fits an older laptop.",
     "minutes": 7,
     "icon": "layers",
@@ -96,14 +101,14 @@
       ]
     ],
     "takeaway": "Check three things separately: what is released and permitted, where inference runs, and what the surrounding tools can access. Even fully offline use in this programme is ONLY for public information—never OFFICIAL material or government-network connections.",
-    "question": "An open-weight model is being used through a hosted website. Where is inference necessarily happening?",
+    "question": "A model download page says ‘open weights’, and the runner is open-source software. Before proposing a local trial, which review covers the main remaining uncertainties?",
     "options": [
-      "On your laptop, because the weights are open.",
-      "Nowhere; open models do not need computation.",
-      "Openness does not tell you. Check the service’s actual deployment."
+      "Check the runner’s licence and release history, then use its recommended model defaults.",
+      "Check the model’s file size and format, then confirm the laptop has enough free disk space.",
+      "Check the exact checkpoint’s terms and provenance, hardware needs and configured endpoint."
     ],
     "correct": 2,
-    "feedback": "The licence/release and the deployment location are independent. A website can host an open model remotely; verify the data flow instead of assuming local execution.",
+    "feedback": "Assess these separately, along with any required code and tool connections. ‘Open’ does not settle licence, safety or location; a facilitator must approve the trial before installation.",
     "sources": [
       [
         "OSI: Open Source AI Definition 1.0",
@@ -129,11 +134,16 @@
         "Reading example: Qwen3-0.6B publisher card",
         "https://huggingface.co/Qwen/Qwen3-0.6B"
       ]
+    ],
+    "option_feedback": [
+      "The runner and the model are separate releases. The runner’s licence and defaults do not establish the model’s terms, provenance or inference location.",
+      "Disk space and format are useful checks, but do not cover runtime memory, licence conditions or whether a cloud endpoint is selected.",
+      "Assess these separately, along with any required code and tool connections. ‘Open’ does not settle licence, safety or location; a facilitator must approve the trial before installation."
     ]
   },
   {
     "id": "image-video",
-    "title": "Make images and video responsibly",
+    "title": "Generating images and video responsibly",
     "subtitle": "From a visual brief to a checked, clearly labelled practice output.",
     "minutes": 7,
     "icon": "play",
@@ -155,7 +165,7 @@
         "Use ONLY public information, nothing OFFICIAL, and NEVER government networks or accounts. Public availability is not permission to reuse a person’s likeness or someone else’s creative work. Prefer your own fictional scenes with no identifiable people. Inspect files and metadata before upload; avoid staff photos, work screenshots, official branding and account details."
       ],
       [
-        "Keep the output honest",
+        "Review and label outputs",
         "Do not impersonate officials, clone colleagues’ voices or fabricate agency announcements. Label shared practice work as AI-generated or AI-assisted as appropriate. Check people, objects, text and implied facts; for video, review the whole clip for changing details and misleading motion. Add accurate captions, an accessible text description and readable text yourself where needed."
       ],
       [
@@ -163,7 +173,7 @@
         "A label or provenance record may help explain how a file was made; it does not make the depicted event real or the content accurate. Do not rely on a watermark, a provider’s commercial-safety claim or an attractive result as permission to publish. Check rights, terms and the programme’s sharing procedure separately."
       ],
       [
-        "A small authored exercise",
+        "Storyboard exercise",
         "In a blank project, write a three-shot storyboard for an imaginary community garden: an empty gate, seedlings and a watering can. Use no people, logos or real addresses. For each shot, record the prompt, intended movement and one failure to watch for. This no-generation version is a complete exercise."
       ],
       [
@@ -175,15 +185,15 @@
         "Pinta can help with image edits, Blender with 3D scenes and OBS with recording a demonstration. They are not interchangeable with image/video generation models. ComfyUI illustrates node-based workflows, but reading its guide does not install it. Ask a facilitator to assess hardware and code before trying local models or custom nodes."
       ]
     ],
-    "takeaway": "Brief → generate only if appropriate → review and label. Learning to spot a convincing failure is as valuable as making an attractive output.",
-    "question": "A generated clip looks realistic and includes a provenance label. What does that establish?",
+    "takeaway": "Brief → generate only if appropriate → review and label. Evaluate misleading details as carefully as visual quality.",
+    "question": "You generate a fictional scene from a public-domain photograph. The exported clip includes a provenance record. Which conclusion is justified?",
     "options": [
-      "The event really happened.",
-      "It is approved for government publication.",
-      "Neither truth nor approval: inspect the content, rights and context separately."
+      "The photograph’s public-domain status also resolves rights questions for any new elements in the clip.",
+      "The record establishes the editing history, so review can focus on captions and export quality.",
+      "The record may document creation steps, but depicted claims and sharing rights still need review."
     ],
     "correct": 2,
-    "feedback": "A label can help explain origin. It does not verify depicted events, consent, rights or agency approval.",
+    "feedback": "Provenance can help explain origin without proving truth or permission. Inspect the whole clip, label synthetic work and check rights and the programme’s sharing procedure.",
     "sources": [
       [
         "Adobe Firefly overview",
@@ -201,12 +211,17 @@
         "ComfyUI overview",
         "https://docs.comfy.org/"
       ]
+    ],
+    "option_feedback": [
+      "The input’s status does not settle every issue introduced by generation, such as a new likeness, logo or misleading implied claim. Review the output and context separately.",
+      "A provenance record may be incomplete and does not establish that the scene is accurate or appropriate to share. Review the entire clip, not only its presentation.",
+      "Provenance can help explain origin without proving truth or permission. Inspect the whole clip, label synthetic work and check rights and the programme’s sharing procedure."
     ]
   },
   {
     "id": "reading-leaderboards",
-    "title": "Keep current without chasing the hype",
-    "subtitle": "Read benchmarks, release claims and research with a useful dose of scepticism.",
+    "title": "Interpreting benchmarks and model claims",
+    "subtitle": "Assess what benchmark results and release claims do—and do not—show.",
     "minutes": 6,
     "icon": "chart",
     "colour": "blue",
@@ -219,7 +234,7 @@
         "Choose what you want to learn: factual question answering, a coding agent, an image or a video. Read how success is scored. Human preference measures which output people favour; a task benchmark measures performance under a defined test. Neither alone establishes safety, accuracy across all tasks or suitability for APS work."
       ],
       [
-        "Read the small print",
+        "Inspect evaluation conditions",
         "Record the benchmark and version, evaluation date, exact model, mode, prompts, tools, harness, attempt budget and sample size where disclosed. A confidence interval communicates uncertainty; closely ranked systems may not have a meaningful separation. If a detail is missing, mark it unknown rather than guessing."
       ],
       [
@@ -239,19 +254,19 @@
         "Use Keep current to pick two entries on the same task-specific board. In an Evidence check project, record the URL, date, metric, model/version, evaluation setup and uncertainty. Then find a second source. Explain one agreement or disagreement and one thing neither source measures. Do not download benchmark code or submit prompts to complete this exercise."
       ],
       [
-        "Check yourself",
+        "Record a qualified conclusion",
         "A good note separates a measured result, a publisher’s claim and your interpretation. Write: ‘On this task, using this setup, source X reports Y as of this date.’ Avoid ‘model A is best at everything’. The original HELM explanation is historical context; always check the selected suite’s own dates for current results."
       ]
     ],
     "takeaway": "A leaderboard is a map of some measured capabilities, not a safety certificate or procurement recommendation. ONLY public information; nothing OFFICIAL. NEVER government networks or accounts.",
-    "question": "One coding agent tops a leaderboard. What is the most defensible conclusion?",
+    "question": "A coding leaderboard puts A just above B, with overlapping uncertainty intervals. Their published runs used different retry budgets. What is the best basis for choosing a learning trial?",
     "options": [
-      "It performed strongly on that task and setup; broader suitability still needs checking.",
-      "Its underlying model is best at every task.",
-      "It is approved to process OFFICIAL information."
+      "Treat the ranking as provisional and compare relevant public tasks under a matched budget.",
+      "Start with A because its higher point estimate is the most precise summary available.",
+      "Average this ranking with a general chat ranking to reduce the effect of coding-test noise."
     ],
     "correct": 0,
-    "feedback": "The task, model, harness and evaluation conditions matter. A high score does not establish general superiority, security or agency approval.",
+    "feedback": "The ranking is evidence under particular conditions, not a settled comparison for your task. Record uncertainty and compare relevant work, cost and failure modes under a matched setup.",
     "sources": [
       [
         "Artificial Analysis methodology",
@@ -269,6 +284,11 @@
         "HELM’s evaluation approach (2022)",
         "https://crfm.stanford.edu/2022/11/17/helm.html"
       ]
+    ],
+    "option_feedback": [
+      "The ranking is evidence under particular conditions, not a settled comparison for your task. Record uncertainty and compare relevant work, cost and failure modes under a matched setup.",
+      "A point estimate omits the displayed uncertainty and the difference in retry budgets. It is not enough to establish a meaningful advantage for your use.",
+      "Averaging ranks from different tasks and methods can hide rather than resolve the mismatch. First inspect what each evaluation measures."
     ]
   }
 ]
