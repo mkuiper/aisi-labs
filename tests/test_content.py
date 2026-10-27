@@ -12,6 +12,26 @@ from content_review import ROOT, fingerprint, learning_units, review_report
 
 
 class ContentTests(unittest.TestCase):
+    def test_terminal_walkthrough_explains_commands_and_expected_results(self):
+        guide = next(lesson for lesson in LESSONS if lesson['id'] == 'terminal')['command_practice']
+        self.assertEqual([s['command'] for s in guide['steps']],
+                         ['pwd', 'ls', 'cat BRIEF.md', 'cd examples', 'pwd', 'cd ..', 'pwd'])
+        for step in guide['steps']:
+            self.assertEqual(set(step), {'command', 'title', 'meaning', 'expected', 'output'})
+            self.assertGreater(len(step['meaning']), 30)
+            self.assertGreater(len(step['expected']), 30)
+            self.assertFalse(step['command'].startswith('$'))
+        self.assertIn('Print working directory', guide['steps'][0]['meaning'])
+        self.assertIn('Change directory', guide['steps'][3]['meaning'])
+        self.assertIn('Markdown', guide['parts'])
+        self.assertIn('argument', guide['parts'])
+        self.assertIn('Enter', guide['intro'])
+        self.assertIn('capitalisation', guide['intro'])
+        self.assertIn('not messages to an AI', guide['distinction'])
+        self.assertEqual(guide['steps'][3]['output'], '')
+        self.assertEqual(guide['steps'][5]['output'], '')
+        self.assertEqual(guide['steps'][0]['output'], guide['steps'][-1]['output'])
+
     def test_setup_guide_matches_key_adapters_and_safe_destinations(self):
         guide = SETUP_GUIDANCE
         self.assertEqual(guide['id'], 'tool-access')

@@ -1,5 +1,31 @@
 # Learning material history
 
+## 2026-09-29 — beginner command walkthrough
+
+- Updated lesson:terminal, guide:first-session and doc:learner. One canonical
+  command_practice field in the terminal lesson supplies both teaching views.
+  Seven steps distinguish command input, meaning and expected output, including
+  pwd (print working directory), cd (change directory), ls and cat BRIEF.md.
+  Explained filename arguments, Markdown, spaces/case, parent directories and
+  the difference between shell input, AI requests and keyboard shortcuts.
+- Read installed Bash help for pwd/cd and GNU Coreutils help for cat/ls. Confirmed
+  the fixture outputs against the local simulator. GNU web manual retrieval
+  timed out at https://www.gnu.org/software/coreutils/cat,
+  https://www.gnu.org/software/coreutils/pwd and
+  https://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html.
+  No fresh full web-source or Omarchy shortcut review is claimed. Previous
+  full-review dates/hashes remain intact; changed units have higher revisions.
+- Made cd success silent in the output, with separate labelled teaching notes.
+  Root-folder limits are explicitly simulation-only. Filling a command does not
+  run it; Run remains an explicit local simulation action. No real files, shell,
+  tools, accounts or model calls are accessed. Public-only boundaries unchanged.
+- Verification: 63 unit/HTTP tests, JS syntax and isolated Chromium smoke passed.
+  Ran the seven-step sequence against expected output; checked input-only fill,
+  Enter submission, silent cd, clear preserving location, wrong folder/case/$,
+  safe text rendering and no network requests. Inspected desktop/320-pixel
+  screenshots and tested keyboard disclosures. Not a novice usability study.
+  Audit: 53 units, 28 in-date, 16 changed and nine unreviewed; no debt cleared.
+
 ## 2026-09-29 — Configuration as a setup guide
 
 - Added canonical content/setup_guidance.json (guide:tool-access): website versus

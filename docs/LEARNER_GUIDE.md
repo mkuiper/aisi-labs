@@ -16,7 +16,7 @@ the authored chatbot example, use the terminal simulation or inspect a project
 brief offline. These are learning activities, not completed AI generation tasks.
 
 - New to AI: read AI basics, then open Try a chatbot and check its answer. Use the supplied fictional facts and prompt; no terminal is needed. An offline example is provided if you cannot use a chatbot yet.
-- New to terminals: practise pwd, ls, cd and cat in the simulated terminal. That simulation does not execute commands or access your real files.
+- New to terminals: open Your first commands, explained in Getting started or the terminal lesson. Follow the seven steps, each with a distinct command, its meaning and expected result. The simulation does not execute real commands or access your files.
 - Ready to build: open Experiments and choose the consultation explorer or data story. Each creates a separate folder containing a brief and source data.
 - Interested in agent configuration: read Tools, MCP & skills, Memory, and Soul, identity & instructions. Try their small exercises in a blank project using public material.
 - Experienced: launch an available tool directly or open your own learning project. The same programme boundaries apply.
@@ -30,6 +30,14 @@ If no facilitator is available, ask the person responsible for the device about
 accounts, network setup and handover. Stay with offline activities until clear.
 
 ## A typical experiment
+
+In the terminal walkthrough, type only the text under Type this and press Enter.
+Keep spaces and filename capitalisation; do not type the dollar-sign prompt.
+Put in practice field fills the input without running it; buttons labelled Run
+simulate the command immediately. Teaching notes are separate from terminal
+output. A successful folder change normally displays no text: check with the
+next location command. The simulation's clear command clears output, not your
+current folder; reopening the lesson resets the practice.
 
 Create a project, read its brief and inspect the supplied files. Open a tool in the project folder. Complete its authentication if necessary, then paste the starter prompt inside the AI assistant. At a normal shell prompt, commands are expected instead of conversational requests.
 

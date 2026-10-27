@@ -1,5 +1,21 @@
 # Changes
 
+## 29 September 2026 — explain beginner terminal commands
+
+- Added one canonical seven-step walkthrough shared by Getting started and the
+  terminal lesson: exact command, meaning and expected result. Explained working
+  directories, filenames, Markdown, spaces/case, the prompt and parent folders.
+- Distinguished shell commands, AI requests and keyboard shortcuts. Added
+  input-only practice buttons and explicitly labelled immediate simulation buttons.
+- Kept silent successful directory changes separate from teaching feedback;
+  clarified the simulation boundary, clear behaviour and common typing errors.
+- Updated learner/architecture notes and scoped review records. No live commands,
+  accounts or AI calls are introduced by the exercise.
+- Verification: 63 unit/HTTP tests, JavaScript syntax and isolated Chromium smoke
+  passed, including the full typed sequence, input-only buttons, Enter submission,
+  silent cd, wrong-folder/case/prompt errors, HTML escaping, no network activity,
+  keyboard disclosures and expanded 320-pixel layouts. Screenshots inspected.
+
 ## 29 September 2026 — guided tool access in Configuration
 
 - Added sign-in versus API-key choices, dedicated learning account/payer checks,

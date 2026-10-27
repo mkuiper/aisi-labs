@@ -48,8 +48,8 @@
         "body": "Learn how to find an app, switch windows, make a window fullscreen and close it after saving. The terminal practice is a simulation: it does not run commands or read your files.",
         "steps": [
           "Open Omarchy help and find fullscreen, close-window and window-switching controls. Save work before trying window controls.",
-          "Open the terminal simulation. Try pwd, ls and cat BRIEF.md.",
-          "Try cd examples, then pwd. Use cd .. to return and read the brief again."
+          "Read Your first commands, explained below, then open the terminal simulation. Each step separates what to type, what it means and what you should see.",
+          "Follow the seven practice steps one at a time. Compare the displayed folder before and after changing location, then read the project instructions again."
         ],
         "check": "You can find the window controls and explain why changing folders changes which files a command can find.",
         "links": [

@@ -289,9 +289,40 @@ try{
   await screenshot('concept-guide-desktop');
 
   await go('#learn/terminal');
+  const terminalRequestStart=requests.length;
+  assert.equal(await evaluate('document.querySelectorAll(".command-step").length'),7);
+  await evaluate('document.querySelector(".command-guide-title").scrollIntoView()');
+  await screenshot('terminal-commands-desktop',false);
+  const initialTerminal=await evaluate('document.querySelector("#terminal-output").textContent');
+  await click('[data-fill-command=pwd]');
+  assert.equal(await evaluate('document.activeElement.id'),'terminal-command');
+  assert.equal(await evaluate('document.querySelector("#terminal-command").value'),'pwd');
+  assert.equal(await evaluate('document.querySelector("#terminal-output").textContent'),initialTerminal);
+  await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',text:'\r',windowsVirtualKeyCode:13});
+  await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  await waitFor('simHistory.length===1');
+  const commandSteps=await evaluate('findLesson("terminal").command_practice.steps');
+  for(const [index,step] of commandSteps.entries()){
+    if(index)await evaluate(`document.querySelector('#terminal-command').value=${JSON.stringify(step.command)};document.querySelector('#terminal-form').requestSubmit()`);
+    assert.equal(await evaluate('simHistory.at(-1)'),('$ '+step.command+'\n'+step.output).trimEnd());
+    if(step.command.startsWith('cd '))assert(await evaluate('document.querySelector("#terminal-explanation").textContent.includes("no text output")'));
+  }
+  await click('[data-command="cd .."]');
+  assert(await evaluate('simHistory.at(-1).includes("Simulation boundary")'));
+  for(const [command,expected] of [['$ pwd','without the $ prompt'],['cat brief.md','File or folder not found'],['<img src=x onerror=alert(1)>','Nothing was executed']]){
+    await evaluate(`document.querySelector('#terminal-command').value=${JSON.stringify(command)};document.querySelector('#terminal-form').requestSubmit()`);
+    assert(await evaluate(`simHistory.at(-1).includes(${JSON.stringify(expected)})`));
+  }
+  assert.equal(await evaluate('!!document.querySelector("#terminal-output img")'),false);
+  assert(await evaluate(`(()=>{const step=findLesson('terminal').command_practice.steps[0], original=step.command;try{step.command='<img src=x onerror=alert(1)>';const node=document.createElement('div');node.innerHTML=terminalCommandGuide(true);return !node.querySelector('img')&&node.textContent.includes(step.command);}finally{step.command=original;}})()`));
+  assert.equal(requests.length,terminalRequestStart,'Terminal teaching and simulation make no requests');
   await click('[data-command="pwd"]');
   assert(await evaluate('document.querySelector("#terminal-output").textContent.includes("/practice/my-project")'));
   await click('[data-command="cd examples"]');await click('[data-command="pwd"]');
+  await click('[data-command="clear"]');
+  assert.equal(await evaluate('simFolder'),'examples');
+  assert.equal(await evaluate('document.querySelector("#terminal-output").textContent'),'');
+  await click('[data-command="pwd"]');
   assert(await evaluate('document.querySelector("#terminal-output").textContent.includes("/practice/my-project/examples")'));
   await click('[data-command="cat BRIEF.md"]');
   assert(await evaluate('document.querySelector("#terminal-output").textContent.trim().endsWith("File or folder not found in the current simulated folder. Use pwd and ls to check the location.")'));
@@ -439,6 +470,19 @@ try{
   await click('[data-key-console=google]');await noOverflow('key console confirmation small phone');await click('[data-close]');
   await go('#configuration');await evaluate('window.scrollTo(0,0)');await screenshot('configuration-mobile',false);
   await go('#first-session');await noOverflow('first session small phone');
+  await evaluate('document.querySelector(".starting-command-guide summary").focus()');
+  await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
+  await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
+  assert(await evaluate('document.querySelector(".starting-command-guide").open'));
+  assert.equal(await evaluate('document.querySelectorAll(".starting-command-guide .command-step").length'),7);
+  assert.equal(await evaluate('document.querySelectorAll(".starting-command-guide button").length'),0);
+  await noOverflow('getting started expanded commands small phone');
+  await go('#learn/terminal');
+  assert.equal(await evaluate('simFolder'),'');
+  await click('.command-parts summary');
+  await noOverflow('terminal command walkthrough small phone');
+  await evaluate('document.querySelector(".command-step").scrollIntoView()');
+  await screenshot('terminal-commands-mobile',false);
   await go('#finish-session');await noOverflow('finish session small phone');
   for(const hash of ['#glossary','#learn/ai-basics','#learn/web-chat','#learn/prompting','#learn/checking','#learn/context']){
     await go(hash);await noOverflow('beginner small phone '+hash);

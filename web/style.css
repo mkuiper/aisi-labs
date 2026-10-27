@@ -39,6 +39,18 @@
 .mark.has-logo.logo-unavailable .logo-fallback {display:inline}
 .sources {display:flex;flex-wrap:wrap;gap:8px 14px}
 .settings-jumps {display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.command-guide{margin:18px 0;overflow-wrap:anywhere}
+.command-guide-title{margin-top:24px}
+.command-guide>p{margin:14px 0}
+.command-walkthrough{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.command-step{padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--white);min-width:0}
+.command-step h3{font-size:18px;margin:0 0 14px}
+.command-label{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+.command-step pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#edf0e8;border-radius:6px;padding:10px;margin:6px 0 14px}
+.command-step p{font-size:14px;line-height:1.65;margin:12px 0}
+.command-step .btn{white-space:normal;text-align:left;margin-top:8px}
+.terminal-hints code{font-size:inherit}
+@media(max-width:700px){.command-walkthrough{grid-template-columns:1fr}}
 .setup-guide{margin-bottom:28px}
 .setup-guide .intro{margin:16px 0}
 .setup-guide .provider-grid{margin:22px 0;grid-template-columns:repeat(3,minmax(0,1fr))}

@@ -110,6 +110,18 @@ disclosures. There are no new input stores, model calls or backend APIs. Reveali
 an explanation is local UI state and resets on navigation. No exercise, quiz or
 reflection responses are collected. Lesson reading estimates exclude activities.
 
+The terminal lesson in catalogue.py owns command_practice: seven ordered command,
+meaning, expected-result and fixture-output records. terminalCommandGuide() in
+web/app.js renders that same source in the terminal lesson and the desktop path's
+native disclosure in web/session.js. Text, code and button attributes are escaped.
+Fill buttons only populate/focus the practice input; Run buttons and form submission
+call the existing browser-only simulator. Successful cd produces no simulated
+stdout; separate Practice note feedback explains silence. At its root the
+simulation explicitly reports its boundary rather than implying a real shell
+cannot leave a project. No new API, execution capability or persistence exists.
+The browser suite runs the ordered commands against their expected output and
+checks errors, input-only actions, keyboard controls and zero network requests.
+
 Default data root: `~/.local/share/aisi-labs-2/`. Display branding is independent
 of this stable identifier. `--data-dir` gives tests a temporary isolated root.
 

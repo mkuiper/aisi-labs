@@ -7,11 +7,11 @@
     "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
   },
   "lesson:terminal": {
-    "revision": 2,
+    "revision": 3,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "317d2540a385422bb7d518de20767d8de2777d6a26b1ba141c786d6478dea58b",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises. Beginner command update 2026-09-29: added or linked the canonical seven-step command walkthrough, exact input/meaning/expected results, filename and prompt explanations. Reviewed local GNU/Bash help and simulated behaviour; GNU web sources timed out. No full Omarchy/source revalidation or live learner trial. Previous full-review date/hash retained so outstanding work remains visible."
   },
   "lesson:context": {
     "revision": 3,
@@ -182,11 +182,11 @@
     "notes": "Added source-backed device-restriction boundary and advanced revision. Full programme source/exercise review remains pending; baseline fingerprint and absent review date intentionally retained. Added creative-media/current-awareness scope; full legacy review remains pending. Added beginner desktop-help orientation; full review still pending. Editorial follow-up 2026-09-28: replaced pretend-terminal wording and described priority window controls and unscored scenario checks. Full charter review remains pending. Added first/finish-session guidance and proposed improvement stages on 2026-09-28; checked against local implementation. No external sign-out or live learner acceptance. Existing full-review debt and earlier fingerprint/date retained. Beginner restructure 2026-09-28: revised entry guidance, terminology or authored exercise as applicable; inspected the changed content and local UI. Full provider/source review remains pending. Earlier full-review date and fingerprint preserved; no live accounts or model calls."
   },
   "doc:learner": {
-    "revision": 3,
+    "revision": 4,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "91d748434910f4ccaf8e18d242948664e2cf711e4003b06ab10bfa4893b6d16b",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Added first/finish-session guidance and proposed improvement stages on 2026-09-28; checked against local implementation. No external sign-out or live learner acceptance. Existing full-review debt and earlier fingerprint/date retained. Beginner restructure 2026-09-28: revised entry guidance, terminology or authored exercise as applicable; inspected the changed content and local UI. Full provider/source review remains pending. Earlier full-review date and fingerprint preserved; no live accounts or model calls."
+    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Added first/finish-session guidance and proposed improvement stages on 2026-09-28; checked against local implementation. No external sign-out or live learner acceptance. Existing full-review debt and earlier fingerprint/date retained. Beginner restructure 2026-09-28: revised entry guidance, terminology or authored exercise as applicable; inspected the changed content and local UI. Full provider/source review remains pending. Earlier full-review date and fingerprint preserved; no live accounts or model calls. Beginner command update 2026-09-29: added or linked the canonical seven-step command walkthrough, exact input/meaning/expected results, filename and prompt explanations. Reviewed local GNU/Bash help and simulated behaviour; GNU web sources timed out. No full Omarchy/source revalidation or live learner trial. Previous full-review date/hash retained so outstanding work remains visible."
   },
   "doc:deployment": {
     "revision": 1,
@@ -336,11 +336,11 @@
     "notes": "Read official Omarchy hotkeys/navigation/Windows-Mac transition docs, installed 4.0.4-1 Lua defaults and user overrides; inspected active bindings with hyprctl read-only. Authored exercise and diagram inspected; no real keyboard actions, locking, closure or hardware acceptance. Recheck on each image release. Follow-up 2026-09-28: promoted fullscreen and close, inspected the official hotkeys page, installed defaults and active Super+F/Super+W bindings read-only; reviewed authored practice. No actual window actions or hardware acceptance."
   },
   "guide:first-session": {
-    "revision": 2,
+    "revision": 3,
     "reviewed_at": "2026-09-28",
     "review_after_days": 90,
     "sha256": "b5165351854a22dece36ca98da7675add28f38f705c6570b22aedc09d046ead5",
-    "notes": "Authored and inspected 2026-09-28 against local primary sources: server/configuration endpoints, project templates, programme/learner/deployment guidance and UI implementation. Scoped local app guidance/planning, not provider-specific advice. No live accounts, model calls, desktop actions, network verification or timed learner pilot. Future phases are proposals, not scheduled or authorised operations. Review 2026-09-28: Reviewed three optional paths, no-code/offline alternatives, public-only boundary and all local links against the actual app, starter material and programme rules. Beginner route timing is not measured; no live accounts, desktop actions, network acceptance or learner pilot. Local unit/HTTP and isolated Chromium verification; scope/evidence in content/CHANGELOG.md."
+    "notes": "Authored and inspected 2026-09-28 against local primary sources: server/configuration endpoints, project templates, programme/learner/deployment guidance and UI implementation. Scoped local app guidance/planning, not provider-specific advice. No live accounts, model calls, desktop actions, network verification or timed learner pilot. Future phases are proposals, not scheduled or authorised operations. Review 2026-09-28: Reviewed three optional paths, no-code/offline alternatives, public-only boundary and all local links against the actual app, starter material and programme rules. Beginner route timing is not measured; no live accounts, desktop actions, network acceptance or learner pilot. Local unit/HTTP and isolated Chromium verification; scope/evidence in content/CHANGELOG.md. Beginner command update 2026-09-29: added or linked the canonical seven-step command walkthrough, exact input/meaning/expected results, filename and prompt explanations. Reviewed local GNU/Bash help and simulated behaviour; GNU web sources timed out. No full Omarchy/source revalidation or live learner trial. Previous full-review date/hash retained so outstanding work remains visible."
   },
   "guide:finish-session": {
     "revision": 2,
