@@ -26,12 +26,23 @@ These are also readable in the app's Programme & guides tab. The application
 does not enforce network separation. A departmental image still needs to be
 built, tested and accepted by its deployment owner; this repo is not that image.
 
+## Install on an Omarchy computer
+
+```sh
+git clone https://github.com/mkuiper/aisi-labs.git ~/AISI-labs-2
+~/AISI-labs-2/install.sh
+```
+
+`install.sh` adds the **AISI AI Labs** launcher entry pointing at wherever the
+repository was cloned. Update later with `git -C ~/AISI-labs-2 pull`, then
+`python3 ~/AISI-labs-2/launch.py --restart --no-open`.
+
 ## Open the app
 
 Search **AISI AI Labs** in the Omarchy application launcher, or run:
 
 ```sh
-python3 /home/mike/AISI-labs-2/launch.py
+python3 ~/AISI-labs-2/launch.py
 ```
 
 The launcher starts a Python service on `127.0.0.1:8768` if necessary, then
@@ -135,7 +146,7 @@ See the credential guide for subprocess, shared-account and OS-storage limits.
 
 The optional public release check contacts npm metadata endpoints only when
 requested. It is not an OS updater or model-availability test and installs nothing.
-This app is under local Git version control; no remote repository has been created.
+Source is published at https://github.com/mkuiper/aisi-labs.
 Do not distribute a laptop image before the open gates in the critical review
 and deployment guide are resolved.
 
