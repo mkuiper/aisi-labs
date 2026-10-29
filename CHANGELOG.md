@@ -1,5 +1,19 @@
 # Changes
 
+## 29 October 2026 — clearer learner journeys
+
+- Getting started now shows the selected route while retaining easy switching,
+  direct tool access and offline practice. Mobile navigation opens on request.
+- Added manual practice-prompt copy and a return link, and put a clearly labelled
+  recently created project near the top. Project steps now open the project files
+  through the existing gated launcher.
+- Changed evidence-checking prompts so learners can investigate before revealing
+  answers. Increased the size and contrast of essential supporting text.
+- Design choices and verification limits are recorded in docs/UX_JOURNEY.md.
+- Verification: 64 unit/HTTP tests, JavaScript syntax and the isolated Chromium
+  smoke suite passed. The browser checks cover route selection, copy failure,
+  project launch gating, the worked-answer reveal and mobile keyboard focus.
+
 ## 29 October 2026 — review fixes
 
 - Fixed the desktop launcher for checkout paths containing spaces and other

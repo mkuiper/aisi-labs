@@ -20,6 +20,9 @@ explanations; they are optional and do not record answers or scores.
 Getting started offers three optional beginner routes: try a chatbot, learn
 the desktop, or build a first project. The first two need no coding experience;
 the chatbot example and desktop simulation can be reviewed without an account.
+Learners select one route at a time and can switch between them. The chatbot
+practice prompt can be copied for manual use with a permitted learning account;
+the hub does not submit it to a provider.
 Learn groups the guides by purpose and links to AI basics and a short glossary.
 Worked examples provide evidence to inspect, not just multiple-choice answers.
 Finish session separates manual handover steps

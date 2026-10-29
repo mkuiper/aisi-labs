@@ -77,11 +77,14 @@ try{
   assert.equal(requests.length,sessionRequestStart,'Reading setup and cancelling needs no network');
   await click('#first-session-link');await waitFor('!!document.querySelector(".session-guide")');
   assert.equal(await evaluate('data.acknowledged'),false);
-  assert.equal(await evaluate('document.querySelectorAll("[data-starting-path]").length'),3);
+  assert.equal(await evaluate('document.querySelectorAll("[data-starting-path]").length'),0);
+  assert.equal(await evaluate('document.querySelectorAll(".starting-choice").length'),3);
   assert.equal(await evaluate('document.querySelector("#first-session-link").textContent'),'Getting started');
   assert.equal(await evaluate('document.querySelector("h1").textContent'),'Getting started: a guide for beginners');
   for(const id of ['chat','desktop','build']){
     await click('a[href="#first-session/'+id+'"]');
+    assert.equal(await evaluate('document.querySelectorAll("[data-starting-path]").length'),1);
+    assert.equal(await evaluate('document.querySelector("[data-starting-path]").dataset.startingPath'),id);
     assert.equal(await evaluate('document.activeElement.id'),'start-'+id);
     assert(await evaluate('document.activeElement.getBoundingClientRect().top>=0'));
   }
@@ -92,6 +95,18 @@ try{
   await go('#learn/web-chat');
   assert.equal(await evaluate('document.querySelectorAll(".practice-exercise").length'),1);
   assert(await evaluate('document.querySelector(".practice-exercise").textContent.includes("fictional")'));
+  assert(await evaluate(`(()=>{const rgb=s=>s.match(/\\d+/g).slice(0,3).map(Number);const lum=c=>{const v=c/255;return v<=0.04045?v/12.92:((v+0.055)/1.055)**2.4};const light=c=>rgb(c).reduce((sum,v,i)=>sum+lum(v)*[0.2126,0.7152,0.0722][i],0);const text=light(getComputedStyle(document.querySelector('#practice-copy-status')).color);const bg=light(getComputedStyle(document.querySelector('.practice-exercise')).backgroundColor);return (Math.max(text,bg)+0.05)/(Math.min(text,bg)+0.05)>=4.5})()`),'Practice guidance meets normal-text contrast');
+  await evaluate(`Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async text=>window.copiedPractice=text}})`);
+  await click('[data-copy-practice]');
+  assert.equal(await evaluate('window.copiedPractice'),await evaluate('findLesson("web-chat").exercise.prompt'));
+  assert(await evaluate('document.querySelector("#practice-copy-status").textContent.includes("Prompt copied")'));
+  await evaluate(`Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw new Error('denied')}}})`);
+  await click('[data-copy-practice]');
+  assert(await evaluate('document.querySelector("#practice-copy-status").textContent.includes("Select the prompt")'));
+  await evaluate('delete navigator.clipboard');
+  await go('#web-chats');
+  assert(await evaluate(`!!document.querySelector('a[href="#learn/web-chat"]')`));
+  await click('a[href="#learn/web-chat"]');
   await evaluate('document.querySelector(".practice-exercise summary").focus()');
   assert.equal(await evaluate('document.activeElement.tagName'),'SUMMARY');
   await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
@@ -128,7 +143,7 @@ try{
     const node=document.createElement('div');node.innerHTML=workedExample(example)+practiceExercise(exercise);
     return !node.querySelector('img')&&node.textContent.includes(unsafe);
   })()`));
-  await go('#first-session');
+  await go('#first-session/build');
   await click('a[href="#lab/first-steps"]');await click('[data-create]');
   assert(await evaluate('!!document.querySelector("#policy-form")'));
   await click('[data-close]');
@@ -342,10 +357,28 @@ try{
     projectIDs.push(await evaluate('location.hash.split("/")[1]'));
     assert.equal(await evaluate('document.querySelector("h1").textContent'),'Smoke '+id+' <safe>');
     assert.equal(await evaluate('document.querySelectorAll("[data-check]").length'),3);
+    if(id==='evidence'){
+      assert.equal(await evaluate('document.querySelector("main").innerText.includes("$2 million")'),false);
+      assert.equal(await evaluate('document.querySelector("main").innerText.includes("60%")'),false);
+      await click('details summary');
+      assert(await evaluate('document.querySelector("main").innerText.includes("60%")'));
+    }
     await click('[data-check="0"]');
     await waitFor('document.querySelector("#check-status").textContent.includes("saved")');
     assert.equal(await evaluate('!!document.querySelector("[data-direct=preview]")'),['first-steps','consultation','data-story'].includes(id));
   }
+  await go('#project/'+projectIDs[0]);
+  await evaluate('window.originalLaunchApi=api;window.launchPayload=null;api=async (path,payload)=>{if(path==="launch"){window.launchPayload=payload;return {message:"Test launch"};}return window.originalLaunchApi(path,payload)};data.acknowledged=false');
+  await click('[data-direct=files]');
+  assert.equal(await evaluate('window.launchPayload'),null);
+  assert(await evaluate('!!document.querySelector("#policy-form")'));
+  await click('[data-close]');await evaluate('data.acknowledged=true');
+  await click('[data-direct=files]');
+  assert.deepEqual(await evaluate('window.launchPayload'),{tool:'files',project:projectIDs[0]});
+  await evaluate('api=window.originalLaunchApi');
+  await go('#home');
+  assert(await evaluate('document.querySelector(".recent-project").textContent.includes("MOST RECENTLY CREATED PROJECT")'));
+  assert(await evaluate('document.querySelector(".recent-project a").getAttribute("href")==="#project/"+data.projects[0].id'));
   await go('#project/'+projectIDs[0]);
   await evaluate(`window.originalApi=api;window.releaseCheck=null;api=async (...args)=>{const result=await window.originalApi(...args);if(args[0]==='checks')await new Promise(resolve=>window.releaseCheck=resolve);return result;}`);
   await click('[data-check="1"]');
@@ -470,6 +503,21 @@ try{
   await cdp('Emulation.setDeviceMetricsOverride',{width:820,height:900,deviceScaleFactor:1,mobile:false});
   for(const hash of ['#home','#first-session','#glossary','#learn/ai-basics','#learn/web-chat','#learn/context','#learn/checking','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
+  assert.equal(await evaluate('getComputedStyle(document.querySelector("#navigation")).display'),'none');
+  await evaluate('document.querySelector(".mobile-nav-toggle").focus()');
+  assert.equal(await evaluate('document.activeElement.className'),'mobile-nav-toggle');
+  await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',text:'\r',windowsVirtualKeyCode:13});
+  await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  assert.equal(await evaluate('document.querySelector(".mobile-nav-toggle").getAttribute("aria-expanded")'),'true');
+  assert.notEqual(await evaluate('getComputedStyle(document.querySelector("#navigation")).display'),'none');
+  await click('#navigation a[href="#home"]');
+  assert.equal(await evaluate('document.querySelector(".mobile-nav-toggle").getAttribute("aria-expanded")'),'false');
+  await click('.mobile-nav-toggle');
+  await evaluate(`document.querySelector('#navigation a[href="#home"]').focus()`);
+  await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',text:'\r',windowsVirtualKeyCode:13});
+  await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  assert.equal(await evaluate('document.querySelector(".mobile-nav-toggle").getAttribute("aria-expanded")'),'false');
+  assert.equal(await evaluate('document.activeElement.className'),'mobile-nav-toggle');
   for(const hash of ['#home','#first-session','#glossary','#learn/ai-basics','#learn/web-chat','#learn/context','#learn/checking','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
   await go('#omarchy-help');await screenshot('omarchy-help-mobile');
   assert(await evaluate('document.querySelector("#omarchy-help-link").getBoundingClientRect().width>0'));
@@ -484,7 +532,7 @@ try{
   await screenshot('configuration-provider-mobile',false);
   await click('[data-key-console=google]');await noOverflow('key console confirmation small phone');await click('[data-close]');
   await go('#configuration');await evaluate('window.scrollTo(0,0)');await screenshot('configuration-mobile',false);
-  await go('#first-session');await noOverflow('first session small phone');
+  await go('#first-session/desktop');await noOverflow('first session small phone');
   await evaluate('document.querySelector(".starting-command-guide summary").focus()');
   await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
   await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});

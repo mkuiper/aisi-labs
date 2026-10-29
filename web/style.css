@@ -1,4 +1,16 @@
 @charset "UTF-8";
+/* These overrides keep task guidance readable without changing the visual palette. */
+.mobile-nav-toggle{display:none}
+body .small-note{font-size:13px!important;color:#52634f!important}
+body .quick-tool small,body .card-meta{font-size:12px;color:#52634f}
+body .panel p,body .steps li{font-size:14px}
+body .programme-banner,body .programme-banner strong{font-size:12px;color:#674b2d}
+@media(max-width:650px){
+  .sidebar .mobile-nav-toggle{display:block;align-self:flex-start;color:#fffefa;border:1px solid #a8bca9;border-radius:7px;padding:8px 14px;margin-top:12px;font-size:14px}
+  .sidebar .mobile-nav-toggle[aria-expanded="false"]+nav{display:none}
+  .sidebar .mobile-nav-toggle[aria-expanded="true"]+nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:8px}
+  .sidebar nav .nav-link{font-size:12px}
+}
 /* Curated reading resources, kept readable at narrow widths. */
 .resource-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr)); gap:20px; }
 .resource-card { min-width:0; }

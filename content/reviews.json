@@ -154,11 +154,11 @@
     "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
   },
   "lab:evidence": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "222801354e371f1cffe1c2d7fb886d241196f36fc9c67a3379d68d3b63a45422",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Editorial update 2026-10-29: checklist now prompts investigation without revealing the worked answer. Existing baseline fingerprint and unreviewed status retained; a full source and exercise review remains outstanding. No learner pilot or model call."
   },
   "lab:blank": {
     "revision": 1,
@@ -175,11 +175,11 @@
     "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained."
   },
   "doc:programme": {
-    "revision": 7,
+    "revision": 8,
     "reviewed_at": null,
     "review_after_days": 90,
     "sha256": "bf5d2b415c07ca5be76c006d7bd8463f53c8772c9f68258f27efa32143b2138e",
-    "notes": "Added source-backed device-restriction boundary and advanced revision. Full programme source/exercise review remains pending; baseline fingerprint and absent review date intentionally retained. Added creative-media/current-awareness scope; full legacy review remains pending. Added beginner desktop-help orientation; full review still pending. Editorial follow-up 2026-09-28: replaced pretend-terminal wording and described priority window controls and unscored scenario checks. Full charter review remains pending. Added first/finish-session guidance and proposed improvement stages on 2026-09-28; checked against local implementation. No external sign-out or live learner acceptance. Existing full-review debt and earlier fingerprint/date retained. Beginner restructure 2026-09-28: revised entry guidance, terminology or authored exercise as applicable; inspected the changed content and local UI. Full provider/source review remains pending. Earlier full-review date and fingerprint preserved; no live accounts or model calls."
+    "notes": "Added source-backed device-restriction boundary and advanced revision. Full programme source/exercise review remains pending; baseline fingerprint and absent review date intentionally retained. Added creative-media/current-awareness scope; full legacy review remains pending. Added beginner desktop-help orientation; full review still pending. Editorial follow-up 2026-09-28: replaced pretend-terminal wording and described priority window controls and unscored scenario checks. Full charter review remains pending. Added first/finish-session guidance and proposed improvement stages on 2026-09-28; checked against local implementation. No external sign-out or live learner acceptance. Existing full-review debt and earlier fingerprint/date retained. Beginner restructure 2026-09-28: revised entry guidance, terminology or authored exercise as applicable; inspected the changed content and local UI. Full provider/source review remains pending. Earlier full-review date and fingerprint preserved; no live accounts or model calls. UI journey follow-up 2026-10-29: described selected starting routes and manual prompt copying. Full programme source and learner review remains pending; fingerprint and review date unchanged."
   },
   "doc:learner": {
     "revision": 4,

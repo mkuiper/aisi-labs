@@ -1,5 +1,23 @@
 # Learning material history
 
+## 2026-10-29 — evidence exercise and learner journeys
+
+- Reworded the three lab:evidence checks as questions for investigation. Their
+  order and existing saved check indexes remain unchanged; the worked answer is
+  still available by explicit reveal. Inspected the authored draft, evidence,
+  starter and project views locally. This editorial change does not constitute a
+  full source/exercise review; the original fingerprint and review date remain.
+- Changed presentation of guide:first-session to focus the selected route while
+  keeping all choice links and the offline option. Added a manual copy control to
+  the existing lesson:web-chat practice prompt. The canonical lesson and guide
+  content are unchanged; no provider page was visited or model response tested.
+- Updated doc:programme to describe the route and manual copy. Its full review
+  remains pending and its earlier fingerprint/date are retained. See
+  docs/UX_JOURNEY.md for design choices and untested learner/accessibility work.
+- Verification: 64 unit/HTTP tests, JavaScript syntax and isolated Chromium
+  checks passed. The offline audit reports 9 in-date, 19 due, 17 changed and
+  8 unreviewed units. A changed fingerprint is not a completed review.
+
 ## 2026-09-29 — beginner command walkthrough
 
 - Updated lesson:terminal, guide:first-session and doc:learner. One canonical

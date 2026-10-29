@@ -89,10 +89,17 @@ fingerprints are included as guide:<id> in the editorial inventory.
 
 The first-session identifier remains stable but is labelled Getting started.
 Its single setup step and three paths (chat, desktop, build) replace the timed
-five-step route. #first-session/<path> focuses and scrolls to the chosen route;
-unknown path IDs leave the guide available. No path selection is stored.
+five-step route. #first-session presents the choices and #first-session/<path>
+shows and focuses the selected route. Unknown path IDs leave the choices
+available. No path selection is stored.
 The desktop and chatbot offline activities do not require acknowledgement;
 project creation and external destinations retain their existing gates.
+The chatbot exercise copies only its authored practice prompt on explicit
+request; failure leaves the prompt selectable. The web directory links back to
+the exercise and never sends the prompt to a provider. The home page labels the
+first project as most recently created, not last used; it adds no activity
+tracking. The project-files action uses the existing allowlisted launch route.
+Mobile navigation opens on request and closes on route changes.
 
 Learn uses three suggested groups in web/app.js, with each stable lesson ID
 listed exactly once (checked by the browser suite). These are navigation groups,
