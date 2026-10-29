@@ -161,6 +161,7 @@ function documentPage(id) {
   const blocks=doc.body.split(/\n\s*\n/).map(block=>{
     if(/^#{1,3} /.test(block)){const level=Math.min(block.match(/^#+/)[0].length+1,4);return `<h${level}>${inline(block.replace(/^#+ /,''))}</h${level}>`;}
     if(block.startsWith('- '))return '<ul>'+block.split('\n').map(line=>'<li>'+inline(line.replace(/^- /,''))+'</li>').join('')+'</ul>';
+    if(/^\d+\. /.test(block))return '<ol>'+block.split('\n').map(line=>'<li>'+inline(line.replace(/^\d+\. /,''))+'</li>').join('')+'</ol>';
     if(block.startsWith('```'))return '<pre>'+esc(block.replace(/^```[^\n]*\n/,'').replace(/\n```$/,''))+'</pre>';
     return '<p>'+inline(block).replace(/\n/g,' ')+'</p>';
   }).join('');

@@ -346,6 +346,19 @@ try{
     await waitFor('document.querySelector("#check-status").textContent.includes("saved")');
     assert.equal(await evaluate('!!document.querySelector("[data-direct=preview]")'),['first-steps','consultation','data-story'].includes(id));
   }
+  await go('#project/'+projectIDs[0]);
+  await evaluate(`window.originalApi=api;window.releaseCheck=null;api=async (...args)=>{const result=await window.originalApi(...args);if(args[0]==='checks')await new Promise(resolve=>window.releaseCheck=resolve);return result;}`);
+  await click('[data-check="1"]');
+  await waitFor('typeof window.releaseCheck==="function"');
+  await go('#project/'+projectIDs[1]);
+  await go('#project/'+projectIDs[0]);
+  assert(await evaluate(`document.querySelector('[data-check="1"]').checked`));
+  assert(await evaluate('[...document.querySelectorAll("[data-check]")].every(input=>input.disabled)'));
+  await go('#project/'+projectIDs[1]);
+  const otherProjectStatus=await evaluate('document.querySelector("#check-status").textContent');
+  await evaluate('window.releaseCheck();api=window.originalApi');
+  await waitFor(`findProject(${JSON.stringify(projectIDs[0])}).checks.includes(1)`);
+  assert.equal(await evaluate('document.querySelector("#check-status").textContent'),otherProjectStatus,'A pending save must not change another project status');
   await go('#project/'+projectIDs[1]);await screenshot('project-desktop');
   await cdp('Page.reload');await waitFor('!!document.querySelector("[data-check]")');
   assert(await evaluate('document.querySelectorAll("[data-check]")[0].checked'));
@@ -432,6 +445,8 @@ try{
   await go('#programme');assert.equal(await evaluate('document.querySelectorAll(".doc-card").length'),9);
   await screenshot('programme-desktop');
   for(const id of ['programme','learner','deployment','credentials','curriculum','maintenance','open-models','content-maintenance','improvement-schedule']){await go('#docs/'+id);assert(await evaluate('document.querySelector(".document-reader").textContent.length>1000'));}
+  await go('#docs/maintenance');
+  assert.equal(await evaluate('document.querySelectorAll(".document-reader ol li").length'),6,'Promotion and rollback steps must be an ordered list');
 
   // Every answer must explain that choice, allow a retry and leave bookmarks unchanged.
   const progressBeforeQuiz=await evaluate('JSON.stringify(data.progress)');

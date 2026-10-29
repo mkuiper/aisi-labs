@@ -1,5 +1,13 @@
 # Critical platform review
 
+## Follow-up on 29 October 2026
+
+A local application review identified a desktop launcher failure for checkout
+paths containing spaces, a delayed checklist save that could change another
+project's displayed status, and numbered guide steps without list semantics.
+These issues were fixed and covered by regression checks. The distribution gates
+below remain open; this follow-up is not image or live-tool acceptance.
+
 Reviewed 27 September 2026. Scope: source, local launch/configuration behaviour,
 programme content and automated tests. Not a penetration test, security approval,
 live account certification or bootable-image acceptance.

@@ -7,6 +7,7 @@ let traceMode = 'agent';
 let traceStep = 0;
 let simFolder = '';
 let simHistory = [];
+const pendingChecks = new Map();
 const main = document.querySelector('#main');
 const modal = document.querySelector('#modal');
 const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -223,6 +224,7 @@ function render(moveFocus = false) {
   const fallback = '<div class="empty"><h2>We couldn’t find that page.</h2><p>It may have moved, or the project folder may be missing.</p><a class="btn" href="#home">Back to the launchpad</a></div>';
   const pages = {home,glossary:glossaryPage,'first-session':firstSessionPage,'finish-session':finishSessionPage,'omarchy-help':omarchyHelpPage,'keep-current':keepCurrentPage,'web-chats':webChatsPage,'web-tool':()=>webToolPage(id),tools:toolsPage,labs:labsPage,learn:()=>id?(findLesson(id)?lessonPage(findLesson(id)):fallback):learnPage(),lab:()=>findLab(id)?labPage(findLab(id)):fallback,projects:projectsPage,project:()=>findProject(id)?projectPage(findProject(id)):fallback,search:()=>searchPage(id),about:programmePage,programme:programmePage,configuration:configurationPage,docs:()=>documentPage(id)};
   main.innerHTML = (data.warnings||[]).map(w=>`<p class="error">${esc(w)}</p>`).join('') + (pages[page]||(()=>fallback))();
+  if(page==='project'&&pendingChecks.has(id))document.querySelectorAll('[data-check]').forEach(input=>{input.checked=pendingChecks.get(id).includes(Number(input.dataset.check));input.disabled=true;});
   document.title = `${main.querySelector('h1')?.textContent||'Launchpad'} · AISI AI Labs`;
   if (page==='learn'&&id==='terminal') {simFolder='';simHistory=[];}
   if (moveFocus) {window.scrollTo(0,0);main.focus({preventScroll:true});}
@@ -306,11 +308,22 @@ document.addEventListener('change',async event=>{
   if(input.id==='project-tool'){document.querySelector('#project-credential').innerHTML=credentialNotice(input.value);return;}
   if(!input.hasAttribute('data-check'))return;
   const project=findProject(input.dataset.project);
-  const checks=[...document.querySelectorAll('[data-check]:checked')].map(el=>Number(el.dataset.check));
-  document.querySelectorAll('[data-check]').forEach(el=>el.disabled=true);
-  try{const updated=await api('checks',{project:project.id,checks});Object.assign(project,updated);document.querySelector('#check-status').textContent=`${project.checks.length} of ${findLab(project.lab).checks.length} checks reviewed · saved`;}
-  catch(error){input.checked=!input.checked;toast(error.message);}
-  finally{document.querySelectorAll('[data-check]').forEach(el=>el.disabled=false);}
+  const inputs=[...document.querySelectorAll('[data-check]')];
+  const checks=inputs.filter(el=>el.checked).map(el=>Number(el.dataset.check));
+  pendingChecks.set(project.id,checks);
+  inputs.forEach(el=>el.disabled=true);
+  let saved=false;
+  try{const updated=await api('checks',{project:project.id,checks});Object.assign(findProject(project.id)||project,updated);saved=true;}
+  catch(error){toast(error.message);}
+  finally{
+    pendingChecks.delete(project.id);
+    const [page,id]=route();
+    if(page==='project'&&id===project.id){
+      const current=findProject(id)||project;
+      document.querySelectorAll('[data-check]').forEach(el=>{el.checked=current.checks.includes(Number(el.dataset.check));el.disabled=false;});
+      document.querySelector('#check-status').textContent=`${current.checks.length} of ${findLab(current.lab).checks.length} checks reviewed${saved?' · saved':''}`;
+    }
+  }
 });
 document.addEventListener('submit',async event=>{
   const form=event.target;event.preventDefault();

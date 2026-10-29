@@ -1,5 +1,17 @@
 # Changes
 
+## 29 October 2026 — review fixes
+
+- Fixed the desktop launcher for checkout paths containing spaces and other
+  characters that need escaping in desktop entries.
+- Kept delayed project checklist saves tied to their originating view and
+  displayed numbered guide instructions as ordered lists.
+- Added regression checks for launcher paths, checklist navigation and guide
+  list semantics. The deployment and real-tool acceptance gates remain open.
+- Verification: 64 unit/HTTP tests, JavaScript syntax checks and the isolated
+  Chromium smoke test passed. The launcher was also exercised through Gio with
+  a temporary path containing spaces and desktop-entry special characters.
+
 ## 29 September 2026 — explain beginner terminal commands
 
 - Added one canonical seven-step walkthrough shared by Getting started and the
