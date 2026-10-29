@@ -31,13 +31,8 @@ accounts, network setup and handover. Stay with offline activities until clear.
 
 ## A typical experiment
 
-In the terminal walkthrough, type only the text under Type this and press Enter.
-Keep spaces and filename capitalisation; do not type the dollar-sign prompt.
-Put in practice field fills the input without running it; buttons labelled Run
-simulate the command immediately. Teaching notes are separate from terminal
-output. A successful folder change normally displays no text: check with the
-next location command. The simulation's clear command clears output, not your
-current folder; reopening the lesson resets the practice.
+The terminal lesson explains what to type and what to expect. Its practice
+terminal is a simulation and does not run commands or access your files.
 
 Create a project, read its brief and inspect the supplied files. Open a tool in the project folder. Complete its authentication if necessary, then paste the starter prompt inside the AI assistant. At a normal shell prompt, commands are expected instead of conversational requests.
 
@@ -61,14 +56,12 @@ Never paste a key into a chat, skill, memory file, source code or screenshot. Do
 
 ## End your session
 
-Open Finish session from the persistent header link. It provides separate
-checks for saving work, stopping tools, Labs-held keys, external sign-out and
-device handover. Ticks are temporary self-reports in this browser tab, reset
-on reload, and do not verify any external action. You may clear the ticks
-without deleting work. The only automated action is explicitly forgetting
-keys held by Labs, using the same operation as Configuration.
-
-Use Forget all keys in Configuration, close running AI tools and sign out of any tool accounts when handing the laptop to someone else. Removing keys from Labs does not revoke them at the provider or erase credentials a tool saved itself. Follow the local reset procedure for shared devices. Your projects and progress belong to the Linux account; a shared account is not private storage between learners.
+Open Finish session from the header. Save your work, stop tools, forget any
+Labs-held keys, sign out of external accounts and follow the local handover
+procedure. The checklist ticks are temporary self-reports; they reset on reload
+and do not verify external actions. Forgetting a key in Labs does not revoke it
+at the provider or erase credentials saved by a tool. Projects and progress
+belong to the Linux account, so a shared account is not private between learners.
 
 ## If you make a mistake
 

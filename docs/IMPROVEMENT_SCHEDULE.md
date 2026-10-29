@@ -75,7 +75,7 @@ this development workstation.
 
 ## Stage 5 — release decision, after the preceding gates
 
-Owner to assign: programme/release owner. Decide repository hosting and access,
+Owner to assign: programme/release owner. Decide shared repository access,
 backup, application licensing, contribution review, release identifiers and
 distribution arrangements. Link any accepted image to its exact app commit,
 manifest and test evidence. Publishing, adding a remote, accounts, image

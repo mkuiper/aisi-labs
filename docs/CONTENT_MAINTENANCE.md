@@ -111,17 +111,14 @@ actual mismatch, and explain why a revision is better. A reveal is for compariso
 not a score. Inspect native details/summary keyboard use and expanded narrow
 layouts. Grouped Learn navigation must include every lesson exactly once.
 
-An editorial-only pass is not a complete source/exercise review. Increment the
-revision and explain the scope without refreshing the full-review date. Retain
-the earlier fingerprint when factual/source review remains incomplete, so the
-changed status stays visible.
-
-Read current primary sources; inspect licences rather than inferring them from
-brand names; qualify model/account/cost claims; try the exercise where authorised.
-Use public or authored fictional inputs only. Record what was not tested.
-Preserve stable lesson IDs and update affected quizzes, diagrams and links.
-Increment revisions for changed content, update fingerprints after genuine
-review and describe sources/changes/limitations in content/CHANGELOG.md.
+For an editorial-only pass, increment the revision and describe the scope in
+content/CHANGELOG.md. Keep the earlier review date and fingerprint when source
+or exercise review is incomplete, so changed status stays visible. For a full
+review, read current primary sources, inspect licences, qualify model, account
+and cost claims, and try authorised exercises with public or fictional inputs.
+Record sources, changes and limitations in content/CHANGELOG.md. Preserve
+lesson IDs, update affected quizzes, diagrams and links, and update
+fingerprints only after genuine review.
 
 Run the audit, unit/HTTP tests, syntax checks and isolated browser smoke suite.
 Verify new content is discoverable, sources are useful, links confirm external

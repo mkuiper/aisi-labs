@@ -1,5 +1,20 @@
 # Learning material history
 
+## 2026-10-29 — documentation streamlining
+
+- Streamlined doc:programme, doc:learner and doc:content-maintenance. Retained
+  the programme boundary, handover limits, editorial rules and release checks.
+- Corrected launcher guidance in doc:deployment and source-control context in
+  doc:maintenance and doc:improvement-schedule. Inspected the local app's
+  document registry, installer and existing guidance. No provider page, live
+  account, model call, learner session or deployment was tested.
+- This was an editorial pass, not a full source or exercise review. Revisions
+  increased for the six changed documents; earlier full-review dates and
+  fingerprints remain unchanged so review debt stays visible.
+- Verification: 64 unit/HTTP tests, JavaScript syntax and isolated Chromium
+  smoke checks passed. The learner guide was inspected in the app. The offline
+  audit reports 7 in-date, 19 due, 21 changed and 6 unreviewed units.
+
 ## 2026-10-29 — evidence exercise and learner journeys
 
 - Reworded the three lab:evidence checks as questions for investigation. Their

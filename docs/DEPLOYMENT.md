@@ -26,7 +26,7 @@ Measure usability on representative older laptops: boot time, browser memory, op
 - AISI AI Labs source and dependencies: Python 3, Chromium, Ghostty and the desktop-launch integration; Node is used for the browser test suite.
 - A curated, versioned tool manifest recording source, licence, version, launch command, authentication method and review date.
 - The authored public learning material and starter datasets only.
-- A portable desktop entry pointing to the installed launch.py and icon. The development entry uses /home/mike; replace that path for the image's actual installation location and account.
+- A desktop entry pointing to the installed launch.py and icon. Run install.sh for each learning account using the image's actual checkout. Verify the launcher under a fresh user account.
 - Local support and incident contacts, a physical device label stating PUBLIC INFORMATION ONLY — NEVER CONNECT TO GOVERNMENT NETWORKS, and a brief learner induction.
 - No API keys, login tokens, tool histories, projects, browser profiles, password stores, learner bookmarks, government network profiles or development-machine secrets.
 

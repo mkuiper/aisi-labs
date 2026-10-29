@@ -1,5 +1,16 @@
 # Changes
 
+## 29 October 2026 — documentation streamlining
+
+- Shortened repeated learner and programme guidance while retaining the
+  public-only boundaries, handover limits and release acceptance checks.
+- Corrected the README's guide count and in-app document scope, the deployment
+  launcher's installation guidance, and historical source-control references.
+- Recorded editorial scope and outstanding full-review debt in the learning
+  material history. No source or exercise review dates were refreshed.
+- Verification: 64 unit/HTTP tests, JavaScript syntax and isolated Chromium
+  smoke checks passed. The learner guide was inspected in the app.
+
 ## 29 October 2026 — clearer learner journeys
 
 - Getting started now shows the selected route while retaining easy switching,

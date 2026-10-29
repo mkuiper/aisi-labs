@@ -22,7 +22,10 @@ The supplied fictional examples are public practice material.
 - [Critical review and outstanding release gates](docs/REVIEW.md)
 - [Architecture](ARCHITECTURE.md), [contributing](CONTRIBUTING.md), [agent guidance](AGENTS.md)
 
-These are also readable in the app's Programme & guides tab. The application
+The app's Programme & guides tab includes the programme, learner, deployment,
+credentials, curriculum, open-model, content-maintenance and update guides. It
+also includes the improvement schedule. The architecture, critical review,
+contributing and agent guidance are available in this repository. The application
 does not enforce network separation. A departmental image still needs to be
 built, tested and accepted by its deployment owner; this repo is not that image.
 
@@ -56,7 +59,7 @@ or until its process is stopped. The launcher reuses it on the next visit.
 - A launchpad with 21 curated AI and desktop tools, checked for command availability.
 - Five project starters: first agent session, consultation explorer, data story,
   evidence checking and an open-ended project.
-- Twelve short illustrated guides, including open models, web chat, an interactive agent-loop replay and
+- Short illustrated guides, including open models, web chat, an interactive agent-loop replay and
   a simulated terminal that never executes commands.
 - Real project folders, starter files, copyable prompts, self-review checklists
   and local page previews. Projects can be reopened with different tools.
@@ -126,13 +129,11 @@ their own network access, credentials and possibly a paid subscription. A found
 command is not proof of authentication or service health. Some installed user
 wrappers may bootstrap their tool when opened.
 
-The backend binds only to loopback, checks the Host header, and requires both
-a per-process token and a same-origin request for write/launch actions. Tools
-are a fixed allowlist launched with argument arrays, never shell-interpolated
-user input. It cannot run arbitrary commands from browser requests. Project
-IDs and preview paths are checked; project roots cannot be symlinks. Generated
-HTML is opened as a separate local file, never served under the privileged
-launcher's web origin. The terminal lesson is a simulation, not a shell API.
+The hub binds to loopback, checks the Host and Origin headers, and requires a
+per-process token for mutations. It launches allowlisted tools with argument
+arrays and opens project previews outside the privileged hub origin. The
+terminal lesson is a simulation, not a shell API. See [Architecture](ARCHITECTURE.md)
+for the HTTP boundary, path validation and other implementation details.
 
 Project folders are **not security sandboxes**. An external tool runs with its
 own permissions and the user's account. The hub does not submit prompts or

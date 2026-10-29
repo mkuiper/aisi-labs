@@ -10,25 +10,15 @@ Provide Australian Public Service staff with hands-on exposure to contemporary A
 
 The audience includes people new to terminals and coding, as well as experienced technical staff. Direct tool launch and open projects support experienced learners. Short illustrated explanations, public practice datasets, guided projects and a simulated terminal support beginners. Learners can move between these approaches without completing a mandatory course sequence.
 
-The persistent Omarchy help link gives first-time users an offline desktop
-orientation and shortcut cheat sheet, with a link to the terminal simulation.
-Facilitators must verify the bindings on their particular learning image.
-Fullscreen and close-window controls are presented first, with save-work
-cautions. Learn questions use practical scenarios and choice-specific
-explanations; they are optional and do not record answers or scores.
-
 Getting started offers three optional beginner routes: try a chatbot, learn
 the desktop, or build a first project. The first two need no coding experience;
 the chatbot example and desktop simulation can be reviewed without an account.
-Learners select one route at a time and can switch between them. The chatbot
-practice prompt can be copied for manual use with a permitted learning account;
-the hub does not submit it to a provider.
-Learn groups the guides by purpose and links to AI basics and a short glossary.
-Worked examples provide evidence to inspect, not just multiple-choice answers.
-Finish session separates manual handover steps
-from the explicit local key-forgetting action; it cannot certify logout or
-device readiness. The improvement schedule sets proposed pilot and deployment
-gates, not approved dates or automatically scheduled work.
+The chatbot prompt can be copied for manual use; the hub does not submit it to a
+provider. Omarchy help offers offline desktop guidance; facilitators must check
+shortcuts on the learning image. Questions are optional and unscored. Finish
+session supports manual handover but cannot certify logout or device readiness.
+The improvement schedule proposes pilot and deployment gates; it does not
+approve dates or schedule work.
 
 ## Creative media and keeping current
 

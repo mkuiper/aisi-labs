@@ -77,11 +77,10 @@ item because a long-lived leader or existing login can change credential use.
 
 ## Source control and collaboration
 
-The app has a local Git repository. Keep source, tests, documentation and image
+The source is published on GitHub. Keep source, tests, documentation and image
 recipes in Git; exclude credentials, learner files, reports and machine state.
-No remote hosting is required for local work. Choose hosting, access, licence,
-branch protection and release ownership explicitly before publishing. A gitignore
-is not a secret scanner: review staged diffs and scan release artefacts too.
+Decide shared access, licence, branch protection and release ownership. A
+gitignore is not a secret scanner: review staged diffs and release artefacts.
 
 Use reviewed pull requests once a shared repository exists. Require checks
 before merging; tag accepted releases and link each image manifest to the exact

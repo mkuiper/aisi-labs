@@ -19,9 +19,9 @@ public-only teaching intent. It is not ready to clone and distribute as an
 approved departmental image. The most important remaining work is deployment
 assurance and real-tool acceptance, not adding more decorative screens.
 
-## Addressed in this review
+## Addressed in the 27 September review
 
-- Source control: created a local main-branch repository and baseline commit; strengthened ignores. No remote or publication.
+- Source control: created a local main-branch repository and baseline commit; strengthened ignores. At that date there was no remote or publication. The source has since been published on GitHub.
 - Purpose and branding: AISI AI Labs display name in the app and existing desktop launcher. Landing page explains APS development, public-only inputs and separation from official workplace processing. Stable folder/data identifiers retained.
 - Model drift: added persisted, validated, per-launch model overrides for four tools; empty means native default, not newest. No misleading hard-coded latest-model list.
 - Configuration coverage: distinguishes three hub key adapters, four model controls, native setup for other AI tools and desktop preferences. Grok has a native setup guide and model override; no unsupported xAI key injection.
@@ -81,8 +81,10 @@ APS learners. Shared-account progress is not an LMS or an individual training re
 
 The frontend is dependency-free but uses shared globals and some dense template
 strings. Split it further if complexity grows; avoid a framework migration solely
-for appearance. The current desktop entry has this developer's path; an image
-recipe must generate its own. There is no signed updater or automated image build.
+for appearance. At the time of the review, the desktop entry used the developer's
+path. The installer now generates an entry for its checkout and user; an image
+recipe must still install and verify it. There is no signed updater or automated
+image build.
 
 ## GovAI and agency platforms
 
