@@ -71,7 +71,8 @@ class ContentTests(unittest.TestCase):
         self.assertEqual({guide['id'] for guide in SESSION_GUIDES}, {'first-session','finish-session'})
         allowed = {'#programme','#omarchy-help','#learn/terminal','#configuration',
                    '#lab/first-steps','#projects','#finish-session','#docs/credentials','#docs/deployment',
-                   '#learn/web-chat','#learn/ai-basics','#learn/chat-agents','#learn','#glossary'}
+                   '#learn/web-chat','#learn/ai-basics','#learn/chat-agents','#learn','#glossary',
+                   '#learn/prompting','#learn/context','#learn/checking'}
         for guide in SESSION_GUIDES:
             self.assertIn('guide:' + guide['id'], learning_units())
             self.assertEqual(len({step['id'] for step in guide['steps']}), len(guide['steps']))
@@ -125,7 +126,20 @@ class ContentTests(unittest.TestCase):
                 self.assertIn('Authored public practice', lesson['worked_example']['context'])
             for label, destination in lesson.get('next_links', []):
                 self.assertTrue(label)
-                self.assertIn(destination, {'#learn/web-chat','#learn/checking','#glossary','#web-chats','#finish-session'})
+                self.assertIn(destination, {'#glossary','#web-chats','#finish-session'} | {'#learn/'+item['id'] for item in LESSONS} | {'#web-chats/'+item['id'] for item in LESSONS if item.get('exercise')})
+
+    def test_everyday_exercises_supply_complete_prompts_and_offline_review(self):
+        for identifier in ['prompting', 'context', 'checking']:
+            lesson = next(item for item in LESSONS if item['id'] == identifier)
+            exercise = lesson['exercise']
+            self.assertIn(exercise['facts'], exercise['prompt'])
+            self.assertIn('fictional', exercise['intro'])
+            self.assertIn('offline', exercise['intro'])
+            self.assertEqual(len(exercise['checks']), 3)
+            self.assertEqual(len(exercise['steps']), 3)
+            self.assertGreater(len(exercise['sample']), 40)
+            self.assertGreater(len(exercise['explanation']), 100)
+            self.assertTrue(lesson['next_links'])
 
     def test_desktop_help_is_versioned_plain_content_with_sources(self):
         self.assertIn('help:omarchy', learning_units())

@@ -1,5 +1,28 @@
 # Learning material history
 
+## 2026-11-04 — everyday public-tool practice
+
+- Added fictional plain-language, conflicting-source and survey-summary exercises
+  to lesson:prompting, lesson:context and lesson:checking. Inspected all source
+  facts, prompts, authored samples, answer explanations and quiz feedback.
+  Replaced the prompting dashboard example with an everyday writing task.
+- Updated guide:first-session and programme/curriculum/learner documents to
+  describe public-tool exploration rather than government work scenarios.
+- Source inspection on 2026-11-04 by the lead covered Anthropic prompting best
+  practices (https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices),
+  context selection (https://www.anthropic.com/research/effective-context-engineering-for-ai-agents)
+  and Google prompting strategies (https://aistudio.google.com/docs/prompting-strategies).
+  These support clear instructions, relevant supplied input and iterative checking;
+  they do not validate any authored output as a live model result.
+- This is a scoped editorial/exercise pass. Earlier full-review dates and
+  fingerprints remain unchanged, with revisions advanced for changed units.
+  No live accounts, model calls, paid tasks, learner pilot or provider availability
+  comparison was performed. GovAI capabilities were not assessed.
+- Verification: 70 unit/HTTP tests, JavaScript syntax and isolated Chromium smoke
+  passed. Each exercise copies its own complete prompt, profile detours retain
+  the return link, and offline practice sends no request. Desktop/mobile screens
+  were inspected. Audit: 4 in-date, 19 due, 24 changed and 6 unreviewed units.
+
 ## 2026-11-04 — feedback collection guidance
 
 - Updated doc:programme to describe optional local comments, explicit facilitator

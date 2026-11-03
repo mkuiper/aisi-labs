@@ -23,7 +23,7 @@
         "id": "chat",
         "title": "Try a chatbot",
         "subtitle": "For a first conversation with AI. No terminal or project setup.",
-        "body": "Use a fictional community-garden invitation to practise giving instructions and checking an answer. The exercise includes a prompt, source facts and an example you can review offline.",
+        "body": "Start with a fictional invitation, then try making a hobby-club notice clear, comparing event notices or checking a repair-cafe survey summary. Each activity supplies its facts, prompt and an offline example; no coding is needed.",
         "steps": [
           "Open the chatbot exercise and read the supplied facts.",
           "If a permitted learning account is ready, choose a chatbot from Web & media. Check account settings and costs before pasting the exercise prompt; do not connect other accounts or files.",
@@ -38,6 +38,18 @@
           [
             "AI basics",
             "#learn/ai-basics"
+          ],
+          [
+            "Make a notice clear",
+            "#learn/prompting"
+          ],
+          [
+            "Compare two sources",
+            "#learn/context"
+          ],
+          [
+            "Check a summary",
+            "#learn/checking"
           ]
         ]
       },

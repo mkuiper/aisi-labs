@@ -28,7 +28,7 @@ course sequence or claim that the routes have been timed with learners.
 Learn groups existing stable lesson IDs into everyday AI, agents/tools and
 models/media/evidence. AI basics introduces the terms used in later guides.
 Its glossary is the single source for the glossary page and term search results.
-The chatbot lesson contains one canonical fictional invitation exercise, prompt,
+Everyday practice includes a fictional invitation, a plain-language hobby-club notice, conflicting event notices and a repair-cafe survey summary. Each has supplied facts, a self-contained prompt and an authored offline sample. Learners may optionally use a permitted public chatbot and compare source fidelity across tools without ranking brands. The chatbot lesson contains its canonical fictional invitation exercise, prompt,
 review checklist and deliberately flawed offline sample. Prompting, context and
 checking lessons include worked comparisons with explanations that learners can
 reveal. Questions remain optional; no answers or reflections are collected.

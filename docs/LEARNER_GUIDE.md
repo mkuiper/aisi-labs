@@ -29,6 +29,8 @@ No quiz answer or reflection is sent to an AI service or recorded as a score.
 If no facilitator is available, ask the person responsible for the device about
 accounts, network setup and handover. Stay with offline activities until clear.
 
+For more everyday practice, try making the hobby-club notice clear in Writing a task brief, comparing two event notices in Give AI the right context, or checking a repair-cafe survey summary in Checking outputs and evidence. All have supplied fictional facts and an offline example. An optional live attempt explores public chatbot tools; check the permitted learning account, network and costs first. You do not need to install software or create an API key for the offline activities.
+
 ## A typical experiment
 
 The terminal lesson explains what to type and what to expect. Its practice

@@ -1,5 +1,19 @@
 # Changes
 
+## 4 November 2026 — everyday public-tool exercises
+
+- Added three fictional no-code activities for clear writing, conflicting-source
+  comparison and source-grounded summaries, using existing lesson IDs.
+- Each activity has full copyable facts, an offline sample, review checks and a
+  hidden explanation. Directory return links follow the selected exercise.
+- Put everyday practice on the launchpad and chat starting path; retained
+  optional technical exploration and all programme boundaries.
+- Recorded the audience/design choice in docs/UX_JOURNEY.md. This changes the
+  learning emphasis, not provider access or permission for official work.
+- Verification: 70 unit/HTTP tests, JavaScript syntax and isolated Chromium
+  smoke checks passed, including each prompt, profile return, hidden explanations,
+  clipboard failure, offline navigation and desktop/mobile layout checks.
+
 ## 4 November 2026 — optional local feedback and email report
 
 - Added Give feedback from the footer and Finish session, including before

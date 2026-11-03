@@ -16,14 +16,18 @@ function omarchyHelpPage() {
     <div class="note">${esc(help.boundary)}</div><div class="actions"><a class="btn" href="#learn/terminal">Open the terminal simulation →</a><a class="btn secondary" href="#tools">Explore the tools →</a></div>
     <div class="sources"><h2>Official help · opens online</h2><p>The cheat sheet above works offline. These links leave Labs. Reading help here does not launch apps, send keystrokes or change the desktop.</p>${help.sources.map(([title,url])=>`<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">${esc(title)} ↗</a>`).join('')}</div></article>`;
 }
-function chatCard(chat) {
+function practiceLesson(id) { return data.lessons.find(lesson=>lesson.id===id&&lesson.exercise); }
+function chatCard(chat, practiceId) {
+  const practice=practiceLesson(practiceId);
   const label=chat.kind==='reference'?'Reference only · restricted product':chat.kind==='library'?'Model library · online':chat.kind==='creative'?(chat.id==='comfyui'?'Workflow guide · no installation':'Image & video · hosted'):'Hosted chat · online';
-  return `<article class="tool-card web-chat-card">${mark(chat, 'chat')}<h3>${esc(chat.name)}</h3><span class="tag">${label}</span><p>${esc(chat.description)}</p><div class="actions"><a class="btn secondary" href="#web-tool/${esc(chat.id)}">About this tool →</a>${chat.url&&chat.kind!=='reference'?`<button class="btn secondary" data-web-chat="${esc(chat.id)}">Visit website ↗</button>`:''}</div></article>`;
+  return `<article class="tool-card web-chat-card">${mark(chat, 'chat')}<h3>${esc(chat.name)}</h3><span class="tag">${label}</span><p>${esc(chat.description)}</p><div class="actions"><a class="btn secondary" href="#web-tool/${esc(chat.id)}${practice?'/'+esc(practice.id):''}">About this tool →</a>${chat.url&&chat.kind!=='reference'?`<button class="btn secondary" data-web-chat="${esc(chat.id)}">Visit website ↗</button>`:''}</div></article>`;
 }
-function webToolPage(id) {
+function webToolPage(routeId) {
+  const [id,practiceId]=routeId.split('/');
+  const practice=practiceLesson(practiceId);
   const chat=data.web_chats.find(x=>x.id===id);if(!chat)return '<p>Tool profile not found.</p>';
   const review=data.content_reviews.find(x=>x.id==='chat:'+id);
-  return `<article class="reader tool-profile"><a class="back" href="#web-chats">← Web & media</a>${mark(chat,'chat')}<h1>${esc(chat.name)}</h1><p class="intro">${esc(chat.description)}</p>
+  return `<article class="reader tool-profile"><a class="back" href="#web-chats${practice?'/'+esc(practice.id):''}">← Web & media</a>${mark(chat,'chat')}<h1>${esc(chat.name)}</h1><p class="intro">${esc(chat.description)}</p>
     <p class="small-note content-review">Revision ${review?.revision||1} · ${review?.reviewed_at?'Source review '+esc(review.reviewed_at):'Detailed review pending'} · ${esc(review?.status||'unreviewed')}. This is a learning profile, not procurement advice or approval.</p>
     ${chat.kind==='reference'?'<div class="note"><strong>Reference only — no launch or download.</strong> Device restrictions can still apply on a separate network. Ask the deployment owner; do not assume a learning-purpose exception.</div>':''}
     ${[['Useful learning uses',chat.useful_for],['What is open—and where does it run?',chat.openness],['Limitations',chat.limits],['Concerns and context',chat.considerations]].map(([title,body])=>`<section class="article-section"><h2>${title}</h2><p>${esc(body)}</p></section>`).join('')}
@@ -32,14 +36,15 @@ function webToolPage(id) {
     <div class="sources"><h2>Sources and review limits</h2><p>Primary sources support the product and policy notes. Suggested uses are editorial examples. This is not an exhaustive legal, safety or controversy assessment; missing concerns do not mean a tool is risk-free. Features and terms change. No live sign-in, paid task or model download was tested.</p>${chat.sources.map(([title,url])=>`<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">${esc(title)} ↗</a>`).join('')}</div>
     <div class="actions">${chat.url&&chat.kind!=='reference'?`<button class="btn" data-web-chat="${esc(chat.id)}">Visit website ↗</button>`:''}<a class="btn secondary" href="#learn/open-models">Understand open models →</a></div></article>`;
 }
-function webChatsPage() {
+function webChatsPage(practiceId) {
+  const practice=practiceLesson(practiceId)||findLesson('web-chat');
   return `${heading('Explore different ways to create','Web & media','Chatbot websites, image/video tools and open-model learning resources.')}
     <div class="note"><strong>These links open external websites, not local apps.</strong> Use ONLY public information—nothing OFFICIAL. NEVER use government accounts or connect this laptop to government networks. Inclusion is not agency approval. Account requirements, models, prices and privacy settings can change.</div>
-    <div class="actions"><a class="btn secondary" href="#learn/web-chat">Return to chatbot practice →</a><a class="btn secondary" href="#learn/open-models">Understand open models →</a></div>
+    <div class="actions"><a class="btn secondary" href="#learn/${esc(practice.id)}">${practice.id==='web-chat'?'Return to chatbot practice':'Return to your exercise'} →</a><a class="btn secondary" href="#learn/open-models">Understand open models →</a></div>
     <section class="panel"><h2>Learn how to choose, not just what to click</h2><p>Read each profile for useful exercises, limitations and sourced concerns. These are learning suggestions, not rankings or agency approvals. No listed controversy does not mean no risk. A government-owned laptop can remain subject to product restrictions even on a separate learning network.</p></section>
-    <h2>Hosted assistants</h2><div class="tool-grid web-chat-grid">${data.web_chats.filter(x=>x.kind==='chat').map(chatCard).join('')}</div>
-    <h2>Image & video</h2><p>Explore visual briefs, generation and review. ComfyUI links to documentation only; no local installation is implied.</p><p><a class="text-link" href="#learn/image-video">Learn to make media responsibly →</a></p><div class="tool-grid web-chat-grid">${data.web_chats.filter(x=>x.kind==='creative').map(chatCard).join('')}</div>
-    <h2>Explore open-model releases</h2><p>Start with model cards and licences. Qwen and Mistral above also illustrate why a hosted chat service is different from a model release. Browsing this directory installs nothing.</p><div class="tool-grid web-chat-grid">${data.web_chats.filter(x=>x.kind==='library'||x.kind==='reference').map(chatCard).join('')}</div>
+    <h2>Hosted assistants</h2><div class="tool-grid web-chat-grid">${data.web_chats.filter(x=>x.kind==='chat').map(chat=>chatCard(chat,practice.id)).join('')}</div>
+    <h2>Image & video</h2><p>Explore visual briefs, generation and review. ComfyUI links to documentation only; no local installation is implied.</p><p><a class="text-link" href="#learn/image-video">Learn to make media responsibly →</a></p><div class="tool-grid web-chat-grid">${data.web_chats.filter(x=>x.kind==='creative').map(chat=>chatCard(chat,practice.id)).join('')}</div>
+    <h2>Explore open-model releases</h2><p>Start with model cards and licences. Qwen and Mistral above also illustrate why a hosted chat service is different from a model release. Browsing this directory installs nothing.</p><div class="tool-grid web-chat-grid">${data.web_chats.filter(x=>x.kind==='library'||x.kind==='reference').map(chat=>chatCard(chat,practice.id)).join('')}</div>
     <section class="panel"><h2>Chat website ≠ model ≠ local agent</h2><p>The website provides the interface and its own tools and permissions. Your Labs API key and project folder are not sent by these links. Each website manages its own sign-in, privacy settings and billing; existing browser sessions may still be signed in. Check the account before you type.</p><p class="small-note">Try the same fictional public prompt in two services, then compare what you can verify—not just which answer sounds more confident. A hosted open-weight model is still hosted, not local inference.</p></section>`;
 }
 function webChatDialog(id) {

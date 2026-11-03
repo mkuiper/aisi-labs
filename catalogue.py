@@ -97,6 +97,26 @@ LESSONS = [
      "feedback": "cd changed the folder, not the file. pwd and ls confirm where you are; cd .. returns to the parent folder where BRIEF.md was listed.",
      "sources": [["GNU Bash manual","https://www.gnu.org/software/bash/manual/bash.html"],["Omarchy hotkeys","https://omarchy.org/manual/hotkeys/"]]},
     {"id": "context",
+     "exercise": {
+     "title": "Try it: compare two event notices",
+     "intro": "An authored fictional everyday exercise. Review the example offline or try a permitted public chatbot. No coding, account or payment is needed for the offline version.",
+     "facts": "Source A: an early Riverside Swap Day planning note dated 1 May says the event starts at 9 am on 16 May and that the venue is still to be confirmed. Source B: the organiser’s final notice dated 8 May explicitly replaces that plan. It says the event starts at 10 am on 16 May at Elm Hall. Neither source gives an end time or parking information.",
+     "prompt": "Compare these fictional public sources. Identify their disagreement, explain which source governs and why, then give the supported event details and unanswered questions. Do not invent missing information. Sources: Source A: an early Riverside Swap Day planning note dated 1 May says the event starts at 9 am on 16 May and that the venue is still to be confirmed. Source B: the organiser’s final notice dated 8 May explicitly replaces that plan. It says the event starts at 10 am on 16 May at Elm Hall. Neither source gives an end time or parking information.",
+     "steps": [
+          "Read the fictional facts and decide what the answer must preserve. Review the authored sample offline if you have no account.",
+          "For an optional live attempt, check the permitted learning account, network and costs. Paste the supplied prompt into a chatbot from Web & media yourself. Do not connect files, drives or other accounts.",
+          "Compare the answer with the facts. Request one specific correction if needed, then check the revision yourself."
+     ],
+     "checks": [
+          "Does it identify the 9 am versus 10 am disagreement rather than combine the times?",
+          "Does it use Source B for the final 10 am start and Elm Hall because B explicitly replaces A?",
+          "Does it leave end time and parking unknown, without assuming newer always means authoritative?"
+     ],
+     "sample": "Riverside Swap Day runs from 9 am to 10 am on 16 May at Elm Hall, with free parking.",
+     "explanation": "The sources disagree about a start time; they do not describe an hour-long event. B is the organiser’s final notice and explicitly replaces A, so the supported start is 10 am on 16 May at Elm Hall. End time and parking are not supplied. Name the conflict, explain why B governs and keep remaining questions separate. A date alone does not establish authority.",
+     "reflection": "What if the newer text were an unattributed repost rather than the organiser’s final notice? Inspect the original or ask the organiser instead of treating recency as proof."
+},
+     "next_links": [["Try another everyday exercise", "#learn/checking"], ["Browse public chatbot websites", "#web-chats/context"]],
      "worked_example": {
        "title": "Spot an instruction inside source material",
        "context": "Authored public practice: you ask an assistant to summarise an event page. The page contains the text below.",
@@ -116,24 +136,44 @@ LESSONS = [
      "question": "An assistant has a current public event notice and an older public planning summary. They give different start times. How should you frame the task?", "options": ["Ask it to combine both accounts into a single concise description of the event.","Identify the current notice as the source for the time and ask it to flag the conflict.","Ask it to favour whichever document gives more detail about the arrangements."], "correct": 1, "option_feedback": ["Combining conflicting accounts without specifying their status can conceal the disagreement. Tell the assistant which source governs the current event details.","This establishes a source priority and makes the conflict visible. Still inspect the actual notice and the resulting claim; an instruction alone is not verification.","More detail does not establish currency or authority. An older plan can be more detailed than the notice that supersedes it."],
      "feedback": "This establishes a source priority and makes the conflict visible. Still inspect the actual notice and the resulting claim; an instruction alone is not verification.", "sources": [["Anthropic: context engineering","https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"],["OWASP: prompt injection","https://genai.owasp.org/llmrisk/llm01-prompt-injection/"]]},
     {"id": "prompting",
+     "exercise": {
+     "title": "Try it: make a hobby-club notice clear",
+     "intro": "An authored fictional everyday exercise. Review the example offline or try a permitted public chatbot. No coding, account or payment is needed for the offline version.",
+     "facts": "The fictional Hilltop Sketch Club meets on the first Sunday of each month, from 2 pm to 4 pm. New visitors must reserve a place by Friday. The first visit is free; later visits cost $5 each. Bring a pencil and paper. No venue address has been supplied.",
+     "prompt": "Rewrite the notice for a first-time visitor in no more than 80 words. Keep all times, costs and conditions. Use only these fictional public practice facts. Do not invent missing details; list unanswered questions separately. Facts: The fictional Hilltop Sketch Club meets on the first Sunday of each month, from 2 pm to 4 pm. New visitors must reserve a place by Friday. The first visit is free; later visits cost $5 each. Bring a pencil and paper. No venue address has been supplied.",
+     "steps": [
+          "Read the fictional facts and decide what the answer must preserve. Review the authored sample offline if you have no account.",
+          "For an optional live attempt, check the permitted learning account, network and costs. Paste the supplied prompt into a chatbot from Web & media yourself. Do not connect files, drives or other accounts.",
+          "Compare the answer with the facts. Request one specific correction if needed, then check the revision yourself."
+     ],
+     "checks": [
+          "Does it preserve the first-Sunday schedule, 2 pm to 4 pm and Friday reservation deadline?",
+          "Does it distinguish the free first visit from the $5 charge for later visits?",
+          "Does it use ordinary language without inventing an address, materials or access arrangements?"
+     ],
+     "sample": "Come sketch with us every Sunday from 2 pm to 4 pm. All visits are free, and you can just turn up. We provide everything you need.",
+     "explanation": "The sample changes first Sunday to every Sunday, removes reservations, makes every visit free and invents supplied materials. A faithful rewrite is: Hilltop Sketch Club meets on the first Sunday of each month, 2 pm to 4 pm. Reserve by Friday. Your first visit is free; later visits cost $5. Bring a pencil and paper. Ask the organiser for the address. Simpler wording must preserve the conditions.",
+     "reflection": "Ask for one correction. If another permitted chatbot is available, optionally try the identical prompt there. Note the date and displayed model/settings if available. Compare source fidelity and ease of use rather than declaring a best brand. Account access and costs may differ."
+},
+     "next_links": [["Try another everyday exercise", "#learn/context"], ["Browse public chatbot websites", "#web-chats/prompting"]],
      "worked_example": {
        "title": "Turn a vague request into a checkable brief",
-       "context": "Authored public practice: six fictional submissions are supplied in a CSV file (a plain-text table).",
-       "before": "Make this into an impressive dashboard.",
-       "after": "Make an offline page for a learner to inspect the six supplied submissions. Use only this CSV. Add a topic filter; show the matching records and count, including an empty result. Ask before installing anything or publishing.",
+       "context": "Authored public practice: a fictional club notice needs a shorter version for a first-time visitor.",
+       "before": "Make this notice sound better.",
+       "after": "Rewrite the supplied notice for a first-time visitor in no more than 80 words. Preserve dates, costs and reservation rules. Use ordinary language and keep unanswered questions separate. Do not invent details.",
        "question": "What can you now check that you could not check from the first request?",
-       "explanation": "You can compare the displayed records and counts with the CSV, try each filter and test an empty result. “Impressive” did not define evidence or behaviour. The added boundaries guide the task, but the tool’s actual permissions still need review."
+       "explanation": "You can compare the meaning with the source and check the word limit. “Sound better” did not define an audience or what must stay accurate. Clear instructions make checking easier; they do not guarantee a correct reply."
      },
      "title": "Writing a task brief", "subtitle": "Describe the outcome, constraints and checks.", "minutes": 4, "icon": "spark", "colour": "clay", "diagram": "brief", "lab": "blank",
      "intro": "A useful prompt gives the assistant enough information to act and gives you a way to judge its output. You can improve the brief through conversation.",
      "sections": [
          ["Describe the outcome", "Name the audience and what you need: for example, ‘write a short invitation for first-time visitors using these fictional event facts’. For a building task, specify what the page should do, such as showing six supplied submissions with a topic filter."],
          ["Set the boundaries", "Say which files to use, what may be changed and what needs your approval. For this lab: use ONLY public information, including the supplied practice examples. Never use OFFICIAL information. Ask before adding extra software packages (dependencies) or publishing."],
-         ["Define success", "Name visible checks: all six records appear, counts match the source and the page works on a small screen. Ask for a plan when the task is unfamiliar, then review the result."],
+         ["Define success", "Name visible checks: the rewrite preserves times, costs and conditions, uses ordinary language and stays within the word limit. Review the result yourself."],
      ],
      "takeaway": "Goal → evidence → boundaries → checks. A good brief makes the result easier to evaluate.",
-     "question": "You are briefing an agent to build an offline topic filter for six fictional submissions. Which acceptance check best tests whether the filter works?", "options": ["The initial page displays all six records with readable labels and consistent spacing.","Each topic has a working button and the page remains usable on a narrow screen.","Each selection shows the matching source records, with correct counts and an empty state."], "correct": 2, "option_feedback": ["This is a useful initial-display check, but a page can pass it while its filter returns the wrong records.","Usability and responsiveness matter, but clickable controls do not establish that the filtering logic is correct.","This ties the behaviour to the source data, including a zero-match result where possible. Add layout and accessibility checks as separate requirements."],
-     "feedback": "This ties the behaviour to the source data, including a zero-match result where possible. Add layout and accessibility checks as separate requirements.", "sources": [["Anthropic: clear instructions and constraints","https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"]]},
+     "question": "You ask a chatbot to simplify a club notice for new visitors. Which check best tests whether the rewrite remains faithful?", "options": ["It uses shorter sentences and sounds welcoming when read aloud.","It stays under the word limit and includes the club name in its heading.","Its times, costs and conditions match the source, with missing details left as questions."], "correct": 2, "option_feedback": ["Readability matters, but a friendly rewrite can still change a price or remove a condition. Compare it with the source.","Length and a heading do not establish accuracy. They are format checks alongside source checking.","This tests meaning against the supplied evidence. Check readability and length separately; keep unknown details as questions."],
+     "feedback": "This tests meaning against the supplied evidence. Check readability and length separately; keep unknown details as questions.", "sources": [["Anthropic: clear instructions and constraints","https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"]]},
     {"id": "tools-skills", "title": "Tools, MCP & skills", "subtitle": "Actions, connections and reusable instructions.", "minutes": 4, "icon": "nodes", "colour": "pink", "diagram": "tools", "lab": "first-steps",
      "intro": "These terms describe different parts of an AI system. They often work together, and support varies by application.",
      "sections": [
@@ -146,6 +186,26 @@ LESSONS = [
      "feedback": "A skill packages a repeatable procedure in a supporting application. Inspect any included scripts and references; it does not grant permissions or guarantee compliance.",
      "sources": [["Model Context Protocol introduction", "https://modelcontextprotocol.io/docs/getting-started/intro"], ["Agent Skills overview", "https://agentskills.io/what-are-skills"]]},
     {"id": "checking",
+     "exercise": {
+     "title": "Try it: summarise a repair-cafe survey",
+     "intro": "An authored fictional everyday exercise. Review the example offline or try a permitted public chatbot. No coding, account or payment is needed for the offline version.",
+     "facts": "E1: Twenty visitors answered a voluntary questionnaire at one fictional repair-cafe session. E2: Twelve said the tool demonstration was helpful, five said it was not helpful and three were unsure. E3: Visitors were not selected at random, and nobody measured whether their repair skills changed. E4: The organisers did not measure money saved.",
+     "prompt": "Use only the fictional public practice evidence below. Write a summary of no more than 90 words, preserving counts and sample limitations. Separate what was reported from what was not measured. After the summary, map each factual sentence to E1–E4. Evidence: E1: Twenty visitors answered a voluntary questionnaire at one fictional repair-cafe session. E2: Twelve said the tool demonstration was helpful, five said it was not helpful and three were unsure. E3: Visitors were not selected at random, and nobody measured whether their repair skills changed. E4: The organisers did not measure money saved.",
+     "steps": [
+          "Read the fictional facts and decide what the answer must preserve. Review the authored sample offline if you have no account.",
+          "For an optional live attempt, check the permitted learning account, network and costs. Paste the supplied prompt into a chatbot from Web & media yourself. Do not connect files, drives or other accounts.",
+          "Compare the answer with the facts. Request one specific correction if needed, then check the revision yourself."
+     ],
+     "checks": [
+          "Are 12 helpful, 5 not helpful and 3 unsure preserved, with 12 of 20 correctly described as 60%?",
+          "Does it distinguish reported helpfulness from measured skills and avoid generalising to all visitors?",
+          "Does it avoid invented savings and name the voluntary, single-session sample limit?"
+     ],
+     "sample": "The repair cafe improved everyone’s repair skills: 80% of visitors found it helpful, saving each household $50.",
+     "explanation": "E2 supports 12 of 20 respondents (60%) reporting helpfulness. E3 does not establish improved skills or represent all visitors. E4 supplies no savings figure. A faithful summary is: In a voluntary questionnaire at one repair-cafe session, 12 of 20 respondents (60%) found the demonstration helpful, five did not and three were unsure. The sample was not random. Changes in skills and money saved were not measured. Unsupported benefits are not proof that nobody benefited. Sentence sources: sample and session E1; counts E2; sampling and skills E3; savings E4.",
+     "reflection": "Trace one sentence to E1–E4. Which sentence is an interpretation rather than a reported fact, and would you remove it or label its uncertainty?"
+},
+     "next_links": [["Try another everyday exercise", "#learn/web-chat"], ["Browse public chatbot websites", "#web-chats/checking"]],
      "worked_example": {
        "title": "Check a claim against a small source",
        "context": "Authored public practice: four fictional responses were received. Two support the proposal, one opposes it and one asks a question without taking a position.",

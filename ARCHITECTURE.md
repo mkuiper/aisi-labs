@@ -110,6 +110,14 @@ in content/lessons.json; its glossary array is the canonical source for
 definitions. Term routes focus a validated existing ID; no user text is inserted
 into selectors or HTML. Related links return to the original lesson IDs.
 
+The prompting, context and checking lessons reuse the existing exercise record
+for everyday public-tool practice. Copy buttons carry a validated lesson ID and
+read that lesson’s prompt, which includes its source facts. #web-chats/<lesson-id>
+and #web-tool/<tool-id>/<lesson-id> keep return links to a known exercise;
+unknown exercise IDs fall back to web-chat. No
+external destination or learner state is accepted from the route. Existing
+lesson IDs, project data and launch gates are unchanged.
+
 Optional lesson fields: exercise holds authored facts, a prompt, steps, checks,
 a flawed sample, explanation and reflection; worked_example holds context,
 before/after text, a question and explanation; next_links holds internal label/

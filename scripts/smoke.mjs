@@ -161,6 +161,37 @@ try{
   assert.equal(await evaluate('document.querySelector(".practice-exercise details").open'),true);
   assert(await evaluate('document.querySelector(".practice-exercise details").textContent.includes("unsupported additions")'));
   await screenshot('chatbot-exercise-desktop');
+  const everydayStart=requests.length;
+  for(const id of ['prompting','context','checking']){
+    await go('#learn/'+id);
+    assert.equal(await evaluate('document.querySelectorAll(".practice-exercise").length'),1);
+    assert.equal(await evaluate('document.querySelector(".practice-exercise details").open'),false);
+    assert(await evaluate('findLesson('+JSON.stringify(id)+').exercise.prompt.includes(findLesson('+JSON.stringify(id)+').exercise.facts)'));
+    await evaluate(`Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async text=>window.copiedPractice=text}})`);
+    await click('[data-copy-practice]');
+    assert.equal(await evaluate('window.copiedPractice'),await evaluate('findLesson('+JSON.stringify(id)+').exercise.prompt'));
+    await evaluate(`Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw new Error('denied')}}})`);
+    await click('[data-copy-practice]');
+    assert(await evaluate('document.querySelector("#practice-copy-status").textContent.includes("Select the prompt")'));
+    await evaluate('delete navigator.clipboard');
+    await evaluate('document.querySelector(".practice-exercise summary").focus()');
+    await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
+    await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
+    assert.equal(await evaluate('document.querySelector(".practice-exercise details").open'),true);
+    await noOverflow('everyday '+id);
+    await screenshot('everyday-'+id+'-desktop');
+    await click('a[href="#web-chats/'+id+'"]');
+    const profile=await evaluate('document.querySelector(".web-chat-card a").getAttribute("href")');
+    await click('.web-chat-card a');
+    assert.equal(await evaluate('location.hash'),profile);
+    await click('.tool-profile .back');
+    assert.equal(await evaluate('location.hash'),'#web-chats/'+id);
+    await click('a[href="#learn/'+id+'"]');
+    assert.equal(await evaluate('location.hash'),'#learn/'+id);
+  }
+  await go('#web-chats/unrecognised');
+  assert(await evaluate(`!!document.querySelector('a[href="#learn/web-chat"]')`));
+  assert.equal(requests.length,everydayStart,'Everyday practice and profile navigation make no requests');
   await go('#learn/ai-basics');
   assert.equal(await evaluate('document.querySelectorAll(".diagram-node").length'),3);
   await go('#glossary');
@@ -187,7 +218,7 @@ try{
     const unsafe='<img src=x onerror=alert(1)>';
     const example=Object.fromEntries(['title','context','before','after','question','explanation'].map(k=>[k,unsafe]));
     const exercise={title:unsafe,intro:unsafe,facts:unsafe,prompt:unsafe,steps:[unsafe],checks:[unsafe],sample:unsafe,explanation:unsafe,reflection:unsafe};
-    const node=document.createElement('div');node.innerHTML=workedExample(example)+practiceExercise(exercise);
+    const node=document.createElement('div');node.innerHTML=workedExample(example)+practiceExercise({id:'prompting',exercise});
     return !node.querySelector('img')&&node.textContent.includes(unsafe);
   })()`));
   await go('#first-session/build');
@@ -600,6 +631,10 @@ try{
   }
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
   await go('#learn/memory');await click('[data-answer="1"]');await screenshot('scenario-feedback-mobile');await noOverflow('mobile scenario feedback');
+  for(const id of ['prompting','context','checking']){
+    await go('#learn/'+id);await click('.practice-exercise summary');
+    await noOverflow('everyday mobile '+id);await screenshot('everyday-'+id+'-mobile');
+  }
   await go('#learn/web-chat');await click('.practice-exercise summary');await screenshot('chatbot-exercise-mobile');
   await go('#glossary');await screenshot('glossary-mobile');
   await go('#learn');await screenshot('learn-index-mobile');

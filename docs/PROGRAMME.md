@@ -4,7 +4,7 @@ Australian AI Safety Institute · AISI AI Labs
 
 ## Purpose
 
-Provide Australian Public Service staff with hands-on exposure to contemporary AI tools for professional development and personal upskilling. Staff should be able to experiment, make small projects, understand the underlying concepts and judge the results. The environment is for learning, not the processing of official business information.
+Provide Australian Public Service staff with hands-on exposure to contemporary AI tools for professional development and personal upskilling. Staff should be able to experiment, make small projects, understand the underlying concepts and judge the results. The learning explores how the general public can access and use contemporary AI tools through everyday, public-only practice. It complements agency-provided services such as GovAI without assessing them or recreating workplace tasks. The environment is for learning, not the processing of official business information.
 
 ## Audience and approach
 

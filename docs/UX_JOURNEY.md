@@ -44,3 +44,21 @@ a project. Check keyboard use, screen readers, text zoom and contrast on the
 intended laptop image. Test real accounts and tool readiness separately using
 the deployment acceptance process. No user study, screen-reader audit, live
 authentication, model call or network acceptance is claimed by these checks.
+
+## Everyday public-tool practice, 4 November 2026
+
+The exercises focus on ordinary-life writing, source comparison and evidence
+checking, rather than government work. They complement agency services without
+claiming those services are obsolete or assessing their capabilities. We kept
+the existing lesson IDs and exercise data shape, so bookmarks survive and the
+same renderer provides facts, a full prompt, checks and a hidden explanation.
+A worked-example-only alternative would be shorter but would not support a
+complete optional live attempt. Each copied prompt includes the fictional
+source, and Web & media returns to the selected exercise. Unknown return IDs
+fall back to the original chatbot practice. No prompt is sent automatically.
+
+The home page and chat starting path expose the everyday exercises before
+optional technical exploration. Existing agents, terminals, creative tools and
+model guides remain available. The public-only and never-government-network
+boundaries remain programme rules; no workplace integration is added. No learner
+pilot or live model output is claimed by the authored examples or tests.
