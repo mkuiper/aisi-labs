@@ -37,6 +37,7 @@ the learner's Linux user and can have wider filesystem/network access.
 | `policy.py` | Programme rules and acknowledgement version |
 | `configuration.py` | Ephemeral keys, persistent non-secret model overrides, CLI adapters |
 | `storage.py` | Unique private temporary file + atomic replacement for JSON state |
+| `feedback.py`, `web/feedback.js` | Explicit local comments and facilitator email-report preparation |
 | `maintenance.py` | Read-only Mise inventory; opt-in allowlisted public release checks |
 | `documentation.py` | Explicit allowlist of documents presented in the app |
 | `web/app.js` | Hash routing, labs, tools, learning diagrams, authored simulations |
@@ -146,6 +147,19 @@ state and report it instead of silently resetting a learner's work. This is not
 a database transaction spanning an entire project creation.
 
 ## HTTP boundary
+
+The optional #feedback page stores explicit category/comment submissions as
+private per-record JSON files in DATA/feedback/. It attaches no project, page,
+usage or device data. Feedback text is absent from bootstrap. POST /api/feedback
+and /api/feedback/review retain Host/Origin/token/body-size controls and are
+available before acknowledgement. Categories and the message limit are supplied
+as non-sensitive bootstrap options. A draft receipt makes identical retries
+idempotent; mismatched retries refuse to overwrite. The collection is bounded,
+corrupt/linked records are preserved and reported, and exports never prune it.
+Facilitator review explicitly loads a plain-text report for copy/download and
+manual email. It has no reviewer authentication or email connection. Shared
+Linux-account visibility and public-only limits are displayed. See
+docs/FEEDBACK.md for the retention and manual handover process.
 
 Bind `127.0.0.1` only. GET requests validate Host and reject cross-site fetches;
 mutations require exact Origin and a per-process token. Static files and API

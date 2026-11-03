@@ -38,7 +38,7 @@ function finishSessionPage() {
     </li>`).join('')}</ol>
     <section class="note"><h2>Uncertain or something went wrong?</h2><p>${esc(guide.incident)}</p></section>
     <p class="small-note">No automatic reset or sign-out has been performed. Checklist ticks do not erase projects, revoke keys or end the hub session.</p>
-    <div class="actions"><a class="btn secondary" href="#home">Return to Labs →</a><button class="btn secondary" data-session-clear>Clear checklist ticks</button></div>
+    <div class="actions"><a class="btn secondary" href="#home">Return to Labs →</a><a class="btn secondary" href="#feedback">Give feedback →</a><button class="btn secondary" data-session-clear>Clear checklist ticks</button></div>
     ${sessionGuideNote(guide.id)}</article>`;
 }
 document.addEventListener('change',event=>{

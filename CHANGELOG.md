@@ -1,5 +1,20 @@
 # Changes
 
+## 4 November 2026 — optional local feedback and email report
+
+- Added Give feedback from the footer and Finish session, including before
+  acknowledgement, with a short category/comment form and public-only consent.
+- Saved explicit comments as independent private local records with retry-safe
+  receipts, validation, bounds and preservation of damaged records.
+- Added deliberate facilitator review and a compiled plain-text report with
+  copy/download and manual-copy fallback. No email or account connection occurs.
+- Recorded shared-account visibility, retention responsibilities and alternatives
+  in docs/FEEDBACK.md. No project, activity or device data is attached.
+- Verification: 69 unit/HTTP tests, app/programme/feedback JavaScript syntax
+  checks and the expanded isolated Chromium smoke passed. Desktop and mobile
+  screenshots were inspected. Includes save/retry, keyboard focus, navigation,
+  escaping, explicit review, clipboard fallback and an actual text download.
+
 ## 29 October 2026 — documentation streamlining
 
 - Shortened repeated learner and programme guidance while retaining the

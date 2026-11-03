@@ -67,6 +67,13 @@ Each departmental deployment should nominate these roles and publish its support
 
 Observe whether learners can open a tool, distinguish a model from its harness, explain a tool call, inspect a generated result, recognise information they must not input, and finish a small public practice project. Use voluntary feedback and observed usability sessions. Bookmarking a lesson or ticking a checklist is self-reporting, not certification of competence.
 
+Give feedback saves optional public-only comments on the laptop, with no names
+or activity attachments requested. Facilitators can explicitly compile and
+review comments, then copy or download a report for manual email to developers.
+The hub does not send email. Anyone sharing the Linux account can read comments;
+agree a retention process before a pilot. Never include OFFICIAL information,
+personal details or keys, or use government networks/accounts to send a report.
+
 ## Release status
 
 This is a working learning preview. The rules are visible throughout the app and acknowledged before project creation, tool launch or key setup. Acknowledgement applies to the current hub server session and shared Linux account; it is not user authentication, evidence of network isolation or a substitute for deployment controls.

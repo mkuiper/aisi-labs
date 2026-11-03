@@ -24,6 +24,7 @@ from configuration import Configuration
 from policy import POLICY
 from documentation import load_documents
 from storage import atomic_json
+from feedback import FeedbackStore, CATEGORIES, MAX_MESSAGE
 from maintenance import inventory
 from logos import LOGO_FILES, logo_catalogue
 
@@ -49,6 +50,7 @@ class Hub:
         self.token = secrets.token_urlsafe(32)
         self.configuration = Configuration(self.data / "models.json")
         self.acknowledged = False
+        self.feedback = FeedbackStore(self.data)
 
     def acknowledge(self, version):
         if version != POLICY["version"]:
@@ -232,8 +234,8 @@ class Handler(BaseHTTPRequestHandler):
         if route == "/health":
             return self.send_body(200, {"app": "aisi-labs-2", "root": str(ROOT)})
         if route == "/api/bootstrap":
-            return self.send_body(200, self.server.hub.bootstrap())
-        allowed = {"/": "index.html", "/app.js": "app.js", "/programme.js": "programme.js", "/session.js": "session.js", "/style.css": "style.css", "/icon.svg": "icon.svg"}
+            return self.send_body(200, {**self.server.hub.bootstrap(), "feedback_options": {"categories": CATEGORIES, "max_message": MAX_MESSAGE}})
+        allowed = {"/": "index.html", "/app.js": "app.js", "/programme.js": "programme.js", "/session.js": "session.js", "/feedback.js": "feedback.js", "/style.css": "style.css", "/icon.svg": "icon.svg"}
         allowed.update({"/logos/" + name: "logos/" + name for name in LOGO_FILES})
         if route not in allowed:
             return self.send_body(404, {"error": "Page not found."})
@@ -256,7 +258,13 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Invalid request.")
             route = urlsplit(self.path).path
             hub = self.server.hub
-            if route == "/api/projects":
+            if route == "/api/feedback":
+                result = hub.feedback.submit(payload)
+            elif route == "/api/feedback/review":
+                if payload:
+                    raise ValueError("Feedback review accepts no attachments or filters.")
+                result = hub.feedback.review()
+            elif route == "/api/projects":
                 result = hub.create(payload.get("lab"), payload.get("name"))
             elif route == "/api/acknowledge":
                 result = hub.acknowledge(payload.get("version"))

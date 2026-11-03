@@ -153,3 +153,8 @@ body .programme-banner,body .programme-banner strong{font-size:12px;color:#674b2
 .glossary-term dd p{margin-bottom:12px}
 .reader .text-link,.learning-group .text-link{white-space:normal;overflow-wrap:anywhere;max-width:100%}
 @media(max-width:850px){.starting-choices{grid-template-columns:1fr}.starting-choice h2{margin:8px 0}.starting-choice .text-link{margin-top:8px}}
+.feedback-page textarea{width:100%;min-width:0;resize:vertical;font:inherit;line-height:1.6;padding:12px;border:1px solid var(--line);border-radius:8px;color:var(--ink);background:#fffefa;box-sizing:border-box}
+.feedback-consent{display:flex;align-items:flex-start;gap:10px;line-height:1.6;margin:18px 0}
+.feedback-consent input{flex-shrink:0;margin-top:6px}
+.feedback-page .actions{flex-wrap:wrap}.feedback-page .btn{white-space:normal}
+footer .feedback-link{display:block}

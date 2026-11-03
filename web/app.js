@@ -225,6 +225,8 @@ function render(moveFocus = false) {
   for(const id of ['first-session','finish-session'])document.getElementById(id+'-link').setAttribute('aria-current',page===id?'page':'false');
   const fallback = '<div class="empty"><h2>We couldn’t find that page.</h2><p>It may have moved, or the project folder may be missing.</p><a class="btn" href="#home">Back to the launchpad</a></div>';
   const pages = {home,glossary:glossaryPage,'first-session':firstSessionPage,'finish-session':finishSessionPage,'omarchy-help':omarchyHelpPage,'keep-current':keepCurrentPage,'web-chats':webChatsPage,'web-tool':()=>webToolPage(id),tools:toolsPage,labs:labsPage,learn:()=>id?(findLesson(id)?lessonPage(findLesson(id)):fallback):learnPage(),lab:()=>findLab(id)?labPage(findLab(id)):fallback,projects:projectsPage,project:()=>findProject(id)?projectPage(findProject(id)):fallback,search:()=>searchPage(id),about:programmePage,programme:programmePage,configuration:configurationPage,docs:()=>documentPage(id)};
+  pages.feedback=feedbackPage;
+  if(page==='feedback')document.querySelector('#breadcrumb').textContent='Feedback';
   main.innerHTML = (data.warnings||[]).map(w=>`<p class="error">${esc(w)}</p>`).join('') + (pages[page]||(()=>fallback))();
   if(page==='project'&&pendingChecks.has(id))document.querySelectorAll('[data-check]').forEach(input=>{input.checked=pendingChecks.get(id).includes(Number(input.dataset.check));input.disabled=true;});
   document.title = `${main.querySelector('h1')?.textContent||'Launchpad'} · AISI AI Labs`;
@@ -342,7 +344,7 @@ document.addEventListener('change',async event=>{
 });
 document.addEventListener('submit',async event=>{
   const form=event.target;event.preventDefault();
-  if(form.id==='policy-form'||form.classList.contains('key-form'))return;
+  if(form.id==='policy-form'||form.id==='feedback-form'||form.classList.contains('key-form'))return;
   if(form.id==='search-form'){location.hash='#search/'+encodeURIComponent(document.querySelector('#search').value.trim());return;}
   if(form.id==='terminal-form'){runSim(document.querySelector('#terminal-command').value);return;}
   const submit=form.querySelector('[type="submit"]');if(submit)submit.disabled=true;

@@ -1,5 +1,16 @@
 # Learning material history
 
+## 2026-11-04 — feedback collection guidance
+
+- Updated doc:programme to describe optional local comments, explicit facilitator
+  review and manual email reports. Inspected the new local implementation and
+  programme boundaries. No external source, account or email delivery was tested.
+- This is a scoped editorial change. Increased its revision while preserving
+  the previous full-review date and fingerprint; full review debt remains.
+- Verification: 69 unit/HTTP tests, JavaScript syntax and isolated Chromium
+  smoke passed. Offline audit remains 7 in-date, 19 due, 21 changed and 6
+  unreviewed units. Browser checks used fake comments and no email connection.
+
 ## 2026-10-29 — documentation streamlining
 
 - Streamlined doc:programme, doc:learner and doc:content-maintenance. Retained
