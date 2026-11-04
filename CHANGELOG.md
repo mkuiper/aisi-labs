@@ -1,5 +1,25 @@
 # Changes
 
+## 4 November 2026 — recover stale services after updates
+
+- Fixed a loading failure caused by a long-running backend serving new frontend
+  files while retaining an older script allowlist and catalogue in memory.
+- Added startup source fingerprints to health checks. The launcher now restarts
+  its own stale service when reopened and reuses a matching service.
+- Verified process identity independently of the launcher's Python installation,
+  while retaining exact checkout/default-argument and same-user checks. Ambiguous
+  or unrelated processes are preserved. Saved learner files are never reset.
+- Added a real isolated update regression. It reproduces a missing feedback
+  script, checks automatic recovery and reuse, and preserves fake learner work.
+  Earlier browser smoke checks always started fresh servers and missed this
+  long-running update path. Reopen the launcher after updates; refreshing a page
+  alone cannot reload backend imports. Restart clears hub-held keys and rules
+  acknowledgement as before.
+- Verification: 74 unit/HTTP tests, JavaScript syntax and isolated Chromium
+  smoke checks passed. The isolated lifecycle test starts with a missing script,
+  uses different Python installations, checks catalogue-change restart and fresh
+  service reuse, and verifies that fake saved work is preserved.
+
 ## 4 November 2026 — everyday public-tool exercises
 
 - Added three fictional no-code activities for clear writing, conflicting-source

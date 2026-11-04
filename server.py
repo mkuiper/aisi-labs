@@ -17,6 +17,11 @@ import time
 from urllib.parse import urlsplit
 import uuid
 
+from revision import runtime_revision
+
+ROOT = Path(__file__).resolve().parent
+STARTUP_REVISION = runtime_revision(ROOT)
+
 from catalogue import LABS, LESSONS, TOOLS, WEB_CHATS, RESOURCES, OMARCHY_HELP, SESSION_GUIDES, SETUP_GUIDANCE
 from content_review import review_report
 from templates import starter_files
@@ -28,7 +33,6 @@ from feedback import FeedbackStore, CATEGORIES, MAX_MESSAGE
 from maintenance import inventory
 from logos import LOGO_FILES, logo_catalogue
 
-ROOT = Path(__file__).resolve().parent
 DEFAULT_DATA = Path.home() / ".local/share/aisi-labs-2"
 
 
@@ -232,7 +236,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send_body(403, {"error": "Open Labs from its local launcher."})
         route = urlsplit(self.path).path
         if route == "/health":
-            return self.send_body(200, {"app": "aisi-labs-2", "root": str(ROOT)})
+            return self.send_body(200, {"app": "aisi-labs-2", "root": str(ROOT), "startup_revision": STARTUP_REVISION, "pid": os.getpid()})
         if route == "/api/bootstrap":
             return self.send_body(200, {**self.server.hub.bootstrap(), "feedback_options": {"categories": CATEGORIES, "max_message": MAX_MESSAGE}})
         allowed = {"/": "index.html", "/app.js": "app.js", "/programme.js": "programme.js", "/session.js": "session.js", "/feedback.js": "feedback.js", "/style.css": "style.css", "/icon.svg": "icon.svg"}

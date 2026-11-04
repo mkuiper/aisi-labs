@@ -29,6 +29,7 @@ the learner's Linux user and can have wider filesystem/network access.
 | Component | Responsibility |
 | --- | --- |
 | `launch.py` | Start/reuse this checkout's loopback service, safe targeted restart, open Omarchy webapp |
+| `revision.py` | Fingerprint runtime source and curated JSON without reading learner state |
 | `server.py` | HTTP boundary, acknowledgement, project validation, tool launches, progress |
 | `catalogue.py` | Curated tool allowlist, activities, lessons, public references |
 | `content/` | Supplemental lessons, web/media profiles, benchmark/research directory, per-item editorial records and learning changelog |
@@ -153,6 +154,17 @@ but preserves projects, progress and model preferences. Concurrent state writes
 use locks; JSON replaces use unique mode-0600 temporary files. Preserve corrupt
 state and report it instead of silently resetting a learner's work. This is not
 a database transaction spanning an entire project creation.
+
+The server captures a source fingerprint before importing the application
+modules. Health exposes that startup fingerprint, checkout root and process ID.
+Opening the launcher compares it with the current Python sources and content
+JSON. It reuses a current service and safely restarts a stale or legacy service.
+A browser refresh alone does not reload Python modules or catalogues; reopen
+the launcher after an update. Restart verification requires the same user,
+exact default server arguments and a matching interpreter executable through
+/proc. It accepts a different Python installation but refuses ambiguous,
+unrelated or custom-port/data-root processes. These checks do not authenticate
+against hostile processes sharing the Linux account.
 
 ## HTTP boundary
 

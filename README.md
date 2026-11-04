@@ -38,7 +38,10 @@ git clone https://github.com/mkuiper/aisi-labs.git ~/AISI-labs-2
 
 `install.sh` adds the **AISI AI Labs** launcher entry pointing at wherever the
 repository was cloned. Update later with `git -C ~/AISI-labs-2 pull`, then
-`python3 ~/AISI-labs-2/launch.py --restart --no-open`.
+reopen the launcher or run `python3 ~/AISI-labs-2/launch.py --no-open` and refresh
+the existing window. The launcher detects changed runtime sources and restarts
+this checkout's service. That clears hub-held keys and acknowledgement while
+preserving saved work. A browser refresh alone does not update a running backend.
 
 ## Open the app
 
@@ -52,7 +55,8 @@ The launcher starts a Python service on `127.0.0.1:8768` if necessary, then
 opens an Omarchy browser app window. Python 3, Omarchy, Chromium and Ghostty
 are available on the target machine. No package installation is required.
 Closing the window leaves the small local service running until logout/reboot
-or until its process is stopped. The launcher reuses it on the next visit.
+or until its process is stopped. The launcher reuses it on the next visit when
+its runtime sources match, or safely restarts it after an update.
 
 ## What is included
 
@@ -110,8 +114,8 @@ starter files; `web/` for the interface. Python changes need a server restart.
 Programme rules live in `policy.py`, credentials in `configuration.py`, and
 the local documentation registry in `documentation.py`. Maintenance checks are in
 `maintenance.py`; private atomic JSON writes are in `storage.py`.
-Refresh the app after frontend changes. To restart only this app, identify its
-service safely and reload the new backend with:
+Refresh after frontend-only changes. Reopen the launcher after Python or
+catalogue changes so it can reload the backend. To force a targeted restart:
 
 ```sh
 python3 launch.py --restart --no-open

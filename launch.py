@@ -5,6 +5,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+import re
 import signal
 import subprocess
 import sys
@@ -12,45 +13,60 @@ import time
 from urllib.error import URLError
 from urllib.request import urlopen
 
+from revision import runtime_revision
+
 ROOT = Path(__file__).resolve().parent
 DATA = Path.home() / ".local/share/aisi-labs-2"
 URL = "http://127.0.0.1:8768"
 
 
-def ready():
+def health():
     try:
         with urlopen(URL + "/health", timeout=0.4) as response:
             value = json.load(response)
-            return value.get("app") == "aisi-labs-2" and value.get("root") == str(ROOT)
+            return value if isinstance(value, dict) else {}
     except (URLError, TimeoutError, ValueError, OSError):
+        return {}
+
+
+def own_service(value):
+    return value.get("app") == "aisi-labs-2" and value.get("root") == str(ROOT)
+
+
+def ready():
+    value = health()
+    return own_service(value) and value.get("startup_revision") == runtime_revision(ROOT)
+
+
+def verified_process(entry):
+    try:
+        if entry.stat().st_uid != os.getuid():
+            return False
+        args = [arg.decode() for arg in (entry / 'cmdline').read_bytes().split(b'\0') if arg]
+        return (len(args) == 2 and args[1] == str(ROOT / 'server.py')
+                and Path(args[0]).is_absolute()
+                and re.fullmatch(r'python(?:\d+(?:\.\d+)*)?', Path(args[0]).resolve().name) is not None
+                and (entry / 'exe').samefile(Path(args[0])))
+    except (OSError, UnicodeError):
         return False
 
 
 def stop_own_server():
     """Stop only this checkout's default server; preserve unrelated/test servers."""
-    if not ready():
+    value = health()
+    if not own_service(value):
         return
-    found = False
-    for entry in Path('/proc').iterdir():
-        if not entry.name.isdigit():
-            continue
-        try:
-            if entry.stat().st_uid != os.getuid():
-                continue
-            args = (entry / 'cmdline').read_bytes().split(b'\0')
-            args = [arg.decode() for arg in args if arg]
-            if len(args) != 2 or args[1] != str(ROOT / 'server.py'):
-                continue
-            if Path(args[0]).resolve() != Path(sys.executable).resolve():
-                continue
-            os.kill(int(entry.name), signal.SIGTERM)
-            found = True
-        except (OSError, UnicodeError):
-            continue
-    if not found:
+    if "pid" in value:
+        pid = value["pid"]
+        candidates = [Path('/proc') / str(pid)] if type(pid) is int and pid > 0 else []
+    else:
+        candidates = [entry for entry in Path('/proc').iterdir() if entry.name.isdigit()]
+    candidates = [entry for entry in candidates if verified_process(entry)]
+    if len(candidates) != 1:
         raise RuntimeError('The running service could not be identified safely. No process was stopped.')
+    os.kill(int(candidates[0].name), signal.SIGTERM)
     for _ in range(50):
-        if not ready():
+        if not own_service(health()):
             return
         time.sleep(0.1)
     raise RuntimeError('The existing Labs service did not stop. No replacement was started.')
@@ -60,7 +76,8 @@ def main(restart=False, open_window=True):
     DATA.mkdir(parents=True, exist_ok=True)
     with (DATA / "launch.lock").open("w") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
-        if restart:
+        value = health()
+        if own_service(value) and (restart or value.get("startup_revision") != runtime_revision(ROOT)):
             stop_own_server()
         if not ready():
             with (DATA / "server.log").open("ab") as log:
