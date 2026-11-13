@@ -27,7 +27,7 @@ One item per round. Take the first item that is not done.
 
 1. Everyday writing lessons (`prompting`, `context`, `checking`): accurate and succinct. Done.
 2. `ai-basics` and its glossary: accurate headlines, succinct deeper notes. Done.
-3. `web-chat` exercise and only a profile claim you have just re-read. Pending.
+3. `web-chat` exercise and only a profile claim you have just re-read. Done.
 4. Agentic-commerce walkthrough: one clearer scene, same facts unless a primary source contradicts them. Pending.
 5. Agent-loop diagram: show the cycle of goal, tool, result and check. Pending.
 6. One starter project: a small public fictional task that uses a documented current tool capability. No live model call. Pending.
@@ -80,3 +80,21 @@ checked, what you did not check, and any source you opened.
   - https://docs.cloud.google.com/docs/authentication/api-keys
   - https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
   - https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+
+### Round 3 — Complete the web-chat prompt
+
+- Commit subject: Complete the web-chat prompt.
+- Changed: the `web-chat` exercise prompt and steps, and one `chat:chatgpt`
+  sentence (`useful_for`) that distinguishes Chat from Work. Review records
+  for those two units only. Quiz and every other profile were left as they were.
+- Checked: the exercise still has fictional facts, an offline sample and three
+  checks; `python3 -m unittest discover -s tests -q`; `node --check` on
+  `web/app.js`, `web/programme.js` and `web/feedback.js`. No interface change,
+  so the browser smoke test was not required.
+- Not verified: which modes a learning account shows, or a live reply. No
+  account and no model call. `https://claude.ai/` returned a bot check, so no
+  Claude claim was edited.
+- Sources opened:
+  - https://learn.chatgpt.com/docs/web
+  - https://learn.chatgpt.com/docs/web.md
+  - https://claude.ai/

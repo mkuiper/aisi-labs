@@ -8,7 +8,7 @@
     "colour": "sage",
     "kind": "chat",
     "openness": "Hosted assistant. Using ChatGPT does not give you downloadable model weights or make inference local.",
-    "useful_for": "A useful starting exercise is iterative writing: give a clear goal, ask for a draft, then request a specific revision. Web features also support research and creating files; availability depends on your account.",
+    "useful_for": "The web guide separates Chat, for a question or a conversation, from Work, for research and files such as a document or spreadsheet. Use Chat for this short exercise. Do not connect drives or other services. The modes you see depend on the account.",
     "exercise": "Ask for a 150-word invitation to a fictional community science night. Request a plain-English revision and check that it has not invented a venue or date.",
     "limits": "Confident wording is not evidence. Verify facts, calculations and citations. A browser conversation is not the same workflow as a terminal agent with access to a project.",
     "considerations": "Review account privacy, saved context and connected tools before use. Do not connect government storage or grant broad permissions just to complete a learning exercise. These are practical risk checks, not a comprehensive controversy review.",

@@ -70,11 +70,11 @@
     "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on endpoints, modalities and agent-loop token multiplication, cloud/local diagram and scenario question/option_feedback against Google ML glossary (inference/tokens), Ollama local/cloud documentation and local configuration/maintenance rules. Added canonical primary source links. No live billing or model calls."
   },
   "lesson:web-chat": {
-    "revision": 3,
-    "reviewed_at": "2026-11-13",
+    "revision": 4,
+    "reviewed_at": "2026-11-14",
     "review_after_days": 90,
-    "sha256": "2d25c9bfd046e526d17a345a114353f26efe9f7ce6247f22a6b9e3f0899c9d03",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, diagram, community-garden invitation exercise, manual prompt-copy interaction and scenario question/option_feedback against ChatGPT web docs, Claude product overview and local external-navigation gates. No live account login or model call."
+    "sha256": "3cde7a7c0ba124f5d431771dcc7849ea14f706107766b45b5757b86a692fefef",
+    "notes": "Reviewed 2026-11-14: re-read the community-garden exercise. The copied prompt now includes the full facts, including that address, booking and facilities were not supplied. Opened https://learn.chatgpt.com/docs/web.md. https://claude.ai/ returned a bot check, so the Claude citation was left unchanged. Quiz unchanged. No login or model call."
   },
   "lesson:open-models": {
     "revision": 3,
@@ -84,11 +84,11 @@
     "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on safetensors/GGUF weights, custom licences, local versus cloud endpoints, checkpoint suffixes and quantisation memory math, release-versus-location diagram, no-download model-card exercise and scenario question/option_feedback against OSI Open Source AI Definition 1.0, Hugging Face model-card/quantisation docs, Ollama FAQ/cloud docs and Qwen3-0.6B card. No downloads or live inference."
   },
   "chat:chatgpt": {
-    "revision": 2,
-    "reviewed_at": "2026-11-13",
+    "revision": 3,
+    "reviewed_at": "2026-11-14",
     "review_after_days": 30,
-    "sha256": "83a9dc367ffda8d76207c8b201da5f6f0c4a3db63746fb97f5e8b1ee3556fd76",
-    "notes": "Reviewed 2026-11-13: inspected linked OpenAI ChatGPT web documentation and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
+    "sha256": "51bfb4fbc9cc1ed366455041d16735bb7f64caee82b1d91a9d0c2d6fa533d302",
+    "notes": "Reviewed 2026-11-14: re-read https://learn.chatgpt.com/docs/web.md. That page separates Chat, for a question or conversation, from Work, for research and files. Updated only useful_for. Other profile fields were not edited. No login or model call."
   },
   "chat:claude-chat": {
     "revision": 2,

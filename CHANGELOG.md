@@ -1,5 +1,12 @@
 # Changes
 
+## 14 November 2026 — web-chat exercise
+
+- The community-garden prompt now includes the facts that were not supplied.
+  One ChatGPT profile sentence now distinguishes Chat from Work, from the
+  page just read. No other profile was edited. Quiz shape is unchanged.
+- Verification: unit/HTTP tests and JavaScript syntax checks. No live model call.
+
 ## 14 November 2026 — AI basics and glossary
 
 - Shortened the `ai-basics` headlines and deeper notes, and corrected a few

@@ -1,5 +1,23 @@
 # Learning material history
 
+## 2026-11-14 — web-chat exercise and one ChatGPT claim
+
+- `lesson:web-chat` exercise only. The copied prompt now repeats the fictional
+  facts, including that no address, booking or facilities were supplied.
+  Steps say to use the flawed sample offline, and not to connect files, drives
+  or accounts for a live try. Quiz options, correct index and option_feedback
+  are unchanged. Revision 4. `reviewed_at` is 2026-11-14.
+- One profile claim: `chat:chatgpt` `useful_for`. The page at
+  https://learn.chatgpt.com/docs/web.md separates Chat (a question or
+  conversation) from Work (research and files such as a document or
+  spreadsheet). The profile now says to use Chat for this short exercise and
+  not to connect drives or other services. No other profile field or profile
+  was edited. Revision 3.
+- https://claude.ai/ was opened and returned a bot check, so the lesson’s
+  Claude citation and the Claude profile were left as they were.
+- No account and no model call. Not verified: which modes a given learning
+  account actually shows, or a live reply to the garden prompt.
+
 ## 2026-11-14 — AI basics headlines and deeper notes
 
 - Source and wording pass on `lesson:ai-basics` only, including its twelve

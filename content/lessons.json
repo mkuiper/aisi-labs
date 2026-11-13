@@ -237,11 +237,11 @@
       "title": "Try it: a community-garden invitation",
       "intro": "An authored fictional exercise. You can review the example offline or try the prompt in a permitted chatbot. No terminal, upload or connected account is needed for the offline version.",
       "facts": "The community garden opens on Saturday, from 10 am to noon. Entry is free. No address, booking arrangements or facilities have been supplied.",
-      "prompt": "Use only these fictional public practice facts: a community garden opens on Saturday, from 10 am to noon, with free entry. Write an invitation of no more than 50 words. Do not invent missing details. After the invitation, list questions for the organiser separately.",
+      "prompt": "Use only these fictional public practice facts. Write an invitation of no more than 50 words. Do not invent missing details. After the invitation, list questions for the organiser separately. Facts: The community garden opens on Saturday, from 10 am to noon. Entry is free. No address, booking arrangements or facilities have been supplied.",
       "steps": [
-        "Read the facts and decide what the invitation must preserve.",
-        "For a live attempt, first confirm the permitted learning account, network and costs. Open a chatbot through Web & media and paste only the supplied prompt. Do not connect drives, email or other services.",
-        "Check its answer against the facts. Ask for one correction if needed, then check the revised answer too."
+        "Read the fictional facts and note what the invitation must keep. With no account, review the flawed sample below.",
+        "For an optional live try, check the learning account, network and cost first. Paste this prompt into a Web & media chatbot yourself. Do not connect files, drives or accounts.",
+        "Compare the reply with the facts. If you ask for one correction, check that revision yourself."
       ],
       "checks": [
         "Are Saturday, 10 am to noon and free entry correct?",
