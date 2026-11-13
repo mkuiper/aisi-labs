@@ -3,15 +3,29 @@
 ## 2026-11-13 — full curriculum, profile, lab and documentation review
 
 - Completed a source, exercise and editorial review across all tracked learning
-  units (session/setup guides, sixteen lessons including the new
-  `lesson:agentic-commerce` module, fourteen Web & media profiles,
-  benchmark/research resources, five labs, starter templates and nine registered
-  programme documents).
+  units (session/setup guides, seventeen lessons including the new
+  `lesson:agentic-commerce` and `lesson:agent-incidents` modules, fourteen Web &
+  media profiles, benchmark/research resources, five labs, starter templates and
+  nine registered programme documents).
 - Added `lesson:agentic-commerce` (*Agentic commerce & payment protocols*) in
   `content/lessons.json` and `web/app.js`, covering MCP, A2A, ACP, UCP, AP2, FIDO
-  passkeys, Visa Intelligent Commerce and Mastercard Agent Pay with primary-source
-  links, deployment examples, expandable `Dig deeper` disclosures, a worked
-  mandate-vs-prompt comparison and an interactive offline protocol walkthrough.
+  passkeys, Visa Intelligent Commerce and Mastercard Agent Pay ordered logically
+  across four layers (Connectivity -> Storefront -> Consent -> Settlement), with
+  primary-source links, deployment examples, expandable `Dig deeper` disclosures,
+  a worked mandate-vs-prompt comparison and an interactive offline protocol
+  walkthrough (`#commerce-diagram`).
+- Added `lesson:agent-incidents` (*When agents cross boundaries: real-world
+  incidents*) in `content/lessons.json` and `web/app.js`, covering the July 2026
+  autonomous agent sandbox breakout (`ExploitGym` / Artifactory proxy) and Hugging
+  Face dataset-pipeline intrusion, Hugging Face `pickle` / `trust_remote_code`,
+  Spaces secrets and `smolagents` `CVE-2025-5120` advisories, Invariant Labs MCP
+  tool poisoning and GitHub private-repository exfiltration, and Microsoft 365
+  Copilot `EchoLeak` (`CVE-2025-32711`), with explicit caveats, primary-source
+  links and a three-mode interactive incident explainer (`#incident-diagram`).
+- Upgraded `#agent-diagram`, `#commerce-diagram` and `#incident-diagram` with
+  dynamic node status states (`is-active`, `is-passed`, `is-warning`, `is-breach`),
+  clickable step progression rails, verdict badges, actor-to-boundary signal
+  routes and dark telemetry inspectors (with `prefers-reduced-motion` support).
 - Added expandable native `<details>` disclosures (`Dig deeper`) to all twelve
   glossary definitions in `lesson:ai-basics` and to core concept sections in
   `lesson:ai-basics`, `lesson:chat-agents`, `lesson:tools-skills`,

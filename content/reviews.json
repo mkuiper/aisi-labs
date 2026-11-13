@@ -203,11 +203,11 @@
     "notes": "Reviewed 2026-11-13: inspected complete credentials and configuration guide against configuration.py adapters (Codex, Claude Code, Gemini CLI), persistent model overrides (including Grok native auth), memory-only key storage/forgetting and official provider authentication documentation. No live credentials tested."
   },
   "doc:curriculum": {
-    "revision": 6,
+    "revision": 7,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "3f0441374cad916e8c4d9284cd6d5a62884d7149b00adc9a01c40010ab16d488",
-    "notes": "Reviewed 2026-11-13: inspected curriculum coverage including agentic commerce and payment protocols, three learning groups, single-source glossary with deeper-detail toggles, four everyday exercises, five practical labs and editorial maintenance workflow against catalogue.py, content/ files and web/app.js."
+    "sha256": "35b127b55edd1b8053e4e41f739db17d9d42099ff6d3866c6b573915e98fc9f1",
+    "notes": "Reviewed 2026-11-13: inspected curriculum coverage including agentic commerce and real-world agent security incidents, three learning groups, single-source glossary with deeper-detail toggles, four everyday exercises, five practical labs and editorial maintenance workflow against catalogue.py, content/ files and web/app.js."
   },
   "doc:maintenance": {
     "revision": 2,
@@ -371,10 +371,17 @@
     "notes": "Reviewed 2026-11-13: re-checked setup guidance against official Codex/OpenAI API, Claude Code/Claude Console and Gemini CLI/AI Studio authentication and key documentation, plus local configuration.py adapters. Console URLs remain documented destinations, not a signed-in walkthrough. No live accounts, prices, keys or model calls tested."
   },
   "lesson:agentic-commerce": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "6ab18ee38433f06e8655d3eada20e33c60673e726944aa64cb2146c836b8a79e",
-    "notes": "Authored and reviewed 2026-11-13 against primary protocol specifications and payment-network documentation: Model Context Protocol (modelcontextprotocol.io), Linux Foundation Agent2Agent Protocol (a2a-protocol.org), OpenAI/Stripe Agentic Commerce Protocol (github.com/agentic-commerce-protocol/agentic-commerce-protocol), Google/Shopify Universal Commerce Protocol (ucp.dev), Google/FIDO Agent Payments Protocol AP2 (github.com/google-agentic-commerce/AP2), FIDO Alliance passkeys/payments guidance (fidoalliance.org), Visa Intelligent Commerce & Trusted Agent Protocol (corporate.visa.com), and Mastercard Agent Pay & MDES Agentic Tokens (mastercard.com). Inspected interactive mandate/tamper simulation, worked example and scenario question. Offline simulation only; no live payment instruments, merchant accounts or model calls."
+    "sha256": "b21229624f928e29c601e5582525f7cca7f76cd726e8c1a17b52b4f18e73af13",
+    "notes": "Authored and reviewed 2026-11-13 against primary protocol specifications and payment-network documentation: Model Context Protocol (modelcontextprotocol.io), Linux Foundation Agent2Agent Protocol (a2a-protocol.org), OpenAI/Stripe Agentic Commerce Protocol (github.com/agentic-commerce-protocol/agentic-commerce-protocol), Google/Shopify Universal Commerce Protocol (ucp.dev), Google/FIDO Agent Payments Protocol AP2 (github.com/google-agentic-commerce/AP2), FIDO Alliance passkeys/payments guidance (fidoalliance.org), Visa Intelligent Commerce & Trusted Agent Protocol (corporate.visa.com), and Mastercard Agent Pay & MDES Agentic Tokens (mastercard.com). Ordered sections by protocol layer (Layer 1 Connectivity -> Layer 2 Storefront -> Layer 3 Consent -> Layer 4 Settlement) and inspected interactive mandate/tamper simulation. Offline simulation only; no live payment instruments, merchant accounts or model calls."
+  },
+  "lesson:agent-incidents": {
+    "revision": 1,
+    "reviewed_at": "2026-11-13",
+    "review_after_days": 60,
+    "sha256": "a337e3f8e6aab91233566ababc5a6f49cc8eac111dd88c8773206832ebafbc21",
+    "notes": "Authored and reviewed 2026-11-13 against primary incident disclosures and security advisories: Hugging Face July 2026 Security Incident Disclosure (huggingface.co/blog/security-incident-july-2026) and Technical Timeline (huggingface.co/blog/agent-intrusion-technical-timeline), Hugging Face & Wiz Research April 2024 AIaaS disclosure (huggingface.co/blog/wiz-partnership), Hugging Face Pickle/Safetensors security documentation and smolagents secure code execution guide (CVE-2025-5120), Invariant Labs MCP Tool Poisoning (April 2025) and GitHub MCP private repository exploit (May 2025), Microsoft MSRC CVE-2025-32711 (EchoLeak, June 2025), and OWASP LLM01:2025 Prompt Injection. Inspected three-mode interactive incident explainer, explicit caveats, worked example and scenario question."
   }
 }

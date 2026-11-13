@@ -105,7 +105,7 @@ Mobile navigation opens on request and closes on route changes.
 
 Learn uses three suggested groups in web/app.js, with each stable lesson ID
 listed exactly once (checked by the browser suite). These are navigation groups,
-not locked prerequisites or assessment levels. The new ai-basics and agentic-commerce lessons live in content/lessons.json.
+not locked prerequisites or assessment levels. The new ai-basics, agentic-commerce and agent-incidents lessons live in content/lessons.json.
 ai-basics's glossary array is the canonical source for #glossary, #glossary/<term>
 and search. Each glossary entry keeps a concise beginner definition up front and
 includes a detail field rendered inside a native details/summary disclosure
@@ -115,7 +115,12 @@ detail]) rendered as a native section-detail disclosure. The agentic-commerce
 lesson renders an offline interactive four-layer protocol and mandate walkthrough
 (#commerce-diagram) comparing within-mandate checkout and out-of-mandate cart
 rejection across MCP, A2A, ACP, UCP, AP2, FIDO passkeys, Visa Intelligent
-Commerce and Mastercard Agent Pay with no real payment calls. Its review fingerprint covers those definitions and deeper notes.
+Commerce and Mastercard Agent Pay with no real payment calls. The agent-incidents
+lesson renders a three-mode offline interactive incident and breakout explainer
+(#incident-diagram) covering the July 2026 autonomous agent sandbox escape and
+Hugging Face intrusion, 2025 MCP tool poisoning / GitHub private-repo exfiltration
+and 2025 zero-click indirect prompt injection (EchoLeak CVE-2025-32711) with
+explicit caveats and primary sources. Their review fingerprints cover those definitions and deeper notes.
 Term routes focus a validated existing ID; no user text is inserted
 into selectors or HTML. Related links return to the original lesson IDs.
 

@@ -143,7 +143,7 @@ class ContentTests(unittest.TestCase):
                 self.assertIn('Authored public practice', lesson['worked_example']['context'])
             for label, destination in lesson.get('next_links', []):
                 self.assertTrue(label)
-                self.assertIn(destination, {'#glossary','#web-chats','#finish-session'} | {'#learn/'+item['id'] for item in LESSONS} | {'#lab/'+lab['id'] for lab in LABS} | {'#web-chats/'+item['id'] for item in LESSONS if item.get('exercise')})
+                self.assertIn(destination, {'#glossary','#web-chats','#finish-session'} | {'#learn/'+item['id'] for item in LESSONS} | {'#lab/'+lab['id'] for lab in LABS} | {'#web-chats/'+item['id'] for item in LESSONS if item.get('exercise')} | {'#web-tool/'+chat['id'] for chat in WEB_CHATS})
 
     def test_everyday_exercises_supply_complete_prompts_and_offline_review(self):
         for identifier in ['prompting', 'context', 'checking']:
@@ -245,12 +245,16 @@ class ContentTests(unittest.TestCase):
         for lesson in LESSONS:
             self.assertIn(lesson['lab'], {lab['id'] for lab in LABS})
             self.assertTrue(0 <= lesson['correct'] < len(lesson['options']))
-        for identifier in ['web-chat','open-models','image-video','reading-leaderboards']:
+        for identifier in ['web-chat','open-models','image-video','reading-leaderboards','agentic-commerce','agent-incidents']:
             lesson = next(x for x in LESSONS if x['id'] == identifier)
             self.assertTrue(lesson['sources'])
             self.assertGreater(len(lesson['sections']), 3)
             for _, url in lesson['sources']:
                 self.assertEqual(urlsplit(url).scheme, 'https')
+        incidents = next(x for x in LESSONS if x['id'] == 'agent-incidents')
+        incidents_text = json.dumps(incidents)
+        for phrase in ['ExploitGym', 'Artifactory', 'CVE-2025-5120', 'CVE-2025-32711', 'Invariant Labs', 'Caveat']:
+            self.assertIn(phrase, incidents_text)
 
     def test_every_lesson_has_choice_specific_explanations(self):
         for lesson in LESSONS:

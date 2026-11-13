@@ -215,9 +215,9 @@ try{
   assert(await evaluate('!!document.querySelector("main a[href=\\\"#first-session\\\"]")'));
   await go('#learn');
   assert.equal(await evaluate('document.querySelectorAll(".learning-group").length'),3);
-  assert.equal(await evaluate('document.querySelectorAll(".lesson-card").length'),16);
+  assert.equal(await evaluate('document.querySelectorAll(".lesson-card").length'),17);
   assert.deepEqual(await evaluate('learningGroups.flatMap(g=>g.lessons).sort()'),await evaluate('data.lessons.map(l=>l.id).sort()'));
-  for(const id of ['prompting','checking','context','agentic-commerce']){
+  for(const id of ['prompting','checking','context','agentic-commerce','agent-incidents']){
     await go('#learn/'+id);
     assert.equal(await evaluate('document.querySelectorAll(".worked-example").length'),1);
     await click('.worked-example summary');
@@ -225,11 +225,27 @@ try{
   }
   await go('#learn/agentic-commerce');
   assert.equal(await evaluate('document.querySelectorAll("#commerce-diagram .diagram-node").length'),4);
+  assert.equal(await evaluate('document.querySelectorAll("#commerce-diagram .step-pill").length'),5);
   assert.equal(await evaluate('document.querySelectorAll(".section-detail").length'),8);
   await click('[data-commerce-mode="rejected"]');
-  for(let i=0;i<4;i++)await click('[data-commerce-step="1"]');
+  await click('[data-commerce-goto="4"]');
   assert(await evaluate('document.querySelector("#commerce-diagram").textContent.includes("MANDATE_LIMIT_EXCEEDED")'));
+  assert(await evaluate('document.querySelectorAll("#commerce-diagram .diagram-node.is-breach").length===1'));
   await click('[data-commerce-mode="approved"]');
+  await go('#learn/agent-incidents');
+  assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .diagram-node").length'),4);
+  assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .step-pill").length'),5);
+  assert.equal(await evaluate('document.querySelectorAll(".section-detail").length'),5);
+  await click('[data-incident-goto="1"]');
+  assert(await evaluate('document.querySelector("#incident-diagram").textContent.includes("Artifactory")'));
+  assert(await evaluate('document.querySelectorAll("#incident-diagram .diagram-node.is-breach").length>=1'));
+  await click('[data-incident-mode="mcp-poisoning"]');
+  await click('[data-incident-goto="3"]');
+  assert(await evaluate('document.querySelector("#incident-diagram").textContent.includes("create_pull_request")'));
+  await click('[data-incident-mode="echoleak"]');
+  await click('[data-incident-goto="4"]');
+  assert(await evaluate('document.querySelector("#incident-diagram").textContent.includes("PATCHED_JUNE_2025")'));
+  await click('[data-incident-mode="hf-breakout"]');
   // Curated teaching text must still be escaped, including the new renderers.
   assert(await evaluate(`(()=>{
     const unsafe='<img src=x onerror=alert(1)>';

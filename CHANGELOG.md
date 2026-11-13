@@ -1,25 +1,38 @@
 # Changes
 
-## 13 November 2026 — agentic commerce module, deeper-detail toggles and curriculum review
+## 13 November 2026 — agentic commerce, real-world incident explainer, deeper-detail toggles and curriculum review
 
 - Added the `agentic-commerce` lesson (*Agentic commerce & payment protocols*),
-  covering MCP, A2A, ACP, UCP, AP2, FIDO passkeys, Visa Intelligent Commerce and
-  Mastercard Agent Pay with primary-source links, real-world deployment examples,
-  expandable `Dig deeper` disclosures, a worked mandate-design comparison and an
-  interactive offline protocol/mandate walkthrough (`#commerce-diagram`).
+  covering MCP, A2A, UCP, ACP, FIDO passkeys, AP2, Visa Intelligent Commerce and
+  Mastercard Agent Pay ordered logically across four protocol layers, with
+  primary-source links, real-world deployment examples, expandable `Dig deeper`
+  disclosures, a worked mandate-design comparison and an interactive offline
+  protocol/mandate walkthrough (`#commerce-diagram`).
+- Added the `agent-incidents` lesson (*When agents cross boundaries: real-world
+  incidents*), covering the July 2026 autonomous agent sandbox escape and Hugging
+  Face intrusion, Hugging Face `pickle` / `trust_remote_code`, Spaces secrets and
+  `smolagents` `CVE-2025-5120` advisories, Invariant Labs MCP tool poisoning and
+  GitHub private-repository exfiltration, and Microsoft 365 Copilot `EchoLeak`
+  (`CVE-2025-32711`), with explicit caveats, primary-source citations and a
+  three-mode interactive incident explainer (`#incident-diagram`).
+- Enhanced interactive diagrams (`#agent-diagram`, `#commerce-diagram` and
+  `#incident-diagram`) with vibrant node state transitions, clickable step rails,
+  verdict badges, signal-route pills and dark telemetry inspectors while
+  respecting `prefers-reduced-motion: reduce`.
 - Completed a full source, exercise and local-workflow review across lessons,
   Web & media profiles, benchmark resources, labs, starter templates, setup/session
   guides and programme documentation. Recorded updated review metadata in
   `content/reviews.json` and detailed evidence/limits in `content/CHANGELOG.md`.
 - Added expandable `Dig deeper` disclosures (`<details class="deeper-detail">`)
   to all twelve glossary definitions and to core concept sections in `ai-basics`,
-  `chat-agents`, `tools-skills`, `agentic-commerce`, `memory`, `identity`,
-  `models-costs` and `open-models`, preserving concise headline definitions for
-  newcomers while making technical and practical detail available on request.
+  `chat-agents`, `tools-skills`, `agentic-commerce`, `agent-incidents`, `memory`,
+  `identity`, `models-costs` and `open-models`, preserving concise headline
+  definitions for newcomers while making technical and practical detail available
+  on request.
 - Added primary source links to `lesson:responsible-use` and `lesson:models-costs`.
 - Added `node --check web/feedback.js` to `CONTRIBUTING.md`.
 - Verification: 74 unit/HTTP tests, JavaScript syntax checks and the isolated
-  Chromium smoke suite passed. Offline content audit: 53 in-date, 1 unreviewed
+  Chromium smoke suite passed. Offline content audit: 54 in-date, 1 unreviewed
   (`resource:helm`). No live provider accounts, model calls or tool installs.
 
 ## 4 November 2026 — recover stale services after updates

@@ -8,7 +8,8 @@
 - Context: relevant files, source evidence, context limits and untrusted source instructions.
 - Prompting: goals, evidence, boundaries and visible acceptance checks.
 - Tools, MCP and skills: actions, connection protocols and reusable task guidance, with distinct roles and limitations.
-- Agentic commerce and payment protocols: how MCP, A2A, ACP, UCP, AP2, FIDO passkeys, Visa Intelligent Commerce and Mastercard Agent Pay separate tool/agent connectivity, storefront checkout, cryptographic user consent and scoped network tokens; an interactive mandate and tamper-rejection walkthrough.
+- Agentic commerce and payment protocols: how MCP, A2A, ACP, UCP, AP2, FIDO passkeys, Visa Intelligent Commerce and Mastercard Agent Pay separate tool/agent connectivity, storefront checkout, cryptographic user consent and scoped network tokens; ordered by protocol layer with an interactive mandate and tamper-rejection walkthrough.
+- Real-world agent and AI security incidents: how boundaries failed—and were restored—across the July 2026 autonomous agent sandbox breakout and Hugging Face intrusion, Hugging Face model deserialization (`pickle` / `trust_remote_code`), Spaces secrets and `smolagents` `CVE-2025-5120`, Invariant Labs MCP tool poisoning and GitHub private-repository exfiltration, and zero-click indirect prompt injection (`EchoLeak` `CVE-2025-32711`), with explicit scope caveats, primary references and an interactive three-mode boundary explainer.
 - Checking: factual evidence, source tracing, software behaviour and human judgement.
 - Memory: current context, persistent notes, retrieval/RAG, inspection and deletion; a small two-session comparison exercise.
 - Soul and identity: tool-specific SOUL.md conventions, persona, project instructions, skills and permissions; an explicit ROLE.md comparison exercise.
