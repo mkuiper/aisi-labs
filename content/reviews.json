@@ -357,11 +357,11 @@
     "notes": "Reviewed 2026-11-13: inspected five-stage proposed improvement schedule, owner roles and acceptance gates against current local stage-1 implementation and docs/REVIEW.md. Proposal only; not an approved schedule or deployment sign-off."
   },
   "lesson:ai-basics": {
-    "revision": 2,
-    "reviewed_at": "2026-11-13",
+    "revision": 3,
+    "reviewed_at": "2026-11-14",
     "review_after_days": 90,
-    "sha256": "a5486b2c54325732d07c2074d5d6e9eb7b226a314fc5c5a1d51a2e1fcc7b5afa",
-    "notes": "Reviewed 2026-11-13: inspected full AI basics lesson, expandable section details and all twelve glossary definitions plus deeper-detail disclosures against Google ML glossary (training/inference/generation/tokens), MDN API, Anthropic context engineering and hallucination guidance, Google API-key documentation, and local programme/credential rules. Inspected simplified diagram and fictional scenario. No product login, model call, privacy guarantee or timed learner trial."
+    "sha256": "ae54ff77eb1dd2b6abd4fe813ef6fe5f3ed7b1922d302cab746d1f50699a08dc",
+    "notes": "Reviewed 2026-11-14: re-read the lesson, six section notes, twelve glossary headlines and deeper notes, and the fictional registration question. Sources opened: Google ML glossary (https://developers.google.com/machine-learning/glossary), MDN API (https://developer.mozilla.org/en-US/docs/Glossary/API), Google Cloud API keys (https://docs.cloud.google.com/docs/authentication/api-keys), Anthropic context engineering (https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) and Anthropic reduce-hallucinations (https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). No login, model call or price-page check."
   },
   "guide:tool-access": {
     "revision": 2,

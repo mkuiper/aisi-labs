@@ -26,7 +26,7 @@ people, new fonts, icon packs or a build step. Respect
 One item per round. Take the first item that is not done.
 
 1. Everyday writing lessons (`prompting`, `context`, `checking`): accurate and succinct. Done.
-2. `ai-basics` and its glossary: accurate headlines, succinct deeper notes. Pending.
+2. `ai-basics` and its glossary: accurate headlines, succinct deeper notes. Done.
 3. `web-chat` exercise and only a profile claim you have just re-read. Pending.
 4. Agentic-commerce walkthrough: one clearer scene, same facts unless a primary source contradicts them. Pending.
 5. Agent-loop diagram: show the cycle of goal, tool, result and check. Pending.
@@ -58,4 +58,25 @@ checked, what you did not check, and any source you opened.
   - https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
   - https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
   - https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+  - https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+
+### Round 2 — Tighten AI basics and the glossary
+
+- Commit subject: Tighten AI basics and the glossary.
+- Changed: headlines and deeper notes in `lesson:ai-basics` (`content/lessons.json`),
+  its review record (revision 3, reviewed 2026-11-14) and the changelogs.
+  Quiz options, the correct index and option_feedback were left as they were.
+  The inventory test’s fixed date moved from 13 to 14 November 2026 so today’s
+  review is not treated as future. The 2099 rejection check is unchanged.
+- Checked: re-read the lesson, the twelve glossary entries and the registration
+  question; `python3 -m unittest discover -s tests -q`; `node --check` on
+  `web/app.js`, `web/programme.js` and `web/feedback.js`. No interface change,
+  so the browser smoke test was not required.
+- Not verified: provider price pages, key rules other than the Google Cloud
+  page, or a live summary that drops a fact. No account and no model call.
+- Sources opened:
+  - https://developers.google.com/machine-learning/glossary
+  - https://developer.mozilla.org/en-US/docs/Glossary/API
+  - https://docs.cloud.google.com/docs/authentication/api-keys
+  - https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
   - https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations

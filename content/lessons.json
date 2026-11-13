@@ -8,32 +8,32 @@
     "colour": "sage",
     "diagram": "basics",
     "lab": "evidence",
-    "intro": "You can begin with an ordinary-language request. This guide explains the few ideas you need before trying a chatbot; the more technical topics can wait.",
+    "intro": "This page is the short version: what a model does, why a fluent answer can be wrong, and how a website differs from an API. Open a deeper note only when you want the mechanism.",
     "sections": [
       [
         "Generating is not the same as looking up",
-        "Generative AI produces text, images or other content using patterns learned during training. A language model generates a response from its input; a reply is not automatically a retrieved fact or a checked source.",
-        "Under the hood, a language model breaks input text into tokens and predicts which token is statistically likely to come next given the preceding sequence. Because it predicts plausible continuations rather than querying a verified database record, it can produce fluent, confident sentences that blend learned patterns with invented details unless grounded in supplied evidence or external search tools."
+        "A generative model creates text, images or other content from patterns learned in training. A language model produces a reply from its input. That reply is not a lookup in a checked database.",
+        "For a transformer language model, input is split into tokens and the model predicts a likely next token from the tokens so far. That is not a lookup in a verified record, so a fluent sentence can mix a learned pattern with an invented detail. Many image models generate in one pass instead."
       ],
       [
         "Training and using a model are different",
-        "Training adjusts a model’s internal parameters using examples. Using a trained model to produce a response is called inference. Supplying a fact in a conversation gives it context for that task; it does not itself demonstrate that the model has been retrained. Separately, check a provider’s terms and settings for retention and any later use of inputs for training.",
-        "Training is a compute-intensive stage—often divided into pre-training on broad corpora and post-training or fine-tuning on curated instructions and feedback—that updates the model’s stored numerical weights. Inference freezes those weights and computes an output for your current request only. If you start a fresh session without that request or a saved memory file, the model’s weights have not changed."
+        "Training sets a model’s parameters from examples. Inference uses the trained model to produce a response. Text in a chat is context for that response. It does not by itself retrain the model. Check the provider’s terms for whether inputs are stored or later used for training.",
+        "Training often starts with pre-training on a large dataset. Fine-tuning is a later pass that changes parameters for a narrower task. During inference those parameters stay fixed. A new chat, or a note loaded into that chat, does not update the weights."
       ],
       [
         "A convincing answer can still be wrong",
-        "An answer may sound precise while adding a claim that the evidence does not support. Ask for source support and compare it yourself. For a fictional invitation, check the time and entry price before polishing the wording.",
-        "Models are often tuned during post-training to produce helpful, complete-sounding answers. When a prompt asks for a summary or draft and a detail is missing from the supplied source, the model may fill the gap with a typical pattern—such as assuming an event requires registration or offers refreshments. Explicit instructions to state what is unknown reduce this tendency, but human comparison against the primary source remains essential."
+        "A reply can sound precise and still add a claim the evidence does not support. Ask which source supports it, then compare that source yourself. For a fictional invitation, check the time and the entry price before you edit the wording.",
+        "If the source does not contain a detail, the model may still write one that sounds typical, such as a registration rule the notice never stated. Telling it to mark unknowns can reduce that. Checking the source is still required, because those instructions do not remove the error."
       ],
       [
         "Your message is part of the context",
-        "A prompt is your request. Context can also include earlier messages, instructions and selected files or tool results. There is a limit to what fits in a request, often called the context window. Do not assume every earlier detail or every file on the laptop is available.",
-        "Before each reply, the application assembles a structured payload—typically combining a system prompt, developer or project instructions, conversation turns, and any attached file excerpts or tool outputs—and sends that package to the model. Only what is included in that payload is visible to the model during inference, and once the total token count approaches the context window limit, older turns or large outputs may be truncated or summarised."
+        "A prompt is your request. Context can also include earlier messages, instructions and selected files or tool results. The context window is how many tokens fit in one request. Do not assume every earlier detail, or every file on the laptop, is included.",
+        "Many applications send one package: instructions, the conversation, and any file excerpts or tool results they include. Only that package is available for the reply. Near the context-window limit, older turns may be dropped or summarised, and a summary can omit a time or a condition."
       ],
       [
         "A website and an API are ways to access software",
-        "A chatbot website offers controls for people. An API—application programming interface—lets software make requests. You do not need to configure an API to do the offline exercise below. If a tool asks for an API key, treat it as a secret credential and ask which learning-account setup applies.",
-        "When you use a browser chatbot, the provider’s web application manages the interface, account session, default system instructions and built-in tools. When a terminal or desktop tool uses an API, the local harness sends structured HTTP requests directly to a provider endpoint using an API key or OAuth token, often billed per input and output token separately from consumer chat subscriptions."
+        "A chatbot website is an interface for a person. An API, an application programming interface, lets software request another program’s capabilities. You do not need an API for the offline exercise. If a tool asks for an API key, treat the key as a secret and use the learning-account setup, not the prompt.",
+        "In a browser chatbot, the provider’s site handles the page, the account and the tools. A tool that uses an API sends the request to an address, with a key or another credential. That call can be billed separately from a chat subscription. Read the current price page before a live exercise."
       ],
       [
         "Start with one checkable task",
@@ -89,85 +89,85 @@
       {
         "id": "api",
         "term": "API",
-        "definition": "Application programming interface: a way for software to request another program’s capabilities.",
-        "detail": "In AI tools, an API usually accepts structured HTTP requests containing a model identifier, messages, system instructions and optional tool definitions, and returns generated tokens or structured tool calls. Because a local terminal or editor tool can call a remote API in the background, knowing whether a tool uses a cloud API or a local runner tells you where your prompt is actually processed.",
+        "definition": "Application programming interface: rules that let software request another program’s capabilities, rather than through a page for a person.",
+        "detail": "An API takes a software request and returns a result. In an AI tool that request often names a model and includes messages, and it may include tool definitions. The request can go to a cloud service or to a program on this laptop. The page you see is not that request.",
         "lesson": "models-costs"
       },
       {
         "id": "api-key",
         "term": "API key",
-        "definition": "A credential a service may use to identify or authorise requests and account for usage. In Labs, enter learning keys only in authentication settings, never in a prompt.",
-        "detail": "An API key is a secret token tied to a billing account or project rather than a browser cookie session. Anyone who obtains an active key can make requests against its quota and budget until the key is revoked in the provider’s console. Removing a key from Labs stops future launches from using it on this laptop, but revoking or rotating the key must be done in the provider’s own dashboard.",
+        "definition": "A secret that associates requests with an account or project, often for quota and billing. It is not a person logging in. In Labs, put learning keys only in authentication settings, never in a prompt.",
+        "detail": "On Google Cloud, a standard API key ties a request to a project for quota and billing, and does not by itself identify a person. An authorization key is different: it acts as a service account. Other providers use keys in their own way. Forgetting a key in Labs affects later launches from this hub. It does not revoke the key, sign out a tool, or clear a key that tool already stored.",
         "lesson": "models-costs"
       },
       {
         "id": "context",
         "term": "Context",
-        "definition": "Information available for the current response, including the request, instructions and selected evidence.",
-        "detail": "Models do not automatically see your whole computer or remember previous independent sessions. For each turn, the harness constructs the active context by combining hidden system instructions, project rules (such as AGENTS.md), the current chat history, and any files or tool outputs explicitly read during the session. Irrelevant or contradictory material in the context can degrade accuracy just as missing evidence can.",
+        "definition": "The information supplied for the current response, such as the request, instructions and selected evidence. It is not the whole laptop.",
+        "detail": "The model does not automatically see the whole computer or an earlier separate session. For each reply, the application sends the instructions, conversation and evidence it chose to include. Extra or conflicting text can crowd out the fact you care about, just as a missing source can.",
         "lesson": "context"
       },
       {
         "id": "context-window",
         "term": "Context window",
-        "definition": "The amount of context a model can handle in a request. A long chat may be shortened or summarised by the application.",
-        "detail": "Measured in tokens, the context window covers both the input sent to the model (instructions, history, files, tool outputs) and the output tokens generated in reply. Even when a model advertises a large window, sending very long inputs increases latency, memory use and token cost, and models can still miss details buried in the middle of a large prompt.",
+        "definition": "The number of tokens a model can process in one request. A long chat may be shortened or summarised before it is sent.",
+        "detail": "Google’s glossary defines the context window as the number of tokens in the prompt. A product limit may also cap the reply. A large limit does not mean every detail is used. Long inputs can cost more, and a summary of an older chat can drop an exact time or a condition.",
         "lesson": "context"
       },
       {
         "id": "endpoint",
         "term": "Endpoint",
-        "definition": "The address a program sends a service request to. Checking it helps identify whether an AI request goes to this laptop or a remote service.",
-        "detail": "An endpoint is a URL such as https://api.openai.com/v1/responses or a local loopback address such as http://127.0.0.1:11434. Because many tools support OpenAI-compatible or custom base URLs, the same CLI or model name can point either to a local runner on the laptop or to an external cloud host. Always inspect the configured endpoint before assuming where data travels.",
+        "definition": "The address a program sends a service request to. It shows whether that request is aimed at this laptop or a remote service.",
+        "detail": "An endpoint is a network address. A loopback address such as 127.0.0.1 stays on this laptop. A provider hostname sends the request to that service. The same tool or model name can be pointed at either, so read the configured address before you assume where the text goes.",
         "lesson": "models-costs"
       },
       {
         "id": "inference",
         "term": "Inference",
-        "definition": "Running a trained model to produce an output from an input.",
-        "detail": "During inference, the model’s learned weights remain fixed while software computes activations across layers for your input tokens and samples output tokens one by one. Inference requires significant memory bandwidth and compute—either on a remote provider’s accelerators or on local CPU/GPU hardware—and is the stage metered by per-token API pricing.",
+        "definition": "Using a trained model to produce an output from an input. For a language model, that output is a response to the current prompt.",
+        "detail": "During inference the learned parameters stay fixed. Transformer language models predict a next token from the tokens so far. Many image models do not work that way. A cloud API often meters tokens, while a chat subscription can bill differently. Check the current price page.",
         "lesson": "models-costs"
       },
       {
         "id": "model",
         "term": "Model",
-        "definition": "The trained component that produces predictions or generated content. It is not the whole application.",
-        "detail": "A model consists of a neural network architecture and its trained numerical parameters (weights). On its own, a model only maps input tokens to output predictions; it cannot open files, browse the web or run shell commands unless an external application or harness exposes tools, executes the requested actions and feeds the results back.",
+        "definition": "The structure and learned parameters that turn an input into a prediction or generated content. The model is not the whole application.",
+        "detail": "By itself, a model maps an input to an output. It does not open files, browse or run commands. An application has to perform those actions and pass any result back into the next request.",
         "lesson": "chat-agents"
       },
       {
         "id": "prompt",
         "term": "Prompt",
-        "definition": "The request you give an AI system, including instructions and any supplied material.",
-        "detail": "In practice, your visible message is combined with application-level system prompts, formatting rules and any attached documents or tool schemas. A strong prompt acts like a testable brief: it defines the goal, the specific public evidence to rely on, the boundaries of what not to invent or change, and how the output will be checked.",
+        "definition": "Text, and any other material you supply, that tells the model what to do for this request.",
+        "detail": "A published glossary defines a prompt as text that conditions a language model. In these exercises it also means the task: the goal, the public evidence, what not to invent, and how you will check the result. The application may add its own instructions before the model sees the request.",
         "lesson": "prompting"
       },
       {
         "id": "provider",
         "term": "Provider",
-        "definition": "The organisation supplying a model or service. The app you open and the service it contacts may have different providers.",
-        "detail": "In the AI stack, one organisation may publish the model weights (for example, Alibaba Qwen or Meta), another may build the local harness or editor (for example, OpenCode or Zed), and a third may host the inference API endpoint. Data handling, retention rules, terms of service and billing depend on both the tool you run and the hosting provider receiving the requests.",
+        "definition": "An organisation that supplies a model or a service. The app you open and the service it contacts may be different providers.",
+        "detail": "The name on the window, the organisation that trained the model, and the service that runs inference can all differ. Retention, terms and billing follow the service that receives the request, not only the label in the interface.",
         "lesson": "models-costs"
       },
       {
         "id": "token",
         "term": "Token",
-        "definition": "A unit processed by a model. For text, it may be a word, part of a word or punctuation.",
-        "detail": "Before a language model processes text, a tokenizer splits strings into sub-word chunks mapped to integer IDs. In English, one token is roughly three-quarters of a word on average, though code, numbers, non-English scripts and whitespace patterns can use more tokens per character. Providers typically charge different rates for input tokens read and output (including reasoning) tokens generated.",
+        "definition": "A unit a language model trains on and predicts. It may be a word, part of a word, or a character, including a space.",
+        "detail": "A tokenizer turns text into tokens before the model runs. One word can be one token or several, and a space can be its own token. Code and other languages can take more tokens than a similar amount of English. No single words-per-token ratio fits every model.",
         "lesson": "models-costs"
       },
       {
         "id": "training",
         "term": "Training",
-        "definition": "Adjusting a model’s parameters using examples. This differs from supplying context for a response.",
-        "detail": "Building a modern model usually involves pre-training on large datasets to learn general patterns, followed by supervised fine-tuning and reinforcement learning to follow instructions and format outputs. Pasting a document into a prompt does not train the model on the spot; however, depending on a cloud service’s privacy and retention settings, submitted conversations may be logged and used by the provider to train future models.",
+        "definition": "Adjusting a model’s parameters by reading examples. Supplying text for one reply is not training.",
+        "detail": "Pre-training uses a broad dataset. Fine-tuning is a later pass that changes parameters for a narrower task. Pasting a document into a prompt does not do either. A provider may still store chats and use them to train a later model, so read the current terms before a live exercise.",
         "lesson": "ai-basics"
       },
       {
         "id": "weights",
         "term": "Weights",
-        "definition": "Numerical parameters learned during training. Downloadable weights alone do not tell you the licence or where a model will run.",
-        "detail": "Weights are stored in large tensor files (such as safetensors or GGUF formats) containing billions of floating-point or quantised numbers. While open-weight models let you download these files and inspect or quantise them for local hardware, the weights file does not disclose the training data, guarantee safety or replace the need to check the checkpoint’s licence and provenance.",
+        "definition": "Learned numbers a model uses to calculate an output. A weights file does not state the licence or where inference will run.",
+        "detail": "Training sets the weights. Inference uses them and does not recalculate them from your prompt. A downloadable file of weights does not state the training data, the licence, or whether the model will run on this laptop or on a remote service.",
         "lesson": "open-models"
       }
     ],

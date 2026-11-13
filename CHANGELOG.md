@@ -1,5 +1,14 @@
 # Changes
 
+## 14 November 2026 — AI basics and glossary
+
+- Shortened the `ai-basics` headlines and deeper notes, and corrected a few
+  claims: API keys, context windows, tokens, training versus a prompt, and
+  what forgetting a Labs key does. Quiz shape is unchanged. No new graphic.
+- Moved the content-inventory test’s fixed date to 14 November 2026 so a
+  review recorded today is accepted. Future-dated records are still rejected.
+- Verification: unit/HTTP tests and JavaScript syntax checks. No live model call.
+
 ## 13 November 2026 — everyday writing lessons
 
 - Tightened `prompting`, `context` and `checking` after re-reading their cited

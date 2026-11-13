@@ -1,5 +1,33 @@
 # Learning material history
 
+## 2026-11-14 — AI basics headlines and deeper notes
+
+- Source and wording pass on `lesson:ai-basics` only, including its twelve
+  glossary entries. Lesson ID, quiz options, correct index and option_feedback
+  are unchanged. Revision 3. `reviewed_at` is 2026-11-14. Fingerprint updated.
+- Headlines now follow the sources more closely. A generative reply is not a
+  database lookup. The context window is a token count for one request. An API
+  is a software interface, not the page. A standard Google Cloud API key
+  associates a request with a project and does not by itself identify a person.
+  Forgetting a Labs key does not revoke it. A token may be a word, a subword or
+  a character. Training changes parameters; a prompt does not.
+- Deeper notes are shorter. Removed the fixed “three-quarters of a word” ratio,
+  the claim that models miss the middle of a prompt, named weight-file formats,
+  and example product endpoints that were not re-checked. Transformer language
+  models are described as next-token predictors; many image models are not.
+  A new chat or a loaded note does not update weights.
+- Sources opened, read-only, with no account and no model call:
+  - https://developers.google.com/machine-learning/glossary
+  - https://developer.mozilla.org/en-US/docs/Glossary/API
+  - https://docs.cloud.google.com/docs/authentication/api-keys
+  - https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+  - https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+- Not verified: current provider price pages, other vendors’ key rules beyond
+  the Google Cloud page, or a live compaction example. No login.
+- The content inventory test’s fixed date moved from 2026-11-13 to 2026-11-14
+  so this review date is not rejected as future. The separate check that a
+  date of 2099 is invalid is unchanged.
+
 ## 2026-11-13 — everyday writing lessons, accuracy and succinctness
 
 - Editorial and source pass on `lesson:prompting`, `lesson:context` and
