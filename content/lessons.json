@@ -502,5 +502,132 @@
       "A point estimate omits the displayed uncertainty and the difference in retry budgets. It is not enough to establish a meaningful advantage for your use.",
       "Averaging ranks from different tasks and methods can hide rather than resolve the mismatch. First inspect what each evaluation measures."
     ]
+  },
+  {
+    "id": "agentic-commerce",
+    "title": "Agentic commerce & payment protocols",
+    "subtitle": "How MCP, A2A, ACP, UCP, AP2, FIDO passkeys and card-network token frameworks fit together.",
+    "minutes": 8,
+    "icon": "nodes",
+    "colour": "clay",
+    "diagram": "commerce",
+    "lab": "blank",
+    "intro": "When an AI agent moves from answering questions to comparing products, building a cart or initiating a purchase, traditional e-commerce assumptions break down. A human is no longer clicking checkout in a browser session, and an unverified bot cannot safely hold a raw payment card. Emerging standards separate tool connectivity, multi-agent coordination, storefront checkout, cryptographic user consent and tokenised card-network settlement into distinct layers.",
+    "sections": [
+      [
+        "MCP (Model Context Protocol): connecting an agent to tools and data",
+        "MCP is an open standard that lets an AI application discover and invoke structured tools, resources and prompt templates exposed by local or remote servers. In a commerce workflow, MCP connects a single assistant downward to catalogue search, inventory lookup or checkout gateway APIs.",
+        "Originated by Anthropic and maintained under open governance, MCP uses JSON-RPC 2.0 messages over local stdio subprocesses or HTTP endpoints. A merchant or payment provider can publish an MCP server exposing typed tool schemas (for example, `search_products`, `create_cart_session` or `get_order_status`). MCP standardises how the harness calls those tools, but it does not by itself verify merchant identity, prove user payment consent or enforce a spending limit—those require the commerce, mandate and payment layers below. Deployed across developer and enterprise harnesses including Claude, OpenCode, Cursor, Zed, Stripe MCP toolkits, Visa and Mastercard developer MCP servers."
+      ],
+      [
+        "A2A (Agent2Agent Protocol): coordinating across independent agents",
+        "A2A is an open protocol (initiated by Google and governed under the Linux Foundation) for horizontal communication and task delegation between independent AI agents built on different frameworks or run by different organisations.",
+        "Whereas MCP connects one agent to a tool, A2A lets a buyer’s personal assistant negotiate with a merchant’s, airline’s or supplier’s own agent without either side sharing internal memory, system prompts or private tools. Each A2A agent publishes a machine-readable capability manifest (`AgentCard`, typically at `/.well-known/agent.json`) declaring supported skills, authentication schemes and input/output modalities, and exchanges asynchronous task updates over HTTP, JSON-RPC and Server-Sent Events (SSE). In commerce, A2A carries multi-step requests—such as checking custom delivery windows or bundle quotes—and can carry AP2 payment mandates as protocol extensions."
+      ],
+      [
+        "ACP (Agentic Commerce Protocol): conversational checkout and delegated tokens",
+        "ACP is an open Apache 2.0 standard co-developed by OpenAI and Stripe that defines machine-readable interfaces for product feeds, cart management and checkout between AI agents and merchants, while keeping the seller as the Merchant of Record.",
+        "ACP provides OpenAPI specifications and JSON schemas so an AI interface can ingest structured merchant catalogues, construct a cart session, calculate taxes and shipping, and trigger checkout without scraping HTML. To avoid exposing raw card numbers to the AI platform, ACP pairs checkout calls with delegated, single-use credentials such as Stripe Shared Payment Tokens (SPTs) scoped to a specific merchant and cart total. Deployed in production for ChatGPT Instant Checkout with U.S. Etsy sellers and Shopify merchant integrations, and supported by Stripe’s agentic commerce gateway tooling."
+      ],
+      [
+        "UCP (Universal Commerce Protocol): open schemas for multi-surface retail",
+        "UCP is an open-source standard (Apache 2.0, hosted at ucp.dev) co-developed by Google and Shopify with major retail partners to provide a common language for capability discovery, cart building, identity linking, checkout and post-purchase order management.",
+        "UCP is transport-agnostic: merchants can expose the same normative JSON schemas over standard REST APIs, MCP tool bindings or A2A agent endpoints. A core design rule is preserving Merchant-of-Record control—retailers keep their own pricing logic, customer relationship, fulfilment rules and return policies while making their storefront interoperable with AI surfaces such as Google Search AI Mode, Gemini, Microsoft Copilot and independent shopping agents. Published with open conformance suites, schema validators and Python/Node reference implementations."
+      ],
+      [
+        "AP2 (Agent Payments Protocol): cryptographic mandates for intent, cart and payment",
+        "AP2 is an open protocol (published by Google and contributed to the FIDO Alliance) that extends A2A and MCP to address three gaps in agent-initiated payments: proving user authorisation, verifying cart authenticity and establishing accountability if a transaction goes wrong.",
+        "Instead of trusting an AI model’s plain-text summary of what the user wanted, AP2 uses cryptographically signed Verifiable Credentials (VCs) across three artifacts: (1) an `IntentMandate` signed by the user defining allowed items, merchants, time windows and maximum spend; (2) a `CartMandate` signed by the merchant locking the exact SKUs, unit prices and total; and (3) a `PaymentMandate` binding the approved cart to a scoped payment credential. For human-not-present tasks (such as ‘buy this ticket when it drops below $80’), the pre-signed `IntentMandate` gives the payment network and issuer verifiable cryptographic proof of the boundaries the human authorised."
+      ],
+      [
+        "FIDO passkeys & agentic authentication: binding human consent to agent limits",
+        "FIDO passkeys use public-key cryptography and local device biometrics or PINs (via WebAuthn and FIDO2) to provide phishing-resistant authentication. In agentic commerce, passkeys anchor the root of trust: proving a real human authorised the agent’s mandate or confirmed a checkout step.",
+        "Traditional passwords and SMS one-time codes can be phished or intercepted, and standard browser behavioural signals fail when a cloud agent shops on a user’s behalf. Through the FIDO Alliance Payments Technical Working Group and Agentic Authentication initiatives (incorporating Verifiable Intent and AP2), a device-bound private key in the user’s phone or laptop hardware security module signs the spending allowance, merchant scope or EMV 3-D Secure challenge. If an agent—or a prompt injection inside a store page—attempts to alter the payee or exceed the signed cap, cryptographic verification fails before settlement."
+      ],
+      [
+        "Visa Intelligent Commerce (VIC): AI-ready network tokens and Trusted Agent Protocol",
+        "Visa Intelligent Commerce is Visa’s network framework for agent-initiated payments, combining agent-scoped Visa Token Service credentials, consumer spend controls and cryptographic bot authentication.",
+        "VIC replaces raw 16-digit Primary Account Numbers (PANs) with AI-Ready Tokens provisioned via the Visa Token Service (VTS) that can be restricted by budget, merchant category or time window. To prevent merchants’ anti-bot firewalls from blocking legitimate shopping agents—or mistaking scrapers for buyers—Visa and Cloudflare co-developed the Trusted Agent Protocol (TAP), which uses RFC 9421 HTTP Message Signatures so merchants can cryptographically verify a registered agent’s identity and payment authority. Deployed in live issuer and B2B pilots including DBS Bank in Singapore (retail and food/beverage transactions), Revolut in Europe, and BILL and Billtrust for automated B2B supplier invoice payments."
+      ],
+      [
+        "Mastercard Agent Pay: agentic tokens, Know Your Agent (KYA) and machine payments",
+        "Mastercard Agent Pay is Mastercard’s agentic payment framework built on Mastercard Digital Enablement Service (MDES) Agentic Tokens, an agent registration and verification layer (‘Know Your Agent’), and Verifiable Intent consent signals.",
+        "Before an AI platform can request a Mastercard Agentic Token, it undergoes Know Your Agent (KYA) onboarding and cryptographic registration. Each token is bound to the registered agent, consumer passkey consent and transaction risk signals so issuing banks can distinguish authorised agentic purchases from fraud. Mastercard has also introduced Agent Pay for Machines (AP4M) using open HTTP payment primitives (such as x402) for programmatic machine-to-machine microtransactions. Deployed in live regional rollouts and pilots with Westpac (Australia and New Zealand), Santander (Europe), issuers in Singapore and Malaysia, and ecosystem partners including Shopify, Stripe and Cloudflare."
+      ],
+      [
+        "Hands-on inspection exercise (offline, no real payments)",
+        "Use the interactive protocol walkthrough above to step through a fictional public bookstore purchase in both within-mandate ($42) and out-of-mandate ($68) modes. Then open a Blank project and draft a one-page protocol comparison for a fictional public-transport ticket booking assistant: specify which layer handles schedule lookup (MCP/UCP), cross-operator routing (A2A), human spend approval (FIDO passkey + AP2 IntentMandate) and card settlement (VIC / Agent Pay). Use ONLY public information, never OFFICIAL material, and never enter real payment cards or personal financial details in Labs."
+      ]
+    ],
+    "worked_example": {
+      "title": "Replace an open-ended card delegation with a signed mandate and scoped token",
+      "context": "Authored public practice: a learner is reviewing a proposed design for a fictional conference-book ordering assistant. Compare the initial proposal with the protocol-layered revision.",
+      "before": "Store the team’s corporate credit card number in the agent’s MEMORY.md file and add a rule in AGENTS.md saying: ‘Only buy reference books under $50 from approved bookshops.’",
+      "after": "Never store card numbers in prompts, memory or instruction files. Use UCP or ACP over MCP to fetch a signed merchant cart quote, require a FIDO passkey signature to issue an AP2 IntentMandate capped at $50.00 AUD for the specific merchant, and settle using a single-use Visa Intelligent Commerce or Mastercard Agent Pay token verified against that mandate.",
+      "question": "Why does the first design fail even if the model usually follows AGENTS.md?",
+      "explanation": "Instruction files such as AGENTS.md and MEMORY.md are plain text in the model’s context: they are sent to the model provider and can be overridden by prompt injection inside an untrusted product listing. A cryptographically signed AP2 mandate and a network-enforced, amount-scoped token move the spending control out of the language model’s text context and into verifiable cryptographic and payment-network checks."
+    },
+    "takeaway": "Separate connectivity (MCP, A2A), storefront schemas (ACP, UCP), cryptographic user consent (FIDO passkeys, AP2 mandates) and scoped network settlement (Visa Intelligent Commerce, Mastercard Agent Pay). Never rely on prompt instructions alone to guard payments.",
+    "question": "An AI shopping assistant reads a third-party seller’s product description that contains hidden text instructing the agent to add a $26 priority-handling fee, raising the cart from $42 to $68. The user had authorised a $50 maximum via a FIDO-signed AP2 IntentMandate and a merchant- and amount-scoped network token. What prevents the $68 charge from settling?",
+    "options": [
+      "The agent’s system prompt reminds the model to ignore untrusted instructions inside product descriptions.",
+      "The checkout gateway and card issuer verify the CartMandate and payment request against the cryptographic $50 IntentMandate and scoped token limit, rejecting the $68 total.",
+      "The MCP server automatically filters out products whose descriptions mention handling fees before returning search results."
+    ],
+    "correct": 1,
+    "feedback": "Cryptographic mandates (AP2) and amount-scoped network tokens (Visa VIC / Mastercard Agent Pay) enforce limits outside the model, so an out-of-bounds cart fails verification even if the model was misled.",
+    "option_feedback": [
+      "System-prompt reminders are helpful defence-in-depth, but they are not an enforcement boundary; a model can still be misled by untrusted source text.",
+      "Cryptographic mandates (AP2) and amount-scoped network tokens (Visa VIC / Mastercard Agent Pay) enforce limits outside the model, so an out-of-bounds cart fails verification even if the model was misled.",
+      "MCP transports structured tool calls and results; it does not inherently know a user’s budget or prevent a valid schema field from increasing a cart total."
+    ],
+    "sources": [
+      [
+        "Model Context Protocol (MCP) specification",
+        "https://modelcontextprotocol.io/docs/getting-started/intro"
+      ],
+      [
+        "Agent2Agent (A2A) Protocol specification",
+        "https://a2a-protocol.org/"
+      ],
+      [
+        "Agentic Commerce Protocol (ACP) — OpenAI & Stripe",
+        "https://github.com/agentic-commerce-protocol/agentic-commerce-protocol"
+      ],
+      [
+        "Universal Commerce Protocol (UCP) specification",
+        "https://ucp.dev/"
+      ],
+      [
+        "Agent Payments Protocol (AP2) repository",
+        "https://github.com/google-agentic-commerce/AP2"
+      ],
+      [
+        "FIDO Alliance: passkeys and payments working group",
+        "https://fidoalliance.org/passkeys/"
+      ],
+      [
+        "Visa Intelligent Commerce overview",
+        "https://corporate.visa.com/en/products/intelligent-commerce.html"
+      ],
+      [
+        "Mastercard Agent Pay overview",
+        "https://www.mastercard.com/global/en/business/artificial-intelligence/mastercard-agent-pay.html"
+      ]
+    ],
+    "next_links": [
+      [
+        "Review Tools, MCP & skills",
+        "#learn/tools-skills"
+      ],
+      [
+        "Review Instructions vs enforcement",
+        "#learn/identity"
+      ],
+      [
+        "Try a blank project worksheet",
+        "#lab/blank"
+      ]
+    ]
   }
 ]

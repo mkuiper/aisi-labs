@@ -8,6 +8,7 @@
 - Context: relevant files, source evidence, context limits and untrusted source instructions.
 - Prompting: goals, evidence, boundaries and visible acceptance checks.
 - Tools, MCP and skills: actions, connection protocols and reusable task guidance, with distinct roles and limitations.
+- Agentic commerce and payment protocols: how MCP, A2A, ACP, UCP, AP2, FIDO passkeys, Visa Intelligent Commerce and Mastercard Agent Pay separate tool/agent connectivity, storefront checkout, cryptographic user consent and scoped network tokens; an interactive mandate and tamper-rejection walkthrough.
 - Checking: factual evidence, source tracing, software behaviour and human judgement.
 - Memory: current context, persistent notes, retrieval/RAG, inspection and deletion; a small two-session comparison exercise.
 - Soul and identity: tool-specific SOUL.md conventions, persona, project instructions, skills and permissions; an explicit ROLE.md comparison exercise.

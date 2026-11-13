@@ -1,21 +1,25 @@
 # Changes
 
-## 13 November 2026 — learning material review, deeper-detail toggles and CI syntax check
+## 13 November 2026 — agentic commerce module, deeper-detail toggles and curriculum review
 
+- Added the `agentic-commerce` lesson (*Agentic commerce & payment protocols*),
+  covering MCP, A2A, ACP, UCP, AP2, FIDO passkeys, Visa Intelligent Commerce and
+  Mastercard Agent Pay with primary-source links, real-world deployment examples,
+  expandable `Dig deeper` disclosures, a worked mandate-design comparison and an
+  interactive offline protocol/mandate walkthrough (`#commerce-diagram`).
 - Completed a full source, exercise and local-workflow review across lessons,
   Web & media profiles, benchmark resources, labs, starter templates, setup/session
   guides and programme documentation. Recorded updated review metadata in
   `content/reviews.json` and detailed evidence/limits in `content/CHANGELOG.md`.
 - Added expandable `Dig deeper` disclosures (`<details class="deeper-detail">`)
   to all twelve glossary definitions and to core concept sections in `ai-basics`,
-  `chat-agents`, `tools-skills`, `memory`, `identity`, `models-costs` and
-  `open-models`, preserving concise headline definitions for newcomers while
-  making technical and practical detail available on request.
+  `chat-agents`, `tools-skills`, `agentic-commerce`, `memory`, `identity`,
+  `models-costs` and `open-models`, preserving concise headline definitions for
+  newcomers while making technical and practical detail available on request.
 - Added primary source links to `lesson:responsible-use` and `lesson:models-costs`.
-- Added `node --check web/feedback.js` to `.github/workflows/checks.yml` and
-  `CONTRIBUTING.md`.
+- Added `node --check web/feedback.js` to `CONTRIBUTING.md`.
 - Verification: 74 unit/HTTP tests, JavaScript syntax checks and the isolated
-  Chromium smoke suite passed. Offline content audit: 52 in-date, 1 unreviewed
+  Chromium smoke suite passed. Offline content audit: 53 in-date, 1 unreviewed
   (`resource:helm`). No live provider accounts, model calls or tool installs.
 
 ## 4 November 2026 — recover stale services after updates

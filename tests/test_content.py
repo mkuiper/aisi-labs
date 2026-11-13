@@ -111,16 +111,22 @@ class ContentTests(unittest.TestCase):
             self.assertGreater(len(term['definition']), 30)
             self.assertGreater(len(term['detail']), 120)
             self.assertIn(term['lesson'], {lesson['id'] for lesson in LESSONS})
-        for identifier in ['ai-basics', 'chat-agents', 'tools-skills', 'memory', 'identity', 'models-costs', 'open-models']:
+        for identifier in ['ai-basics', 'chat-agents', 'tools-skills', 'agentic-commerce', 'memory', 'identity', 'models-costs', 'open-models']:
             lesson = next(item for item in LESSONS if item['id'] == identifier)
             details = [section[2] for section in lesson['sections'] if len(section) == 3]
             self.assertTrue(details, f'Expected deeper details in {identifier}')
             self.assertTrue(all(isinstance(text, str) and len(text) > 120 for text in details))
+        commerce = next(item for item in LESSONS if item['id'] == 'agentic-commerce')
+        commerce_text = json.dumps(commerce)
+        for protocol in ['MCP', 'A2A', 'ACP', 'UCP', 'AP2', 'FIDO', 'Visa Intelligent Commerce', 'Mastercard Agent Pay']:
+            self.assertIn(protocol, commerce_text)
+        self.assertEqual(len(commerce['sources']), 8)
         for lesson in LESSONS:
             for section in lesson['sections']:
                 self.assertIn(len(section), {2, 3})
                 self.assertTrue(all(isinstance(part, str) and part.strip() for part in section))
         self.assertIn('lesson:ai-basics', learning_units())
+        self.assertIn('lesson:agentic-commerce', learning_units())
         self.assertTrue(basics['sources'])
         self.assertIn('Training', json.dumps(basics))
         chat = next(lesson for lesson in LESSONS if lesson['id'] == 'web-chat')
@@ -137,7 +143,7 @@ class ContentTests(unittest.TestCase):
                 self.assertIn('Authored public practice', lesson['worked_example']['context'])
             for label, destination in lesson.get('next_links', []):
                 self.assertTrue(label)
-                self.assertIn(destination, {'#glossary','#web-chats','#finish-session'} | {'#learn/'+item['id'] for item in LESSONS} | {'#web-chats/'+item['id'] for item in LESSONS if item.get('exercise')})
+                self.assertIn(destination, {'#glossary','#web-chats','#finish-session'} | {'#learn/'+item['id'] for item in LESSONS} | {'#lab/'+lab['id'] for lab in LABS} | {'#web-chats/'+item['id'] for item in LESSONS if item.get('exercise')})
 
     def test_everyday_exercises_supply_complete_prompts_and_offline_review(self):
         for identifier in ['prompting', 'context', 'checking']:

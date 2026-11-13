@@ -2,16 +2,23 @@
 
 ## 2026-11-13 — full curriculum, profile, lab and documentation review
 
-- Completed a source, exercise and editorial review across 52 of the 53 tracked
-  learning units (session/setup guides, all fifteen lessons, fourteen Web & media
-  profiles, benchmark/research resources, five labs, starter templates and nine
-  registered programme documents).
+- Completed a source, exercise and editorial review across all tracked learning
+  units (session/setup guides, sixteen lessons including the new
+  `lesson:agentic-commerce` module, fourteen Web & media profiles,
+  benchmark/research resources, five labs, starter templates and nine registered
+  programme documents).
+- Added `lesson:agentic-commerce` (*Agentic commerce & payment protocols*) in
+  `content/lessons.json` and `web/app.js`, covering MCP, A2A, ACP, UCP, AP2, FIDO
+  passkeys, Visa Intelligent Commerce and Mastercard Agent Pay with primary-source
+  links, deployment examples, expandable `Dig deeper` disclosures, a worked
+  mandate-vs-prompt comparison and an interactive offline protocol walkthrough.
 - Added expandable native `<details>` disclosures (`Dig deeper`) to all twelve
   glossary definitions in `lesson:ai-basics` and to core concept sections in
-  `lesson:ai-basics`, `lesson:chat-agents`, `lesson:tools-skills`, `lesson:memory`,
-  `lesson:identity`, `lesson:models-costs` and `lesson:open-models`, keeping
-  concise plain-language definitions up front while offering technical mechanics,
-  architecture and boundary nuances on demand.
+  `lesson:ai-basics`, `lesson:chat-agents`, `lesson:tools-skills`,
+  `lesson:agentic-commerce`, `lesson:memory`, `lesson:identity`,
+  `lesson:models-costs` and `lesson:open-models`, keeping concise plain-language
+  definitions up front while offering technical mechanics, architecture and
+  boundary nuances on demand.
 - Added canonical primary source links to `lesson:responsible-use` (OWASP LLM01
   prompt-injection guidance) and `lesson:models-costs` (Google ML glossary and
   Ollama local/cloud documentation), advancing their revisions to 3 and 5.

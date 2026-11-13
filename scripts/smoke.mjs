@@ -215,14 +215,21 @@ try{
   assert(await evaluate('!!document.querySelector("main a[href=\\\"#first-session\\\"]")'));
   await go('#learn');
   assert.equal(await evaluate('document.querySelectorAll(".learning-group").length'),3);
-  assert.equal(await evaluate('document.querySelectorAll(".lesson-card").length'),15);
+  assert.equal(await evaluate('document.querySelectorAll(".lesson-card").length'),16);
   assert.deepEqual(await evaluate('learningGroups.flatMap(g=>g.lessons).sort()'),await evaluate('data.lessons.map(l=>l.id).sort()'));
-  for(const id of ['prompting','checking','context']){
+  for(const id of ['prompting','checking','context','agentic-commerce']){
     await go('#learn/'+id);
     assert.equal(await evaluate('document.querySelectorAll(".worked-example").length'),1);
     await click('.worked-example summary');
     assert.equal(await evaluate('document.querySelector(".worked-example details").open'),true);
   }
+  await go('#learn/agentic-commerce');
+  assert.equal(await evaluate('document.querySelectorAll("#commerce-diagram .diagram-node").length'),4);
+  assert.equal(await evaluate('document.querySelectorAll(".section-detail").length'),8);
+  await click('[data-commerce-mode="rejected"]');
+  for(let i=0;i<4;i++)await click('[data-commerce-step="1"]');
+  assert(await evaluate('document.querySelector("#commerce-diagram").textContent.includes("MANDATE_LIMIT_EXCEEDED")'));
+  await click('[data-commerce-mode="approved"]');
   // Curated teaching text must still be escaped, including the new renderers.
   assert(await evaluate(`(()=>{
     const unsafe='<img src=x onerror=alert(1)>';
@@ -572,7 +579,7 @@ try{
   // Every answer must explain that choice, allow a retry and leave bookmarks unchanged.
   const progressBeforeQuiz=await evaluate('JSON.stringify(data.progress)');
   // Exercise every guide and both keyboard-sized and narrow viewports.
-  for(const id of ['ai-basics','chat-agents','terminal','context','prompting','tools-skills','checking','memory','identity','responsible-use','models-costs','web-chat','open-models','image-video','reading-leaderboards']){
+  for(const id of ['ai-basics','chat-agents','terminal','context','prompting','tools-skills','agentic-commerce','checking','memory','identity','responsible-use','models-costs','web-chat','open-models','image-video','reading-leaderboards']){
     await go('#learn/'+id);assert.equal(await evaluate('document.querySelectorAll(".quiz-option").length'),3);await noOverflow('guide '+id);
     const lesson=await evaluate('data.lessons.find(x=>x.id==='+JSON.stringify(id)+')');
     assert.equal(await evaluate('document.querySelectorAll(".quiz-option[aria-pressed=true]").length'),0);
@@ -589,7 +596,7 @@ try{
   await go('#learn');await screenshot('learn-index-desktop');
   await go('#learn/memory');await click('[data-answer="0"]');await screenshot('scenario-feedback-desktop');
   await cdp('Emulation.setDeviceMetricsOverride',{width:820,height:900,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#first-session','#glossary','#learn/ai-basics','#learn/web-chat','#learn/context','#learn/checking','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
+  for(const hash of ['#home','#first-session','#glossary','#learn/ai-basics','#learn/web-chat','#learn/context','#learn/checking','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#learn/agentic-commerce','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
   assert.equal(await evaluate('getComputedStyle(document.querySelector("#navigation")).display'),'none');
   await evaluate('document.querySelector(".mobile-nav-toggle").focus()');
@@ -606,7 +613,7 @@ try{
   await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
   assert.equal(await evaluate('document.querySelector(".mobile-nav-toggle").getAttribute("aria-expanded")'),'false');
   assert.equal(await evaluate('document.activeElement.className'),'mobile-nav-toggle');
-  for(const hash of ['#home','#first-session','#glossary','#learn/ai-basics','#learn/web-chat','#learn/context','#learn/checking','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
+  for(const hash of ['#home','#first-session','#glossary','#learn/ai-basics','#learn/web-chat','#learn/context','#learn/checking','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/agentic-commerce','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
   await go('#omarchy-help');await screenshot('omarchy-help-mobile');
   assert(await evaluate('document.querySelector("#omarchy-help-link").getBoundingClientRect().width>0'));
   await cdp('Emulation.setDeviceMetricsOverride',{width:320,height:740,deviceScaleFactor:1,mobile:false});
