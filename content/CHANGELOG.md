@@ -1,5 +1,52 @@
 # Learning material history
 
+## 2026-11-13 — full curriculum, profile, lab and documentation review
+
+- Completed a source, exercise and editorial review across 52 of the 53 tracked
+  learning units (session/setup guides, all fifteen lessons, fourteen Web & media
+  profiles, benchmark/research resources, five labs, starter templates and nine
+  registered programme documents).
+- Added expandable native `<details>` disclosures (`Dig deeper`) to all twelve
+  glossary definitions in `lesson:ai-basics` and to core concept sections in
+  `lesson:ai-basics`, `lesson:chat-agents`, `lesson:tools-skills`, `lesson:memory`,
+  `lesson:identity`, `lesson:models-costs` and `lesson:open-models`, keeping
+  concise plain-language definitions up front while offering technical mechanics,
+  architecture and boundary nuances on demand.
+- Added canonical primary source links to `lesson:responsible-use` (OWASP LLM01
+  prompt-injection guidance) and `lesson:models-costs` (Google ML glossary and
+  Ollama local/cloud documentation), advancing their revisions to 3 and 5.
+- Re-checked `guide:tool-access` and `doc:credentials` against official Codex,
+  Claude Code, Gemini CLI and provider API key documentation; advanced their
+  revisions to 2 and 3. Key-console URLs remain documented destinations rather
+  than signed-in walkthroughs.
+- Inspected all five practical labs (`lab:first-steps`, `lab:consultation`,
+  `lab:data-story`, `lab:evidence`, `lab:blank`) and `starters` in `templates.py`,
+  confirming starter HTML, CSV/Markdown data fidelity, investigation prompts and
+  programme boundary headers.
+- Re-checked primary product, policy and methodology sources for the fourteen
+  `chat:*` profiles and five `resource:*` entries:
+  - OpenAI ChatGPT web docs, Anthropic Claude overview, Google Gemini Apps
+    Privacy Hub, xAI Grok and Ofcom's 12 January 2026 investigation announcement,
+    Microsoft Copilot individual privacy docs, Perplexity Pro Search and
+    Cloudflare's August 2025 crawling report, Mistral Vibe (formerly Le Chat),
+    Qwen3 release and Qwen3-0.6B Apache-2.0 licence, Hugging Face Hub/security/
+    pickle/safetensors/Spaces/model-card docs, Australian PSPF Direction 001-2025
+    and DeepSeek privacy/R1 licence notes, Adobe Firefly, Midjourney visibility,
+    Runway video/credits and ComfyUI overview/custom-node/partner-node docs.
+  - Artificial Analysis methodology, Arena ranking method, SWE-bench suites,
+    Hugging Face Papers and Stanford HELM's 2022 foundational article.
+- `resource:helm` remains `unreviewed`: its 2022 foundational article supports
+  the multi-metric reading guidance, but the live JavaScript leaderboard suite
+  was not directly rendered in the review environment, so no completed review
+  date is claimed. Perplexity's X response and current Ofcom investigation
+  outcomes remain scoped with explicit limitations.
+- No live provider accounts, paid model calls, downloads, real desktop shortcut
+  execution or departmental network/hardware acceptance were performed. Public-only,
+  nothing-OFFICIAL and never-government-network/account boundaries are unchanged.
+- Verification: 74 unit/HTTP tests, JavaScript syntax checks (`app.js`,
+  `programme.js`, `session.js`, `feedback.js`, `smoke.mjs`) and isolated Chromium
+  smoke checks. Audit: 52 in-date and 1 unreviewed (`resource:helm`).
+
 ## 2026-11-04 — everyday public-tool practice
 
 - Added fictional plain-language, conflicting-source and survey-summary exercises

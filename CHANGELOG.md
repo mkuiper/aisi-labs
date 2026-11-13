@@ -1,5 +1,23 @@
 # Changes
 
+## 13 November 2026 — learning material review, deeper-detail toggles and CI syntax check
+
+- Completed a full source, exercise and local-workflow review across lessons,
+  Web & media profiles, benchmark resources, labs, starter templates, setup/session
+  guides and programme documentation. Recorded updated review metadata in
+  `content/reviews.json` and detailed evidence/limits in `content/CHANGELOG.md`.
+- Added expandable `Dig deeper` disclosures (`<details class="deeper-detail">`)
+  to all twelve glossary definitions and to core concept sections in `ai-basics`,
+  `chat-agents`, `tools-skills`, `memory`, `identity`, `models-costs` and
+  `open-models`, preserving concise headline definitions for newcomers while
+  making technical and practical detail available on request.
+- Added primary source links to `lesson:responsible-use` and `lesson:models-costs`.
+- Added `node --check web/feedback.js` to `.github/workflows/checks.yml` and
+  `CONTRIBUTING.md`.
+- Verification: 74 unit/HTTP tests, JavaScript syntax checks and the isolated
+  Chromium smoke suite passed. Offline content audit: 52 in-date, 1 unreviewed
+  (`resource:helm`). No live provider accounts, model calls or tool installs.
+
 ## 4 November 2026 — recover stale services after updates
 
 - Fixed a loading failure caused by a long-running backend serving new frontend

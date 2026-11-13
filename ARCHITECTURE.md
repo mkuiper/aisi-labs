@@ -107,8 +107,13 @@ Learn uses three suggested groups in web/app.js, with each stable lesson ID
 listed exactly once (checked by the browser suite). These are navigation groups,
 not locked prerequisites or assessment levels. The new ai-basics lesson lives
 in content/lessons.json; its glossary array is the canonical source for
-#glossary, #glossary/<term> and search. Its review fingerprint covers those
-definitions. Term routes focus a validated existing ID; no user text is inserted
+#glossary, #glossary/<term> and search. Each glossary entry keeps a concise
+beginner definition up front and includes a detail field rendered inside a
+native details/summary disclosure (Dig deeper: <term>) so learners can inspect
+technical mechanics and boundaries on demand. Lesson sections also accept an
+optional third string ([title, body, detail]) rendered as a native section-detail
+disclosure. Its review fingerprint covers those definitions and deeper notes.
+Term routes focus a validated existing ID; no user text is inserted
 into selectors or HTML. Related links return to the original lesson IDs.
 
 The prompting, context and checking lessons reuse the existing exercise record

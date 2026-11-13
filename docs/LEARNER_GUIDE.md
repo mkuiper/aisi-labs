@@ -23,7 +23,9 @@ brief offline. These are learning activities, not completed AI generation tasks.
 
 Learn groups guides into everyday AI, agents and tools, and models/media/evidence.
 The glossary is linked from Learn and each lesson; search also finds terms such
-as API, endpoint and context. Reading-time estimates exclude optional exercises
+as API, endpoint and context. Each glossary entry and core concept section starts
+with a short plain-language explanation and offers a Dig deeper toggle when you
+want technical or practical detail. Reading-time estimates exclude optional exercises
 and setup. Worked responses can be revealed after you consider an example.
 No quiz answer or reflection is sent to an AI service or recorded as a score.
 If no facilitator is available, ask the person responsible for the device about

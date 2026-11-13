@@ -1,373 +1,373 @@
 {
   "lesson:chat-agents": {
-    "revision": 2,
-    "reviewed_at": null,
+    "revision": 3,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "f1ca5632d5efa35e1a6153e5de3ad227423971bc846c63edfa8c9470c564e0a1",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
+    "sha256": "eea34cd9234cfc88c815fd607474b3dd95f211e0161ca1ecbf10cbfd57927cf1",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes for Model/Chatbot/Harness/Agent/Workflow, interactive agent/chat diagram, five-step authored trace and scenario question/option_feedback against Anthropic building-effective-agents and effective-harnesses-for-long-running-agents articles, and local programme boundaries. No live model calls or paid exercises."
   },
   "lesson:terminal": {
     "revision": 3,
-    "reviewed_at": null,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "317d2540a385422bb7d518de20767d8de2777d6a26b1ba141c786d6478dea58b",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises. Beginner command update 2026-09-29: added or linked the canonical seven-step command walkthrough, exact input/meaning/expected results, filename and prompt explanations. Reviewed local GNU/Bash help and simulated behaviour; GNU web sources timed out. No full Omarchy/source revalidation or live learner trial. Previous full-review date/hash retained so outstanding work remains visible."
+    "sha256": "634e72e386d18df35dd69a7727f8545e330a961c3c148296bc2586e91dd5928b",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, diagram, seven-step command_practice walkthrough, simulated terminal behaviour (pwd, ls, cat BRIEF.md, cd examples, cd .., clear, error boundaries) and scenario question against GNU Bash manual, Omarchy hotkeys documentation and local Bash/Coreutils behaviour. No real shell execution from the simulation or live learner trial."
   },
   "lesson:context": {
     "revision": 4,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "e1abe8bf5139b57d769c202790eca21518b0e06b078b56c2adf5d21d88679e7a",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises. Review 2026-09-28: Reviewed full lesson, diagram, scenario feedback and authored source-instruction example against Anthropic context engineering, OWASP LLM01:2025 and local programme rules. Added canonical source links; manually inspected event-source priority and permission distinction. No live injection attempt or model call. Local unit/HTTP and isolated Chromium verification; scope/evidence in content/CHANGELOG.md. Everyday exercise update 2026-11-04: inspected fictional facts, prompts, samples and local navigation for public-tool literacy rather than government work. Scoped editorial and authored-exercise review only; full-review date and fingerprint retained. No live model calls, accounts, learner pilot or GovAI assessment. See content/CHANGELOG.md."
+    "sha256": "d544af4972e0dcfc38380589dfd16925d017f974f4aea8b83b70f8a7687354d6",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, diagram, fictional Riverside Swap Day conflicting-source exercise, prompt-injection worked example and scenario question/option_feedback against Anthropic context engineering, OWASP LLM01:2025 prompt-injection guidance and local programme rules. No live injection attempt or model call."
   },
   "lesson:prompting": {
     "revision": 4,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "50955a2e811cab6a3697d42e070e3c69cb01b015b574b5665798fedf5045e507",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises. Review 2026-09-28: Reviewed full lesson, diagram, scenario feedback and authored brief comparison against Anthropic prompting best practices (clarity and constraints), programme rules and public starter briefs. Explained dependencies and CSV; inspected acceptance checks manually. No live generation or model performance comparison. Local unit/HTTP and isolated Chromium verification; scope/evidence in content/CHANGELOG.md. Everyday exercise update 2026-11-04: inspected fictional facts, prompts, samples and local navigation for public-tool literacy rather than government work. Scoped editorial and authored-exercise review only; full-review date and fingerprint retained. No live model calls, accounts, learner pilot or GovAI assessment. See content/CHANGELOG.md."
+    "sha256": "0a40e6cd324f27fa1566109b651f994373767a4c3154c1890da099b71bd1ecbb",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, diagram, fictional Hilltop Sketch Club everyday exercise, worked brief comparison and scenario question/option_feedback against Anthropic prompting best practices (clarity and constraints), programme rules and public starter briefs. No live generation or model performance comparison."
   },
   "lesson:tools-skills": {
-    "revision": 2,
-    "reviewed_at": null,
+    "revision": 3,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "964089fee1e4405de1b63f93dc3bff02e5d59230e0242f8e0330ec7005e98e6d",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
+    "sha256": "a20192b7720703a3dfb42bdf2c9ed879eaeb256299db26d3a94d287f22fcfbda",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes for Tool/MCP/Skill, three-role diagram and scenario question/option_feedback against Model Context Protocol introduction and Agent Skills overview documentation. Verified distinctions between tool execution, connection protocol and reusable task guidance. No live MCP server or model calls."
   },
   "lesson:checking": {
     "revision": 4,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "d4ead1704a0576ff07560c93d9c00452501da531d62fe3429764bf2193ee0f0b",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises. Review 2026-09-28: Reviewed full lesson, diagram, scenario feedback and authored four-response example against Anthropic hallucination guidance, programme rules and local evidence starter. Manually checked 2/4 versus majority, unsupported 3/4 and source-tracing logic. No provider call or claim of model reliability. Local unit/HTTP and isolated Chromium verification; scope/evidence in content/CHANGELOG.md. Everyday exercise update 2026-11-04: inspected fictional facts, prompts, samples and local navigation for public-tool literacy rather than government work. Scoped editorial and authored-exercise review only; full-review date and fingerprint retained. No live model calls, accounts, learner pilot or GovAI assessment. See content/CHANGELOG.md."
+    "sha256": "659957a4bdeb255bc6fde0dfffd9c3887ad0297da9b20946e84e271fa1430b5a",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, diagram, fictional repair-cafe survey exercise (E1-E4), four-response worked example and scenario question/option_feedback against Anthropic hallucination-reduction guidance, programme rules and local evidence starter. Verified counts (12/20 = 60% vs 80%) and sample limits. No provider call."
   },
   "lesson:memory": {
-    "revision": 2,
-    "reviewed_at": null,
+    "revision": 3,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "77253fa36e45613f69979504417492cd68b7cf12437356ccf316fa4bb8a5e9c6",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
+    "sha256": "f18ddeb1d03d5f96937a0931244635895a3aa10c32269f6893683d1242c60b04",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on active context, persistent notes and RAG, diagram, controlled two-session comparison exercise and scenario question/option_feedback against OpenClaw memory documentation and local programme rules. No live model calls."
   },
   "lesson:identity": {
-    "revision": 2,
-    "reviewed_at": null,
+    "revision": 3,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "9a73e2784169e26cbfea83c61e1fbb8ea8828811b1379955bb376ce2307c197e",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
+    "sha256": "be9839542bf34380df9be4030efc9d7f0501f7eb6826ab5c4215e0e34941a97a",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on instruction-file discovery and enforcement boundaries, diagram, ROLE.md comparison exercise and scenario question/option_feedback against OpenClaw agent-workspace conventions and local programme boundaries. No live model calls."
   },
   "lesson:responsible-use": {
-    "revision": 2,
-    "reviewed_at": null,
+    "revision": 3,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "2d772af97bc72c32a92ebd5d8c19562e7b41e10bea83422c664ab367f259c8c6",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
+    "sha256": "17e85dc5f4647936b6dbb0be6fb0abae16127a1d7c8ec91d4b9fab7c0ac4239a",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, permissions diagram and scenario question/option_feedback against programme charter, policy rules and OWASP LLM01:2025 prompt-injection guidance. Added canonical OWASP prompt-injection source link. Verified public-only, no-OFFICIAL and no-government-network boundaries."
   },
   "lesson:models-costs": {
-    "revision": 3,
-    "reviewed_at": null,
+    "revision": 5,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "72a55781c56f1f1472a69277150137574931b60f5a71a45f514d7f9fbd15f084",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises. Beginner restructure 2026-09-28: revised entry guidance, terminology or authored exercise as applicable; inspected the changed content and local UI. Full provider/source review remains pending. Earlier full-review date and fingerprint preserved; no live accounts or model calls."
+    "sha256": "4b57c9266caf97651325b9edc599b786973ff22fc094af97612b841df24e0921",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on endpoints, modalities and agent-loop token multiplication, cloud/local diagram and scenario question/option_feedback against Google ML glossary (inference/tokens), Ollama local/cloud documentation and local configuration/maintenance rules. Added canonical primary source links. No live billing or model calls."
   },
   "lesson:web-chat": {
     "revision": 3,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "00bf779e22a205b5c3d95847636a9595302745bd1222e5a5e12a9dc26470bd18",
-    "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises. Beginner restructure 2026-09-28: revised entry guidance, terminology or authored exercise as applicable; inspected the changed content and local UI. Full provider/source review remains pending. Earlier full-review date and fingerprint preserved; no live accounts or model calls."
+    "sha256": "2d25c9bfd046e526d17a345a114353f26efe9f7ce6247f22a6b9e3f0899c9d03",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, diagram, community-garden invitation exercise, manual prompt-copy interaction and scenario question/option_feedback against ChatGPT web docs, Claude product overview and local external-navigation gates. No live account login or model call."
   },
   "lesson:open-models": {
-    "revision": 2,
-    "reviewed_at": "2026-09-28",
+    "revision": 3,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "d98aa8107e9330f6896f0baf838f85c7dcf4448b3c067f312e854a43d4688f76",
-    "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
+    "sha256": "10abfde4213b2d42bcfd82723fc9b83f13d1a1e0f75f07bdc33dfac0b8b6ac02",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on safetensors/GGUF weights, custom licences, local versus cloud endpoints, checkpoint suffixes and quantisation memory math, release-versus-location diagram, no-download model-card exercise and scenario question/option_feedback against OSI Open Source AI Definition 1.0, Hugging Face model-card/quantisation docs, Ollama FAQ/cloud docs and Qwen3-0.6B card. No downloads or live inference."
   },
   "chat:chatgpt": {
     "revision": 2,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "83a9dc367ffda8d76207c8b201da5f6f0c4a3db63746fb97f5e8b1ee3556fd76",
-    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
+    "notes": "Reviewed 2026-11-13: inspected linked OpenAI ChatGPT web documentation and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
   },
   "chat:claude-chat": {
     "revision": 2,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "ca796176eafe76742310bf9fc84671ed1ebedc37038b43b2f3f594a51e26a00a",
-    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
+    "notes": "Reviewed 2026-11-13: inspected linked Anthropic Claude overview and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
   },
   "chat:gemini-chat": {
     "revision": 2,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "9938becd6573e38fddfbf171a29c3b4b946cf1fcd80f7f0df6dee60d3cdaf251",
-    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
+    "notes": "Reviewed 2026-11-13: inspected linked Google Gemini Apps Privacy Hub and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
   },
   "chat:grok-chat": {
     "revision": 2,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "9336ddd1f78b4ffc46fc4c5bd39d57c37b69b1961e546a25fab65bd0481b9ef4",
-    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive. Historical Ofcom announcement, not a verified current investigation outcome."
+    "notes": "Reviewed 2026-11-13: inspected linked xAI Grok site, Ofcom 12 January 2026 investigation announcement and authored public exercise. Historical Ofcom announcement is attributed without claiming a final finding. Not live-account, model-performance or deployment approval."
   },
   "chat:copilot-chat": {
     "revision": 2,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "e2a8da3803e30db7e4341198b8e45fd0d51ada138faf6dc8b8c444689a1b4aee",
-    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
+    "notes": "Reviewed 2026-11-13: inspected linked Microsoft Copilot individual transparency and privacy-controls documentation and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
   },
   "chat:perplexity": {
     "revision": 2,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "f719fb9e4df413903ac3097081394ae2c5af85c19da99ff7079d7a2b2ce6ef24",
-    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive. Cloudflare report is attributed; Perplexity response could not be inspected (403)."
+    "notes": "Reviewed 2026-11-13: inspected linked Perplexity Pro Search help article, Cloudflare August 2025 crawling report and authored public exercise. Cloudflare report remains attributed; Perplexity X response was not directly inspected. Not live-account, model-performance or deployment approval."
   },
   "chat:mistral-chat": {
     "revision": 2,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "5d750061b57dd89fdd2c1f369e3f150a8d6d6c681d54ba4ee5bc437b9003d646",
-    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
+    "notes": "Reviewed 2026-11-13: inspected linked Mistral Vibe (formerly Le Chat) product page and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
   },
   "lab:first-steps": {
     "revision": 1,
-    "reviewed_at": null,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "9460521e00eb9f7583af0016ef8e787a7372b07557f522d1ed31a7b7742b54d8",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Reviewed 2026-11-13: inspected activity steps, starter prompt, acceptance checks, BRIEF.md and index.html generation in templates.py, and isolated project/preview workflow. Public-only boundaries verified; no live agent call."
   },
   "lab:consultation": {
     "revision": 1,
-    "reviewed_at": null,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "ff4d3ba1c9028563efc603bb3e1163ddd10f6132d8d3b9f422df69610d9a0363",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Reviewed 2026-11-13: inspected activity steps, starter prompt, acceptance checks and six-row fictional submissions.csv starter (S01-S06 across Access, Transport, Digital). Verified sample-limitation checks and public-only boundaries; no live agent call."
   },
   "lab:data-story": {
     "revision": 1,
-    "reviewed_at": null,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "bacd0afffe4a41edd6717ebc76be961cede09ca711c0d78ee7a453d4c328b0e3",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Reviewed 2026-11-13: inspected activity steps, starter prompt, acceptance checks and six-month fictional service-data.csv starter. Verified accessibility/table checks and causation cautions; no live agent call."
   },
   "lab:evidence": {
     "revision": 2,
-    "reviewed_at": null,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "222801354e371f1cffe1c2d7fb886d241196f36fc9c67a3379d68d3b63a45422",
-    "notes": "Editorial update 2026-10-29: checklist now prompts investigation without revealing the worked answer. Existing baseline fingerprint and unreviewed status retained; a full source and exercise review remains outstanding. No learner pilot or model call."
+    "sha256": "4c497f3eb1ed7f123c824b19bd2ae86ec5c4a3b8834a60ead9831201aad08500",
+    "notes": "Reviewed 2026-11-13: inspected investigation-prompt checks, worked-answer reveal, starter prompt, evidence.md (E1-E4: 12/20 = 60%, no comparison group, no cost analysis) and draft.md (80%, causation and $2m claims). Verified local UI and isolated project workflow; no live agent call."
   },
   "lab:blank": {
     "revision": 1,
-    "reviewed_at": null,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "05a8255c590448876f0796806c54cea59c4a7eca908e8ce5e8011aa681e427ad",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Reviewed 2026-11-13: inspected open-exploration steps, starter prompt, acceptance checks and BRIEF.md template structure. Verified public-only and no-OFFICIAL boundaries; no live agent call."
   },
   "doc:open-models": {
     "revision": 1,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "fb0c3a55777e84f840b557df74fa0f4b7bc98bd3e3d3081d02e09fca69da501e",
-    "notes": "Authored and checked against linked primary sources; no downloads or live inference. Public-only programme boundaries retained."
+    "notes": "Reviewed 2026-11-13: inspected open-model field guide and comparison worksheet against OSI Open Source AI Definition 1.0, Hugging Face model-card/quantisation documentation and Ollama local/cloud documentation; no downloads or live inference. Public-only programme boundaries retained."
   },
   "doc:programme": {
     "revision": 11,
-    "reviewed_at": null,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "bf5d2b415c07ca5be76c006d7bd8463f53c8772c9f68258f27efa32143b2138e",
-    "notes": "Added source-backed device-restriction boundary and advanced revision. Full programme source/exercise review remains pending; baseline fingerprint and absent review date intentionally retained. Added creative-media/current-awareness scope; full legacy review remains pending. Added beginner desktop-help orientation; full review still pending. Editorial follow-up 2026-09-28: replaced pretend-terminal wording and described priority window controls and unscored scenario checks. Full charter review remains pending. Added first/finish-session guidance and proposed improvement stages on 2026-09-28; checked against local implementation. No external sign-out or live learner acceptance. Existing full-review debt and earlier fingerprint/date retained. Beginner restructure 2026-09-28: revised entry guidance, terminology or authored exercise as applicable; inspected the changed content and local UI. Full provider/source review remains pending. Earlier full-review date and fingerprint preserved; no live accounts or model calls. UI journey follow-up 2026-10-29: described selected starting routes and manual prompt copying. Full programme source and learner review remains pending; fingerprint and review date unchanged. Editorial streamlining 2026-10-29: checked local documentation against the app and existing guidance; full source and exercise review not repeated. Previous full-review date and fingerprint retained. Feedback follow-up 2026-11-04: inspected local collection, explicit review and manual email-report implementation. No live delivery or learner pilot; full-review date and fingerprint retained. Everyday exercise update 2026-11-04: inspected fictional facts, prompts, samples and local navigation for public-tool literacy rather than government work. Scoped editorial and authored-exercise review only; full-review date and fingerprint retained. No live model calls, accounts, learner pilot or GovAI assessment. See content/CHANGELOG.md."
+    "sha256": "5fd6f6cc6c98e67ffb6dad559df0bc878c37e977f707e1a66a407ffcdc92d5c2",
+    "notes": "Reviewed 2026-11-13: inspected complete programme charter against policy.py, PSPF Direction 001-2025 reference boundary, beginner routes, creative/current-awareness scope, local feedback/facilitator report workflow and deployment ownership model."
   },
   "doc:learner": {
-    "revision": 6,
-    "reviewed_at": null,
+    "revision": 7,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "91d748434910f4ccaf8e18d242948664e2cf711e4003b06ab10bfa4893b6d16b",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Added first/finish-session guidance and proposed improvement stages on 2026-09-28; checked against local implementation. No external sign-out or live learner acceptance. Existing full-review debt and earlier fingerprint/date retained. Beginner restructure 2026-09-28: revised entry guidance, terminology or authored exercise as applicable; inspected the changed content and local UI. Full provider/source review remains pending. Earlier full-review date and fingerprint preserved; no live accounts or model calls. Beginner command update 2026-09-29: added or linked the canonical seven-step command walkthrough, exact input/meaning/expected results, filename and prompt explanations. Reviewed local GNU/Bash help and simulated behaviour; GNU web sources timed out. No full Omarchy/source revalidation or live learner trial. Previous full-review date/hash retained so outstanding work remains visible. Editorial streamlining 2026-10-29: checked local documentation against the app and existing guidance; full source and exercise review not repeated. Previous full-review date and fingerprint retained. Everyday exercise update 2026-11-04: inspected fictional facts, prompts, samples and local navigation for public-tool literacy rather than government work. Scoped editorial and authored-exercise review only; full-review date and fingerprint retained. No live model calls, accounts, learner pilot or GovAI assessment. See content/CHANGELOG.md."
+    "sha256": "271884d875d4bdec37679739db8f63a71afaf846e640eac083a2c4aac30e0043",
+    "notes": "Reviewed 2026-11-13: inspected complete learner guide against Getting started routes, expandable deeper-detail definition disclosures, everyday exercises, seven-step terminal simulation, project creation, session-only API keys, Finish session checklist and incident guidance."
   },
   "doc:deployment": {
     "revision": 2,
-    "reviewed_at": null,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "ee0d1db4ec32b0ff53490de034db429fcfc4f43dcaee5b3dd6944c31ed679e8f",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial streamlining 2026-10-29: checked local documentation against the app and existing guidance; full source and exercise review not repeated. Previous full-review date and fingerprint retained."
+    "sha256": "9582d312b62795abf22354e8f97199356d6bf66c8a8de8079703447c50fbc419",
+    "notes": "Reviewed 2026-11-13: inspected deployment guide against server.py loopback/origin/token boundaries, install.sh desktop launcher generation, shared-account state limits and release acceptance checklist. Design guide only; not a completed laptop image or network certification."
   },
   "doc:credentials": {
-    "revision": 2,
-    "reviewed_at": null,
+    "revision": 3,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "28e3ca68dde4badbaa8cc82704cefae212c865a9bdc188d1b1ed5430ebb4e10d",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Setup-guide addition 2026-09-29: checked the new onboarding section and canonical guide linkage against the UI and current official auth/key documentation. No full revalidation of native adapters or pinned live-tool behaviour; previous full-review date/hash retained."
+    "sha256": "03ddb1dcdbd8e34c93e57c3c3e212128f64193d516a0d862ab698ca93c54f161",
+    "notes": "Reviewed 2026-11-13: inspected complete credentials and configuration guide against configuration.py adapters (Codex, Claude Code, Gemini CLI), persistent model overrides (including Grok native auth), memory-only key storage/forgetting and official provider authentication documentation. No live credentials tested."
   },
   "doc:curriculum": {
-    "revision": 4,
-    "reviewed_at": null,
+    "revision": 5,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "f2835a0dfe1fd9a4b7b2c476e685175a3e3df760bf227e3af9bb35d36bafbb7c",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Added coverage and review-process pointers; full legacy concept/source review remains pending. Beginner restructure 2026-09-28: revised entry guidance, terminology or authored exercise as applicable; inspected the changed content and local UI. Full provider/source review remains pending. Earlier full-review date and fingerprint preserved; no live accounts or model calls. Everyday exercise update 2026-11-04: inspected fictional facts, prompts, samples and local navigation for public-tool literacy rather than government work. Scoped editorial and authored-exercise review only; full-review date and fingerprint retained. No live model calls, accounts, learner pilot or GovAI assessment. See content/CHANGELOG.md."
+    "sha256": "bc48c80e7f6d30577cfebdd5b1142dbd53985f5cc5493ea85c03823330b123da",
+    "notes": "Reviewed 2026-11-13: inspected curriculum coverage, three learning groups, single-source glossary with deeper-detail toggles, four everyday exercises, five practical labs and editorial maintenance workflow against catalogue.py, content/ files and web/app.js."
   },
   "doc:maintenance": {
     "revision": 2,
-    "reviewed_at": null,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "d83ae087185071e45a0a691d4070fb80f69a84b3957c0be10adc54510eb4223b",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill. Editorial streamlining 2026-10-29: checked local documentation against the app and existing guidance; full source and exercise review not repeated. Previous full-review date and fingerprint retained."
+    "sha256": "327da89d4073f4578bd436eda5e6e923c1083d4a2fd67ef8eab5d5a79cc8e351",
+    "notes": "Reviewed 2026-11-13: inspected maintenance, model-override and release-management guide against maintenance.py (read-only mise ls --json and allowlisted npm checks), scripts/check_updates.py and Git collaboration rules."
   },
   "starters": {
     "revision": 1,
-    "reviewed_at": null,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "959bdafd3f87ef8f71e4b0796aa87feb3f33700cbe1309ef7f7be243e003172b",
-    "notes": "Existing Git baseline preserved. No new detailed source/exercise review in this update; queued for the review skill."
+    "notes": "Reviewed 2026-11-13: inspected templates.py starter HTML, all five lab briefs, programme boundary headers, submissions.csv, service-data.csv, evidence.md and draft.md against lab checks and isolated project tests."
   },
   "doc:content-maintenance": {
-    "revision": 8,
-    "reviewed_at": "2026-09-29",
+    "revision": 9,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "695a707a1d27457d4735b77d3931b4d6296f8a461b799fef752cfa1a7d68120e",
-    "notes": "Read full guide; reviewed the added desktop-help source, fingerprint coverage, 90-day interval and image-release checks. No scheduled monitoring or unrelated source reviews. Follow-up 2026-09-28: reviewed editorial standards for adult learners, aligned per-choice explanations, unscored attempts and honest partial-review metadata against the implemented UI and inventory. Added first/finish-session guidance and proposed improvement stages on 2026-09-28; checked against local implementation. No external sign-out or live learner acceptance. Review 2026-09-28: Reviewed updated source map, single-source glossary, beginner editorial criteria, disclosure interactions and group coverage against current implementation and tests. No automatic review scheduler or unrelated source review. Local unit/HTTP and isolated Chromium verification; scope/evidence in content/CHANGELOG.md. Review 2026-09-29: read complete maintenance guide; checked new setup-guidance source map, stable identifier, 30-day interval and documented-console versus live-account distinction against implementation. No unrelated content review or scheduled monitoring. Editorial streamlining 2026-10-29: checked local documentation against the app and existing guidance; full source and exercise review not repeated. Previous full-review date and fingerprint retained."
+    "sha256": "edfb46e8ca96e74d134b2ff8ef82c02774f1a5074abe221540d6a4286864b7b9",
+    "notes": "Reviewed 2026-11-13: inspected complete content-maintenance guide, source map, review statuses/exit codes, scenario-question editorial standards, expandable definition-detail guidance and skill invocation instructions against content_review.py, scripts/review_content.py and skills/aisi-learning-review/SKILL.md."
   },
   "chat:qwen-chat": {
     "revision": 1,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "92a3e31a9368a0c66ea8f04826f49c382d078018c0af992d28a3f763b62827d3",
-    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
+    "notes": "Reviewed 2026-11-13: inspected linked Qwen3 release post, Qwen3-0.6B Apache-2.0 licence and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
   },
   "chat:huggingface": {
     "revision": 2,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "7bf4d9644414d7a5cd4a23df582a28600b3c44f7903435152b07a0ccc3281f8a",
-    "notes": "Reviewed Hugging Face Hub, security/pickle scanning, Transformers model loading, safetensors, Spaces networking and model-card primary documentation. Added actionable risk checks and a no-download exercise. No model, repository code, hosted demo, login or credential use tested. Other profiles and legacy review debt unchanged."
+    "notes": "Reviewed 2026-11-13: inspected linked Hugging Face Hub, security, pickle scanning, Transformers model loading, safetensors, Spaces networking and model-card documentation, plus four risk checks and read-only exercise. No model download, code execution or login tested."
   },
   "chat:deepseek": {
     "revision": 1,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "db5eadb72287c46198eff85fbbf94de56fda027dc59bb3241963f631989e6277",
-    "notes": "Inspected linked primary product/release/policy sources and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive. Reference-only; no service URL, installation or inference."
+    "notes": "Reviewed 2026-11-13: inspected linked Australian PSPF Direction 001-2025, DeepSeek-R1 licence notes and DeepSeek privacy policy. Reference-only case study; no service URL, launch, installation or inference."
   },
   "chat:firefly": {
     "revision": 1,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "9de3fee7e794ecfed3bbb1547438c66f63c0f086324188fccfe609e947ff48c2",
-    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results."
+    "notes": "Reviewed 2026-11-13: inspected linked Adobe Firefly overview, commercial-safety caveats and authored poster exercise. No live sign-in, paid generation or model download tested."
   },
   "chat:midjourney": {
     "revision": 1,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "6ba90b9fdbff6679efb35b29df6d9caaa25b1111d8509c04d02b3f1cf5749709",
-    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results."
+    "notes": "Reviewed 2026-11-13: inspected linked Midjourney getting-started and creation-visibility/Stealth documentation and authored prompt exercise. No live sign-in or paid generation tested."
   },
   "chat:runway": {
     "revision": 1,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "2e269d3e56a4753023f03cc8bb77b0720114a63afcb4380768c22c15650f5088",
-    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results."
+    "notes": "Reviewed 2026-11-13: inspected linked Runway generative video and credits documentation and authored storyboard exercise. No live sign-in or paid generation tested."
   },
   "chat:comfyui": {
     "revision": 1,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "cc60ab9d2039ec20af709f640543dbf0895a329e7fbc591183289b1802d46d47",
-    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results."
+    "notes": "Reviewed 2026-11-13: inspected linked ComfyUI overview, custom-node and partner-node documentation and no-download diagram exercise. Links to docs only; no local installation or execution."
   },
   "resource:artificial-analysis": {
     "revision": 1,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "3f3e5f86f12db05f932058a59472638d66cc94ecac6155dbfd36e5ec27560baa",
-    "notes": "Inspected linked primary directory and method/discovery documentation on 2026-09-28. Reviewed the scoped description and reading guidance, not the correctness of every live result. No account access, model calls or benchmark code execution."
+    "notes": "Reviewed 2026-11-13: inspected linked Artificial Analysis directory and methodology page. Reviewed scoped description and composite-index caveats, not every live ranking. No account access or model calls."
   },
   "resource:arena": {
     "revision": 1,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "b4b1991d5cc030d66f76c4c6b49cefa4e15e2e5194839a71ea4e9943ac37cbf7",
-    "notes": "Inspected linked primary directory and method/discovery documentation on 2026-09-28. Reviewed the scoped description and reading guidance, not the correctness of every live result. No account access, model calls or benchmark code execution."
+    "notes": "Reviewed 2026-11-13: inspected linked Arena leaderboard and ranking-method documentation (Bradley-Terry/confidence intervals). Reviewed scoped reading guidance, not live rankings."
   },
   "resource:helm": {
     "revision": 1,
     "reviewed_at": null,
     "review_after_days": 30,
     "sha256": "556762e2668cb6f240af7e46b49f0d331b6c5506d31fe84b7f7355a5fbff8039",
-    "notes": "Partial inspection on 2026-09-28: the 2022 foundational explanation was readable and supports the scoped method notes. The live JavaScript suite directory/results did not render. Full resource review remains pending; no fresh completed-review date claimed."
+    "notes": "Partial inspection on 2026-09-28 and re-checked 2026-11-13: the 2022 foundational explanation is readable and supports the scoped multi-metric method notes, but the live JavaScript suite directory/results were not directly rendered in the review environment. Full resource review remains pending; no completed-review date claimed."
   },
   "resource:swe-bench": {
     "revision": 1,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "3b4a146b3b7f136fb3f3db2a6e871d60eef0270b7b006932ad8d57a869064579",
-    "notes": "Inspected linked primary directory and method/discovery documentation on 2026-09-28. Reviewed the scoped description and reading guidance, not the correctness of every live result. No account access, model calls or benchmark code execution."
+    "notes": "Reviewed 2026-11-13: inspected linked SWE-bench documentation and suite descriptions. Reviewed scoped reading guidance on agent/harness evaluation settings; no benchmark execution."
   },
   "resource:hf-papers": {
     "revision": 1,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
     "sha256": "2df4e0756a2ba675be07c7b93771f71d0d4a59adf8efd0c70e1afac9791b96b7",
-    "notes": "Inspected linked primary directory and method/discovery documentation on 2026-09-28. Reviewed the scoped description and reading guidance, not the correctness of every live result. No account access, model calls or benchmark code execution."
+    "notes": "Reviewed 2026-11-13: inspected linked Hugging Face Papers feed and reading cautions (trending vs peer review, repository risk checks). No downloads or code execution."
   },
   "lesson:image-video": {
     "revision": 2,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "59336227129302cf107a6b44051ceef78094755ae5024e832078b5c47a8e551f",
-    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
+    "sha256": "3d4e19f6456af84b02de587087d205af0886001db71b73cfdd3236883421522c",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, media diagram, three-shot fictional storyboard exercise and scenario question/option_feedback against Adobe Firefly, Runway, Midjourney visibility and ComfyUI primary documentation. No live sign-in or paid generation."
   },
   "lesson:reading-leaderboards": {
     "revision": 2,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "2ffc79a64606c83d8173e86a345d2e2759aa9d8946afb64df394d6d3b5d533a2",
-    "notes": "Inspected linked primary documentation, authored exercise and teaching structure. No live sign-in, paid generation, model download or hardware acceptance. Exercises are suggestions, not tested provider results. Editorial pass 2026-09-28: read the lesson and diagram, revised tone and scenario question with three choice-specific explanations; targeted concept-source checks only (see content/CHANGELOG.md). Not a full provider/source/exercise revalidation; previous full-review date and fingerprint retained. No live model calls or paid exercises."
+    "sha256": "03bc2e0234c3817f286dffaba718118afb6c489b287f8b0cb8efe435eda29abf",
+    "notes": "Reviewed 2026-11-13: inspected full lesson, benchmark diagram, no-call reading exercise and scenario question/option_feedback against Artificial Analysis methodology, Arena ranking-method, SWE-bench and HELM foundational documentation. No benchmark code execution or model calls."
   },
   "help:omarchy": {
     "revision": 2,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "8f7df54d53c621e108551577313f4fa48044a08848bea1be23b730ea6d3dd069",
-    "notes": "Read official Omarchy hotkeys/navigation/Windows-Mac transition docs, installed 4.0.4-1 Lua defaults and user overrides; inspected active bindings with hyprctl read-only. Authored exercise and diagram inspected; no real keyboard actions, locking, closure or hardware acceptance. Recheck on each image release. Follow-up 2026-09-28: promoted fullscreen and close, inspected the official hotkeys page, installed defaults and active Super+F/Super+W bindings read-only; reviewed authored practice. No actual window actions or hardware acceptance."
+    "notes": "Reviewed 2026-11-13: re-inspected official Omarchy hotkeys/navigation/Windows-Mac transition docs, 4.0.4-1 baseline notes, priority window controls (Super+F, Super+W) and authored practice. No real keyboard actions, locking, closure or hardware acceptance. Recheck on each image release."
   },
   "guide:first-session": {
     "revision": 4,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "b5165351854a22dece36ca98da7675add28f38f705c6570b22aedc09d046ead5",
-    "notes": "Authored and inspected 2026-09-28 against local primary sources: server/configuration endpoints, project templates, programme/learner/deployment guidance and UI implementation. Scoped local app guidance/planning, not provider-specific advice. No live accounts, model calls, desktop actions, network verification or timed learner pilot. Future phases are proposals, not scheduled or authorised operations. Review 2026-09-28: Reviewed three optional paths, no-code/offline alternatives, public-only boundary and all local links against the actual app, starter material and programme rules. Beginner route timing is not measured; no live accounts, desktop actions, network acceptance or learner pilot. Local unit/HTTP and isolated Chromium verification; scope/evidence in content/CHANGELOG.md. Beginner command update 2026-09-29: added or linked the canonical seven-step command walkthrough, exact input/meaning/expected results, filename and prompt explanations. Reviewed local GNU/Bash help and simulated behaviour; GNU web sources timed out. No full Omarchy/source revalidation or live learner trial. Previous full-review date/hash retained so outstanding work remains visible. Everyday exercise update 2026-11-04: inspected fictional facts, prompts, samples and local navigation for public-tool literacy rather than government work. Scoped editorial and authored-exercise review only; full-review date and fingerprint retained. No live model calls, accounts, learner pilot or GovAI assessment. See content/CHANGELOG.md."
+    "sha256": "568da73912f4c4c3af72ea3138239e82100dffe7c78001bf0f7cd842ba139bb1",
+    "notes": "Reviewed 2026-11-13: inspected Getting started guide, three beginner routes (chat, desktop, build), everyday exercise links, command-walkthrough disclosure, offline fallback and programme boundaries against web/session.js and catalogue.py. No live learner timing pilot or model call."
   },
   "guide:finish-session": {
     "revision": 2,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "3175bdbcd1ad20bf6cb0c33d2768fddd496c2e3d5e254a7568d10b37c27710c4",
-    "notes": "Authored and inspected 2026-09-28 against local primary sources: server/configuration endpoints, project templates, programme/learner/deployment guidance and UI implementation. Scoped local app guidance/planning, not provider-specific advice. No live accounts, model calls, desktop actions, network verification or timed learner pilot. Future phases are proposals, not scheduled or authorised operations. Review 2026-09-28: Reviewed the simplified authored introduction/handover instructions against existing configuration forget semantics and local credential/deployment guidance. All five manual checks retained; temporary ticks are not clearance. No real logout, revocation or device reset. Local unit/HTTP and isolated Chromium verification; scope/evidence in content/CHANGELOG.md."
+    "notes": "Reviewed 2026-11-13: inspected Finish session guide, five manual checks, temporary tab-only ticks and explicit Forget keys held by Labs action against server/configuration endpoints and local credential/deployment guidance. No real logout, revocation or device reset."
   },
   "doc:improvement-schedule": {
     "revision": 3,
-    "reviewed_at": "2026-09-28",
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "c71e81c6033777d69dfc2d7cbda32240f19430190a71432580a549765856d85b",
-    "notes": "Authored and inspected 2026-09-28 against local primary sources: server/configuration endpoints, project templates, programme/learner/deployment guidance and UI implementation. Scoped local app guidance/planning, not provider-specific advice. No live accounts, model calls, desktop actions, network verification or timed learner pilot. Future phases are proposals, not scheduled or authorised operations. Review 2026-09-28: Reviewed revised implementation status and proposed pilot acceptance against the three beginner routes and current local scope. Removed unvalidated 20-minute target; later owner assignments, accounts, network/image acceptance and publishing remain external decisions. Local unit/HTTP and isolated Chromium verification; scope/evidence in content/CHANGELOG.md. Editorial streamlining 2026-10-29: checked local documentation against the app and existing guidance; full source and exercise review not repeated. Previous full-review date and fingerprint retained."
+    "sha256": "50d80f7cf194d04ada206f9bf2905be8c3077c2b263ddecce58c4f0a5477572b",
+    "notes": "Reviewed 2026-11-13: inspected five-stage proposed improvement schedule, owner roles and acceptance gates against current local stage-1 implementation and docs/REVIEW.md. Proposal only; not an approved schedule or deployment sign-off."
   },
   "lesson:ai-basics": {
-    "revision": 1,
-    "reviewed_at": "2026-09-28",
+    "revision": 2,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "116edbe220891f255149beff90a14ce3cb943b5f17680b8e42dfab7be137ae2a",
-    "notes": "Authored foundations and twelve glossary definitions reviewed 2026-09-28 against Google ML glossary (training/inference/generation/tokens), MDN API, Anthropic context engineering and hallucination guidance, Google API-key documentation, and local programme/credential rules. Inspected simplified diagram and fictional scenario. No product login, model call, privacy guarantee or timed learner trial. See content/CHANGELOG.md for exact sources and test scope."
+    "sha256": "a5486b2c54325732d07c2074d5d6e9eb7b226a314fc5c5a1d51a2e1fcc7b5afa",
+    "notes": "Reviewed 2026-11-13: inspected full AI basics lesson, expandable section details and all twelve glossary definitions plus deeper-detail disclosures against Google ML glossary (training/inference/generation/tokens), MDN API, Anthropic context engineering and hallucination guidance, Google API-key documentation, and local programme/credential rules. Inspected simplified diagram and fictional scenario. No product login, model call, privacy guarantee or timed learner trial."
   },
   "guide:tool-access": {
-    "revision": 1,
-    "reviewed_at": "2026-09-29",
+    "revision": 2,
+    "reviewed_at": "2026-11-13",
     "review_after_days": 30,
-    "sha256": "1e0094cb90fe45f202970d1219cba3882676053c1da6c7f4d42fef3f88238918",
-    "notes": "Reviewed the complete new setup guide against official Codex/Claude Code/Gemini CLI authentication and provider key-creation documentation, local credential handling and programme boundaries. Canonical URLs accompany provider instructions. Console destinations traced to those docs; no signed-in walkthrough. OpenAI console had no readable content and AI Studio console was inaccessible to the review tool. No live accounts, prices, keys, paid prompts or deployment acceptance tested. See content/CHANGELOG.md for UI verification scope."
+    "sha256": "c3c22e82f1bd8eb17f30e611e132a64dcd42009323dfc598602c4c86ed166b6e",
+    "notes": "Reviewed 2026-11-13: re-checked setup guidance against official Codex/OpenAI API, Claude Code/Claude Console and Gemini CLI/AI Studio authentication and key documentation, plus local configuration.py adapters. Console URLs remain documented destinations, not a signed-in walkthrough. No live accounts, prices, keys or model calls tested."
   }
 }

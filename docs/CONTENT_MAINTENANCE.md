@@ -106,7 +106,9 @@ needed, offer an offline alternative where possible, and end with something
 the learner can inspect or explain. Do not equate trying a terminal with starting
 to learn AI. Explain unfamiliar terms before using them in questions; link to
 the glossary and original concept guides instead of maintaining duplicate lessons.
-Worked examples must label fictional facts and authored outputs, identify the
+Keep headline definitions concise for newcomers and use native details/summary
+disclosures (Dig deeper) for optional technical mechanics, architecture and
+boundary nuances. Worked examples must label fictional facts and authored outputs, identify the
 actual mismatch, and explain why a revision is better. A reveal is for comparison,
 not a score. Inspect native details/summary keyboard use and expanded narrow
 layouts. Grouped Learn navigation must include every lesson exactly once.

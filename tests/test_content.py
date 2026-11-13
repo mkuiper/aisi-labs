@@ -106,9 +106,20 @@ class ContentTests(unittest.TestCase):
         self.assertEqual(len({term['id'] for term in terms}), len(terms))
         self.assertEqual([term['term'] for term in terms], sorted(term['term'] for term in terms))
         for term in terms:
+            self.assertEqual(set(term), {'id', 'term', 'definition', 'detail', 'lesson'})
             self.assertRegex(term['id'], r'^[a-z]+(?:-[a-z]+)*$')
             self.assertGreater(len(term['definition']), 30)
+            self.assertGreater(len(term['detail']), 120)
             self.assertIn(term['lesson'], {lesson['id'] for lesson in LESSONS})
+        for identifier in ['ai-basics', 'chat-agents', 'tools-skills', 'memory', 'identity', 'models-costs', 'open-models']:
+            lesson = next(item for item in LESSONS if item['id'] == identifier)
+            details = [section[2] for section in lesson['sections'] if len(section) == 3]
+            self.assertTrue(details, f'Expected deeper details in {identifier}')
+            self.assertTrue(all(isinstance(text, str) and len(text) > 120 for text in details))
+        for lesson in LESSONS:
+            for section in lesson['sections']:
+                self.assertIn(len(section), {2, 3})
+                self.assertTrue(all(isinstance(part, str) and part.strip() for part in section))
         self.assertIn('lesson:ai-basics', learning_units())
         self.assertTrue(basics['sources'])
         self.assertIn('Training', json.dumps(basics))
@@ -170,7 +181,7 @@ class ContentTests(unittest.TestCase):
     def test_review_inventory_covers_every_unit(self):
         records = json.loads((ROOT / 'content/reviews.json').read_text())
         # Fixed date tests structure, not whether a future editorial deadline passes.
-        report = review_report(records, today=date(2026, 9, 29))
+        report = review_report(records, today=date(2026, 11, 13))
         self.assertEqual({row['id'] for row in report}, set(learning_units()))
         self.assertTrue(any(row['status'] == 'unreviewed' for row in report))
 
@@ -248,7 +259,7 @@ class ContentTests(unittest.TestCase):
 
     def test_terminal_lesson_distinguishes_shortcuts_from_shell_commands(self):
         terminal = next(lesson for lesson in LESSONS if lesson['id'] == 'terminal')
-        section = next(body for title, body in terminal['sections']
+        section = next(body for title, body, *_ in terminal['sections']
                        if title == 'Fullscreen and closing a window')
         for phrase in ['Super + F', 'Super + W', 'Save work', 'not commands to type']:
             self.assertIn(phrase, section)

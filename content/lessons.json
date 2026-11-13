@@ -12,23 +12,28 @@
     "sections": [
       [
         "Generating is not the same as looking up",
-        "Generative AI produces text, images or other content using patterns learned during training. A language model generates a response from its input; a reply is not automatically a retrieved fact or a checked source."
+        "Generative AI produces text, images or other content using patterns learned during training. A language model generates a response from its input; a reply is not automatically a retrieved fact or a checked source.",
+        "Under the hood, a language model breaks input text into tokens and predicts which token is statistically likely to come next given the preceding sequence. Because it predicts plausible continuations rather than querying a verified database record, it can produce fluent, confident sentences that blend learned patterns with invented details unless grounded in supplied evidence or external search tools."
       ],
       [
         "Training and using a model are different",
-        "Training adjusts a model’s internal parameters using examples. Using a trained model to produce a response is called inference. Supplying a fact in a conversation gives it context for that task; it does not itself demonstrate that the model has been retrained. Separately, check a provider’s terms and settings for retention and any later use of inputs for training."
+        "Training adjusts a model’s internal parameters using examples. Using a trained model to produce a response is called inference. Supplying a fact in a conversation gives it context for that task; it does not itself demonstrate that the model has been retrained. Separately, check a provider’s terms and settings for retention and any later use of inputs for training.",
+        "Training is a compute-intensive stage—often divided into pre-training on broad corpora and post-training or fine-tuning on curated instructions and feedback—that updates the model’s stored numerical weights. Inference freezes those weights and computes an output for your current request only. If you start a fresh session without that request or a saved memory file, the model’s weights have not changed."
       ],
       [
         "A convincing answer can still be wrong",
-        "An answer may sound precise while adding a claim that the evidence does not support. Ask for source support and compare it yourself. For a fictional invitation, check the time and entry price before polishing the wording."
+        "An answer may sound precise while adding a claim that the evidence does not support. Ask for source support and compare it yourself. For a fictional invitation, check the time and entry price before polishing the wording.",
+        "Models are often tuned during post-training to produce helpful, complete-sounding answers. When a prompt asks for a summary or draft and a detail is missing from the supplied source, the model may fill the gap with a typical pattern—such as assuming an event requires registration or offers refreshments. Explicit instructions to state what is unknown reduce this tendency, but human comparison against the primary source remains essential."
       ],
       [
         "Your message is part of the context",
-        "A prompt is your request. Context can also include earlier messages, instructions and selected files or tool results. There is a limit to what fits in a request, often called the context window. Do not assume every earlier detail or every file on the laptop is available."
+        "A prompt is your request. Context can also include earlier messages, instructions and selected files or tool results. There is a limit to what fits in a request, often called the context window. Do not assume every earlier detail or every file on the laptop is available.",
+        "Before each reply, the application assembles a structured payload—typically combining a system prompt, developer or project instructions, conversation turns, and any attached file excerpts or tool outputs—and sends that package to the model. Only what is included in that payload is visible to the model during inference, and once the total token count approaches the context window limit, older turns or large outputs may be truncated or summarised."
       ],
       [
         "A website and an API are ways to access software",
-        "A chatbot website offers controls for people. An API—application programming interface—lets software make requests. You do not need to configure an API to do the offline exercise below. If a tool asks for an API key, treat it as a secret credential and ask which learning-account setup applies."
+        "A chatbot website offers controls for people. An API—application programming interface—lets software make requests. You do not need to configure an API to do the offline exercise below. If a tool asks for an API key, treat it as a secret credential and ask which learning-account setup applies.",
+        "When you use a browser chatbot, the provider’s web application manages the interface, account session, default system instructions and built-in tools. When a terminal or desktop tool uses an API, the local harness sends structured HTTP requests directly to a provider endpoint using an API key or OAuth token, often billed per input and output token separately from consumer chat subscriptions."
       ],
       [
         "Start with one checkable task",
@@ -85,72 +90,84 @@
         "id": "api",
         "term": "API",
         "definition": "Application programming interface: a way for software to request another program’s capabilities.",
+        "detail": "In AI tools, an API usually accepts structured HTTP requests containing a model identifier, messages, system instructions and optional tool definitions, and returns generated tokens or structured tool calls. Because a local terminal or editor tool can call a remote API in the background, knowing whether a tool uses a cloud API or a local runner tells you where your prompt is actually processed.",
         "lesson": "models-costs"
       },
       {
         "id": "api-key",
         "term": "API key",
         "definition": "A credential a service may use to identify or authorise requests and account for usage. In Labs, enter learning keys only in authentication settings, never in a prompt.",
+        "detail": "An API key is a secret token tied to a billing account or project rather than a browser cookie session. Anyone who obtains an active key can make requests against its quota and budget until the key is revoked in the provider’s console. Removing a key from Labs stops future launches from using it on this laptop, but revoking or rotating the key must be done in the provider’s own dashboard.",
         "lesson": "models-costs"
       },
       {
         "id": "context",
         "term": "Context",
         "definition": "Information available for the current response, including the request, instructions and selected evidence.",
+        "detail": "Models do not automatically see your whole computer or remember previous independent sessions. For each turn, the harness constructs the active context by combining hidden system instructions, project rules (such as AGENTS.md), the current chat history, and any files or tool outputs explicitly read during the session. Irrelevant or contradictory material in the context can degrade accuracy just as missing evidence can.",
         "lesson": "context"
       },
       {
         "id": "context-window",
         "term": "Context window",
         "definition": "The amount of context a model can handle in a request. A long chat may be shortened or summarised by the application.",
+        "detail": "Measured in tokens, the context window covers both the input sent to the model (instructions, history, files, tool outputs) and the output tokens generated in reply. Even when a model advertises a large window, sending very long inputs increases latency, memory use and token cost, and models can still miss details buried in the middle of a large prompt.",
         "lesson": "context"
       },
       {
         "id": "endpoint",
         "term": "Endpoint",
         "definition": "The address a program sends a service request to. Checking it helps identify whether an AI request goes to this laptop or a remote service.",
+        "detail": "An endpoint is a URL such as https://api.openai.com/v1/responses or a local loopback address such as http://127.0.0.1:11434. Because many tools support OpenAI-compatible or custom base URLs, the same CLI or model name can point either to a local runner on the laptop or to an external cloud host. Always inspect the configured endpoint before assuming where data travels.",
         "lesson": "models-costs"
       },
       {
         "id": "inference",
         "term": "Inference",
         "definition": "Running a trained model to produce an output from an input.",
+        "detail": "During inference, the model’s learned weights remain fixed while software computes activations across layers for your input tokens and samples output tokens one by one. Inference requires significant memory bandwidth and compute—either on a remote provider’s accelerators or on local CPU/GPU hardware—and is the stage metered by per-token API pricing.",
         "lesson": "models-costs"
       },
       {
         "id": "model",
         "term": "Model",
         "definition": "The trained component that produces predictions or generated content. It is not the whole application.",
+        "detail": "A model consists of a neural network architecture and its trained numerical parameters (weights). On its own, a model only maps input tokens to output predictions; it cannot open files, browse the web or run shell commands unless an external application or harness exposes tools, executes the requested actions and feeds the results back.",
         "lesson": "chat-agents"
       },
       {
         "id": "prompt",
         "term": "Prompt",
         "definition": "The request you give an AI system, including instructions and any supplied material.",
+        "detail": "In practice, your visible message is combined with application-level system prompts, formatting rules and any attached documents or tool schemas. A strong prompt acts like a testable brief: it defines the goal, the specific public evidence to rely on, the boundaries of what not to invent or change, and how the output will be checked.",
         "lesson": "prompting"
       },
       {
         "id": "provider",
         "term": "Provider",
         "definition": "The organisation supplying a model or service. The app you open and the service it contacts may have different providers.",
+        "detail": "In the AI stack, one organisation may publish the model weights (for example, Alibaba Qwen or Meta), another may build the local harness or editor (for example, OpenCode or Zed), and a third may host the inference API endpoint. Data handling, retention rules, terms of service and billing depend on both the tool you run and the hosting provider receiving the requests.",
         "lesson": "models-costs"
       },
       {
         "id": "token",
         "term": "Token",
         "definition": "A unit processed by a model. For text, it may be a word, part of a word or punctuation.",
+        "detail": "Before a language model processes text, a tokenizer splits strings into sub-word chunks mapped to integer IDs. In English, one token is roughly three-quarters of a word on average, though code, numbers, non-English scripts and whitespace patterns can use more tokens per character. Providers typically charge different rates for input tokens read and output (including reasoning) tokens generated.",
         "lesson": "models-costs"
       },
       {
         "id": "training",
         "term": "Training",
         "definition": "Adjusting a model’s parameters using examples. This differs from supplying context for a response.",
+        "detail": "Building a modern model usually involves pre-training on large datasets to learn general patterns, followed by supervised fine-tuning and reinforcement learning to follow instructions and format outputs. Pasting a document into a prompt does not train the model on the spot; however, depending on a cloud service’s privacy and retention settings, submitted conversations may be logged and used by the provider to train future models.",
         "lesson": "ai-basics"
       },
       {
         "id": "weights",
         "term": "Weights",
         "definition": "Numerical parameters learned during training. Downloadable weights alone do not tell you the licence or where a model will run.",
+        "detail": "Weights are stored in large tensor files (such as safetensors or GGUF formats) containing billions of floating-point or quantised numbers. While open-weight models let you download these files and inspect or quantise them for local hardware, the weights file does not disclose the training data, guarantee safety or replace the need to check the checkpoint’s licence and provenance.",
         "lesson": "open-models"
       }
     ],
@@ -263,23 +280,28 @@
     "sections": [
       [
         "What are weights?",
-        "Weights are numbers learned during training. They work with the model’s architecture and inference software to generate outputs. Downloading weights is not the same as downloading the original training dataset or being able to reproduce the training process."
+        "Weights are numbers learned during training. They work with the model’s architecture and inference software to generate outputs. Downloading weights is not the same as downloading the original training dataset or being able to reproduce the training process.",
+        "Practically, a model release bundles weight tensors (often in safetensors or GGUF files) together with configuration files defining layer dimensions, attention heads and the tokenizer vocabulary. Prefer safetensors or reviewed GGUF files over legacy Python pickle checkpoints, which can execute arbitrary code when loaded."
       ],
       [
         "Open weights versus open source",
-        "Open-weight releases make learned parameters available under specified terms. Those terms differ. The Open Source Initiative’s AI definition goes further: it describes freedoms to use, study, modify and share, with requirements for parameters, code and information about training data. Do not call every downloadable model open source."
+        "Open-weight releases make learned parameters available under specified terms. Those terms differ. The Open Source Initiative’s AI definition goes further: it describes freedoms to use, study, modify and share, with requirements for parameters, code and information about training data. Do not call every downloadable model open source.",
+        "Many popular open-weight models use permissive licences such as Apache-2.0 or MIT, while others use custom community licences that restrict commercial scale, prohibited uses, or redistribution without attribution. Always inspect the exact licence file on the checkpoint repository rather than assuming ‘open’ means public domain."
       ],
       [
         "Openness and location are separate choices",
-        "An open-weight model can run on your laptop or on someone else’s servers. A cloud API is a way to access inference, not a licence category. A local runner is software that loads models; it is not itself the model. Some runners, including Ollama, offer cloud options too. Check the actual model and endpoint."
+        "An open-weight model can run on your laptop or on someone else’s servers. A cloud API is a way to access inference, not a licence category. A local runner is software that loads models; it is not itself the model. Some runners, including Ollama, offer cloud options too. Check the actual model and endpoint.",
+        "For example, running an open-weight Qwen or Llama checkpoint via a local runner bound to http://127.0.0.1:11434 keeps token generation on the laptop, whereas selecting a `:cloud` tag or pointing an agent harness at a hosted provider API sends the prompt over the internet even though the underlying model weights are publicly released."
       ],
       [
         "Read the model card before the download button",
-        "Look for the publisher, exact checkpoint, licence and usage conditions, intended tasks, languages, known limitations and evaluation methods. A model card is documentation supplied by its authors, not independent certification. A community conversion may differ from the original release; trace its provenance."
+        "Look for the publisher, exact checkpoint, licence and usage conditions, intended tasks, languages, known limitations and evaluation methods. A model card is documentation supplied by its authors, not independent certification. A community conversion may differ from the original release; trace its provenance.",
+        "Pay close attention to checkpoint suffixes: a base or pretrained checkpoint only continues text, whereas an instruct, chat or reasoning checkpoint has been post-trained to follow prompts and tool schemas. When using a quantised community upload, verify who converted it, which base checkpoint it came from, and whether the chat template was preserved accurately."
       ],
       [
         "Can an old laptop run it?",
-        "Parameter counts such as 1B mean roughly one billion learned parameters, not a quality score. Quantisation stores numbers at reduced precision to lower memory needs, with possible quality tradeoffs. Disk download size is not total RAM or GPU-memory use: the runner, context and other applications also need space. Start with a facilitator-tested small model, short context and measured hardware results; CPU-only use can be slow."
+        "Parameter counts such as 1B mean roughly one billion learned parameters, not a quality score. Quantisation stores numbers at reduced precision to lower memory needs, with possible quality tradeoffs. Disk download size is not total RAM or GPU-memory use: the runner, context and other applications also need space. Start with a facilitator-tested small model, short context and measured hardware results; CPU-only use can be slow.",
+        "At 16-bit precision (FP16/BF16), each billion parameters requires roughly 2 GB of memory just for the weights; 4-bit quantisation reduces that weight footprint to roughly 0.6–0.8 GB per billion parameters, plus runtime overhead for the key-value (KV) context cache, which grows as conversation length increases. On a laptop without a dedicated GPU, system RAM and memory bandwidth govern tokens-per-second speed."
       ],
       [
         "Local is not automatic permission",

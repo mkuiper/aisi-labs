@@ -10,6 +10,7 @@ python3 -m unittest discover -s tests -v
 node --check web/app.js
 node --check web/programme.js
 node --check web/session.js
+node --check web/feedback.js
 node scripts/smoke.mjs
 git diff --check
 ```

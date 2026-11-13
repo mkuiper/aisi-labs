@@ -194,8 +194,18 @@ try{
   assert.equal(requests.length,everydayStart,'Everyday practice and profile navigation make no requests');
   await go('#learn/ai-basics');
   assert.equal(await evaluate('document.querySelectorAll(".diagram-node").length'),3);
+  assert.equal(await evaluate('document.querySelectorAll(".section-detail").length'),5);
+  assert.equal(await evaluate('document.querySelector(".section-detail").open'),false);
+  await click('.section-detail summary');
+  assert.equal(await evaluate('document.querySelector(".section-detail").open'),true);
   await go('#glossary');
   assert.equal(await evaluate('document.querySelectorAll(".glossary-term").length'),12);
+  assert.equal(await evaluate('document.querySelectorAll(".glossary-detail").length'),12);
+  assert.equal(await evaluate('document.querySelector("#term-api .glossary-detail").open'),false);
+  await evaluate('document.querySelector("#term-api .glossary-detail summary").focus()');
+  await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
+  await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
+  assert.equal(await evaluate('document.querySelector("#term-api .glossary-detail").open'),true);
   await click('a[href="#glossary/api"]');
   assert.equal(await evaluate('document.activeElement.id'),'term-api');
   await go('#search/endpoint');
@@ -300,7 +310,7 @@ try{
     await go('#web-tool/'+id);await checkLogos(1);
     assert(await evaluate('document.querySelector("main").textContent.includes("Concerns and context")'));
     assert(await evaluate('document.querySelector("main").textContent.includes("A small learning exercise")'));
-    assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-09-28")'));
+    assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-11-13")'));
     assert(await evaluate('document.querySelectorAll(".sources a").length>0'));
     assert.equal(await evaluate('document.querySelector(".nav-link[aria-current]").hash'),'#web-chats');
     if(id==='huggingface'){
@@ -355,7 +365,7 @@ try{
   await go('#search/Perplexity');assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),1);
   await go('#learn/open-models');
   assert(await evaluate('document.querySelector(".diagram").textContent.includes("Hosted runner")'));
-  assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-09-28")'));
+  assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-11-13")'));
   await click('[data-answer="2"]');
   assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("Best fit.")'));
   await screenshot('open-models-desktop');

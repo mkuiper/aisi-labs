@@ -2,8 +2,8 @@
 
 ## Current coverage
 
-- AI basics: generating versus looking up, training versus inference, context, uncertainty and API access; twelve short glossary definitions linked to further learning.
-- Chatbots, agents and harnesses: model versus interface, tool execution, feedback loops, workflows and human review; illustrated comparison and authored replay.
+- AI basics: generating versus looking up, training versus inference, context, uncertainty and API access; twelve short glossary definitions with expandable deeper-detail disclosures linked to further learning.
+- Chatbots, agents and harnesses: model versus interface, tool execution, feedback loops, workflows and human review; illustrated comparison, expandable technical notes and authored replay.
 - Terminal foundations: terminal versus shell versus assistant, current directory, listing files, changing directories and reading text; an offline simulation.
 - Context: relevant files, source evidence, context limits and untrusted source instructions.
 - Prompting: goals, evidence, boundaries and visible acceptance checks.

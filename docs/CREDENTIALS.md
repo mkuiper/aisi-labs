@@ -22,7 +22,7 @@ preference fields or copy provider shell examples containing keys into history.
 
 The canonical learner instructions and source URLs are in
 content/setup_guidance.json, reviewed as guide:tool-access. Avoid maintaining a
-second provider walkthrough here. Documentation checked 29 September 2026;
+second provider walkthrough here. Documentation checked 13 November 2026;
 console destinations were taken from official documentation, not a signed-in
 walkthrough. OpenAI's console returned no readable content and AI Studio's
 console was inaccessible to the review tool. Account/region eligibility,
