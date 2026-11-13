@@ -1,5 +1,19 @@
 # Changes
 
+## 13 November 2026 — Hugging Face incident map
+
+- Replaced the generic four-box strip for the July 2026 Hugging Face case in
+  `#incident-diagram` with a two-zone map: evaluation sandbox, network boundary
+  and Hugging Face. A dot marks where activity is, and the boundary bar shows
+  whether that wall is held, crossed or restored.
+- Added Play the stages for that case only. Playback uses the existing offline
+  steps, stops when the reader chooses a stage or another case, and does not
+  animate the crossing when reduced motion is requested.
+- The MCP and EchoLeak cases keep the shared stage strip. Lesson text and review
+  fingerprints are unchanged.
+- Verification: unit/HTTP tests, JavaScript syntax checks and the isolated
+  Chromium smoke suite, including the new map on desktop and narrow layouts.
+
 ## 13 November 2026 — agentic commerce, real-world incident explainer, deeper-detail toggles and curriculum review
 
 - Added the `agentic-commerce` lesson (*Agentic commerce & payment protocols*),

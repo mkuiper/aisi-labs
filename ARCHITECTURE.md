@@ -120,7 +120,12 @@ lesson renders a three-mode offline interactive incident and breakout explainer
 (#incident-diagram) covering the July 2026 autonomous agent sandbox escape and
 Hugging Face intrusion, 2025 MCP tool poisoning / GitHub private-repo exfiltration
 and 2025 zero-click indirect prompt injection (EchoLeak CVE-2025-32711) with
-explicit caveats and primary sources. Their review fingerprints cover those definitions and deeper notes.
+explicit caveats and primary sources. The July 2026 mode is a two-zone map:
+evaluation sandbox, network boundary and Hugging Face. An Activity marker
+shows the active place, the boundary bar shows held, crossed or restored, and
+Play the stages advances the same offline steps. Playback stops on manual choice, mode change
+or route change, and the crossing motion is disabled when the reader prefers
+reduced motion. The other two modes keep the shared stage strip. Their review fingerprints cover those definitions and deeper notes.
 Term routes focus a validated existing ID; no user text is inserted
 into selectors or HTML. Related links return to the original lesson IDs.
 

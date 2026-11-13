@@ -197,9 +197,27 @@ body .programme-banner,body .programme-banner strong{font-size:12px;color:#674b2
 .trace-defence{font-size:12px!important;color:#354e3c!important;background:#eef3e8;border-radius:8px;padding:10px 13px;margin:10px 0 14px!important;min-height:0!important;line-height:1.6}
 #commerce-diagram .mode-buttons,#incident-diagram .mode-buttons{flex-wrap:wrap;margin-bottom:16px}
 #commerce-diagram .mode-buttons button,#incident-diagram .mode-buttons button{white-space:normal;text-align:left}
-@media(max-width:750px){.step-rail{grid-template-columns:repeat(2,minmax(0,1fr))}#commerce-diagram .diagram-row,#incident-diagram .diagram-row{flex-wrap:wrap}#commerce-diagram .diagram-node,#incident-diagram .diagram-node{flex:1 1 40%}}
+#incident-diagram .boundary-map{display:grid;grid-template-columns:minmax(0,1fr) 92px minmax(0,1fr);gap:12px;align-items:stretch;margin:4px 0 8px}
+#incident-diagram .zone{background:rgba(255,253,246,.82);border:1px solid #c9d5bc;border-radius:12px;padding:12px;min-width:0}
+#incident-diagram .zone-title{margin:0 0 10px;font-size:11px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:#3d5a45}
+#incident-diagram .zone-nodes{display:grid;gap:8px}
+#incident-diagram .zone .diagram-node{width:100%;flex:none}
+#incident-diagram .actor-mark{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a3d12}
+#incident-diagram .diagram-node.is-breach .actor-mark{color:#891e14}
+#incident-diagram .actor-pip{width:11px;height:11px;border-radius:50%;background:#c26924;box-shadow:0 0 0 4px rgba(194,105,36,.2);flex-shrink:0}
+#incident-diagram .diagram-node.is-breach .actor-pip{background:#b43225;box-shadow:0 0 0 4px rgba(180,50,37,.18)}
+#incident-diagram .boundary-gate{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;min-width:0}
+#incident-diagram .gate-bar{position:relative;width:8px;height:96px;border-radius:99px;background:#2f6b45;flex-shrink:0}
+#incident-diagram .boundary-map[data-gate="open"] .gate-bar{background:linear-gradient(#b43225 0 30%,transparent 30% 70%,#b43225 70% 100%)}
+#incident-diagram .gate-state{margin:0;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#245843;line-height:1.35}
+#incident-diagram .boundary-map[data-gate="open"] .gate-state{color:#891e14}
+#incident-diagram .boundary-map[data-crossing="true"] .gate-bar::after{content:"";position:absolute;top:calc(50% - 6px);left:calc(50% - 6px);width:12px;height:12px;border-radius:50%;background:#b43225;box-shadow:0 0 0 4px rgba(180,50,37,.2);animation:crossGateX 1.6s ease-in-out infinite}
+@keyframes crossGateX{0%,12%{transform:translateX(-46px);opacity:0}30%{opacity:1}78%,100%{transform:translateX(46px);opacity:0}}
+@keyframes crossGateY{0%,12%{transform:translateY(-36px);opacity:0}30%{opacity:1}78%,100%{transform:translateY(36px);opacity:0}}
+#incident-diagram .actions{flex-wrap:wrap}
+@media(max-width:750px){.step-rail{grid-template-columns:repeat(2,minmax(0,1fr))}#commerce-diagram .diagram-row,#incident-diagram .diagram-row{flex-wrap:wrap}#commerce-diagram .diagram-node,#incident-diagram .diagram-node{flex:1 1 40%}#incident-diagram .boundary-map{grid-template-columns:1fr}#incident-diagram .boundary-gate{flex-direction:row;justify-content:center;gap:12px;padding:6px 0}#incident-diagram .gate-bar{width:120px;height:8px}#incident-diagram .boundary-map[data-gate="open"] .gate-bar{background:linear-gradient(90deg,#b43225 0 30%,transparent 30% 70%,#b43225 70% 100%)}#incident-diagram .boundary-map[data-crossing="true"] .gate-bar::after{animation-name:crossGateY}#incident-diagram .gate-state{max-width:9rem}}
 @media(max-width:420px){.step-rail{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){.diagram-node.is-active,.diagram-node.is-breach,.diagram-arrow.is-flowing{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.diagram-node.is-active,.diagram-node.is-breach,.diagram-arrow.is-flowing,#incident-diagram .boundary-map[data-crossing="true"] .gate-bar::after{animation:none!important}#incident-diagram .boundary-map[data-crossing="true"] .gate-bar::after{opacity:1;transform:none}}
 .reader .text-link,.learning-group .text-link{white-space:normal;overflow-wrap:anywhere;max-width:100%}
 @media(max-width:850px){.starting-choices{grid-template-columns:1fr}.starting-choice h2{margin:8px 0}.starting-choice .text-link{margin-top:8px}}
 .feedback-page textarea{width:100%;min-width:0;resize:vertical;font:inherit;line-height:1.6;padding:12px;border:1px solid var(--line);border-radius:8px;color:var(--ink);background:#fffefa;box-sizing:border-box}

@@ -235,10 +235,21 @@ try{
   await go('#learn/agent-incidents');
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .diagram-node").length'),4);
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .step-pill").length'),5);
+  assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .boundary-map").length'),1);
+  assert(await evaluate('document.querySelector("#incident-diagram .gate-state").textContent.includes("Boundary held")'));
   assert.equal(await evaluate('document.querySelectorAll(".section-detail").length'),5);
+  await click('[data-incident-play]');
+  assert(await evaluate('document.querySelector("[data-incident-play]").textContent.includes("Pause")'));
+  await click('[data-incident-play]');
+  assert(await evaluate('document.querySelector("[data-incident-play]").getAttribute("aria-pressed")==="false"'));
+  await screenshot('incident-breakout-held-desktop');
   await click('[data-incident-goto="1"]');
   assert(await evaluate('document.querySelector("#incident-diagram").textContent.includes("Artifactory")'));
+  assert(await evaluate('document.querySelector("#incident-diagram .gate-state").textContent.includes("Boundary crossed")'));
+  assert(await evaluate('document.querySelector("#incident-diagram .boundary-map").getAttribute("data-crossing")==="true"'));
   assert(await evaluate('document.querySelectorAll("#incident-diagram .diagram-node.is-breach").length>=1'));
+  await noOverflow('incident breakout desktop');
+  await screenshot('incident-breakout-desktop');
   await click('[data-incident-mode="mcp-poisoning"]');
   await click('[data-incident-goto="3"]');
   assert(await evaluate('document.querySelector("#incident-diagram").textContent.includes("create_pull_request")'));
@@ -612,7 +623,7 @@ try{
   await go('#learn');await screenshot('learn-index-desktop');
   await go('#learn/memory');await click('[data-answer="0"]');await screenshot('scenario-feedback-desktop');
   await cdp('Emulation.setDeviceMetricsOverride',{width:820,height:900,deviceScaleFactor:1,mobile:false});
-  for(const hash of ['#home','#first-session','#glossary','#learn/ai-basics','#learn/web-chat','#learn/context','#learn/checking','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#learn/agentic-commerce','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
+  for(const hash of ['#home','#first-session','#glossary','#learn/ai-basics','#learn/web-chat','#learn/context','#learn/checking','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/chat-agents','#learn/agentic-commerce','#learn/agent-incidents','#configuration','#programme','#project/'+projectIDs[1]]){await go(hash);await noOverflow('tablet '+hash);}
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
   assert.equal(await evaluate('getComputedStyle(document.querySelector("#navigation")).display'),'none');
   await evaluate('document.querySelector(".mobile-nav-toggle").focus()');
@@ -629,7 +640,7 @@ try{
   await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
   assert.equal(await evaluate('document.querySelector(".mobile-nav-toggle").getAttribute("aria-expanded")'),'false');
   assert.equal(await evaluate('document.activeElement.className'),'mobile-nav-toggle');
-  for(const hash of ['#home','#first-session','#glossary','#learn/ai-basics','#learn/web-chat','#learn/context','#learn/checking','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/agentic-commerce','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
+  for(const hash of ['#home','#first-session','#glossary','#learn/ai-basics','#learn/web-chat','#learn/context','#learn/checking','#finish-session','#omarchy-help','#keep-current','#learn/image-video','#learn/reading-leaderboards','#web-tool/runway','#web-chats','#web-tool/deepseek','#web-tool/perplexity','#tools','#labs','#learn/open-models','#learn/web-chat','#learn/chat-agents','#learn/agentic-commerce','#learn/agent-incidents','#learn/terminal','#projects','#configuration','#programme','#docs/deployment','#docs/open-models','#project/'+projectIDs[1]]){await go(hash);await noOverflow('mobile '+hash);}
   await go('#omarchy-help');await screenshot('omarchy-help-mobile');
   assert(await evaluate('document.querySelector("#omarchy-help-link").getBoundingClientRect().width>0'));
   await cdp('Emulation.setDeviceMetricsOverride',{width:320,height:740,deviceScaleFactor:1,mobile:false});
@@ -685,6 +696,7 @@ try{
   await go('#learn/image-video');await screenshot('image-video-mobile');
   await go('#web-tool/perplexity');await screenshot('tool-profile-mobile');
   await go('#web-tool/huggingface');await noOverflow('mobile Hugging Face risks');await screenshot('huggingface-risks-mobile');
+  await go('#learn/agent-incidents');await noOverflow('incident breakout mobile');await screenshot('incident-breakout-mobile');
   await go('#tools');await click('[data-filter="Desktop tools"]');await checkLogos(8);await noOverflow('mobile desktop logos');
   await go('#home');await screenshot('launchpad-mobile');
   assert.deepEqual(errors,[],'Browser errors');

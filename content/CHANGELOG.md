@@ -1,5 +1,13 @@
 # Learning material history
 
+## 2026-11-13 — Hugging Face incident explainer presentation
+
+- Presentation only, in `web/app.js` and `web/style.css`. The July 2026 case now
+  shows the evaluation sandbox and Hugging Face as two places separated by a
+  network-boundary bar, with the active place marked and the same five stages.
+- `lesson:agent-incidents` text, sources, question and review fingerprint are
+  unchanged. No new factual claims and no exploit procedure were added.
+
 ## 2026-11-13 — full curriculum, profile, lab and documentation review
 
 - Completed a source, exercise and editorial review across all tracked learning
