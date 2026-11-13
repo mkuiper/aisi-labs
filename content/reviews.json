@@ -14,18 +14,18 @@
     "notes": "Reviewed 2026-11-13: inspected full lesson, diagram, seven-step command_practice walkthrough, simulated terminal behaviour (pwd, ls, cat BRIEF.md, cd examples, cd .., clear, error boundaries) and scenario question against GNU Bash manual, Omarchy hotkeys documentation and local Bash/Coreutils behaviour. No real shell execution from the simulation or live learner trial."
   },
   "lesson:context": {
-    "revision": 4,
+    "revision": 5,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "d544af4972e0dcfc38380589dfd16925d017f974f4aea8b83b70f8a7687354d6",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, diagram, fictional Riverside Swap Day conflicting-source exercise, prompt-injection worked example and scenario question/option_feedback against Anthropic context engineering, OWASP LLM01:2025 prompt-injection guidance and local programme rules. No live injection attempt or model call."
+    "sha256": "042d7c7592ad5d00b770f172b072093ab952c33d78c485c91987cecc724276c3",
+    "notes": "Reviewed 2026-11-13: re-read the lesson, Riverside Swap Day exercise, prompt-injection worked example and quiz against Anthropic context engineering (https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) and OWASP LLM01:2025 (https://genai.owasp.org/llmrisk/llm01-prompt-injection/). Tightened handover, evidence and source-instruction wording. Context limits and compaction loss are described, not measured on a live model. No injection attempt or model call."
   },
   "lesson:prompting": {
-    "revision": 4,
+    "revision": 5,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "0a40e6cd324f27fa1566109b651f994373767a4c3154c1890da099b71bd1ecbb",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, diagram, fictional Hilltop Sketch Club everyday exercise, worked brief comparison and scenario question/option_feedback against Anthropic prompting best practices (clarity and constraints), programme rules and public starter briefs. No live generation or model performance comparison."
+    "sha256": "813561152a5167405dffdb22b280ee24ce98cde92c5896d3abb289a267a40876",
+    "notes": "Reviewed 2026-11-13: re-read the lesson, Hilltop Sketch Club exercise, worked brief and quiz against Anthropic prompting best practices (https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices). The page is Claude guidance used as a transferable writing practice, not a test of other products. No live generation or model comparison."
   },
   "lesson:tools-skills": {
     "revision": 3,
@@ -35,11 +35,11 @@
     "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes for Tool/MCP/Skill, three-role diagram and scenario question/option_feedback against Model Context Protocol introduction and Agent Skills overview documentation. Verified distinctions between tool execution, connection protocol and reusable task guidance. No live MCP server or model calls."
   },
   "lesson:checking": {
-    "revision": 4,
+    "revision": 5,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
-    "sha256": "659957a4bdeb255bc6fde0dfffd9c3887ad0297da9b20946e84e271fa1430b5a",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, diagram, fictional repair-cafe survey exercise (E1-E4), four-response worked example and scenario question/option_feedback against Anthropic hallucination-reduction guidance, programme rules and local evidence starter. Verified counts (12/20 = 60% vs 80%) and sample limits. No provider call."
+    "sha256": "07de7e9c1b5dee9c3fe884f2ea2b8734f4f4223f806224228e1adbaa2dad1138",
+    "notes": "Reviewed 2026-11-13: re-read the lesson, repair-cafe exercise (E1–E4; 12/20 = 60%), four-response worked example and quiz against Anthropic reduce-hallucinations guidance (https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Clarified that an unmeasured benefit is not a measured zero. No provider call."
   },
   "lesson:memory": {
     "revision": 3,

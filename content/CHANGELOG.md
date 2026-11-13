@@ -1,5 +1,33 @@
 # Learning material history
 
+## 2026-11-13 — everyday writing lessons, accuracy and succinctness
+
+- Editorial and source pass on `lesson:prompting`, `lesson:context` and
+  `lesson:checking` only. Lesson IDs, quiz options, correct indexes and
+  option_feedback are unchanged. Revisions advanced to 5. Review date remains
+  2026-11-13 because the sources and exercises were re-read the same day.
+  Fingerprints updated to the revised text.
+- Prompting now says a clear brief is still not a correct reply, and that the
+  cited Claude page is one provider’s writing guidance. The building-task aside
+  was removed from the outcome section. The Hilltop Sketch Club facts, prompt,
+  flawed sample and faithful rewrite are unchanged in substance.
+- Context now says a handover summary can drop a time or a condition, and that
+  an assistant’s list of what it read is not proof. Source text is described as
+  data. A prompt warning is not a permission control, matching OWASP LLM01:2025:
+  behaviour constraints can mitigate prompt injection and are not a fool-proof
+  prevention method. No injection procedure was added.
+- Checking now says grounding and citation methods reduce unsupported claims
+  and do not remove them. The repair-cafe explanation states that an unmeasured
+  benefit is not a measured zero. Counts stay 12 of 20 (60%), not the flawed
+  sample’s 80%.
+- Sources opened, read-only, with no account and no model call:
+  - https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
+  - https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+  - https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+  - https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+- Not verified: live chatbot behaviour, other providers’ prompting docs, and
+  whether a particular product’s compaction keeps or drops a given fact.
+
 ## 2026-11-13 — Hugging Face incident explainer presentation
 
 - Presentation only, in `web/app.js` and `web/style.css`. The July 2026 case now

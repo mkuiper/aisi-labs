@@ -25,7 +25,7 @@ people, new fonts, icon packs or a build step. Respect
 
 One item per round. Take the first item that is not done.
 
-1. Everyday writing lessons (`prompting`, `context`, `checking`): accurate and succinct. Pending.
+1. Everyday writing lessons (`prompting`, `context`, `checking`): accurate and succinct. Done.
 2. `ai-basics` and its glossary: accurate headlines, succinct deeper notes. Pending.
 3. `web-chat` exercise and only a profile claim you have just re-read. Pending.
 4. Agentic-commerce walkthrough: one clearer scene, same facts unless a primary source contradicts them. Pending.
@@ -41,3 +41,21 @@ One item per round. Take the first item that is not done.
 
 Append one section per round. Include the commit, what changed, what you
 checked, what you did not check, and any source you opened.
+
+### Round 1 — Tighten the everyday writing lessons
+
+- Commit subject: Tighten the everyday writing lessons.
+- Changed: wording in `prompting`, `context` and `checking` (catalogue.py),
+  their review records (revision 5, same-day fingerprints) and the changelogs.
+  Quiz options, correct indexes and option_feedback were left as they were.
+- Checked: re-read each lesson and its exercise; `python3 -m unittest discover -s tests -q`;
+  `node --check` on `web/app.js`, `web/programme.js` and `web/feedback.js`.
+  No interface change, so the browser smoke test was not required.
+- Not verified: live chatbot replies, other providers’ prompting pages, and
+  whether any product’s summary step keeps a particular fact. No account and
+  no model call.
+- Sources opened:
+  - https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
+  - https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+  - https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+  - https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations

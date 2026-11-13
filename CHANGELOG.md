@@ -1,5 +1,13 @@
 # Changes
 
+## 13 November 2026 — everyday writing lessons
+
+- Tightened `prompting`, `context` and `checking` after re-reading their cited
+  pages. A clear brief is not a correct reply; a handover can drop a fact; a
+  prompt warning is not a permission control; an unmeasured benefit is not a
+  measured zero. Quiz shape is unchanged. No new graphic.
+- Verification: unit/HTTP tests and JavaScript syntax checks. No live model call.
+
 ## 13 November 2026 — Hugging Face incident map
 
 - Replaced the generic four-box strip for the July 2026 Hugging Face case in
