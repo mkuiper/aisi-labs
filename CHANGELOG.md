@@ -1,5 +1,13 @@
 # Changes
 
+## 14 November 2026 — agent loop cycle
+
+- The chat-agents agent view now shows a cycle: goal, tool, result and check.
+  A failed check returns to the goal. Simple chat stays one turn. The five
+  authored steps are unchanged.
+- Verification: unit/HTTP tests, JavaScript syntax checks and the browser
+  smoke test. No live model call.
+
 ## 14 November 2026 — commerce cart and cap
 
 - The agentic-commerce walkthrough draws the fictional cart on one scale

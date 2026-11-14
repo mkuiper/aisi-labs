@@ -420,6 +420,8 @@ try{
   await click('[data-mode="chat"]');
   assert(await evaluate('document.querySelector("#agent-diagram").textContent.includes("Ask a question")'));
   await click('[data-mode="agent"]');
+  assert(await evaluate('document.querySelector("#agent-diagram .agent-cycle").textContent.includes("Check")'));
+  assert(await evaluate('document.querySelector("#agent-diagram .cycle-c2g").textContent.includes("↑")'));
   await click('[data-trace="1"]');
   assert(await evaluate('document.querySelector("#trace-title").textContent.includes("requests a tool")'));
   await click('[data-answer="1"]');

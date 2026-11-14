@@ -168,10 +168,40 @@ const traces = [
 function stepRail(steps, current, attr) {
   return `<div class="step-rail" role="group" aria-label="Step progression">${steps.map((s,i)=>`<button type="button" class="step-pill ${i===current?'is-current':i<current?'is-done':''}" ${attr}="${i}" aria-label="Step ${i+1}: ${esc(s[0])}" aria-current="${i===current?'step':'false'}"><span class="step-num">${i+1}</span><span class="step-short">${esc(s[0].split(' (')[0].split(':')[0])}</span></button>`).join('')}</div>`;
 }
+function agentCycle() {
+  const stages = [
+    ['goal','Goal','Model has the brief'],
+    ['tool','Tool','Harness runs it'],
+    ['result','Result','Evidence comes back'],
+    ['check','Check','Compare with the goal'],
+  ];
+  const badges = [
+    ['Set the brief','Waiting','Waiting','Waiting'],
+    ['Brief loaded','Permission check','Waiting','Waiting'],
+    ['Still the goal','Read complete','6 rows returned','Waiting'],
+    ['Feedback returns','Already ran','Count mismatch','Mismatch'],
+    ['Goal met','Verified','6 / 6 matched','Check passed'],
+  ][traceStep];
+  const stateOf = index => {
+    if (traceStep === 4) return 'is-passed';
+    if (traceStep === 3) return index === 0 ? 'is-active' : index === 1 ? 'is-passed' : 'is-warning';
+    if (index < traceStep) return 'is-passed';
+    if (index === traceStep) return 'is-active';
+    return 'is-idle';
+  };
+  const arrow = (active, done) => active ? 'is-flowing' : done ? 'is-done' : '';
+  const node = index => {
+    const [id, name, sub] = stages[index];
+    return `<div class="diagram-node ${stateOf(index)} cycle-${id}"><strong>${name}</strong><small>${sub}</small><span class="node-status">${esc(badges[index])}</span></div>`;
+  };
+  const phase = ['goal','tool','result','check','review'][traceStep];
+  return `<div class="agent-cycle" data-cycle="${phase}">${node(0)}${node(1)}${node(2)}${node(3)}<span class="diagram-arrow cycle-g2t ${arrow(traceStep===1, traceStep>1)}" aria-hidden="true">→</span><span class="diagram-arrow cycle-t2r ${arrow(traceStep===2, traceStep>2)}" aria-hidden="true">↓</span><span class="diagram-arrow cycle-r2c ${arrow(traceStep===3, traceStep>3)}" aria-hidden="true">←</span><span class="diagram-arrow cycle-c2g ${arrow(traceStep===3, traceStep>3)}" aria-hidden="true">↑</span></div><p class="diagram-caption">Goal, tool, result, then a check. A failed check returns to the goal. You can stop the loop.</p>`;
+}
 function agentDiagram() {
-  const [title, text, states, badges, badgeKind, badgeText] = traces[traceStep];
-  const nodeMeta = [['Model','Choose next action'],['Tool','Read, edit or check'],['Result','New evidence']];
-  return `<div class="diagram-label">One goal. Different ways of working.</div><div class="mode-buttons" role="group" aria-label="Compare interaction patterns"><button data-mode="chat" class="${traceMode==='chat'?'active':''}" aria-pressed="${traceMode==='chat'}">Simple chat</button><button data-mode="agent" class="${traceMode==='agent'?'active':''}" aria-pressed="${traceMode==='agent'}">Agent loop</button></div>${traceMode==='chat'?'<div class="diagram-row"><div class="diagram-node is-passed"><strong>You</strong><small>Ask a question</small><span class="node-status">Prompt</span></div><span class="diagram-arrow is-flowing">→</span><div class="diagram-node is-active"><strong>Model</strong><small>Generate a reply</small><span class="node-status">Single turn</span></div><span class="diagram-arrow is-flowing">→</span><div class="diagram-node is-passed"><strong>You</strong><small>Review the answer</small><span class="node-status">Check</span></div></div><p class="diagram-caption">A basic exchange. Chat applications can also offer tools and agent loops.</p>':`<div class="harness"><div class="harness-title"><strong>THE HARNESS</strong><span>Context · permissions · execution</span></div><div class="diagram-row">${nodeMeta.map(([name,sub],i)=>`${i?`<span class="diagram-arrow ${states[i]!=='is-idle'?'is-flowing':''}">→</span>`:''}<div class="diagram-node ${states[i]}"><strong>${name}</strong><small>${sub}</small><span class="node-status">${esc(badges[i])}</span></div>`).join('')}</div><p class="diagram-caption">↶ Results return to the model; continue, ask for help or stop.</p></div>${stepRail(traces,traceStep,'data-trace-goto')}<div class="trace trace-${badgeKind}"><div class="trace-banner"><span class="verdict-pill ${badgeKind}">${esc(badgeText)}</span><span class="trace-tag">AUTHORED EXAMPLE · NO AI CALLS</span></div><div class="trace-head"><strong id="trace-title">${traceStep+1}. ${esc(title)}</strong></div><p id="trace-text" aria-live="polite">${esc(text)}</p><div class="actions"><button class="btn secondary small" data-trace="-1" ${traceStep===0?'disabled':''}>← Back</button><button class="btn small" data-trace="1">${traceStep===traces.length-1?'Replay ↺':'Next step →'}</button><span class="tiny-label">${traceStep+1} / ${traces.length}</span></div></div>`}`;
+  const [title, text, , , badgeKind, badgeText] = traces[traceStep];
+  const chat = '<div class="diagram-row"><div class="diagram-node is-passed"><strong>You</strong><small>Ask a question</small><span class="node-status">Prompt</span></div><span class="diagram-arrow is-flowing">→</span><div class="diagram-node is-active"><strong>Model</strong><small>Generate a reply</small><span class="node-status">Single turn</span></div><span class="diagram-arrow is-flowing">→</span><div class="diagram-node is-passed"><strong>You</strong><small>Review the answer</small><span class="node-status">Check</span></div></div><p class="diagram-caption">A basic exchange. Chat applications can also offer tools and agent loops.</p>';
+  const agent = `<div class="harness"><div class="harness-title"><strong>THE HARNESS</strong><span>Context · permissions · execution</span></div>${agentCycle()}</div>${stepRail(traces,traceStep,'data-trace-goto')}<div class="trace trace-${badgeKind}"><div class="trace-banner"><span class="verdict-pill ${badgeKind}">${esc(badgeText)}</span><span class="trace-tag">AUTHORED EXAMPLE · NO AI CALLS</span></div><div class="trace-head"><strong id="trace-title">${traceStep+1}. ${esc(title)}</strong></div><p id="trace-text" aria-live="polite">${esc(text)}</p><div class="actions"><button class="btn secondary small" data-trace="-1" ${traceStep===0?'disabled':''}>← Back</button><button class="btn small" data-trace="1">${traceStep===traces.length-1?'Replay ↺':'Next step →'}</button><span class="tiny-label">${traceStep+1} / ${traces.length}</span></div></div>`;
+  return `<div class="diagram-label">One goal. Different ways of working.</div><div class="mode-buttons" role="group" aria-label="Compare interaction patterns"><button data-mode="chat" class="${traceMode==='chat'?'active':''}" aria-pressed="${traceMode==='chat'}">Simple chat</button><button data-mode="agent" class="${traceMode==='agent'?'active':''}" aria-pressed="${traceMode==='agent'}">Agent loop</button></div>${traceMode==='chat'?chat:agent}`;
 }
 const commerceTraces = {
   approved: [

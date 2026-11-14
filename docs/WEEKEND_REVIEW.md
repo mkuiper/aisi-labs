@@ -29,7 +29,7 @@ One item per round. Take the first item that is not done.
 2. `ai-basics` and its glossary: accurate headlines, succinct deeper notes. Done.
 3. `web-chat` exercise and only a profile claim you have just re-read. Done.
 4. Agentic-commerce walkthrough: one clearer scene, same facts unless a primary source contradicts them. Done.
-5. Agent-loop diagram: show the cycle of goal, tool, result and check. Pending.
+5. Agent-loop diagram: show the cycle of goal, tool, result and check. Done.
 6. One starter project: a small public fictional task that uses a documented current tool capability. No live model call. Pending.
 7. `models-costs` and `open-models`: accuracy and succinctness. Pending.
 8. `tools-skills`, `memory`, `identity`, `responsible-use`: succinctness. Pending.
@@ -119,3 +119,17 @@ checked, what you did not check, and any source you opened.
 - Follow-up the same day: the over-cap bar had square ends. A mask now rounds
   both ends of the cart, and the smoke check expects “Settled $0” on the
   rejected last step.
+
+### Round 5 — Show the agent loop as a cycle
+
+- Commit subject: Show the agent loop as a cycle.
+- Changed: the agent view in `#agent-diagram` is now a cycle of goal, tool,
+  result and check. A failed check returns to the goal. Simple chat stays one
+  turn. The five authored steps and the lesson text are unchanged. The
+  `chat-agents` review fingerprint was not refreshed.
+- Checked: `python3 -m unittest discover -s tests -q` (74 tests); `node --check`
+  on `web/app.js`, `web/programme.js` and `web/feedback.js`; `node scripts/smoke.mjs`.
+  Smoke also checks that the cycle shows Check and the return arrow.
+- Not verified: a live agent run, or the cited harness pages. No account and
+  no model call. No source URL was opened, so the lesson claims were left as
+  they were.

@@ -111,7 +111,9 @@ and search. Each glossary entry keeps a concise beginner definition up front and
 includes a detail field rendered inside a native details/summary disclosure
 (Dig deeper: <term>) so learners can inspect technical mechanics and boundaries
 on demand. Lesson sections also accept an optional third string ([title, body,
-detail]) rendered as a native section-detail disclosure. The agentic-commerce
+detail]) rendered as a native section-detail disclosure. The chat-agents diagram (#agent-diagram) contrasts one chat turn with an offline
+agent cycle of goal, tool, result and check. A failed check returns to the goal,
+and the same five authored steps stay under the cycle. The agentic-commerce
 lesson renders an offline interactive four-layer protocol and mandate walkthrough
 (#commerce-diagram) comparing within-mandate checkout and out-of-mandate cart
 rejection across MCP, A2A, ACP, UCP, AP2, FIDO passkeys, Visa Intelligent

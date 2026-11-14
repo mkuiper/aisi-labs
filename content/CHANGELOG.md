@@ -1,5 +1,13 @@
 # Learning material history
 
+## 2026-11-14 — agent loop cycle
+
+- Presentation only, in `web/app.js` and `web/style.css`. The agent view in
+  `#agent-diagram` is a cycle of goal, tool, result and check. A failed check
+  returns to the goal. The chat view stays a single turn.
+- The `chat-agents` lesson text, question and review fingerprint are unchanged.
+  No source page was opened for this pass.
+
 ## 2026-11-14 — commerce walkthrough scale
 
 - Presentation only, in `web/app.js` and `web/style.css`. `#commerce-diagram`
