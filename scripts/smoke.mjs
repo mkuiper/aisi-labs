@@ -402,7 +402,7 @@ try{
   await go('#search/Perplexity');assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),1);
   await go('#learn/open-models');
   assert(await evaluate('document.querySelector(".diagram").textContent.includes("Hosted runner")'));
-  assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-11-13")'));
+  assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-11-15")'));
   await click('[data-answer="2"]');
   assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("Best fit.")'));
   await screenshot('open-models-desktop');

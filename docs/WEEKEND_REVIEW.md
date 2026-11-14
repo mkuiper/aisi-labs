@@ -31,7 +31,7 @@ One item per round. Take the first item that is not done.
 4. Agentic-commerce walkthrough: one clearer scene, same facts unless a primary source contradicts them. Done.
 5. Agent-loop diagram: show the cycle of goal, tool, result and check. Done.
 6. One starter project: a small public fictional task that uses a documented current tool capability. No live model call. Done.
-7. `models-costs` and `open-models`: accuracy and succinctness. Pending.
+7. `models-costs` and `open-models`: accuracy and succinctness. Done.
 8. `tools-skills`, `memory`, `identity`, `responsible-use`: succinctness. Pending.
 9. `image-video` and `reading-leaderboards`: accuracy; a diagram only if it teaches. Pending.
 10. `agent-incidents`: re-read the primary disclosures and correct factual drift. No exploit procedure. Pending.
@@ -152,3 +152,38 @@ checked, what you did not check, and any source you opened.
   or another assistant’s plan command. No account and no model call.
 - Sources opened:
   - https://code.claude.com/docs/en/permission-modes.md
+
+### Round 7 — Correct where models run and what open means
+
+- Commit subject: Correct where models run and what open means.
+- Changed: wording in `models-costs` (catalogue.py) and `open-models`
+  (content/lessons.json), their review records, and the open-models smoke
+  date check. `models-costs` is revision 6, reviewed 2026-11-15. A local app
+  can still call a remote model. Ollama binds to 127.0.0.1 port 11434 by
+  default. A `:cloud` name runs on Ollama’s servers and needs an account.
+  Repeated tool steps can resend earlier text. Removed encrypted-HTTPS for
+  every turn, a cached-input discount, and internal reasoning tokens.
+  `open-models` is revision 4, reviewed 2026-11-15. Open Source weights
+  include data information and code, not only the parameter file. Pickle can
+  execute code when loaded. Memory figures use Hugging Face’s 8-billion
+  parameter example. Most GGUF files expand when loaded in Transformers.
+  Quiz options and option_feedback are unchanged. The cloud diagram and the
+  release-versus-location diagram were left as they were.
+- Checked: `python3 -m unittest discover -s tests -q` (74 tests); `node --check`
+  on `web/app.js`, `web/programme.js` and `web/feedback.js`; `node scripts/smoke.mjs`.
+  Smoke expects the open-models review date 2026-11-15.
+- Not verified: a live Ollama process, which endpoint a given install uses,
+  a provider price page, or the Qwen3-0.6B licence label. The card text read
+  here did not show one. The Open-model field guide was not re-read. No
+  account, download or model call.
+- Sources opened:
+  - https://developers.google.com/machine-learning/glossary
+  - https://docs.ollama.com/faq
+  - https://docs.ollama.com/cloud
+  - https://docs.ollama.com/cloud/models.md
+  - https://opensource.org/ai/open-source-ai-definition
+  - https://huggingface.co/docs/hub/model-cards
+  - https://huggingface.co/docs/transformers/quantization/overview
+  - https://huggingface.co/docs/hub/security-pickle
+  - https://huggingface.co/docs/safetensors/en/index
+  - https://huggingface.co/Qwen/Qwen3-0.6B

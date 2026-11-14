@@ -1,5 +1,11 @@
 # Changes
 
+## 15 November 2026 — where models run
+
+- Models, tokens and where work happens now says a local app can still call a remote model. Ollama’s server binds to 127.0.0.1 port 11434 by default. A name ending in :cloud runs on Ollama’s servers and needs an account. Repeated tool steps can resend earlier text. The lesson no longer says every turn is encrypted HTTPS, that providers discount cached input, or that reasoning checkpoints add internal tokens.
+- Understanding open models now keeps Open Source weights separate from a parameter download. Loading a pickle file can execute code. Memory figures follow Hugging Face’s 8-billion-parameter example. Most GGUF files expand when loaded in Transformers. The Qwen3-0.6B card remains a reading example. Quiz options are unchanged. Both diagrams are unchanged.
+- Verification: unit/HTTP tests, JavaScript syntax checks and the browser smoke test. No live model call.
+
 ## 15 November 2026 — first-steps plan
 
 - The first agent session now asks for a fictional Harbour Library afternoon.

@@ -1,5 +1,27 @@
 # Learning material history
 
+## 2026-11-15 — models-costs and open-models
+
+- `lesson:models-costs`, revision 6, `reviewed_at` 2026-11-15. The lesson and its scenario question were re-read. A local program can still send a prompt away. Ollama binds to 127.0.0.1 port 11434 by default. A `:cloud` name runs on Ollama’s servers and is not downloaded. Both cloud connection methods require an Ollama account. Repeated steps can resend earlier text. No token price is stated.
+- Sources opened, read-only, with no account and no model call:
+  https://developers.google.com/machine-learning/glossary
+  (inference and token entries),
+  https://docs.ollama.com/faq ,
+  https://docs.ollama.com/cloud ,
+  https://docs.ollama.com/cloud/models.md .
+  No provider price page was opened.
+- `lesson:open-models`, revision 4, `reviewed_at` 2026-11-15. The lesson, no-download exercise and question were re-read. Open Source weights include the data information and code used to derive the parameters. Safetensors stores tensors safely, as opposed to pickle, and loading a pickle file can execute arbitrary code. An 8-billion-parameter model is about 16 GB of weights in bf16, about 8 GB at 8 bits, and about 4–5 GB at 4 bits. Most GGUF files expand to full precision when loaded in Transformers. The Qwen3-0.6B card names a base model and says that checkpoint was pre-trained and post-trained. Its licence label was not in the card text read here. The Open-model field guide was not re-read. The diagram text is unchanged.
+- Sources opened, read-only, with no download and no model call:
+  https://opensource.org/ai/open-source-ai-definition ,
+  https://huggingface.co/docs/hub/model-cards ,
+  https://huggingface.co/docs/transformers/quantization/overview ,
+  https://huggingface.co/docs/hub/security-pickle ,
+  https://huggingface.co/docs/safetensors/en/index ,
+  https://docs.ollama.com/faq ,
+  https://docs.ollama.com/cloud ,
+  https://docs.ollama.com/cloud/models.md ,
+  https://huggingface.co/Qwen/Qwen3-0.6B .
+
 ## 2026-11-15 — first-steps library afternoon
 
 - `lab:first-steps` only. The brief, prompt, steps and checks now use a

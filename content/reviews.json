@@ -63,11 +63,11 @@
     "notes": "Reviewed 2026-11-13: inspected full lesson, permissions diagram and scenario question/option_feedback against programme charter, policy rules and OWASP LLM01:2025 prompt-injection guidance. Added canonical OWASP prompt-injection source link. Verified public-only, no-OFFICIAL and no-government-network boundaries."
   },
   "lesson:models-costs": {
-    "revision": 5,
-    "reviewed_at": "2026-11-13",
+    "revision": 6,
+    "reviewed_at": "2026-11-15",
     "review_after_days": 90,
-    "sha256": "4b57c9266caf97651325b9edc599b786973ff22fc094af97612b841df24e0921",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on endpoints, modalities and agent-loop token multiplication, cloud/local diagram and scenario question/option_feedback against Google ML glossary (inference/tokens), Ollama local/cloud documentation and local configuration/maintenance rules. Added canonical primary source links. No live billing or model calls."
+    "sha256": "ff5de6ea7ae204d585c94b2dedadac11ac08f48a57121d23dc647c687b4e07ae",
+    "notes": "Reviewed 2026-11-15: re-read the lesson, cloud diagram, scenario question and option_feedback. Opened the Google machine-learning glossary (inference and token), Ollama FAQ, Ollama cloud overview and Ollama cloud model names. Removed the claim that every model turn is encrypted HTTPS, a cached-input discount, and internal reasoning tokens. No price page, live account or model call."
   },
   "lesson:web-chat": {
     "revision": 4,
@@ -77,11 +77,11 @@
     "notes": "Reviewed 2026-11-14: re-read the community-garden exercise. The copied prompt now includes the full facts, including that address, booking and facilities were not supplied. Opened https://learn.chatgpt.com/docs/web.md. https://claude.ai/ returned a bot check, so the Claude citation was left unchanged. Quiz unchanged. No login or model call."
   },
   "lesson:open-models": {
-    "revision": 3,
-    "reviewed_at": "2026-11-13",
+    "revision": 4,
+    "reviewed_at": "2026-11-15",
     "review_after_days": 90,
-    "sha256": "10abfde4213b2d42bcfd82723fc9b83f13d1a1e0f75f07bdc33dfac0b8b6ac02",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on safetensors/GGUF weights, custom licences, local versus cloud endpoints, checkpoint suffixes and quantisation memory math, release-versus-location diagram, no-download model-card exercise and scenario question/option_feedback against OSI Open Source AI Definition 1.0, Hugging Face model-card/quantisation docs, Ollama FAQ/cloud docs and Qwen3-0.6B card. No downloads or live inference."
+    "sha256": "789d5574ef19b08c28e6cce4126b401aa7e4c011726d5db61f59dbff7af5df9a",
+    "notes": "Reviewed 2026-11-15: re-read the lesson, release-versus-location diagram, no-download exercise and scenario question. Opened OSI Open Source AI Definition 1.0, Hugging Face model cards, quantisation overview, pickle scanning and safetensors, Ollama FAQ, cloud overview and cloud model names, and the Qwen3-0.6B card. The card text read here did not show a licence label. No download, account or model call."
   },
   "chat:chatgpt": {
     "revision": 3,

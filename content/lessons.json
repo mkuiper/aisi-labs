@@ -281,27 +281,27 @@
       [
         "What are weights?",
         "Weights are numbers learned during training. They work with the model’s architecture and inference software to generate outputs. Downloading weights is not the same as downloading the original training dataset or being able to reproduce the training process.",
-        "Practically, a model release bundles weight tensors (often in safetensors or GGUF files) together with configuration files defining layer dimensions, attention heads and the tokenizer vocabulary. Prefer safetensors or reviewed GGUF files over legacy Python pickle checkpoints, which can execute arbitrary code when loaded."
+        "Releases often use safetensors or a GGUF file. Hugging Face describes safetensors as a way to store tensors safely, as opposed to pickle. Its pickle-scanning page says loading a pickle file can execute arbitrary code. A GGUF file can hold weights, config and tokenizer together. In Transformers, most GGUF files are expanded back to full precision as they load, so a smaller file is not always smaller in memory. Do not load an unreviewed checkpoint. No download happens in this lesson."
       ],
       [
         "Open weights versus open source",
         "Open-weight releases make learned parameters available under specified terms. Those terms differ. The Open Source Initiative’s AI definition goes further: it describes freedoms to use, study, modify and share, with requirements for parameters, code and information about training data. Do not call every downloadable model open source.",
-        "Many popular open-weight models use permissive licences such as Apache-2.0 or MIT, while others use custom community licences that restrict commercial scale, prohibited uses, or redistribution without attribution. Always inspect the exact licence file on the checkpoint repository rather than assuming ‘open’ means public domain."
+        "The Open Source Initiative says an Open Source model or Open Source weights must include the data information and the code used to derive the parameters, not only the parameter file. Other downloads can still be open-weight under different terms. Read the licence file on that exact checkpoint. The word open is not the licence."
       ],
       [
         "Openness and location are separate choices",
         "An open-weight model can run on your laptop or on someone else’s servers. A cloud API is a way to access inference, not a licence category. A local runner is software that loads models; it is not itself the model. Some runners, including Ollama, offer cloud options too. Check the actual model and endpoint.",
-        "For example, running an open-weight Qwen or Llama checkpoint via a local runner bound to http://127.0.0.1:11434 keeps token generation on the laptop, whereas selecting a `:cloud` tag or pointing an agent harness at a hosted provider API sends the prompt over the internet even though the underlying model weights are publicly released."
+        "Ollama’s FAQ says the server binds to 127.0.0.1 port 11434 by default. A request to that address stays on the machine only while that is the endpoint in use. Its cloud-model page says a :cloud name, for example gemma4:cloud, is not downloaded and runs in Ollama’s cloud. That name is the page’s example, not a recommendation. The cloud overview says both connection methods require an Ollama account. The same open weights can still be sent to someone else’s API."
       ],
       [
         "Read the model card before the download button",
         "Look for the publisher, exact checkpoint, licence and usage conditions, intended tasks, languages, known limitations and evaluation methods. A model card is documentation supplied by its authors, not independent certification. A community conversion may differ from the original release; trace its provenance.",
-        "Pay close attention to checkpoint suffixes: a base or pretrained checkpoint only continues text, whereas an instruct, chat or reasoning checkpoint has been post-trained to follow prompts and tool schemas. When using a quantised community upload, verify who converted it, which base checkpoint it came from, and whether the chat template was preserved accurately."
+        "A base checkpoint and a post-trained checkpoint are different releases. The Qwen3-0.6B card names the publisher Qwen, a base model Qwen3-0.6B-Base, and says this checkpoint was pre-trained and post-trained. A suffix such as instruct, chat or reasoning does not by itself prove tool support. For a community upload, check who published it and which base it names. Read the licence file on that checkpoint."
       ],
       [
         "Can an old laptop run it?",
         "Parameter counts such as 1B mean roughly one billion learned parameters, not a quality score. Quantisation stores numbers at reduced precision to lower memory needs, with possible quality tradeoffs. Disk download size is not total RAM or GPU-memory use: the runner, context and other applications also need space. Start with a facilitator-tested small model, short context and measured hardware results; CPU-only use can be slow.",
-        "At 16-bit precision (FP16/BF16), each billion parameters requires roughly 2 GB of memory just for the weights; 4-bit quantisation reduces that weight footprint to roughly 0.6–0.8 GB per billion parameters, plus runtime overhead for the key-value (KV) context cache, which grows as conversation length increases. On a laptop without a dedicated GPU, system RAM and memory bandwidth govern tokens-per-second speed."
+        "Hugging Face’s quantisation overview says models are usually loaded in bf16, which takes 2 bytes per parameter. Its example is an 8-billion-parameter model: about 16 GB for the weights in bf16, about 8 GB at 8 bits, and about 4–5 GB at 4 bits. Fewer bits can cost accuracy. The same page says most GGUF files are expanded to full precision when loaded in Transformers. Other runners can differ. Measure the runner, context and other programs, not only the file size."
       ],
       [
         "Local is not automatic permission",
@@ -335,12 +335,24 @@
         "https://huggingface.co/docs/transformers/quantization/overview"
       ],
       [
+        "Hugging Face: pickle scanning",
+        "https://huggingface.co/docs/hub/security-pickle"
+      ],
+      [
+        "Hugging Face: safetensors",
+        "https://huggingface.co/docs/safetensors/en/index"
+      ],
+      [
         "Ollama: local and network behaviour",
         "https://docs.ollama.com/faq"
       ],
       [
         "Ollama: cloud models",
         "https://docs.ollama.com/cloud"
+      ],
+      [
+        "Ollama: cloud model names",
+        "https://docs.ollama.com/cloud/models"
       ],
       [
         "Reading example: Qwen3-0.6B publisher card",
