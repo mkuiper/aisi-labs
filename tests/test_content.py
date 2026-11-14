@@ -188,7 +188,7 @@ class ContentTests(unittest.TestCase):
         records = json.loads((ROOT / 'content/reviews.json').read_text())
         # Fixed date tests structure, not whether a later editorial deadline passes.
         # Keep it on or after the newest recorded review date.
-        report = review_report(records, today=date(2026, 11, 14))
+        report = review_report(records, today=date(2026, 11, 15))
         self.assertEqual({row['id'] for row in report}, set(learning_units()))
         self.assertTrue(any(row['status'] == 'unreviewed' for row in report))
 

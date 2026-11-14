@@ -1,5 +1,15 @@
 # Changes
 
+## 15 November 2026 — first-steps plan
+
+- The first agent session now asks for a fictional Harbour Library afternoon.
+  The page can be filled in by hand, with no account. Claude Code users can
+  try plan mode first, from the permission-mode page read for this pass.
+  Other labs are unchanged.
+- The content-inventory test’s fixed date is 15 November 2026 so today’s
+  lab review is accepted. Future-dated records are still rejected.
+- Verification: unit/HTTP tests and JavaScript syntax checks. No live model call.
+
 ## 14 November 2026 — agent loop cycle
 
 - The chat-agents agent view now shows a cycle: goal, tool, result and check.

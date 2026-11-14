@@ -30,7 +30,7 @@ One item per round. Take the first item that is not done.
 3. `web-chat` exercise and only a profile claim you have just re-read. Done.
 4. Agentic-commerce walkthrough: one clearer scene, same facts unless a primary source contradicts them. Done.
 5. Agent-loop diagram: show the cycle of goal, tool, result and check. Done.
-6. One starter project: a small public fictional task that uses a documented current tool capability. No live model call. Pending.
+6. One starter project: a small public fictional task that uses a documented current tool capability. No live model call. Done.
 7. `models-costs` and `open-models`: accuracy and succinctness. Pending.
 8. `tools-skills`, `memory`, `identity`, `responsible-use`: succinctness. Pending.
 9. `image-video` and `reading-leaderboards`: accuracy; a diagram only if it teaches. Pending.
@@ -133,3 +133,22 @@ checked, what you did not check, and any source you opened.
 - Not verified: a live agent run, or the cited harness pages. No account and
   no model call. No source URL was opened, so the lesson claims were left as
   they were.
+
+### Round 6 — Fill in the library afternoon
+
+- Commit subject: Fill in the library afternoon.
+- Changed: `lab:first-steps` only. The brief is a fictional Harbour Library
+  afternoon on Saturday, 2 pm to 4 pm, with three named activities and no
+  address. The page can be completed by editing index.html, with no account.
+  The optional path uses Claude Code plan mode and says not to enable bypass
+  permissions or auto mode for the exercise. Review record revision 2, reviewed
+  2026-11-15. The starter bundle’s other files were not re-read, so its old
+  date and fingerprint remain. The inventory test date is 15 November 2026.
+  The 2099 rejection check is unchanged.
+- Checked: `python3 -m unittest discover -s tests -q` (74 tests); `node --check`
+  on `web/app.js`, `web/programme.js` and `web/feedback.js`. No interface
+  change, so the browser smoke test was not required.
+- Not verified: a Claude Code session, which mode a given install starts in,
+  or another assistant’s plan command. No account and no model call.
+- Sources opened:
+  - https://code.claude.com/docs/en/permission-modes.md

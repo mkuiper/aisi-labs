@@ -8,8 +8,18 @@ PAGE = '''<!doctype html>
 <article><h2>Your project is ready to grow.</h2><p>Read BRIEF.md, then ask your chosen assistant to help build your idea here.</p><p>This starter works offline. Return to the lab for your prompt and checks.</p></article></html>
 '''
 
+FIRST_STEPS_PAGE = '''<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Harbour Library learning afternoon</title>
+<style>body{font:18px/1.6 system-ui;max-width:760px;margin:10vh auto;padding:24px;background:#f6f4ed;color:#243c35}h1{font-size:40px;line-height:1.1}article{background:white;padding:32px;border-radius:16px}</style>
+<small>FICTIONAL PRACTICE · NOT A REAL LIBRARY OR EVENT</small>
+<h1>Harbour Library learning afternoon</h1>
+<p>Saturday, 2 pm to 4 pm. The brief gives no address. Do not add one.</p>
+<article><h2>Activities</h2><p>Replace this paragraph with three cards. Use only the activities named in BRIEF.md.</p></article></html>
+'''
+
 BRIEFS = {
-    "first-steps": "Build a welcoming one-page website for a fictional community learning day. Include a title, three activity cards and a clear next step. Make it readable on small screens. Use plain HTML and CSS in index.html, with no external assets or dependencies. Do not invent a real event or collect personal data.",
+    "first-steps": "Build a one-page welcome for a fictional Harbour Library learning afternoon. The time is Saturday, 2 pm to 4 pm. Include three activities and no others: a paper map table, a quiet reading corner, and a five-minute look at one public website with no sign-in. Keep the time visible. Do not invent an address, a booking system or a real library. Use plain HTML and CSS in index.html, with no external assets. The page must stay readable on a narrow screen.",
     "consultation": "Create an offline explorer for the six fictional submissions in submissions.csv. Show each original ID and comment, add a topic filter and display correct counts. Keep all data in the page so it opens as a local file. Label it fictional and do not claim this sample represents the public. Use no external dependencies.",
     "data-story": "Create an offline chart of the fictional monthly requests in service-data.csv. Include the exact data in a table, labels for months and units, and a text explanation. Use no external libraries. Do not claim a cause for the change. Make it readable on a narrow screen and without colour.",
     "evidence": "Compare draft.md with evidence.md. Create a claim-to-source table and corrected-brief.md. Preserve the source's uncertainty and sample size. Do not add external facts. Explain which claims are supported, contradicted or not established.",
@@ -18,7 +28,9 @@ BRIEFS = {
 
 def starter_files(lab):
     files = {"BRIEF.md": f"# {lab['title']}\n\n{BRIEFS[lab['id']]}\n\n## Australian AI Safety Institute — APS professional development\nInput ONLY public information. NEVER enter OFFICIAL or higher-classified material, internal work documents or non-public personal information. The supplied fictional datasets are public practice material; changing names in internal material does not make it public.\n\nNEVER connect this learning laptop to government networks, Wi-Fi, Ethernet, VPNs, remote desktops or other bridges into government systems. Use a separate non-government learning network. Do not connect government accounts or internal services.\n\nReview tool permissions, outputs and API costs. A project folder is not a security sandbox; your tool's own permissions apply.\n\n## Starter prompt\n{lab['prompt']}\n"}
-    if "index.html" in lab["files"]:
+    if lab["id"] == "first-steps":
+        files["index.html"] = FIRST_STEPS_PAGE
+    elif "index.html" in lab["files"]:
         files["index.html"] = PAGE
     if lab["id"] == "consultation":
         files["submissions.csv"] = 'id,topic,comment\nS01,Access,"Longer opening hours would help shift workers."\nS02,Transport,"A bus stop closer to the centre would help."\nS03,Access,"Please offer a quiet appointment time."\nS04,Digital,"An online booking option would be useful."\nS05,Transport,"More bicycle parking would help."\nS06,Digital,"Keep phone bookings for people without internet."\n'

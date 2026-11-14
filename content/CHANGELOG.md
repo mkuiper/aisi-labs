@@ -1,5 +1,21 @@
 # Learning material history
 
+## 2026-11-15 — first-steps library afternoon
+
+- `lab:first-steps` only. The brief, prompt, steps and checks now use a
+  fictional Harbour Library afternoon: Saturday 2 pm to 4 pm, three named
+  activities, and no invented address. The offline path is editing index.html
+  by hand. The optional path is Claude Code plan mode.
+- Source opened, read-only, with no account and no model call:
+  https://code.claude.com/docs/en/permission-modes
+  Plan mode proposes changes and does not edit source until the plan is
+  approved, except when bypass permissions are available. Shell commands can
+  still run. A session may start in auto mode. Labs does not pass a
+  permission-mode flag. Revision 2. `reviewed_at` is 2026-11-15.
+- The starter bundle’s other files were not re-read. Its revision is 2, and
+  its 2026-11-13 date and fingerprint are unchanged, so the record stays
+  visibly changed.
+
 ## 2026-11-14 — agent loop cycle
 
 - Presentation only, in `web/app.js` and `web/style.css`. The agent view in

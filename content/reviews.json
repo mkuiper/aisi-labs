@@ -133,11 +133,11 @@
     "notes": "Reviewed 2026-11-13: inspected linked Mistral Vibe (formerly Le Chat) product page and authored public exercise. Not live-account, model-performance or deployment approval. Concerns are scoped, not exhaustive."
   },
   "lab:first-steps": {
-    "revision": 1,
-    "reviewed_at": "2026-11-13",
+    "revision": 2,
+    "reviewed_at": "2026-11-15",
     "review_after_days": 90,
-    "sha256": "9460521e00eb9f7583af0016ef8e787a7372b07557f522d1ed31a7b7742b54d8",
-    "notes": "Reviewed 2026-11-13: inspected activity steps, starter prompt, acceptance checks, BRIEF.md and index.html generation in templates.py, and isolated project/preview workflow. Public-only boundaries verified; no live agent call."
+    "sha256": "63834ceb118c7dacc88d219ba3b31d915f3fda39e39bc846409747044c7081ab",
+    "notes": "Reviewed 2026-11-15: re-read the steps, prompt, checks, BRIEF.md and the first-steps index.html. Opened https://code.claude.com/docs/en/permission-modes. Plan mode proposes changes and blocks source edits until the plan is approved, except when bypass permissions are available; shell commands can still run. No Claude Code session, account or model call. Other labs were not reviewed."
   },
   "lab:consultation": {
     "revision": 1,
@@ -217,11 +217,11 @@
     "notes": "Reviewed 2026-11-13: inspected maintenance, model-override and release-management guide against maintenance.py (read-only mise ls --json and allowlisted npm checks), scripts/check_updates.py and Git collaboration rules."
   },
   "starters": {
-    "revision": 1,
+    "revision": 2,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "959bdafd3f87ef8f71e4b0796aa87feb3f33700cbe1309ef7f7be243e003172b",
-    "notes": "Reviewed 2026-11-13: inspected templates.py starter HTML, all five lab briefs, programme boundary headers, submissions.csv, service-data.csv, evidence.md and draft.md against lab checks and isolated project tests."
+    "notes": "Revision 2 on 2026-11-15 rewrote only the first-steps brief and index.html after reading https://code.claude.com/docs/en/permission-modes. The other starter files were not re-read. The 2026-11-13 date and fingerprint stay so this bundle remains visibly changed. No model call."
   },
   "doc:content-maintenance": {
     "revision": 9,
