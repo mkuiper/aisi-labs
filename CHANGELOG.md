@@ -1,5 +1,11 @@
 # Changes
 
+## 15 November 2026 — shorter tool and memory lessons
+
+- Tools, memory, identity and permissions are shorter. The distinctions stay: a tool acts, MCP connects, a skill guides; context, saved notes and retrieval are different; identity text is not a permission control. The permissions lesson still says public information only and never a government network.
+- This was a wording pass. The 13 November review dates and fingerprints are unchanged, so the four records stay visibly changed. Quiz options are unchanged.
+- Verification: unit/HTTP tests and JavaScript syntax checks. No live model call.
+
 ## 15 November 2026 — where models run
 
 - Models, tokens and where work happens now says a local app can still call a remote model. Ollama’s server binds to 127.0.0.1 port 11434 by default. A name ending in :cloud runs on Ollama’s servers and needs an account. Repeated tool steps can resend earlier text. The lesson no longer says every turn is encrypted HTTPS, that providers discount cached input, or that reasoning checkpoints add internal tokens.

@@ -1,5 +1,12 @@
 # Learning material history
 
+## 2026-11-15 — tools, memory, identity, permissions
+
+- Editorial wording only for `lesson:tools-skills`, `lesson:memory`, `lesson:identity` and `lesson:responsible-use`. Each revision is now 4. `reviewed_at` stays 2026-11-13 and the stored fingerprints are unchanged, because the cited sources and exercises were not re-read. The records stay visibly changed.
+- Shorter headlines and deeper notes. Quiz options, correct indexes and option_feedback are unchanged. No diagram change.
+- `tools-skills` still separates a tool, an MCP connection and a skill. `memory` still separates the current context, a saved note and retrieval. `identity` still says a sentence in a file is not an access control, and no longer lists network isolation as something this lesson’s file can provide. `responsible-use` keeps the public-only and never-government-network rules; only the introduction is shorter.
+- No source page was opened for this pass. No account and no model call.
+
 ## 2026-11-15 — models-costs and open-models
 
 - `lesson:models-costs`, revision 6, `reviewed_at` 2026-11-15. The lesson and its scenario question were re-read. A local program can still send a prompt away. Ollama binds to 127.0.0.1 port 11434 by default. A `:cloud` name runs on Ollama’s servers and is not downloaded. Both cloud connection methods require an Ollama account. Repeated steps can resend earlier text. No token price is stated.

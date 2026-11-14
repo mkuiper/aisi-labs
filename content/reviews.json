@@ -28,11 +28,11 @@
     "notes": "Reviewed 2026-11-13: re-read the lesson, Hilltop Sketch Club exercise, worked brief and quiz against Anthropic prompting best practices (https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices). The page is Claude guidance used as a transferable writing practice, not a test of other products. No live generation or model comparison."
   },
   "lesson:tools-skills": {
-    "revision": 3,
+    "revision": 4,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "a20192b7720703a3dfb42bdf2c9ed879eaeb256299db26d3a94d287f22fcfbda",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes for Tool/MCP/Skill, three-role diagram and scenario question/option_feedback against Model Context Protocol introduction and Agent Skills overview documentation. Verified distinctions between tool execution, connection protocol and reusable task guidance. No live MCP server or model calls."
+    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes for Tool/MCP/Skill, three-role diagram and scenario question/option_feedback against Model Context Protocol introduction and Agent Skills overview documentation. Verified distinctions between tool execution, connection protocol and reusable task guidance. No live MCP server or model calls. 2026-11-15 editorial pass shortened wording only. Sources and the question were not re-read. reviewed_at and sha256 are unchanged, so this record stays visibly changed."
   },
   "lesson:checking": {
     "revision": 5,
@@ -42,25 +42,25 @@
     "notes": "Reviewed 2026-11-13: re-read the lesson, repair-cafe exercise (E1–E4; 12/20 = 60%), four-response worked example and quiz against Anthropic reduce-hallucinations guidance (https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Clarified that an unmeasured benefit is not a measured zero. No provider call."
   },
   "lesson:memory": {
-    "revision": 3,
+    "revision": 4,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "f18ddeb1d03d5f96937a0931244635895a3aa10c32269f6893683d1242c60b04",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on active context, persistent notes and RAG, diagram, controlled two-session comparison exercise and scenario question/option_feedback against OpenClaw memory documentation and local programme rules. No live model calls."
+    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on active context, persistent notes and RAG, diagram, controlled two-session comparison exercise and scenario question/option_feedback against OpenClaw memory documentation and local programme rules. No live model calls. 2026-11-15 editorial pass shortened wording only. Sources and the comparison exercise were not re-read. reviewed_at and sha256 are unchanged, so this record stays visibly changed."
   },
   "lesson:identity": {
-    "revision": 3,
+    "revision": 4,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "be9839542bf34380df9be4030efc9d7f0501f7eb6826ab5c4215e0e34941a97a",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on instruction-file discovery and enforcement boundaries, diagram, ROLE.md comparison exercise and scenario question/option_feedback against OpenClaw agent-workspace conventions and local programme boundaries. No live model calls."
+    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on instruction-file discovery and enforcement boundaries, diagram, ROLE.md comparison exercise and scenario question/option_feedback against OpenClaw agent-workspace conventions and local programme boundaries. No live model calls. 2026-11-15 editorial pass shortened wording only. Sources and the ROLE.md exercise were not re-read. reviewed_at and sha256 are unchanged, so this record stays visibly changed."
   },
   "lesson:responsible-use": {
-    "revision": 3,
+    "revision": 4,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "17e85dc5f4647936b6dbb0be6fb0abae16127a1d7c8ec91d4b9fab7c0ac4239a",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, permissions diagram and scenario question/option_feedback against programme charter, policy rules and OWASP LLM01:2025 prompt-injection guidance. Added canonical OWASP prompt-injection source link. Verified public-only, no-OFFICIAL and no-government-network boundaries."
+    "notes": "Reviewed 2026-11-13: inspected full lesson, permissions diagram and scenario question/option_feedback against programme charter, policy rules and OWASP LLM01:2025 prompt-injection guidance. Added canonical OWASP prompt-injection source link. Verified public-only, no-OFFICIAL and no-government-network boundaries. 2026-11-15 editorial pass shortened the introduction only. Sources and the question were not re-read. reviewed_at and sha256 are unchanged, so this record stays visibly changed."
   },
   "lesson:models-costs": {
     "revision": 6,

@@ -32,7 +32,7 @@ One item per round. Take the first item that is not done.
 5. Agent-loop diagram: show the cycle of goal, tool, result and check. Done.
 6. One starter project: a small public fictional task that uses a documented current tool capability. No live model call. Done.
 7. `models-costs` and `open-models`: accuracy and succinctness. Done.
-8. `tools-skills`, `memory`, `identity`, `responsible-use`: succinctness. Pending.
+8. `tools-skills`, `memory`, `identity`, `responsible-use`: succinctness. Done.
 9. `image-video` and `reading-leaderboards`: accuracy; a diagram only if it teaches. Pending.
 10. `agent-incidents`: re-read the primary disclosures and correct factual drift. No exploit procedure. Pending.
 11. Monday summary: on Monday before 09:00 Canberra, summarise the log for review. No new feature. Pending.
@@ -187,3 +187,22 @@ checked, what you did not check, and any source you opened.
   - https://huggingface.co/docs/hub/security-pickle
   - https://huggingface.co/docs/safetensors/en/index
   - https://huggingface.co/Qwen/Qwen3-0.6B
+
+### Round 8 — Shorten tools, memory, identity and permissions
+
+- Commit subject: Shorten tools, memory, identity and permissions.
+- Changed: wording in `tools-skills`, `memory`, `identity` and
+  `responsible-use` (catalogue.py) and their review records. Each revision
+  is 4. The 13 November review dates and fingerprints are unchanged, because
+  the sources and exercises were not re-read. The records stay visibly
+  changed. A tool, an MCP connection and a skill stay separate. Context, a
+  saved note and retrieval stay separate. Identity text is not a permission
+  control. The permissions lesson still says public information only and
+  never a government network. Quiz options and option_feedback are unchanged.
+  No diagram.
+- Checked: `python3 -m unittest discover -s tests -q` (74 tests); `node --check`
+  on `web/app.js`, `web/programme.js` and `web/feedback.js`. No interface
+  change, so the browser smoke test was not required.
+- Not verified: current MCP, Agent Skills, OpenClaw or OWASP pages. No
+  account and no model call.
+- Sources opened: none.
