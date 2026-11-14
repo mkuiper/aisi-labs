@@ -1,5 +1,14 @@
 # Learning material history
 
+## 2026-11-14 — commerce walkthrough scale
+
+- Presentation only, in `web/app.js` and `web/style.css`. `#commerce-diagram`
+  now shows the fictional cart against the $50 cap on the same scale as the
+  existing five steps. Before the cap is signed, the mark is dashed and the
+  readout says it is not signed. The rejected last step still says settled $0.
+- `lesson:agentic-commerce` text, sources, question and review fingerprint are
+  unchanged. No protocol page was opened for this pass, so no claim was revised.
+
 ## 2026-11-14 — web-chat exercise and one ChatGPT claim
 
 - `lesson:web-chat` exercise only. The copied prompt now repeats the fictional

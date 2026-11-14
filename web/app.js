@@ -189,11 +189,47 @@ const commerceTraces = {
     ['Out-of-mandate charge rejected outside the model', 'The gateway and issuer decline the $68.00 request (`MANDATE_LIMIT_EXCEEDED`) and halt the agent loop for human review. Cryptographic consent and scoped tokens enforced the boundary when prompt rules failed.', '{"status":"DECLINED","error":"MANDATE_LIMIT_EXCEEDED (68.00 > 50.00)","settled_aud":0.00,"action":"Halt agent and notify user"}', ['is-warning','is-warning','is-passed','is-breach'], ['Prompt hijacked','Cart $68.00','FIDO ≤$50 Held ✓','DECLINED ($0) ✕'], 'breach', 'CHARGE BLOCKED · MANDATE_LIMIT_EXCEEDED ($0 SETTLED)', 'Issuer & Gateway ──[DECLINED]──▶ Halt Agent & Alert User', 'Hard cryptographic and payment-network boundaries stopped the loss when model judgment failed.']
   ]
 };
+function commerceMandateScene() {
+  const rejected = commerceMode === 'rejected';
+  const cart = rejected ? 68 : 42;
+  const capSigned = rejected || commerceStep >= 2;
+  const declined = rejected && commerceStep === 4;
+  const max = 80;
+  const x0 = 16;
+  const track = 288;
+  const y = 40;
+  const h = 14;
+  const at = value => x0 + Math.round((value / max) * track);
+  const cartX = at(cart);
+  const capX = at(50);
+  const over = capSigned && cart > 50;
+  const fill = !capSigned ? '#7aa388' : (rejected ? '#c26924' : '#3c7848');
+  const withinEnd = over ? capX : cartX;
+  const within = over
+    ? `<rect x="${x0}" y="${y}" width="${withinEnd - x0}" height="${h}" fill="${fill}"/><rect x="${x0}" y="${y}" width="14" height="${h}" rx="7" fill="${fill}"/>`
+    : `<rect x="${x0}" y="${y}" width="${withinEnd - x0}" height="${h}" rx="7" fill="${fill}"/>`;
+  const overflow = over
+    ? `<rect x="${capX}" y="${y}" width="${cartX - capX}" height="${h}" fill="#b43225"/><rect x="${cartX - 10}" y="${y}" width="10" height="${h}" rx="7" fill="#b43225"/>`
+    : '';
+  const capLabel = capSigned ? '$50 cap' : 'Cap not signed';
+  const sentence = !capSigned
+    ? 'The cart is $42. The $50 cap is not signed yet.'
+    : declined
+      ? 'The $68 request is past the $50 cap. Settled $0.'
+      : rejected
+        ? 'The cart is $68, past the signed $50 cap.'
+        : commerceStep === 4
+          ? 'The $42 cart settled inside the signed $50 cap.'
+          : 'The cart is $42, inside the signed $50 cap.';
+  const state = !capSigned ? 'unsigned' : declined ? 'declined' : rejected ? 'over' : 'inside';
+  const dash = capSigned ? '' : ' stroke-dasharray="3 3"';
+  return `<div class="mandate-scale" data-mandate="${state}"><p class="mandate-scale-label">Cart against the $50 cap</p><svg viewBox="0 0 320 78" aria-hidden="true" focusable="false"><rect x="${x0}" y="${y}" width="${track}" height="${h}" rx="7" fill="#d7e0cc"/>${within}${overflow}<line x1="${capX}" y1="28" x2="${capX}" y2="62" stroke="#245843" stroke-width="2"${dash}/><text x="${capX}" y="20" text-anchor="middle" fill="#245843" font-size="11">${esc(capLabel)}</text><text x="${x0}" y="72" fill="#546552" font-size="11">$0</text><text x="${x0 + track}" y="72" text-anchor="end" fill="#546552" font-size="11">$80</text></svg><p class="mandate-readout">${esc(sentence)}</p></div>`;
+}
 function commerceDiagram() {
   const steps = commerceTraces[commerceMode];
   const [title, text, payload, states, badges, badgeKind, badgeText, routeText, defenceText] = steps[commerceStep];
   const layers = [['1. Connectivity','MCP · A2A'],['2. Storefront','UCP · ACP'],['3. Consent','FIDO · AP2'],['4. Settlement','VIC · Agent Pay']];
-  return `<div class="diagram-label">Interactive architecture · Four protocol layers in agentic commerce</div><div class="mode-buttons" role="group" aria-label="Compare commerce scenarios"><button data-commerce-mode="approved" class="${commerceMode==='approved'?'active':''}" aria-pressed="${commerceMode==='approved'}">✓ Within $50 mandate ($42 cart)</button><button data-commerce-mode="rejected" class="${commerceMode==='rejected'?'active':''}" aria-pressed="${commerceMode==='rejected'}">✕ Prompt-injected cart ($68 &gt; $50 cap)</button></div><div class="diagram-row">${layers.map(([name,sub],i)=>`${i?`<span class="diagram-arrow ${states[i]!=='is-idle'?'is-flowing':''}">→</span>`:''}<div class="diagram-node ${states[i]}"><strong>${name}</strong><small>${sub}</small><span class="node-status">${esc(badges[i])}</span></div>`).join('')}</div>${stepRail(steps,commerceStep,'data-commerce-goto')}<div class="trace trace-${badgeKind}"><div class="trace-banner"><span class="verdict-pill ${badgeKind}">${esc(badgeText)}</span><span class="route-pill">${esc(routeText)}</span></div><div class="trace-head"><strong id="commerce-trace-title">${commerceStep+1}. ${esc(title)}</strong><span>AUTHORED SIMULATION · NO REAL PAYMENTS</span></div><p id="commerce-trace-text" aria-live="polite">${esc(text)}</p><div class="telemetry-box"><div class="telemetry-bar"><span>PROTOCOL PAYLOAD INSPECTOR</span><span>STEP ${commerceStep+1} OF ${steps.length}</span></div><pre class="prompt"><code>${esc(payload)}</code></pre></div><p class="trace-defence"><strong>Boundary takeaway:</strong> ${esc(defenceText)}</p><div class="actions"><button class="btn secondary small" data-commerce-step="-1" ${commerceStep===0?'disabled':''}>← Back</button><button class="btn small" data-commerce-step="1">${commerceStep===steps.length-1?'Replay ↺':'Next step →'}</button><span class="tiny-label">${commerceStep+1} / ${steps.length}</span></div></div>`;
+  return `<div class="diagram-label">Interactive architecture · Four protocol layers in agentic commerce</div><div class="mode-buttons" role="group" aria-label="Compare commerce scenarios"><button data-commerce-mode="approved" class="${commerceMode==='approved'?'active':''}" aria-pressed="${commerceMode==='approved'}">✓ Within $50 mandate ($42 cart)</button><button data-commerce-mode="rejected" class="${commerceMode==='rejected'?'active':''}" aria-pressed="${commerceMode==='rejected'}">✕ Prompt-injected cart ($68 &gt; $50 cap)</button></div><div class="diagram-row">${layers.map(([name,sub],i)=>`${i?`<span class="diagram-arrow ${states[i]!=='is-idle'?'is-flowing':''}">→</span>`:''}<div class="diagram-node ${states[i]}"><strong>${name}</strong><small>${sub}</small><span class="node-status">${esc(badges[i])}</span></div>`).join('')}</div>${commerceMandateScene()}${stepRail(steps,commerceStep,'data-commerce-goto')}<div class="trace trace-${badgeKind}"><div class="trace-banner"><span class="verdict-pill ${badgeKind}">${esc(badgeText)}</span><span class="route-pill">${esc(routeText)}</span></div><div class="trace-head"><strong id="commerce-trace-title">${commerceStep+1}. ${esc(title)}</strong><span>AUTHORED SIMULATION · NO REAL PAYMENTS</span></div><p id="commerce-trace-text" aria-live="polite">${esc(text)}</p><div class="telemetry-box"><div class="telemetry-bar"><span>PROTOCOL PAYLOAD INSPECTOR</span><span>STEP ${commerceStep+1} OF ${steps.length}</span></div><pre class="prompt"><code>${esc(payload)}</code></pre></div><p class="trace-defence"><strong>Boundary takeaway:</strong> ${esc(defenceText)}</p><div class="actions"><button class="btn secondary small" data-commerce-step="-1" ${commerceStep===0?'disabled':''}>← Back</button><button class="btn small" data-commerce-step="1">${commerceStep===steps.length-1?'Replay ↺':'Next step →'}</button><span class="tiny-label">${commerceStep+1} / ${steps.length}</span></div></div>`;
 }
 const incidentTraces = {
   'hf-breakout': [

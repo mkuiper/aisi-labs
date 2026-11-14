@@ -344,7 +344,9 @@ try{
     await go('#web-tool/'+id);await checkLogos(1);
     assert(await evaluate('document.querySelector("main").textContent.includes("Concerns and context")'));
     assert(await evaluate('document.querySelector("main").textContent.includes("A small learning exercise")'));
-    assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-11-13")'));
+    const reviewedAt = await evaluate(`data.content_reviews.find(x=>x.id==="chat:${id}").reviewed_at`);
+    assert.match(reviewedAt, /^\d{4}-\d{2}-\d{2}$/);
+    assert(await evaluate(`document.querySelector(".content-review").textContent.includes(${JSON.stringify(reviewedAt)})`));
     assert(await evaluate('document.querySelectorAll(".sources a").length>0'));
     assert.equal(await evaluate('document.querySelector(".nav-link[aria-current]").hash'),'#web-chats');
     if(id==='huggingface'){

@@ -28,7 +28,7 @@ One item per round. Take the first item that is not done.
 1. Everyday writing lessons (`prompting`, `context`, `checking`): accurate and succinct. Done.
 2. `ai-basics` and its glossary: accurate headlines, succinct deeper notes. Done.
 3. `web-chat` exercise and only a profile claim you have just re-read. Done.
-4. Agentic-commerce walkthrough: one clearer scene, same facts unless a primary source contradicts them. Pending.
+4. Agentic-commerce walkthrough: one clearer scene, same facts unless a primary source contradicts them. Done.
 5. Agent-loop diagram: show the cycle of goal, tool, result and check. Pending.
 6. One starter project: a small public fictional task that uses a documented current tool capability. No live model call. Pending.
 7. `models-costs` and `open-models`: accuracy and succinctness. Pending.
@@ -98,3 +98,21 @@ checked, what you did not check, and any source you opened.
   - https://learn.chatgpt.com/docs/web
   - https://learn.chatgpt.com/docs/web.md
   - https://claude.ai/
+
+### Round 4 — Show the cart against the cap
+
+- Commit subject: Show the cart against the cap.
+- Changed: `#commerce-diagram` now draws the fictional cart on one scale against
+  the $50 cap. $42 sits inside the line, $68 continues past it, and the cap
+  mark stays dashed until the approved path signs it. The rejected last step
+  still says settled $0. The four layers, five steps and payload text are
+  unchanged. Lesson text and the `lesson:agentic-commerce` fingerprint were
+  not refreshed.
+- The web-profile smoke check now requires each profile’s stored review date,
+  so ChatGPT’s 14 November 2026 record is accepted. It still fails if that
+  date is missing from the page.
+- Checked: `python3 -m unittest discover -s tests -q` (74 tests); `node --check`
+  on `web/app.js`, `web/programme.js` and `web/feedback.js`; `node scripts/smoke.mjs`.
+- Not verified: live payment networks, protocol pages, or a signed-in checkout.
+  No account, payment or model call. No source URL was opened, so the authored
+  amounts and protocol names were left as they were.

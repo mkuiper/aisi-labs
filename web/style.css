@@ -197,6 +197,11 @@ body .programme-banner,body .programme-banner strong{font-size:12px;color:#674b2
 .trace-defence{font-size:12px!important;color:#354e3c!important;background:#eef3e8;border-radius:8px;padding:10px 13px;margin:10px 0 14px!important;min-height:0!important;line-height:1.6}
 #commerce-diagram .mode-buttons,#incident-diagram .mode-buttons{flex-wrap:wrap;margin-bottom:16px}
 #commerce-diagram .mode-buttons button,#incident-diagram .mode-buttons button{white-space:normal;text-align:left}
+#commerce-diagram .mandate-scale{margin:2px 0 6px;padding:12px 14px 8px;background:rgba(255,253,246,.82);border:1px solid #c9d5bc;border-radius:12px}
+#commerce-diagram .mandate-scale-label{margin:0 0 2px;font-size:11px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:#3d5a45}
+#commerce-diagram .mandate-scale svg{width:100%;height:auto}
+#commerce-diagram .mandate-scale svg text{font-family:inherit}
+#commerce-diagram .mandate-readout{margin:2px 0 0;font-size:13px;line-height:1.45;color:#354e3c}
 #incident-diagram .boundary-map{display:grid;grid-template-columns:minmax(0,1fr) 92px minmax(0,1fr);gap:12px;align-items:stretch;margin:4px 0 8px}
 #incident-diagram .zone{background:rgba(255,253,246,.82);border:1px solid #c9d5bc;border-radius:12px;padding:12px;min-width:0}
 #incident-diagram .zone-title{margin:0 0 10px;font-size:11px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:#3d5a45}

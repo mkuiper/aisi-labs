@@ -115,7 +115,9 @@ detail]) rendered as a native section-detail disclosure. The agentic-commerce
 lesson renders an offline interactive four-layer protocol and mandate walkthrough
 (#commerce-diagram) comparing within-mandate checkout and out-of-mandate cart
 rejection across MCP, A2A, ACP, UCP, AP2, FIDO passkeys, Visa Intelligent
-Commerce and Mastercard Agent Pay with no real payment calls. The agent-incidents
+Commerce and Mastercard Agent Pay with no real payment calls. A scale on that
+walkthrough places the fictional cart against the $50 cap: inside, past the
+line, or not yet signed. The rejected ending still shows $0 settled. The agent-incidents
 lesson renders a three-mode offline interactive incident and breakout explainer
 (#incident-diagram) covering the July 2026 autonomous agent sandbox escape and
 Hugging Face intrusion, 2025 MCP tool poisoning / GitHub private-repo exfiltration
