@@ -5,7 +5,7 @@
 - The agentic-commerce walkthrough draws the fictional cart on one scale
   against the $50 cap: $42 inside, $68 past the line, and the cap unmarked
   until it is signed. The rejected ending still shows that request and that
-  $0 settled. Lesson text is unchanged.
+  $0 settled. Both ends of the cart bar are rounded. Lesson text is unchanged.
 - The browser smoke check for a web profile now expects that profile’s
   recorded review date. ChatGPT’s record is 14 November 2026; the other
   profiles in that loop still show 13 November 2026.

@@ -230,6 +230,7 @@ try{
   await click('[data-commerce-mode="rejected"]');
   await click('[data-commerce-goto="4"]');
   assert(await evaluate('document.querySelector("#commerce-diagram").textContent.includes("MANDATE_LIMIT_EXCEEDED")'));
+  assert(await evaluate('document.querySelector("#commerce-diagram .mandate-readout").textContent.includes("Settled $0")'));
   assert(await evaluate('document.querySelectorAll("#commerce-diagram .diagram-node.is-breach").length===1'));
   await click('[data-commerce-mode="approved"]');
   await go('#learn/agent-incidents');

@@ -116,3 +116,6 @@ checked, what you did not check, and any source you opened.
 - Not verified: live payment networks, protocol pages, or a signed-in checkout.
   No account, payment or model call. No source URL was opened, so the authored
   amounts and protocol names were left as they were.
+- Follow-up the same day: the over-cap bar had square ends. A mask now rounds
+  both ends of the cart, and the smoke check expects “Settled $0” on the
+  rejected last step.

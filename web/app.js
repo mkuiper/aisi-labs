@@ -205,12 +205,11 @@ function commerceMandateScene() {
   const over = capSigned && cart > 50;
   const fill = !capSigned ? '#7aa388' : (rejected ? '#c26924' : '#3c7848');
   const withinEnd = over ? capX : cartX;
-  const within = over
-    ? `<rect x="${x0}" y="${y}" width="${withinEnd - x0}" height="${h}" fill="${fill}"/><rect x="${x0}" y="${y}" width="14" height="${h}" rx="7" fill="${fill}"/>`
-    : `<rect x="${x0}" y="${y}" width="${withinEnd - x0}" height="${h}" rx="7" fill="${fill}"/>`;
-  const overflow = over
-    ? `<rect x="${capX}" y="${y}" width="${cartX - capX}" height="${h}" fill="#b43225"/><rect x="${cartX - 10}" y="${y}" width="10" height="${h}" rx="7" fill="#b43225"/>`
-    : '';
+  const state = !capSigned ? 'unsigned' : declined ? 'declined' : rejected ? 'over' : 'inside';
+  const mask = `mandate-cart-${state}`;
+  const within = `<rect x="${x0}" y="${y}" width="${withinEnd - x0}" height="${h}" fill="${fill}"/>`;
+  const overflow = over ? `<rect x="${capX}" y="${y}" width="${cartX - capX}" height="${h}" fill="#b43225"/>` : '';
+  const cartFill = `<defs><mask id="${mask}"><rect x="${x0}" y="${y}" width="${cartX - x0}" height="${h}" rx="7" fill="#fff"/></mask></defs><g mask="url(#${mask})">${within}${overflow}</g>`;
   const capLabel = capSigned ? '$50 cap' : 'Cap not signed';
   const sentence = !capSigned
     ? 'The cart is $42. The $50 cap is not signed yet.'
@@ -221,9 +220,8 @@ function commerceMandateScene() {
         : commerceStep === 4
           ? 'The $42 cart settled inside the signed $50 cap.'
           : 'The cart is $42, inside the signed $50 cap.';
-  const state = !capSigned ? 'unsigned' : declined ? 'declined' : rejected ? 'over' : 'inside';
   const dash = capSigned ? '' : ' stroke-dasharray="3 3"';
-  return `<div class="mandate-scale" data-mandate="${state}"><p class="mandate-scale-label">Cart against the $50 cap</p><svg viewBox="0 0 320 78" aria-hidden="true" focusable="false"><rect x="${x0}" y="${y}" width="${track}" height="${h}" rx="7" fill="#d7e0cc"/>${within}${overflow}<line x1="${capX}" y1="28" x2="${capX}" y2="62" stroke="#245843" stroke-width="2"${dash}/><text x="${capX}" y="20" text-anchor="middle" fill="#245843" font-size="11">${esc(capLabel)}</text><text x="${x0}" y="72" fill="#546552" font-size="11">$0</text><text x="${x0 + track}" y="72" text-anchor="end" fill="#546552" font-size="11">$80</text></svg><p class="mandate-readout">${esc(sentence)}</p></div>`;
+  return `<div class="mandate-scale" data-mandate="${state}"><p class="mandate-scale-label">Cart against the $50 cap</p><svg viewBox="0 0 320 78" aria-hidden="true" focusable="false"><rect x="${x0}" y="${y}" width="${track}" height="${h}" rx="7" fill="#d7e0cc"/>${cartFill}<line x1="${capX}" y1="28" x2="${capX}" y2="62" stroke="#245843" stroke-width="2"${dash}/><text x="${capX}" y="20" text-anchor="middle" fill="#245843" font-size="11">${esc(capLabel)}</text><text x="${x0}" y="72" fill="#546552" font-size="11">$0</text><text x="${x0 + track}" y="72" text-anchor="end" fill="#546552" font-size="11">$80</text></svg><p class="mandate-readout">${esc(sentence)}</p></div>`;
 }
 function commerceDiagram() {
   const steps = commerceTraces[commerceMode];
