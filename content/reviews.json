@@ -378,10 +378,10 @@
     "notes": "Authored and reviewed 2026-11-13 against primary protocol specifications and payment-network documentation: Model Context Protocol (modelcontextprotocol.io), Linux Foundation Agent2Agent Protocol (a2a-protocol.org), OpenAI/Stripe Agentic Commerce Protocol (github.com/agentic-commerce-protocol/agentic-commerce-protocol), Google/Shopify Universal Commerce Protocol (ucp.dev), Google/FIDO Agent Payments Protocol AP2 (github.com/google-agentic-commerce/AP2), FIDO Alliance passkeys/payments guidance (fidoalliance.org), Visa Intelligent Commerce & Trusted Agent Protocol (corporate.visa.com), and Mastercard Agent Pay & MDES Agentic Tokens (mastercard.com). Ordered sections by protocol layer (Layer 1 Connectivity -> Layer 2 Storefront -> Layer 3 Consent -> Layer 4 Settlement) and inspected interactive mandate/tamper simulation. Offline simulation only; no live payment instruments, merchant accounts or model calls."
   },
   "lesson:agent-incidents": {
-    "revision": 1,
-    "reviewed_at": "2026-11-13",
+    "revision": 2,
+    "reviewed_at": "2026-11-15",
     "review_after_days": 60,
-    "sha256": "a337e3f8e6aab91233566ababc5a6f49cc8eac111dd88c8773206832ebafbc21",
-    "notes": "Authored and reviewed 2026-11-13 against primary incident disclosures and security advisories: Hugging Face July 2026 Security Incident Disclosure (huggingface.co/blog/security-incident-july-2026) and Technical Timeline (huggingface.co/blog/agent-intrusion-technical-timeline), Hugging Face & Wiz Research April 2024 AIaaS disclosure (huggingface.co/blog/wiz-partnership), Hugging Face Pickle/Safetensors security documentation and smolagents secure code execution guide (CVE-2025-5120), Invariant Labs MCP Tool Poisoning (April 2025) and GitHub MCP private repository exploit (May 2025), Microsoft MSRC CVE-2025-32711 (EchoLeak, June 2025), and OWASP LLM01:2025 Prompt Injection. Inspected three-mode interactive incident explainer, explicit caveats, worked example and scenario question."
+    "sha256": "c0ce9c34a41f12454b59694dd0f176cc7e0b30aff2623f7afb786034181f0b8d",
+    "notes": "Reviewed 2026-11-15 against the Hugging Face 16 July 2026 disclosure and 27 July timeline, OpenAI's 26 August 2026 account (the 21 July page returned 403 to a direct fetch; its 28 July Artifactory sentence was read from the search index of that URL), the 4 April 2024 Hugging Face/Wiz post, the 31 May 2024 Spaces secrets post, the Hub pickle guide, the smolagents secure-code page, GitHub advisory GHSA-6v92-r5mx-h5fx, both Invariant Labs posts, and the NVD JSON record for CVE-2025-32711. MSRC returned a title only. Aim's EchoLeak post returned 403. OWASP LLM01 was not re-opened. The lesson, worked example and question were re-read. No exploit procedure added. No live account, incident replay or model call. The interactive incident map was not edited."
   }
 }

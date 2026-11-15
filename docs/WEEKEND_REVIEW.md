@@ -34,7 +34,7 @@ One item per round. Take the first item that is not done.
 7. `models-costs` and `open-models`: accuracy and succinctness. Done.
 8. `tools-skills`, `memory`, `identity`, `responsible-use`: succinctness. Done.
 9. `image-video` and `reading-leaderboards`: accuracy; a diagram only if it teaches. Done.
-10. `agent-incidents`: re-read the primary disclosures and correct factual drift. No exploit procedure. Pending.
+10. `agent-incidents`: re-read the primary disclosures and correct factual drift. No exploit procedure. Done.
 11. Monday summary: on Monday before 09:00 Canberra, summarise the log for review. No new feature. Pending.
 
 ## Round notes
@@ -235,3 +235,22 @@ checked, what you did not check, and any source you opened.
   - https://arena.ai/blog/ranking-method
   - https://www.swebench.com/
   - https://crfm.stanford.edu/2022/11/17/helm.html
+
+### Round 10 — Separate the evaluation escape from the Hugging Face intrusion
+
+- Commit subject: Separate the evaluation escape from the Hugging Face intrusion.
+- Changed: `agent-incidents` only, revision 2, reviewed 2026-11-15. Artifactory is the OpenAI evaluation proxy, not a Hugging Face service. Hugging Face’s recovered window is 9–13 July 2026 UTC, about 17,600 actions, five challenge-related datasets and service credentials. Pickle, Spaces secrets and CVE-2025-5120 are separate advisories, without a bypass method. Invariant Labs stays names, impacts and the one-repository defence. EchoLeak keeps the CVE, Microsoft’s 9.3 score and the pre-disclosure patch claim, and now records NVD’s 7.5 score. The image-link method and the command flag in the worked example were removed. Quiz options and the correct index are unchanged. The incident map was not edited.
+- Checked: `python3 -m unittest discover -s tests -q`; `node --check` on `web/app.js`, `web/programme.js` and `web/feedback.js`. No interface change, so the browser smoke test was not required.
+- Not verified: a live Hugging Face, OpenAI, GitHub, Microsoft or Modal account. No incident replay and no model call. The 21 July OpenAI page returned 403 to a direct fetch. MSRC returned a title only. Aim’s EchoLeak post returned 403. The NVD HTML page returned the site home title; the CVE JSON API was read instead. The old Wiz URL returned 404. OWASP LLM01 was not re-opened. The incident map still says the 17,600 actions ran across 8–13 July and still shows an image-link example.
+- Sources opened:
+  - https://huggingface.co/blog/security-incident-july-2026
+  - https://huggingface.co/blog/agent-intrusion-technical-timeline
+  - https://openai.com/index/hugging-face-incident-and-the-road-ahead/
+  - https://huggingface.co/blog/hugging-face-wiz-security-blog
+  - https://huggingface.co/blog/space-secrets-disclosure
+  - https://huggingface.co/docs/hub/en/security-pickle
+  - https://huggingface.co/docs/smolagents/tutorials/secure_code_execution
+  - https://github.com/advisories/GHSA-6v92-r5mx-h5fx
+  - https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks
+  - https://invariantlabs.ai/blog/mcp-github-vulnerability
+  - https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=CVE-2025-32711

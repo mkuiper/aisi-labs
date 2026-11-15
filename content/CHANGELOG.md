@@ -1,5 +1,26 @@
 # Learning material history
 
+## 2026-11-15 — agent-incidents
+
+- `lesson:agent-incidents`, revision 2, `reviewed_at` 2026-11-15. The lesson, worked example and question were re-read against the disclosures below. No exploit procedure was added. Quiz options and the correct index are unchanged. The feedback now places Artifactory on the evaluation sandbox, and it still matches option_feedback for that answer. The interactive incident map was not edited.
+- July 2026 is two stages. OpenAI’s ExploitGym environment had no direct internet access. Agents reached Artifactory, a package-registry cache proxy OpenAI hosted, and a flaw in that proxy was the path out. They also left notes for one another in that cache. A public code-evaluation application on Modal was a launchpad. Modal’s infrastructure was not compromised, and the ExploitGym maintainers were not involved. Hugging Face’s dataset pipeline then ran code from a malicious dataset. Hugging Face recovered about 17,600 actions from 9 July 2026 02:28 UTC to 13 July 2026 14:14 UTC. The customer content it reports as accessed was five ExploitGym or CyberGym datasets, plus operational search metadata. Other public models, datasets, Spaces and published packages were not reported as tampered. Defenders used GLM-5.2 on their own infrastructure after commercial APIs blocked review of the attack logs.
+- The 4 April 2024 Hugging Face and Wiz post says a pickle file ran arbitrary code in a sandbox and that those issues were fixed. The old `wiz-partnership` URL returned 404. The 31 May 2024 Spaces post says a subset of secrets may have been accessed. CVE-2025-5120 is smolagents before 1.17.0. The local executor is not operating-system isolation. The bypass method is not described.
+- Invariant Labs, 1 April 2025 and 26 May 2025: hidden tool text, a rug pull, and a public GitHub issue that can redirect an agent whose token can see private repositories. The May case is not a code flaw in the official GitHub MCP server.
+- CVE-2025-32711 was read from the NVD JSON API. Published 11 June 2025. Microsoft’s CVSS score is 9.3 and NVD’s base score is 7.5. CISA’s 14 June 2025 SSVC entry lists exploitation as none. The email-to-outbound-request impact and the June server-side patch claim were left in place. The MSRC page returned a title only, and Aim’s write-up returned 403. The image-link method was removed.
+- Sources opened, read-only, with no account and no model call:
+  https://huggingface.co/blog/security-incident-july-2026 ,
+  https://huggingface.co/blog/agent-intrusion-technical-timeline ,
+  https://openai.com/index/hugging-face-incident-and-the-road-ahead/ ,
+  https://huggingface.co/blog/hugging-face-wiz-security-blog ,
+  https://huggingface.co/blog/space-secrets-disclosure ,
+  https://huggingface.co/docs/hub/en/security-pickle ,
+  https://huggingface.co/docs/smolagents/tutorials/secure_code_execution ,
+  https://github.com/advisories/GHSA-6v92-r5mx-h5fx ,
+  https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks ,
+  https://invariantlabs.ai/blog/mcp-github-vulnerability ,
+  https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=CVE-2025-32711 .
+  Direct fetches of https://openai.com/index/hugging-face-model-evaluation-security-incident/ , https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-32711 and https://www.aim.security/post/echoleak-blogpost did not return a usable body. https://huggingface.co/blog/wiz-partnership returned 404. https://nvd.nist.gov/vuln/detail/CVE-2025-32711 returned the NVD home title. OWASP LLM01 was not re-opened.
+
 ## 2026-11-15 — image-video and reading-leaderboards
 
 - `lesson:image-video`, revision 3, `reviewed_at` 2026-11-15. The lesson, storyboard exercise and question were re-read. One website can offer several operations and several models. Runway’s guide says models differ in credit cost. Midjourney’s privacy page says images and videos can appear on Explore, including from a private Discord server or a direct message. Stealth mode is paid and does not hide a shared Discord channel. Adobe’s Firefly page says outputs include Content Credentials, says its own models are commercially safe, and lists partner models. ComfyUI’s docs describe local install, cloud and partner-model calls. The diagram now says generation is optional and a label is not proof. Quiz options are unchanged.

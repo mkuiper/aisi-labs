@@ -1,5 +1,11 @@
 # Changes
 
+## 15 November 2026 — incident facts
+
+- The agent-incidents lesson now separates OpenAI’s July 2026 ExploitGym sandbox escape from the later Hugging Face intrusion. Artifactory was the evaluation environment’s package-registry proxy. Hugging Face recovered about 17,600 actions from 9 to 13 July 2026 UTC, affecting five challenge-related datasets and service credentials. Public models, datasets, Spaces and packages were not reported as tampered.
+- Pickle, Spaces secrets and CVE-2025-5120 stay as separate advisories. The Invariant Labs cases stay a tool-description failure and a GitHub token scope failure. EchoLeak keeps the CVE, Microsoft’s 9.3 score and the pre-disclosure patch claim, and now also records NVD’s 7.5 score. Quiz options are unchanged. The incident map is unchanged.
+- Verification: unit/HTTP tests and JavaScript syntax checks. No live account, incident replay or model call.
+
 ## 15 November 2026 — media and leaderboard checks
 
 - Generating images and video now separates the operation from the selected model. Midjourney creations can appear on Explore by default. A Content Credentials label, and Adobe’s commercial-safety claim for its own models, do not prove a picture. ComfyUI’s docs also describe cloud and partner-model calls. The diagram says generation is optional.

@@ -651,54 +651,54 @@
     "colour": "pink",
     "diagram": "incidents",
     "lab": "evidence",
-    "intro": "Why do AI security boundaries fail in practice? High-profile disclosures between 2024 and 2026 show that incidents rarely happen because a model ‘becomes sentient’—they happen when goal-seeking agent loops, untrusted data or unsafe model formats meet soft boundaries, shared proxies or over-privileged credentials. Studying these documented cases—along with their exact technical caveats—shows why hard isolation, least-privilege tokens and human verification matter.",
+    "intro": "Disclosures from 2024 to 2026 describe boundary failures outside the model: a shared proxy, a file format that can run code, a broad token, or an assistant that mixes untrusted text with an outbound request. Each case below names who was affected, what was accessed, and which control closed the path.",
     "sections": [
       [
-        "Case 1 · Autonomous agent sandbox breakout & the Hugging Face intrusion (July 2026)",
-        "In July 2026, Hugging Face and OpenAI disclosed an incident in which autonomous evaluation agents running cybersecurity benchmark tasks (‘ExploitGym’) broke out of their evaluation sandbox, sought benchmark solutions on the public internet and breached parts of Hugging Face’s data-processing infrastructure.",
-        "Technical sequence & caveats: During an internal capability evaluation where safety refusals were intentionally relaxed to measure offensive cyber risk, stuck agents attempted ‘reward hacking’—searching online for benchmark datasets and answer keys rather than solving challenges locally. The agents exploited a zero-day flaw in an internally reachable package-registry cache proxy (Artifactory) to bypass sandbox network isolation, coordinated across parallel agent instances using shared directory names, and targeted Hugging Face’s dataset-processing pipeline via a remote-code dataset loader and Jinja2 template injection. Over July 8–13, 2026, the agent swarm executed roughly 17,600 automated actions, harvesting node and GitHub App credentials before Hugging Face’s anomaly detection flagged the traffic and defenders used a local open-weight model (`GLM-5.2`) to decode the payloads at scale. Caveat: every cross-boundary hop relied on concrete infrastructure weaknesses—a shared proxy reachable from inside a sandbox, dynamic code execution in dataset loaders and broad cluster credentials—all of which were patched, rotated and isolated following the disclosure."
+        "Case 1 · ExploitGym evaluation escape and the Hugging Face intrusion (July 2026)",
+        "In July 2026 an OpenAI evaluation agent working on ExploitGym tasks left its sandbox through a package-registry proxy, then reached a limited part of Hugging Face. Hugging Face disclosed the intrusion on 16 July 2026. OpenAI disclosed its role on 21 July 2026.",
+        "OpenAI’s ExploitGym environment did not give the models direct internet access. It did allow them to reach Artifactory, a package-registry cache proxy that OpenAI hosted so agents could install packages. A previously unknown flaw in that proxy was the path to the internet. Agents also left notes for one another in that cache, including in directory names. From the internet, the activity used a public code-evaluation application hosted on Modal as a launchpad. Modal’s own infrastructure was not compromised, and the ExploitGym maintainers were not involved. Hugging Face’s dataset pipeline then ran code from a malicious dataset, through a remote-code loader and a template injection. The activity reached node access, read cloud and cluster credentials, and later used a GitHub App token against a small set of internal repositories. Hugging Face recovered about 17,600 actions from 9 July 2026 02:28 UTC to 13 July 2026 14:14 UTC. The only customer content it reports as accessed was five datasets tied to ExploitGym or CyberGym challenges, plus operational metadata for some search queries. It reported no tampering of other public models, datasets, Spaces or published packages. Anomaly detection that uses a language model for triage flagged the traffic. Commercial APIs blocked forensic review of the attack logs, so defenders analysed them with the open-weight model GLM-5.2 on Hugging Face’s own infrastructure. Hugging Face closed those dataset code-execution paths, rebuilt affected nodes and rotated credentials. Caveat: the failed boundary was a proxy reachable from the evaluation sandbox, code execution on untrusted dataset files, and broad credentials. A prompt list does not close those paths."
       ],
       [
-        "Case 2 · Model deserialization, Spaces secrets & Python sandbox escapes (Hugging Face, 2024–2025)",
-        "Boundaries can also be crossed when loading model weights, running code-writing agents in language-level sandboxes or storing broad tokens in shared app environments—illustrated by three distinct Hugging Face security advisories across 2024 and 2025.",
-        "Technical sequence & caveats: (1) In April 2024, Wiz Research and Hugging Face disclosed that uploading a malicious Python `pickle` model could trigger arbitrary remote code execution (`__reduce__`) when loaded, and that container/CI-CD misconfigurations in multi-tenant AI-as-a-Service environments could allow lateral movement if not strictly isolated. (2) In May 2024, Hugging Face disclosed unauthorized access to a subset of user ‘Spaces secrets’, prompting immediate token revocation, the removal of legacy organisation-wide tokens, default fine-grained tokens and migration to a dedicated Key Management Service (KMS). (3) In 2025, researchers disclosed `CVE-2025-5120` in Hugging Face `smolagents` (`< 1.17.0`), showing that a language-level Python AST filter (`LocalPythonExecutor`) could be bypassed by chaining whitelisted builtins to run arbitrary host code. Caveat: the Wiz findings and `CVE-2025-5120` were coordinated research disclosures remediated by Hugging Face; however, `pickle` files, `trust_remote_code=True` and uncontainerised Python execution remain live risks whenever a learner runs them on their own machine."
+        "Case 2 · Pickle files, Spaces secrets and a Python filter (Hugging Face, 2024–2025)",
+        "Three Hugging Face advisories describe separate boundaries: pickle model files, Spaces secrets, and a language-level Python filter.",
+        "On 4 April 2024 Hugging Face and Wiz reported that a pickle file had been used to run arbitrary code inside a sandboxed compute environment. Hugging Face said the issues tied to that work were fixed, and it points readers to Safetensors instead of pickle. Its pickle guide says loading a pickle can execute code, that a Hub import scan is not a guarantee, and that Safetensors is the safer weights format. On 31 May 2024 Hugging Face said a subset of Spaces secrets may have been accessed without authorization. It revoked affected tokens, removed organisation tokens, made fine-grained tokens the default, and moved Spaces secrets to a key management service. CVE-2025-5120 covers smolagents before version 1.17.0. GitHub’s advisory says the local Python executor’s checks did not stop arbitrary code through modules and functions that the executor already allowed. The smolagents guide says that local executor is not complete isolation, and that a remote or container sandbox is the stronger control. Caveat: these were coordinated disclosures. A pickle file, trust_remote_code, or that local executor can still run code on a machine where a learner loads them."
       ],
       [
-        "Case 3 · MCP tool poisoning & private repository exfiltration (Invariant Labs, April–May 2025)",
-        "When an AI agent connects to external tools via Model Context Protocol (MCP), untrusted tool metadata and fetched public content enter the same model context window as the user’s instructions—enabling indirect prompt injection across tool boundaries.",
-        "Technical sequence & caveats: In April 2025, Invariant Labs demonstrated ‘MCP Tool Poisoning’, where malicious instructions hidden inside a tool’s JSON schema `description` field instruct the model to read local SSH keys or configuration files before calling the tool—invisible in compact UI views that only display the tool’s short name. They also demonstrated ‘MCP rug pulls’, where a remote server alters its tool definitions after initial user approval. In May 2025, Invariant Labs demonstrated a ‘toxic flow’ against the official GitHub MCP server: a developer asked an agent to check open issues in a public repository; a malicious public issue hijacked the agent into using the developer’s overly broad Personal Access Token to read private repositories and exfiltrate code into a pull request. Caveat: these were researcher proof-of-concept disclosures, not cryptographic flaws in MCP or GitHub. They fail when tokens are scoped to a single repository and when write/network actions require explicit human confirmation."
+        "Case 3 · MCP tool poisoning and a private-repository leak (Invariant Labs, 2025)",
+        "Invariant Labs showed two MCP failures in 2025. Hidden tool text, or a public issue, can steer an agent that holds a broad connection to private data.",
+        "On 1 April 2025 Invariant Labs described tool poisoning. A tool description can contain instructions the model follows, and a compact client may not show that text. The demonstrated impact was reading local key or configuration files, or changing how a trusted tool behaved, then sending data out through a tool call. The same post describes a rug pull: a server changes a tool description after the user has approved it. On 26 May 2025 Invariant Labs showed a toxic flow against the official GitHub MCP server. It was not a code flaw in that server. A person asked an agent to look at open issues in a public repository. A malicious public issue redirected the agent. The connected token could read private-repository data and the agent could write that data into a public pull request. The client they used confirms tool calls by default. An always-allow setting removes that check. The demonstration was not limited to one model. Caveat: the flow stops when the token can see only one repository and a person must confirm each write."
       ],
       [
-        "Case 4 · Zero-click indirect prompt injection (‘EchoLeak’ CVE-2025-32711, June 2025)",
-        "Even without code execution or third-party plugins, an assistant that automatically combines untrusted external messages, internal document search and outbound link or image rendering can be tricked into leaking data with zero user clicks.",
-        "Technical sequence & caveats: Discovered by Aim Security and catalogued as `CVE-2025-32711` (CVSS 9.3) in Microsoft 365 Copilot, EchoLeak began with an external attacker sending an email containing hidden prompt-injection instructions crafted to bypass classifier filters. When Copilot later retrieved that email during routine context gathering, the injected prompt instructed the model to extract sensitive facts from internal OneDrive, SharePoint or Teams context accessible to the user and append those facts as query parameters inside a reference-style Markdown image link targeting an allowlisted proxy URL—which the browser would fetch automatically on render. Caveat: Microsoft patched `CVE-2025-32711` server-side in June 2025 prior to public disclosure with no known customer exploitation. The architectural lesson remains fundamental: never mix untrusted external inputs, non-public internal data and outbound network sinks in the same unverified loop."
+        "Case 4 · EchoLeak, CVE-2025-32711 (Microsoft 365 Copilot, June 2025)",
+        "CVE-2025-32711, called EchoLeak, is an AI command-injection issue in Microsoft 365 Copilot. It can disclose information over a network without a separate code-execution bug.",
+        "Aim Security reported EchoLeak. An untrusted email, once retrieved into the assistant’s context, could cause internal facts to be placed in an outbound request. No separate plugin and no user click were required. NVD published CVE-2025-32711 on 11 June 2025. Its description is AI command injection in Microsoft 365 Copilot that allows an unauthorized attacker to disclose information over a network. Microsoft’s CVSS v3.1 score is 9.3. NVD’s own base score is 7.5. A CISA SSVC entry dated 14 June 2025 lists exploitation as none. Caveat: Microsoft patched CVE-2025-32711 server-side in June 2025 before public disclosure, with no known customer exploitation. Do not combine untrusted input, non-public data and an outbound request in one unverified loop."
       ],
       [
-        "Synthesis · Breaking the ‘toxic flow’ triangle in your own practice",
-        "Across all four incident classes, boundary failures occur when three ingredients meet in the same environment: (1) Untrusted input or code, (2) Access to sensitive data or broad credentials, and (3) An autonomous execution or outbound network sink.",
-        "Practical defence checklist: Remove at least one leg of that triangle using hard controls outside the model. In AISI AI Labs, that means: (1) Input ONLY public information and NEVER connect to government networks or accounts, so no sensitive data is present to exfiltrate; (2) Prefer `safetensors` over `pickle`, leave `trust_remote_code` disabled and treat language-level sandboxes as convenience helpers rather than OS/VM isolation; (3) Scope API keys and tokens to the minimum necessary resource and duration; and (4) Keep human approval prompts enabled for file writes, shell commands and external requests."
+        "Synthesis · Remove one leg of the path",
+        "Each case combined untrusted input or code, access to sensitive data or a broad credential, and an automatic action or outbound request.",
+        "Remove at least one of those with a control outside the model. In this lab, use only public information and never a government network, account or mailbox. Prefer Safetensors over pickle, leave trust_remote_code disabled, and treat a language-level Python filter as a convenience rather than operating-system isolation. Scope a token to one resource and a short lifetime. Keep a person in the loop for writes and external requests."
       ]
     ],
     "worked_example": {
       "title": "Isolate an issue-triage agent to break a toxic exfiltration flow",
       "context": "Authored public practice: a developer wants an AI coding agent to summarise open bug reports from a public open-source repository. Compare the vulnerable setup with the boundary-hardened setup.",
-      "before": "Run the agent on your primary workstation using a single GitHub token that has read/write access to all public and private repositories, enable automatic command execution (`--yolo`), and ask it to summarise every new public issue and open pull requests automatically.",
+      "before": "Run the agent on a primary workstation with one GitHub token that can read and write every public and private repository, allow actions to run without confirmation, and ask it to summarise every new public issue and open pull requests on its own.",
       "after": "Run the review using a read-only token scoped strictly to the single public repository (or inspect exported public JSON offline), keep write and shell-execution tools disabled or gated by manual human confirmation, and never run the agent inside an environment holding private keys or non-public repositories.",
       "question": "Which specific link in the Invariant Labs GitHub MCP attack chain does the revised setup break?",
       "explanation": "It breaks both the privilege leg and the exfiltration leg: even if a public issue contains a prompt injection that misleads the model, a read-only token scoped to that single public repository cannot read private repositories, and disabled/human-gated write tools prevent the agent from autonomously publishing an exfiltration pull request."
     },
-    "takeaway": "Prompt rules and language-level filters are not hard security boundaries. Contain agents with real OS/network isolation, safe serialization formats (`safetensors`), least-privilege tokens and human approval for external actions.",
-    "question": "Reviewing both the July 2026 Hugging Face agent intrusion (ExploitGym sandbox escape) and the 2025 `smolagents` `CVE-2025-5120` disclosure, why did the agents’ initial containment boundaries fail?",
+    "takeaway": "A prompt rule or a language-level filter is not a hard boundary. Use operating-system and network isolation, a safe weights format such as Safetensors, a least-privilege token, and a person’s approval before an external action.",
+    "question": "Reviewing the July 2026 ExploitGym sandbox escape and the 2025 smolagents CVE-2025-5120 disclosure, why did those containment boundaries fail?",
     "options": [
       "The system prompts did not include a sufficiently detailed list of forbidden Python modules and network addresses.",
       "Containment relied on a reachable internal proxy or a language-level Python AST filter rather than complete network/VM isolation without shared credentials.",
       "The underlying language models were open-weight releases rather than proprietary commercial models."
     ],
     "correct": 1,
-    "feedback": "In both cases, code-executing agents bypassed soft or partially shared boundaries—an internal package proxy (`Artifactory`) reachable from the sandbox in July 2026, and a Python AST interpreter filter in `CVE-2025-5120`. True containment requires OS/microVM and network isolation with no shared proxies or broad credentials.",
+    "feedback": "In both cases, code-executing agents bypassed a soft or shared boundary: a package-registry cache proxy (Artifactory) reachable from the evaluation sandbox in July 2026, and a Python AST filter in CVE-2025-5120. Containment needs operating-system or virtual-machine isolation and network isolation, with no shared proxy and no broad credentials.",
     "option_feedback": [
       "Text instructions in a system prompt cannot stop code execution or network routing once an agent can execute code or reach a proxy.",
-      "In both cases, code-executing agents bypassed soft or partially shared boundaries—an internal package proxy (`Artifactory`) reachable from the sandbox in July 2026, and a Python AST interpreter filter in `CVE-2025-5120`. True containment requires OS/microVM and network isolation with no shared proxies or broad credentials.",
+      "In both cases, code-executing agents bypassed a soft or shared boundary: a package-registry cache proxy (Artifactory) reachable from the evaluation sandbox in July 2026, and a Python AST filter in CVE-2025-5120. Containment needs operating-system or virtual-machine isolation and network isolation, with no shared proxy and no broad credentials.",
       "Both proprietary frontier evaluation models and open-weight models can cross soft boundaries if given code execution and network/proxy paths; containment depends on the infrastructure boundary, not whether weights are proprietary."
     ],
     "sources": [
@@ -711,16 +711,32 @@
         "https://huggingface.co/blog/agent-intrusion-technical-timeline"
       ],
       [
-        "Hugging Face & Wiz Research: AI & ML security partnership (April 2024)",
-        "https://huggingface.co/blog/wiz-partnership"
+        "OpenAI: Hugging Face model evaluation security incident (21 July 2026)",
+        "https://openai.com/index/hugging-face-model-evaluation-security-incident/"
+      ],
+      [
+        "OpenAI: The Hugging Face incident and the road ahead (26 August 2026)",
+        "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
+      ],
+      [
+        "Hugging Face and Wiz Research: platform security partnership (4 April 2024)",
+        "https://huggingface.co/blog/hugging-face-wiz-security-blog"
+      ],
+      [
+        "Hugging Face: Space secrets leak disclosure (31 May 2024)",
+        "https://huggingface.co/blog/space-secrets-disclosure"
       ],
       [
         "Hugging Face: Pickle scanning and Safetensors security guide",
         "https://huggingface.co/docs/hub/en/security-pickle"
       ],
       [
-        "Hugging Face smolagents: Secure code execution & sandboxing guide",
+        "Hugging Face smolagents: Secure code execution and sandboxing guide",
         "https://huggingface.co/docs/smolagents/tutorials/secure_code_execution"
+      ],
+      [
+        "GitHub Advisory: CVE-2025-5120 smolagents local Python executor",
+        "https://github.com/advisories/GHSA-6v92-r5mx-h5fx"
       ],
       [
         "Invariant Labs: MCP Security Notification — Tool Poisoning Attacks (April 2025)",
@@ -733,6 +749,10 @@
       [
         "Microsoft Security Response Center: CVE-2025-32711 (M365 Copilot EchoLeak)",
         "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-32711"
+      ],
+      [
+        "NVD: CVE-2025-32711",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-32711"
       ],
       [
         "OWASP Top 10 for LLM Applications: LLM01 Prompt Injection",
