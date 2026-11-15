@@ -33,7 +33,7 @@ One item per round. Take the first item that is not done.
 6. One starter project: a small public fictional task that uses a documented current tool capability. No live model call. Done.
 7. `models-costs` and `open-models`: accuracy and succinctness. Done.
 8. `tools-skills`, `memory`, `identity`, `responsible-use`: succinctness. Done.
-9. `image-video` and `reading-leaderboards`: accuracy; a diagram only if it teaches. Pending.
+9. `image-video` and `reading-leaderboards`: accuracy; a diagram only if it teaches. Done.
 10. `agent-incidents`: re-read the primary disclosures and correct factual drift. No exploit procedure. Pending.
 11. Monday summary: on Monday before 09:00 Canberra, summarise the log for review. No new feature. Pending.
 
@@ -206,3 +206,32 @@ checked, what you did not check, and any source you opened.
 - Not verified: current MCP, Agent Skills, OpenClaw or OWASP pages. No
   account and no model call.
 - Sources opened: none.
+
+### Round 9 — Separate the model from the picture and the score
+
+- Commit subject: Separate the model from the picture and the score.
+- Changed: `image-video` and `reading-leaderboards`, their review records
+  (revision 3, reviewed 2026-11-15), and the image-video diagram. One website
+  can hold several models. Midjourney creations can appear on Explore by
+  default. A Content Credentials label is not proof. ComfyUI docs also
+  describe cloud and partner calls. The media diagram still has three steps
+  and now says generation is optional. Leaderboards: a model is not an
+  endpoint, Arena intervals can overlap, and SWE-bench charts cost and step
+  limits. The 2022 HELM post is a snapshot. Its diagram text is unchanged.
+  Quiz options and option_feedback are unchanged.
+- Checked: `python3 -m unittest discover -s tests -q` (74 tests); `node --check`
+  on `web/app.js`, `web/programme.js` and `web/feedback.js`; `node scripts/smoke.mjs`.
+  Smoke still expects three diagram nodes and now expects the media caption
+  to say a label does not prove the picture.
+- Not verified: a Firefly, Runway, Midjourney or ComfyUI session, a current
+  credit price, or a live leaderboard ranking. Pinta, Blender and OBS were
+  not re-checked. No account, generation, benchmark run or model call.
+- Sources opened:
+  - https://www.adobe.com/products/firefly.html
+  - https://help.runwayml.com/hc/en-us/articles/37425232841875-Getting-Started-with-Generative-Video
+  - https://docs.midjourney.com/hc/en-us/articles/28014645615373-Keeping-Your-Creations-Private
+  - https://docs.comfy.org/
+  - https://artificialanalysis.ai/methodology
+  - https://arena.ai/blog/ranking-method
+  - https://www.swebench.com/
+  - https://crfm.stanford.edu/2022/11/17/helm.html

@@ -395,6 +395,7 @@ try{
   for(const [id,answer] of [['image-video',2],['reading-leaderboards',0]]){
     await go('#learn/'+id);
     assert.equal(await evaluate('document.querySelectorAll(".diagram-node").length'),3);
+    if(id==='image-video') assert(await evaluate('document.querySelector(".diagram-caption").textContent.includes("does not prove")'));
     await click('[data-answer="'+answer+'"]');
     assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("Best fit.")'));
     await screenshot(id+'-desktop');

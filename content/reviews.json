@@ -315,18 +315,18 @@
     "notes": "Reviewed 2026-11-13: inspected linked Hugging Face Papers feed and reading cautions (trending vs peer review, repository risk checks). No downloads or code execution."
   },
   "lesson:image-video": {
-    "revision": 2,
-    "reviewed_at": "2026-11-13",
+    "revision": 3,
+    "reviewed_at": "2026-11-15",
     "review_after_days": 90,
-    "sha256": "3d4e19f6456af84b02de587087d205af0886001db71b73cfdd3236883421522c",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, media diagram, three-shot fictional storyboard exercise and scenario question/option_feedback against Adobe Firefly, Runway, Midjourney visibility and ComfyUI primary documentation. No live sign-in or paid generation."
+    "sha256": "c93e6ba5892879f709d9f015f379494240b17be025668c28c4fc3ec4432ce760",
+    "notes": "Reviewed 2026-11-15: re-read the lesson, storyboard exercise, quiz and media diagram. Opened Adobe Firefly, Runway’s generative-video guide, Midjourney’s privacy page and the ComfyUI docs index. One studio can hold several models and operations. Midjourney creations can appear on Explore by default. Content Credentials and Adobe’s commercial-safety claim do not prove a picture. ComfyUI docs also describe cloud and partner calls. No sign-in, download or generation."
   },
   "lesson:reading-leaderboards": {
-    "revision": 2,
-    "reviewed_at": "2026-11-13",
+    "revision": 3,
+    "reviewed_at": "2026-11-15",
     "review_after_days": 90,
-    "sha256": "03bc2e0234c3817f286dffaba718118afb6c489b287f8b0cb8efe435eda29abf",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, benchmark diagram, no-call reading exercise and scenario question/option_feedback against Artificial Analysis methodology, Arena ranking-method, SWE-bench and HELM foundational documentation. No benchmark code execution or model calls."
+    "sha256": "a0c020f6edf0295252c4e98ded72522db3dd648e084b69563abb10c7f8e2227d",
+    "notes": "Reviewed 2026-11-15: re-read the lesson, no-call reading exercise, quiz and benchmark diagram. Opened Artificial Analysis methodology, Arena’s ranking-method post, the SWE-bench site and the 2022 HELM post. An endpoint is not the model. Arena intervals can overlap. SWE-bench charts cost and step limits. The 2022 HELM post is a snapshot. No benchmark run and no model call. The diagram text was left unchanged."
   },
   "help:omarchy": {
     "revision": 2,

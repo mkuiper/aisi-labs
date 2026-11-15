@@ -1,5 +1,20 @@
 # Learning material history
 
+## 2026-11-15 — image-video and reading-leaderboards
+
+- `lesson:image-video`, revision 3, `reviewed_at` 2026-11-15. The lesson, storyboard exercise and question were re-read. One website can offer several operations and several models. Runway’s guide says models differ in credit cost. Midjourney’s privacy page says images and videos can appear on Explore, including from a private Discord server or a direct message. Stealth mode is paid and does not hide a shared Discord channel. Adobe’s Firefly page says outputs include Content Credentials, says its own models are commercially safe, and lists partner models. ComfyUI’s docs describe local install, cloud and partner-model calls. The diagram now says generation is optional and a label is not proof. Quiz options are unchanged.
+- Sources opened, read-only, with no account and no generation:
+  https://www.adobe.com/products/firefly.html ,
+  https://help.runwayml.com/hc/en-us/articles/37425232841875-Getting-Started-with-Generative-Video ,
+  https://docs.midjourney.com/hc/en-us/articles/28014645615373-Keeping-Your-Creations-Private ,
+  https://docs.comfy.org/ .
+- `lesson:reading-leaderboards`, revision 3, `reviewed_at` 2026-11-15. The lesson, reading exercise and question were re-read. Artificial Analysis separates a model from an endpoint and weights tasks in a composite index. Arena reports confidence intervals; overlapping rank spreads are ties. SWE-bench’s Bash Only view shares one agent environment, and the site charts cost and step limits. The 2022 HELM post says an evaluation should show what it misses and that results are a snapshot. The benchmark diagram text is unchanged. Quiz options are unchanged.
+- Sources opened, read-only, with no benchmark run and no model call:
+  https://artificialanalysis.ai/methodology ,
+  https://arena.ai/blog/ranking-method ,
+  https://www.swebench.com/ ,
+  https://crfm.stanford.edu/2022/11/17/helm.html .
+
 ## 2026-11-15 — tools, memory, identity, permissions
 
 - Editorial wording only for `lesson:tools-skills`, `lesson:memory`, `lesson:identity` and `lesson:responsible-use`. Each revision is now 4. `reviewed_at` stays 2026-11-13 and the stored fingerprints are unchanged, because the cited sources and exercises were not re-read. The records stay visibly changed.

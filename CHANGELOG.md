@@ -1,5 +1,11 @@
 # Changes
 
+## 15 November 2026 — media and leaderboard checks
+
+- Generating images and video now separates the operation from the selected model. Midjourney creations can appear on Explore by default. A Content Credentials label, and Adobe’s commercial-safety claim for its own models, do not prove a picture. ComfyUI’s docs also describe cloud and partner-model calls. The diagram says generation is optional.
+- Reading leaderboards now separates a model from an endpoint, notes Arena’s overlapping intervals, and notes that SWE-bench charts cost and step limits. The 2022 HELM post is a snapshot. Its diagram is unchanged. Quiz options are unchanged.
+- Verification: unit/HTTP tests, JavaScript syntax checks and the browser smoke test. No live generation or model call.
+
 ## 15 November 2026 — shorter tool and memory lessons
 
 - Tools, memory, identity and permissions are shorter. The distinctions stay: a tool acts, MCP connects, a skill guides; context, saved notes and retrieval are different; identity text is not a permission control. The permissions lesson still says public information only and never a government network.

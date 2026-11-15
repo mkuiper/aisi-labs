@@ -377,8 +377,8 @@
     "intro": "Generative media tools can create an image from text, edit an existing picture or generate moving scenes. This is a useful way to learn visual communication—and why a convincing picture is not evidence. Start with a storyboard; no account, purchase or generation is required for this lesson.",
     "sections": [
       [
-        "Four different operations",
-        "Text-to-image starts with a written description. Image editing transforms supplied material. Text-to-video describes a moving scene; image-to-video uses a starting image to guide a clip. A creative website is the interface, not necessarily a single model. Record the model or mode actually selected."
+        "Separate the operation from the model",
+        "Text-to-image starts from a description. Image editing changes a picture you supply. Text-to-video describes a moving scene. Image-to-video uses a starting image to guide a clip. One website can offer several of these, and audio as well. Adobe’s Firefly page lists its own models and partner models in the same studio. Runway’s video guide says you switch models, and that an older model can cost fewer credits. Record the model that was selected."
       ],
       [
         "Write a brief before pressing Generate",
@@ -386,7 +386,7 @@
       ],
       [
         "Keep the inputs safe",
-        "Use ONLY public information, nothing OFFICIAL, and NEVER government networks or accounts. Public availability is not permission to reuse a person’s likeness or someone else’s creative work. Prefer your own fictional scenes with no identifiable people. Inspect files and metadata before upload; avoid staff photos, work screenshots, official branding and account details."
+        "Use ONLY public information, nothing OFFICIAL, and NEVER government networks or accounts. Public availability is not permission to reuse a person’s likeness or someone else’s creative work. Prefer your own fictional scenes with no identifiable people. Some tools show creations to other people by default. Midjourney’s current page says images and videos can appear on its Explore page, including work from a private Discord server or a direct message. A paid Stealth mode hides them on the website and does not hide a shared Discord channel. Inspect files before upload."
       ],
       [
         "Review and label outputs",
@@ -394,7 +394,7 @@
       ],
       [
         "Provenance is not proof of truth",
-        "A label or provenance record may help explain how a file was made; it does not make the depicted event real or the content accurate. Do not rely on a watermark, a provider’s commercial-safety claim or an attractive result as permission to publish. Check rights, terms and the programme’s sharing procedure separately."
+        "A label or provenance record may help explain how a file was made. Adobe’s Firefly page says its outputs include Content Credentials that indicate AI was used. That record does not make the depicted event real or the content accurate. The same page says Adobe’s own Firefly models are commercially safe, and it also lists partner models. Do not treat either statement as permission to publish. Check rights, terms and the programme’s sharing procedure."
       ],
       [
         "Storyboard exercise",
@@ -406,7 +406,7 @@
       ],
       [
         "Where desktop tools fit",
-        "Pinta can help with image edits, Blender with 3D scenes and OBS with recording a demonstration. They are not interchangeable with image/video generation models. ComfyUI illustrates node-based workflows, but reading its guide does not install it. Ask a facilitator to assess hardware and code before trying local models or custom nodes."
+        "Pinta can help with image edits, Blender with 3D scenes and OBS with recording a demonstration. They are not interchangeable with image/video generation models. ComfyUI is a node-based interface. Its documentation describes a local install and also cloud and partner-model calls. Reading the guide does not install it. A node on the screen does not prove the work stayed on the laptop. Ask a facilitator to assess hardware and code before trying local models or custom nodes."
       ]
     ],
     "takeaway": "Brief → generate only if appropriate → review and label. Evaluate misleading details as carefully as visual quality.",
@@ -459,11 +459,11 @@
       ],
       [
         "Inspect evaluation conditions",
-        "Record the benchmark and version, evaluation date, exact model, mode, prompts, tools, harness, attempt budget and sample size where disclosed. A confidence interval communicates uncertainty; closely ranked systems may not have a meaningful separation. If a detail is missing, mark it unknown rather than guessing."
+        "Record the benchmark and version, evaluation date, exact model, mode, prompts, tools, harness, attempt budget and sample size where disclosed. Artificial Analysis separates a model from an endpoint: the same model can be hosted in more than one place. SWE-bench publishes several suites. Its Bash Only view runs models in one shared agent environment, and the site charts resolved rate against cost and step limits. Arena reports a confidence interval with each score. Overlapping intervals mean the order is not a clear separation. If a detail is missing, mark it unknown rather than guessing."
       ],
       [
         "Ask what could distort the comparison",
-        "Look for narrow task coverage, unrepresentative prompts, judge bias, overlap between training and test data, and different compute or retry budgets. These are questions to investigate, not accusations against every benchmark. A composite index combines choices about tasks and weighting; inspect those choices."
+        "Look for narrow task coverage, unrepresentative prompts, judge bias, overlap between training and test data, and different cost or step budgets. These are questions to investigate, not accusations against every benchmark. Artificial Analysis describes a composite index as a weighted set of tasks. Inspect those weights. Arena’s ranking note says a raw rank is a point estimate, and overlapping confidence intervals mean the order is not settled."
       ],
       [
         "A score is not your whole decision",
@@ -479,7 +479,7 @@
       ],
       [
         "Record a qualified conclusion",
-        "A good note separates a measured result, a publisher’s claim and your interpretation. Write: ‘On this task, using this setup, source X reports Y as of this date.’ Avoid ‘model A is best at everything’. The original HELM explanation is historical context; always check the selected suite’s own dates for current results."
+        "A good note separates a measured result, a publisher’s claim and your interpretation. Write: ‘On this task, using this setup, source X reports Y as of this date.’ Avoid ‘model A is best at everything’. The 2022 HELM post is a snapshot of particular models and scenarios. It says an evaluation should show what it does not measure, and that a result can be out of date. Check the selected suite’s own dates."
       ]
     ],
     "takeaway": "A leaderboard is a map of some measured capabilities, not a safety certificate or procurement recommendation. ONLY public information; nothing OFFICIAL. NEVER government networks or accounts.",
