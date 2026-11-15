@@ -1,5 +1,11 @@
 # Learning material history
 
+## 2026-11-15 — incident map wording
+
+- Presentation only, in `web/app.js`. The July 2026 stage now uses the recovered
+  window, 9–13 July 2026 UTC. The EchoLeak stages state both scores and do not
+  show a sample request. `lesson:agent-incidents` text and fingerprint are unchanged.
+
 ## 2026-11-15 — agent-incidents
 
 - `lesson:agent-incidents`, revision 2, `reviewed_at` 2026-11-15. The lesson, worked example and question were re-read against the disclosures below. No exploit procedure was added. Quiz options and the correct index are unchanged. The feedback now places Artifactory on the evaluation sandbox, and it still matches option_feedback for that answer. The interactive incident map was not edited.

@@ -1,5 +1,13 @@
 # Changes
 
+## 15 November 2026 — incident map aligned
+
+- The incident walkthrough now uses Hugging Face’s recovered window, 9–13 July
+  2026 UTC, for the about 17,600 actions. The EchoLeak stages state Microsoft’s
+  9.3 score and NVD’s 7.5 score, and no longer show a sample outbound request.
+- Verification: unit/HTTP tests, JavaScript syntax checks and the browser smoke
+  test. Lesson text and its fingerprint are unchanged.
+
 ## 15 November 2026 — incident facts
 
 - The agent-incidents lesson now separates OpenAI’s July 2026 ExploitGym sandbox escape from the later Hugging Face intrusion. Artifactory was the evaluation environment’s package-registry proxy. Hugging Face recovered about 17,600 actions from 9 to 13 July 2026 UTC, affecting five challenge-related datasets and service credentials. Public models, datasets, Spaces and packages were not reported as tampered.
