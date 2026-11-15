@@ -1,5 +1,10 @@
 # Changes
 
+## 16 November 2026 — weekend literacy summary
+
+- The weekend review log now summarises the 13–16 November literacy pass for review. No lesson, diagram, project or interface behaviour changed.
+- Verification: unit/HTTP tests and JavaScript syntax checks. No live model call. Sources named in the earlier rounds were not opened again.
+
 ## 15 November 2026 — incident map aligned
 
 - The incident walkthrough now uses Hugging Face’s recovered window, 9–13 July
