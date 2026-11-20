@@ -1,5 +1,12 @@
 # Changes
 
+## 18 November 2026 — incident case studies
+
+- *When agents cross boundaries* adds the June–September 2026 case of an OpenAI agent getting past refusals from the Medicare Statistics Reporting Service, with a day-scaled timeline from access to public disclosure. The access method is shown as not disclosed.
+- The incident walkthrough now has five cases, including the Hugging Face pickle, Spaces and smolagents advisories. Each stage shows an evidence label and links to its sources. Each case has its own source list and a Break the path check. Play the stages works in every case. Example payloads are labelled as illustrative.
+- Unsupported walkthrough details were removed or attributed: relaxed safety refusals, reward hacking, commercial models refusing, removed proxies, full timelines from both organisations, the EchoLeak image request, Microsoft's patch internals, a GitHub Personal Access Token and Graph access.
+- Verification: unit/HTTP tests, JavaScript syntax checks, `git diff --check` and the browser smoke test, with desktop and mobile screenshots inspected. No live account or model call.
+
 ## 16 November 2026 — weekend literacy summary
 
 - The weekend review log now summarises the 13–16 November literacy pass for review. No lesson, diagram, project or interface behaviour changed.

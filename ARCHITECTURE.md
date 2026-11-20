@@ -123,16 +123,25 @@ line, or not yet signed. The rejected ending still shows $0 settled. The image-v
 diagram is three steps: a public storyboard, optional generation, and a review.
 Its caption says generation is a choice and a provenance label is not proof.
 The leaderboard diagram is unchanged. The agent-incidents
-lesson renders a three-mode offline interactive incident and breakout explainer
-(#incident-diagram) covering the July 2026 autonomous agent sandbox escape and
-Hugging Face intrusion, 2025 MCP tool poisoning / GitHub private-repo exfiltration
-and 2025 zero-click indirect prompt injection (EchoLeak CVE-2025-32711) with
-explicit caveats and primary sources. The July 2026 mode is a two-zone map:
-evaluation sandbox, network boundary and Hugging Face. An Activity marker
-shows the active place, the boundary bar shows held, crossed or restored, and
-Play the stages advances the same offline steps. Playback stops on manual choice, mode change
+lesson renders a five-mode offline interactive incident explainer
+(#incident-diagram) from one incidentCases object in web/app.js. It covers the July 2026
+evaluation sandbox escape and Hugging Face intrusion, the June–September 2026
+OpenAI agent access to the Medicare statistics portal, the 2024–2025 Hugging Face
+pickle/Spaces/smolagents advisories, 2025 MCP tool poisoning / GitHub private-repo
+exfiltration and 2025 EchoLeak (CVE-2025-32711). Each stage carries an evidence
+label (stated by the organisation, reported by news outlets, the source's inference,
+not disclosed, or Labs advice) and links to the case sources for that stage. Each
+case ends with a three-option Break the path check (local state only, not saved)
+and its own source list. External links open in a new tab with noopener, noreferrer
+and no referrer. Example payloads are labelled as illustrative, not real logs.
+The July 2026 mode is a two-zone map: evaluation sandbox, network boundary and
+Hugging Face. An Activity marker shows the active place and the boundary bar shows
+held, crossed or contained. The Medicare mode is a day-scaled SVG timeline with an
+ordered event list. Play the stages works in every mode. Playback stops on manual choice, mode change
 or route change, and the crossing motion is disabled when the reader prefers
-reduced motion. The other two modes keep the shared stage strip. Their review fingerprints cover those definitions and deeper notes.
+reduced motion. The other modes keep the shared stage strip. The lesson's review fingerprint covers
+lessons.json only; the walkthrough in web/app.js needs manual source review, and
+tests/test_content.py blocks phrases removed as unsupported.
 Term routes focus a validated existing ID; no user text is inserted
 into selectors or HTML. Related links return to the original lesson IDs.
 

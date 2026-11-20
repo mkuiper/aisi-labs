@@ -238,7 +238,9 @@ try{
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .step-pill").length'),5);
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .boundary-map").length'),1);
   assert(await evaluate('document.querySelector("#incident-diagram .gate-state").textContent.includes("Boundary held")'));
-  assert.equal(await evaluate('document.querySelectorAll(".section-detail").length'),5);
+  assert.equal(await evaluate('document.querySelectorAll(".section-detail").length'),6);
+  assert.equal(await evaluate('document.querySelectorAll("#incident-diagram [data-incident-mode]").length'),5);
+  assert(await evaluate('document.querySelector("#incident-diagram .evidence-pill").textContent.includes("inference")'));
   await click('[data-incident-play]');
   assert(await evaluate('document.querySelector("[data-incident-play]").textContent.includes("Pause")'));
   await click('[data-incident-play]');
@@ -256,8 +258,34 @@ try{
   assert(await evaluate('document.querySelector("#incident-diagram").textContent.includes("create_pull_request")'));
   await click('[data-incident-mode="echoleak"]');
   await click('[data-incident-goto="4"]');
-  assert(await evaluate('document.querySelector("#incident-diagram").textContent.includes("PATCHED_JUNE_2025")'));
+  assert(await evaluate('document.querySelector("#incident-diagram").textContent.includes("ADDRESSED_JUNE_2025")'));
+  assert(await evaluate('document.querySelector("#incident-diagram .telemetry-bar").textContent.includes("NOT A REAL LOG")'));
+  await click('[data-incident-mode="hf-advisories"]');
+  await click('[data-incident-goto="3"]');
+  assert(await evaluate('document.querySelector("#incident-diagram").textContent.includes("CVE-2025-5120")'));
+  await click('[data-incident-mode="medicare"]');
+  assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .timeline-map").length'),1);
+  assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .timeline-events li").length'),5);
+  assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .step-pill").length'),5);
+  assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .incident-sources a").length'),7);
+  assert(await evaluate('[...document.querySelectorAll("#incident-diagram a[href^=\'https://\']")].every(a=>a.target==="_blank"&&a.rel.includes("noopener")&&a.rel.includes("noreferrer"))'));
+  await click('[data-incident-goto="1"]');
+  assert(await evaluate('document.querySelector("#incident-diagram .evidence-pill").textContent.includes("not disclosed")'));
+  await click('[data-incident-goto="3"]');
+  assert(await evaluate('document.querySelector("#incident-diagram .timeline-readout").textContent.includes("84 days")'));
+  assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .timeline-events li.is-current").length'),3);
+  await click('[data-incident-answer="0"]');
+  assert(await evaluate('document.querySelector("#incident-diagram .incident-check .quiz-feedback").textContent.startsWith("Not the best fit.")'));
+  await click('[data-incident-answer="1"]');
+  assert(await evaluate('document.querySelector("#incident-diagram .incident-check .quiz-feedback").textContent.startsWith("Best fit.")'));
+  assert(await evaluate('document.querySelector("[data-incident-answer=\'1\']").getAttribute("aria-pressed")==="true"'));
+  await click('[data-incident-play]');
+  assert(await evaluate('document.querySelector("[data-incident-play]").textContent.includes("Pause")'));
+  await click('[data-incident-play]');
+  await noOverflow('incident medicare desktop');
+  await screenshot('incident-medicare-desktop');
   await click('[data-incident-mode="hf-breakout"]');
+  assert.equal(await evaluate('document.querySelector("#incident-diagram .incident-check .quiz-feedback").textContent'),'');
   // Curated teaching text must still be escaped, including the new renderers.
   assert(await evaluate(`(()=>{
     const unsafe='<img src=x onerror=alert(1)>';
@@ -703,6 +731,7 @@ try{
   await go('#web-tool/perplexity');await screenshot('tool-profile-mobile');
   await go('#web-tool/huggingface');await noOverflow('mobile Hugging Face risks');await screenshot('huggingface-risks-mobile');
   await go('#learn/agent-incidents');await noOverflow('incident breakout mobile');await screenshot('incident-breakout-mobile');
+  await click('[data-incident-mode="medicare"]');await click('[data-incident-goto="3"]');await noOverflow('incident medicare mobile');await screenshot('incident-medicare-mobile');await click('[data-incident-mode="hf-breakout"]');
   await go('#tools');await click('[data-filter="Desktop tools"]');await checkLogos(8);await noOverflow('mobile desktop logos');
   await go('#home');await screenshot('launchpad-mobile');
   assert.deepEqual(errors,[],'Browser errors');

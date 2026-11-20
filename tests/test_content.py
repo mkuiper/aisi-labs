@@ -188,7 +188,7 @@ class ContentTests(unittest.TestCase):
         records = json.loads((ROOT / 'content/reviews.json').read_text())
         # Fixed date tests structure, not whether a later editorial deadline passes.
         # Keep it on or after the newest recorded review date.
-        report = review_report(records, today=date(2026, 11, 15))
+        report = review_report(records, today=date(2026, 11, 18))
         self.assertEqual({row['id'] for row in report}, set(learning_units()))
         self.assertTrue(any(row['status'] == 'unreviewed' for row in report))
 
@@ -254,8 +254,22 @@ class ContentTests(unittest.TestCase):
                 self.assertEqual(urlsplit(url).scheme, 'https')
         incidents = next(x for x in LESSONS if x['id'] == 'agent-incidents')
         incidents_text = json.dumps(incidents)
-        for phrase in ['ExploitGym', 'Artifactory', 'CVE-2025-5120', 'CVE-2025-32711', 'Invariant Labs', 'Caveat']:
+        for phrase in ['ExploitGym', 'Artifactory', 'CVE-2025-5120', 'CVE-2025-32711', 'Invariant Labs', 'Caveat',
+                       'Medicare Statistics Reporting Service', 'has not been disclosed']:
             self.assertIn(phrase, incidents_text)
+        self.assertEqual(len(incidents['sources']), len({url for _, url in incidents['sources']}))
+
+    def test_incident_walkthrough_keeps_unsupported_details_out(self):
+        # These details were removed after a source check; they must not return without a source.
+        script = (ROOT / 'web' / 'app.js').read_text(encoding='utf-8')
+        start = script.index('const incidentCases = {')
+        walkthrough = script[start:script.index('const incidentTraces =', start)]
+        for phrase in ['relaxed safety refusals', 'reward hacking', 'refused to parse', 'isolated proxies',
+                       'full technical timelines', 'automatic_image_request', 'prompt partitioning',
+                       'Personal Access Token', 'Graph access']:
+            self.assertNotIn(phrase, walkthrough)
+        for mode in ['hf-breakout', 'medicare', 'hf-advisories', 'mcp-poisoning', 'echoleak']:
+            self.assertIn(f"'{mode}': {{", walkthrough)
 
     def test_every_lesson_has_choice_specific_explanations(self):
         for lesson in LESSONS:
