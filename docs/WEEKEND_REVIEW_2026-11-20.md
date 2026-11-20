@@ -59,7 +59,11 @@ information, and NEVER a government network or account.
 
 ## Queue
 
-One item per round. Take the first item that is not marked Done or Dropped.
+One item per round. Take the first item that is not marked Done. The Monday
+summary is always last.
+
+Dropped by the owner on 20 November, because the app is for laptops: a
+phone-width first-visit pass and a phone-width reading-load pass.
 
 1. Incident organisation marks: in the five incident cases, show the marks of
    the organisations involved next to their names. Hugging Face, OpenAI and
@@ -69,22 +73,48 @@ One item per round. Take the first item that is not marked Done or Dropped.
    name a bundled product (Hugging Face, Qwen, Mistral, DeepSeek, Firefly,
    Midjourney, Runway, ComfyUI), show the mark next to the name. Ollama would
    be new, from Simple Icons, if it fits.
-3. Dropped by the owner on 20 November: the app is for laptops, so no
-   phone-width journey pass.
-4. Review debt: `tools-skills`, `memory`, `identity` and `responsible-use`.
+3. Agent's-eye replay (fun): add a "Watch it as the agent" view to the Hugging
+   Face case. It plays the stages as a short message feed from the agent's
+   side, building to the reported moment when agents left notes for each other.
+   Follow the Dramatisation rules.
+4. Agent's-eye replay for the Medicare and EchoLeak cases, with the same view
+   and the same rules.
+5. "You're the guardrail" game: in the agent-loop or commerce diagram, the
+   learner sees five or six fictional agent requests and chooses Allow, Ask or
+   Block for each. Show a running score and a one-line reason after each
+   choice, then a short recap. Save nothing.
+6. Review debt: `tools-skills`, `memory`, `identity` and `responsible-use`.
    Re-read their sources and exercises, then refresh the records honestly.
-5. Review debt: the `starters` bundle. Re-read every starter file, then
+7. Review debt: the `starters` bundle. Re-read every starter file, then
    refresh the record.
-6. Review debt: `agentic-commerce` and `chat-agents`. Re-read their sources,
+8. Review debt: `agentic-commerce` and `chat-agents`. Re-read their sources,
    then refresh the fingerprints.
-7. Accessibility of interactive diagrams: keyboard order, visible focus,
-   announcing stage changes, and reduced motion for the incident, commerce and
-   agent-loop diagrams. Keep it to one coherent fix set.
-8. Quiz feedback: every option's feedback says why it is right or wrong, in
-   plain words. Change a correct index only if a source shows it is wrong.
-9. Dropped by the owner on 20 November: no phone-width reading pass.
-10. Monday summary: on Monday before 09:00 Canberra, summarise the log for the
+9. Accessibility of the interactive pieces, including items 3 to 5: keyboard
+   order, visible focus, announcing stage changes, and reduced motion. Keep it
+   to one coherent fix set.
+10. Quiz feedback: every option's feedback says why it is right or wrong, in
+    plain words. Change a correct index only if a source shows it is wrong.
+11. Monday summary: on Monday before 09:00 Canberra, summarise the log for the
     owner. List the commits and anything left undone. Add no new feature.
+
+## Dramatisation rules
+
+The aim is the energy of a story told from the agent's side, without inventing
+facts.
+
+- Every line carries a label. **Dramatised** marks narration we wrote.
+  **Quoted** or **Reported** marks a line from a source, linked to it.
+- A dramatised line may only restate something the case's sources support.
+  It must not invent motives, feelings presented as fact, dialogue between
+  agents, numbers or times.
+- Put a visible note on the view: "Dramatised retelling. The facts are in the
+  stages and sources."
+- Show no commands, payloads, credentials or bypass steps. Keep it as tame as
+  the existing stage text.
+- Pace the feed with typing dots and short delays, with Play, Pause and Skip.
+  Under `prefers-reduced-motion`, show every message at once. No sound and no
+  autoplay.
+- Do not copy or imitate any existing video, channel or character.
 
 ## Round notes
 
