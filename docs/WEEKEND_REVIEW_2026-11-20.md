@@ -17,7 +17,8 @@ closes, no further rounds run. The round notes show which rounds took place.
 ## Aim
 
 Review and polish the learning material with the learner's experience in mind.
-Make it accurate, succinct and easy to follow on desktop and mobile. Where a
+Make it accurate, succinct and easy to follow on a laptop screen. The app is
+built for laptop work, not phones. Where a
 lesson names an organisation or product, show its real mark next to the name
 so the material is easier to scan. Boundaries stay as written: ONLY public
 information, and NEVER a government network or account.
@@ -50,8 +51,7 @@ information, and NEVER a government network or account.
   steps.
 - Run the unit/HTTP tests, `node --check` on `web/app.js`, `web/programme.js`
   and `web/feedback.js`, and `git diff --check`. Run `node scripts/smoke.mjs`
-  and inspect the desktop and mobile screenshots whenever the interface
-  changes.
+  and inspect the desktop screenshots whenever the interface changes.
 - If a check fails and cannot be fixed within the round, revert the round's
   changes, write down why, and leave the item not done.
 - Update `CHANGELOG.md`, `content/CHANGELOG.md` and `ARCHITECTURE.md` when
@@ -59,7 +59,7 @@ information, and NEVER a government network or account.
 
 ## Queue
 
-One item per round. Take the first item that is not marked Done.
+One item per round. Take the first item that is not marked Done or Dropped.
 
 1. Incident organisation marks: in the five incident cases, show the marks of
    the organisations involved next to their names. Hugging Face, OpenAI and
@@ -69,9 +69,8 @@ One item per round. Take the first item that is not marked Done.
    name a bundled product (Hugging Face, Qwen, Mistral, DeepSeek, Firefly,
    Midjourney, Runway, ComfyUI), show the mark next to the name. Ollama would
    be new, from Simple Icons, if it fits.
-3. First-visit journey (UX): walk through home, Getting started and the first
-   lesson on desktop and at 390px. Fix the single biggest point of friction and
-   record the others in this log.
+3. Dropped by the owner on 20 November: the app is for laptops, so no
+   phone-width journey pass.
 4. Review debt: `tools-skills`, `memory`, `identity` and `responsible-use`.
    Re-read their sources and exercises, then refresh the records honestly.
 5. Review debt: the `starters` bundle. Re-read every starter file, then
@@ -83,8 +82,7 @@ One item per round. Take the first item that is not marked Done.
    agent-loop diagrams. Keep it to one coherent fix set.
 8. Quiz feedback: every option's feedback says why it is right or wrong, in
    plain words. Change a correct index only if a source shows it is wrong.
-9. Reading load at mobile width: shorten the longest "Dig deeper" notes and any
-   section that scrolls awkwardly at 390px, keeping the facts.
+9. Dropped by the owner on 20 November: no phone-width reading pass.
 10. Monday summary: on Monday before 09:00 Canberra, summarise the log for the
     owner. List the commits and anything left undone. Add no new feature.
 
