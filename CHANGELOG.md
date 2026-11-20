@@ -1,5 +1,12 @@
 # Changes
 
+## 21 November 2026 — named-product marks in lessons
+
+- *Models, tokens & where work happens*, *Understanding open models* and *Generating images and video responsibly* now open with a "Named in this lesson" strip. Each product the lesson names (Ollama; Hugging Face, Qwen, Ollama; Adobe Firefly, Midjourney, Runway, ComfyUI) shows its bundled mark, its visible name and a role taken from the lesson's own text. Marks are decorative and are not links.
+- New asset: `web/logos/ollama.svg` from Simple Icons 16.33.0, recorded in `web/logos/SOURCES.md`. The incident organisation strip and the lesson strip now share one renderer and style.
+- Lesson text, quizzes, review records and fingerprints are unchanged.
+- Verification: unit/HTTP tests, JavaScript syntax checks, `git diff --check` and the browser smoke test, with the desktop screenshots inspected.
+
 ## 20 November 2026 — incident organisation marks
 
 - Each incident case now lists the organisations involved, with a role line. OpenAI, Hugging Face, GitHub and Microsoft 365 Copilot show their bundled marks beside the visible name. Services Australia, Wiz Research, Invariant Labs, Aim Security and Modal are text only. No government crest or agency logo is used.

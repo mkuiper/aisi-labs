@@ -125,3 +125,18 @@ government crest or agency logo is used.
   a final newline added. Simple Icons lists https://github.com/logos as the
   source and guidelines. CC0 collection licence in SIMPLE-ICONS-LICENSE.txt;
   the trademark remains GitHub's.
+
+## Lesson product marks — 21 November 2026
+
+Lessons that name a product show a "Named in this lesson" strip. It reuses
+`huggingface.svg`, `qwen.svg`, `firefly.svg`, `midjourney.svg`, `runway.svg`
+and `comfyui.svg` from the web-chat set and adds one new file.
+
+- ollama.svg: Simple Icons 16.33.0,
+  https://unpkg.com/simple-icons@16.33.0/icons/ollama.svg
+  (upstream sha256-nGK/AVnulsi1jIanMvM7ACtLO7Fl7Ibo7MpRrWqC2rY=). Shape
+  unchanged; explicit display fill #000000 (the collection's Ollama colour) and
+  a final newline added. Simple Icons cites
+  https://github.com/ollama/ollama/issues/2152#issuecomment-1905286922 as the
+  source. CC0 collection licence in SIMPLE-ICONS-LICENSE.txt; the trademark
+  remains with its owner.

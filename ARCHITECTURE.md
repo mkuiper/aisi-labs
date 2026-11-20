@@ -230,6 +230,11 @@ logo mappings are distinct, so GitHub Copilot is not used for Microsoft Copilot.
 A third `org` mapping serves marks for organisations named in the incident
 walkthrough (`incidentOrgs()` in `web/app.js`). It deliberately has no
 government entries: government bodies appear as text, never as a crest.
+A `product` mapping covers products named in lesson text that have no tool or
+web-chat entry (currently Ollama). `lessonProducts` in `web/app.js` lists, per
+lesson, the products shown in its "Named in this lesson" strip; a unit test
+checks each name appears in that lesson's text. `nameStrip()` renders both the
+lesson strip and the incident organisation strip.
 All eight desktop entries have local icons. Terminal uses Ghostty (the actual
 launcher); Files uses an authored generic folder because xdg-open selects the
 system default. SVG tests allow the passive masks/filters in native VS Code

@@ -4,7 +4,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from catalogue import TOOLS, WEB_CHATS
-from logos import CHAT_LOGOS, LOGO_FILES, ORG_LOGOS, TOOL_LOGOS, logo_catalogue
+from logos import CHAT_LOGOS, LOGO_FILES, ORG_LOGOS, PRODUCT_LOGOS, TOOL_LOGOS, logo_catalogue
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -28,6 +28,22 @@ class LogoTests(unittest.TestCase):
         for word in ('gov', 'medicare', 'services', 'asd', 'aisi', 'pmc', 'crest'):
             self.assertFalse(any(word in key or word in name for key, name in ORG_LOGOS.items()))
         self.assertIn("['Services Australia','Runs the portal','']", cases)
+
+    def test_lesson_product_marks_match_names_in_the_lesson(self):
+        import json
+        from catalogue import LESSONS
+        lessons = {lesson['id']: json.dumps(lesson, ensure_ascii=False) for lesson in LESSONS}
+        app = (ROOT/'web/app.js').read_text()
+        block = app[app.index('const lessonProducts = {'):app.index('const lessonProductStrip')]
+        entries = re.findall(r"'([a-z-]+)':\[(.*?)\],\n", block)
+        self.assertEqual({lesson for lesson, _ in entries}, {'models-costs', 'open-models', 'image-video'})
+        catalogue = logo_catalogue()
+        for lesson, body in entries:
+            for name, role, kind, key in re.findall(r"\['([^']+)','([^']+)','([a-z]+)','([a-z-]+)'\]", body):
+                with self.subTest(lesson=lesson, name=name):
+                    self.assertIn(name.removeprefix('Adobe '), lessons[lesson])
+                    self.assertIn(key, catalogue[kind])
+        self.assertEqual(set(PRODUCT_LOGOS), {'ollama'})
 
     def test_product_variants_are_not_mislabelled(self):
         self.assertNotEqual(TOOL_LOGOS['claude'], CHAT_LOGOS['claude-chat'])

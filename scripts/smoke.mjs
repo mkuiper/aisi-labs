@@ -440,6 +440,19 @@ try{
   await go('#search/Perplexity');assert.equal(await evaluate('document.querySelectorAll(".web-chat-card").length'),1);
   await go('#learn/open-models');
   assert(await evaluate('document.querySelector(".diagram").textContent.includes("Hosted runner")'));
+  // Named-product marks: local, decorative, loaded, beside visible names.
+  for(const [hash, srcs] of [['#learn/open-models','/logos/huggingface.svg,/logos/qwen.svg,/logos/ollama.svg'],['#learn/image-video','/logos/firefly.svg,/logos/midjourney.svg,/logos/runway.svg,/logos/comfyui.svg'],['#learn/models-costs','/logos/ollama.svg']]){
+    await go(hash);
+    await evaluate('Promise.all([...document.querySelectorAll(".lesson-products img")].map(img=>img.decode().catch(()=>null)))');
+    assert.equal(await evaluate('[...document.querySelectorAll(".lesson-products img")].map(i=>i.getAttribute("src")).join()'),srcs);
+    assert(await evaluate('[...document.querySelectorAll(".lesson-products img")].every(i=>i.alt===""&&i.naturalWidth>0&&i.closest(".mark").getAttribute("aria-hidden")==="true")'));
+    assert(await evaluate('[...document.querySelectorAll(".lesson-products li strong")].every(s=>s.textContent.trim().length>0)'));
+  }
+  await screenshot('lesson-products-models-costs-desktop');
+  await go('#learn/image-video');await screenshot('lesson-products-image-video-desktop');
+  await go('#learn/agentic-commerce');
+  assert.equal(await evaluate('document.querySelectorAll(".lesson-products").length'),0);
+  await go('#learn/open-models');
   assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-11-15")'));
   await click('[data-answer="2"]');
   assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("Best fit.")'));

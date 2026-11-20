@@ -72,7 +72,7 @@ phone-width first-visit pass and a phone-width reading-load pass.
 2. Lesson product marks: where `models-costs`, `open-models` and `image-video`
    name a bundled product (Hugging Face, Qwen, Mistral, DeepSeek, Firefly,
    Midjourney, Runway, ComfyUI), show the mark next to the name. Ollama would
-   be new, from Simple Icons, if it fits.
+   be new, from Simple Icons, if it fits. Done.
 3. Agent's-eye replay (fun): add a "Watch it as the agent" view to the Hugging
    Face case. It plays the stages as a short message feed from the agent's
    side, building to the reported moment when agents left notes for each other.
@@ -158,4 +158,33 @@ screenshots inspected.
   existing distribution review before any image is published.
 - URLs opened: https://unpkg.com/simple-icons@16.33.0/icons/github.svg and
   https://unpkg.com/simple-icons@16.33.0/data/simple-icons.json (GitHub entry
+  only).
+
+### Round 2 — Show product marks in three lessons (Sat 21 Nov, 01:43)
+
+- Changed: `models-costs`, `open-models` and `image-video` open with a "Named
+  in this lesson" strip: Ollama; Hugging Face, Qwen, Ollama; Adobe Firefly,
+  Midjourney, Runway, ComfyUI. Each entry has a visible name, a decorative
+  mark and a role restated from that lesson's text (for example, Ollama binds
+  to 127.0.0.1 by default; Midjourney creations can appear on Explore). The
+  marks are not links. Mistral and DeepSeek were left out because these
+  lessons do not name them.
+- New `product` mapping in `logos.py` and asset `web/logos/ollama.svg`, with
+  provenance in `web/logos/SOURCES.md`. The incident strip from round 1 and the
+  new lesson strip share `nameStrip()` and one set of styles.
+- Lesson text, quizzes, review records and fingerprints are unchanged.
+- Tests: a unit test checks that every product in a strip is named in that
+  lesson's text and maps to a bundled mark. The smoke test checks the exact
+  marks per lesson, that they load locally, have empty alt text and visible
+  names, and that a lesson without products shows no strip.
+- Checked: 77 unit/HTTP tests OK; `node --check` on `web/app.js`,
+  `web/programme.js` and `web/feedback.js`; `git diff --check`; smoke PASS
+  (run again after one spacing fix). Inspected
+  `reports/lesson-products-image-video-desktop.png` and
+  `reports/open-models-desktop.png`. The first look showed the strip's label
+  too close to the glossary link, so the top margin was increased.
+- Not checked: brand-use guidelines, which belong to the distribution review.
+  No source page was re-read, because the roles restate existing lesson text.
+- URLs opened: https://unpkg.com/simple-icons@16.33.0/icons/ollama.svg and
+  https://unpkg.com/simple-icons@16.33.0/data/simple-icons.json (Ollama entry
   only).

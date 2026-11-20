@@ -43,11 +43,15 @@ ORG_LOGOS = {
     "github": "github.svg",
     "microsoft-copilot": "microsoftcopilot.svg",
 }
+# Products named in lesson text that have no web-chat or tool entry.
+PRODUCT_LOGOS = {
+    "ollama": "ollama.svg",
+}
 LOGO_FILES = (frozenset(TOOL_LOGOS.values()) | frozenset(CHAT_LOGOS.values())
-              | frozenset(ORG_LOGOS.values()))
+              | frozenset(ORG_LOGOS.values()) | frozenset(PRODUCT_LOGOS.values()))
 
 
 def logo_catalogue():
     return {kind: {key: "/logos/" + file for key, file in mapping.items()}
             for kind, mapping in (("tool", TOOL_LOGOS), ("chat", CHAT_LOGOS),
-                                  ("org", ORG_LOGOS))}
+                                  ("org", ORG_LOGOS), ("product", PRODUCT_LOGOS))}
