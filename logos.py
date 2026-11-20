@@ -35,9 +35,19 @@ CHAT_LOGOS = {
     "gemini-chat": "googlegemini.svg",
     "grok-chat": "grok.svg",
 }
-LOGO_FILES = frozenset(TOOL_LOGOS.values()) | frozenset(CHAT_LOGOS.values())
+# Organisations named in the incident walkthrough. Government bodies are
+# deliberately absent: they are shown as text, never as a crest or logo.
+ORG_LOGOS = {
+    "openai": "openai.svg",
+    "huggingface": "huggingface.svg",
+    "github": "github.svg",
+    "microsoft-copilot": "microsoftcopilot.svg",
+}
+LOGO_FILES = (frozenset(TOOL_LOGOS.values()) | frozenset(CHAT_LOGOS.values())
+              | frozenset(ORG_LOGOS.values()))
 
 
 def logo_catalogue():
     return {kind: {key: "/logos/" + file for key, file in mapping.items()}
-            for kind, mapping in (("tool", TOOL_LOGOS), ("chat", CHAT_LOGOS))}
+            for kind, mapping in (("tool", TOOL_LOGOS), ("chat", CHAT_LOGOS),
+                                  ("org", ORG_LOGOS))}

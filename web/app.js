@@ -272,6 +272,7 @@ const incidentCases = {
   'hf-breakout': {
     tab:'July 2026 · Evaluation escape and Hugging Face intrusion',
     label:'July 2026 · Where activity crossed from the evaluation sandbox into Hugging Face',
+    orgs:[['OpenAI','Ran the evaluation','openai'],['Hugging Face','Platform reached; disclosed it','huggingface'],['Modal','Endpoint used as a launchpad; not compromised','']],
     scene:'boundary',
     sources:[
       ['Hugging Face: Security incident disclosure (16 July 2026)','https://huggingface.co/blog/security-incident-july-2026','Hugging Face disclosure'],
@@ -297,6 +298,7 @@ const incidentCases = {
   'medicare': {
     tab:'June–September 2026 · An OpenAI agent and the Medicare statistics portal',
     label:'June–September 2026 · From a refused request to public disclosure, 98 days later',
+    orgs:[['OpenAI','Developer of the agent; reported it','openai'],['Services Australia','Runs the portal','']],
     scene:'timeline',
     sources:[
       ['ABC News: OpenAI hacked Medicare portal, Prime Minister Anthony Albanese says (24 September 2026)','https://www.abc.net.au/news/2026-09-24/ai-agent-accessed-australian-government-site-pm-says/107189078','ABC News'],
@@ -325,6 +327,7 @@ const incidentCases = {
   'hf-advisories': {
     tab:'2024–2025 · Pickle files, Spaces secrets and a Python filter',
     label:'2024–2025 · Three Hugging Face advisories: loading or running untrusted code',
+    orgs:[['Hugging Face','Published the advisories and guides','huggingface'],['Wiz Research','Security research partner','']],
     nodes:[['Untrusted file or code','Pickle · remote code'],['Loader or executor','Python process'],['Secrets and compute','Tokens · sandbox'],['Boundary','Format · isolation · scope']],
     sources:[
       ['Hugging Face: Pickle scanning and Safetensors security guide','https://huggingface.co/docs/hub/en/security-pickle','Pickle guide'],
@@ -351,6 +354,7 @@ const incidentCases = {
   'mcp-poisoning': {
     tab:'2025 · MCP tool poisoning and a GitHub private-repository leak',
     label:'2025 · How untrusted text steered an agent with a broad GitHub connection',
+    orgs:[['Invariant Labs','Researched and disclosed it',''],['GitHub','Platform behind the MCP connection','github']],
     nodes:[['Public issue','Untrusted input'],['Agent','Model · tool loop'],['GitHub access','Public and private'],['Public pull request','Outbound write']],
     sources:[
       ['Invariant Labs: MCP security notification — tool poisoning attacks (1 April 2025)','https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks','Invariant, April 2025'],
@@ -374,6 +378,7 @@ const incidentCases = {
   'echoleak': {
     tab:'2025 · EchoLeak zero-click prompt injection (CVE-2025-32711)',
     label:'2025 · How an external email could make an assistant leak internal data',
+    orgs:[['Microsoft 365 Copilot','The affected assistant','microsoft-copilot'],['Aim Security','Researchers who reported it','']],
     nodes:[['External email','Untrusted input'],['Copilot retrieval','Shared context'],['Internal data','The user’s access'],['Outbound','Data leaves']],
     sources:[
       ['NVD: CVE-2025-32711','https://nvd.nist.gov/vuln/detail/CVE-2025-32711','NVD'],
@@ -467,6 +472,14 @@ function incidentCheck(item) {
   const feedback = chosen===null ? '' : check.feedback[chosen].replace(/^Best fit\. /,'');
   return `<section class="incident-check" aria-labelledby="incident-check-title"><h3 id="incident-check-title">Break the path</h3><p>${esc(check.question)}</p><div class="quiz-options">${check.options.map((option,i)=>`<button type="button" class="incident-option ${chosen===i?(i===check.correct?'correct':'incorrect'):''}" data-incident-answer="${i}" aria-pressed="${chosen===i}">${esc(option)}</button>`).join('')}</div><p class="quiz-feedback" role="status">${esc(verdict+feedback)}</p></section>`;
 }
+function incidentOrgs(item) {
+  // Decorative marks beside visible names; government bodies stay text-only.
+  return `<ul class="incident-orgs" aria-label="Organisations in this case">${item.orgs.map(([name, role, key])=>{
+    const logo = key && data.logos?.org?.[key];
+    const initials = name.split(/\s+/).map(word=>word[0]).join('').slice(0,2);
+    return `<li><span class="mark ink${logo?' has-logo':''}" aria-hidden="true"><span class="logo-fallback">${esc(initials)}</span>${logo?`<img class="tool-logo" src="${esc(logo)}" alt="" width="24" height="24" decoding="async">`:''}</span><span><strong>${esc(name)}</strong><small>${esc(role)}</small></span></li>`;
+  }).join('')}</ul>`;
+}
 function incidentDiagram() {
   const item = incidentCases[incidentMode];
   const steps = item.steps;
@@ -481,7 +494,7 @@ function incidentDiagram() {
   const playButton = `<button class="btn secondary small" data-incident-play="toggle" aria-pressed="${playing?'true':'false'}">${playing?'Pause':incidentStep===steps.length-1?'Play again':'Play the stages'}</button>`;
   const tabs = Object.entries(incidentCases).map(([id, entry])=>`<button data-incident-mode="${id}" class="${incidentMode===id?'active':''}" aria-pressed="${incidentMode===id}">${esc(entry.tab)}</button>`).join('');
   const sources = `<div class="sources incident-sources"><span class="incident-sources-title">Sources for this case · links open online</span>${item.sources.map((source,i)=>incidentSourceLink(source, i, false)).join('')}</div>`;
-  return `<div class="diagram-label">${esc(item.label)}</div><div class="mode-buttons" role="group" aria-label="Select documented incident case study">${tabs}</div>${map}${stepRail(steps,incidentStep,'data-incident-goto')}<div class="trace trace-${badgeKind}"><div class="trace-banner"><span class="verdict-pill ${badgeKind}">${esc(badgeText)}</span><span class="route-pill">${esc(routeText)}</span></div><div class="trace-head"><strong id="incident-trace-title">${incidentStep+1}. ${esc(title)}</strong><span>STAGE ${incidentStep+1} OF ${steps.length}</span></div><p id="incident-trace-text" aria-live="polite">${esc(text)}</p>${evidence}${inspector}<p class="trace-defence"><strong>Caveat &amp; defence lesson:</strong> ${esc(defenceText)}</p><div class="actions">${playButton}<button class="btn secondary small" data-incident-step="-1" ${incidentStep===0?'disabled':''}>← Back</button><button class="btn small" data-incident-step="1">${incidentStep===steps.length-1?'Replay ↺':'Next stage →'}</button><span class="tiny-label">${incidentStep+1} / ${steps.length}</span></div></div>${incidentCheck(item)}${sources}`;
+  return `<div class="diagram-label">${esc(item.label)}</div><div class="mode-buttons" role="group" aria-label="Select documented incident case study">${tabs}</div>${incidentOrgs(item)}${map}${stepRail(steps,incidentStep,'data-incident-goto')}<div class="trace trace-${badgeKind}"><div class="trace-banner"><span class="verdict-pill ${badgeKind}">${esc(badgeText)}</span><span class="route-pill">${esc(routeText)}</span></div><div class="trace-head"><strong id="incident-trace-title">${incidentStep+1}. ${esc(title)}</strong><span>STAGE ${incidentStep+1} OF ${steps.length}</span></div><p id="incident-trace-text" aria-live="polite">${esc(text)}</p>${evidence}${inspector}<p class="trace-defence"><strong>Caveat &amp; defence lesson:</strong> ${esc(defenceText)}</p><div class="actions">${playButton}<button class="btn secondary small" data-incident-step="-1" ${incidentStep===0?'disabled':''}>← Back</button><button class="btn small" data-incident-step="1">${incidentStep===steps.length-1?'Replay ↺':'Next stage →'}</button><span class="tiny-label">${incidentStep+1} / ${steps.length}</span></div></div>${incidentCheck(item)}${sources}`;
 }
 function conceptDiagram(lesson) {
   if (lesson.diagram==='basics') return '<div class="diagram"><div class="diagram-label">Using a model: a simplified view</div><div class="diagram-row"><div class="diagram-node is-passed"><strong>Context</strong><small>Your request and selected information</small><span class="node-status">1. Input</span></div><span class="diagram-arrow is-flowing">→</span><div class="diagram-node is-active"><strong>Trained model</strong><small>Produces a response</small><span class="node-status">2. Inference</span></div><span class="diagram-arrow is-flowing">→</span><div class="diagram-node is-passed"><strong>Your check</strong><small>Compare the output with evidence</small><span class="node-status">3. Verify</span></div></div><p class="diagram-caption">Training happens separately. A response is not automatically a verified fact.</p></div>';

@@ -1,5 +1,11 @@
 # Changes
 
+## 20 November 2026 — incident organisation marks
+
+- Each incident case now lists the organisations involved, with a role line. OpenAI, Hugging Face, GitHub and Microsoft 365 Copilot show their bundled marks beside the visible name. Services Australia, Wiz Research, Invariant Labs, Aim Security and Modal are text only. No government crest or agency logo is used.
+- New asset: `web/logos/github.svg` from Simple Icons 16.33.0, recorded in `web/logos/SOURCES.md`. Marks are served from the existing `/logos/` allowlist; the page fetches no remote image.
+- Verification: unit/HTTP tests, JavaScript syntax checks, `git diff --check` and the browser smoke test, with the desktop screenshot inspected.
+
 ## 18 November 2026 — incident case studies
 
 - *When agents cross boundaries* adds the June–September 2026 case of an OpenAI agent getting past refusals from the Medicare Statistics Reporting Service, with a day-scaled timeline from access to public disclosure. The access method is shown as not disclosed.

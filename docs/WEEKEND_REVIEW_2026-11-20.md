@@ -68,7 +68,7 @@ phone-width first-visit pass and a phone-width reading-load pass.
 1. Incident organisation marks: in the five incident cases, show the marks of
    the organisations involved next to their names. Hugging Face, OpenAI and
    Microsoft (Copilot) are already bundled; GitHub would be new, from Simple
-   Icons. Medicare uses text only for the government side.
+   Icons. Medicare uses text only for the government side. Done.
 2. Lesson product marks: where `models-costs`, `open-models` and `image-video`
    name a bundled product (Hugging Face, Qwen, Mistral, DeepSeek, Firefly,
    Midjourney, Runway, ComfyUI), show the mark next to the name. Ollama would
@@ -130,3 +130,32 @@ screenshots inspected.
   `git diff --check` clean. The smoke test passed on 18 November with the same
   interface code.
 - This log and the six-hourly timer were set up. Nothing was pushed.
+
+### Round 1 — Show organisation marks in the incident cases (Fri 20 Nov, 19:43)
+
+- Changed: each of the five incident cases has an "Organisations in this case"
+  strip under the case tabs. Every entry shows a visible name and a short role.
+  OpenAI, Hugging Face, GitHub and Microsoft 365 Copilot use bundled marks
+  (decorative, `alt=""`, text fallback if the image fails). Services Australia,
+  Wiz Research, Invariant Labs, Aim Security and Modal are text only. No
+  government crest or agency logo.
+- New `org` mapping in `logos.py`, served through the existing exact
+  `/logos/<name>.svg` allowlist. New asset `web/logos/github.svg`, provenance
+  in `web/logos/SOURCES.md`.
+- Roles restate what the case's existing sources say (for example, Modal's
+  endpoint was used as a launchpad and Modal was not compromised). No lesson
+  text, quiz, review record or fingerprint changed.
+- Tests: a new unit test checks that every mark key used by the incident cases
+  exists in the `org` mapping, and that the mapping has no government entries.
+  The smoke test checks that the marks load from `/logos/`, have empty alt
+  text, sit beside visible names, that Medicare shows Services Australia as
+  text, and that the MCP case shows the GitHub mark.
+- Checked: 76 unit/HTTP tests OK; `node --check` on `web/app.js`,
+  `web/programme.js` and `web/feedback.js`; `git diff --check`; smoke PASS.
+  Inspected `reports/incident-breakout-held-desktop.png`: the strip sits
+  between the tabs and the map with no overlap.
+- Not checked: brand-use guidelines beyond the source note. They are for the
+  existing distribution review before any image is published.
+- URLs opened: https://unpkg.com/simple-icons@16.33.0/icons/github.svg and
+  https://unpkg.com/simple-icons@16.33.0/data/simple-icons.json (GitHub entry
+  only).

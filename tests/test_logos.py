@@ -4,7 +4,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from catalogue import TOOLS, WEB_CHATS
-from logos import CHAT_LOGOS, LOGO_FILES, TOOL_LOGOS, logo_catalogue
+from logos import CHAT_LOGOS, LOGO_FILES, ORG_LOGOS, TOOL_LOGOS, logo_catalogue
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -18,6 +18,16 @@ class LogoTests(unittest.TestCase):
             for url in mapping.values():
                 self.assertRegex(url, r'^/logos/[a-z]+\.svg$')
                 self.assertTrue((ROOT/'web'/url.lstrip('/')).is_file())
+
+    def test_incident_organisation_marks_are_known_and_not_government(self):
+        app = (ROOT/'web/app.js').read_text()
+        cases = app[app.index('const incidentCases = {'):app.index('const incidentTraces =')]
+        used = set(re.findall(r"\['[^']+','[^']+','([a-z-]+)'\]", cases))
+        self.assertTrue(used)
+        self.assertEqual(used, set(ORG_LOGOS))
+        for word in ('gov', 'medicare', 'services', 'asd', 'aisi', 'pmc', 'crest'):
+            self.assertFalse(any(word in key or word in name for key, name in ORG_LOGOS.items()))
+        self.assertIn("['Services Australia','Runs the portal','']", cases)
 
     def test_product_variants_are_not_mislabelled(self):
         self.assertNotEqual(TOOL_LOGOS['claude'], CHAT_LOGOS['claude-chat'])

@@ -241,6 +241,12 @@ try{
   assert.equal(await evaluate('document.querySelectorAll(".section-detail").length'),6);
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram [data-incident-mode]").length'),5);
   assert(await evaluate('document.querySelector("#incident-diagram .evidence-pill").textContent.includes("inference")'));
+  // Organisation marks: local, loaded, decorative, beside visible names.
+  await evaluate('Promise.all([...document.querySelectorAll("#incident-diagram .incident-orgs img")].map(img=>img.decode().catch(()=>null)))');
+  assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .incident-orgs li").length'),3);
+  assert(await evaluate('[...document.querySelectorAll("#incident-diagram .incident-orgs img")].map(i=>i.getAttribute("src")).join()==="/logos/openai.svg,/logos/huggingface.svg"'));
+  assert(await evaluate('[...document.querySelectorAll("#incident-diagram .incident-orgs img")].every(i=>i.alt===""&&i.naturalWidth>0)'));
+  assert(await evaluate('document.querySelector("#incident-diagram .incident-orgs").textContent.includes("Hugging Face")'));
   await click('[data-incident-play]');
   assert(await evaluate('document.querySelector("[data-incident-play]").textContent.includes("Pause")'));
   await click('[data-incident-play]');
@@ -256,6 +262,7 @@ try{
   await click('[data-incident-mode="mcp-poisoning"]');
   await click('[data-incident-goto="3"]');
   assert(await evaluate('document.querySelector("#incident-diagram").textContent.includes("create_pull_request")'));
+  assert(await evaluate('document.querySelector("#incident-diagram .incident-orgs img[src=\'/logos/github.svg\']")!==null'));
   await click('[data-incident-mode="echoleak"]');
   await click('[data-incident-goto="4"]');
   assert(await evaluate('document.querySelector("#incident-diagram").textContent.includes("ADDRESSED_JUNE_2025")'));
@@ -265,6 +272,8 @@ try{
   assert(await evaluate('document.querySelector("#incident-diagram").textContent.includes("CVE-2025-5120")'));
   await click('[data-incident-mode="medicare"]');
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .timeline-map").length'),1);
+  assert(await evaluate('document.querySelector("#incident-diagram .incident-orgs").textContent.includes("Services Australia")'));
+  assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .incident-orgs img").length'),1);
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .timeline-events li").length'),5);
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .step-pill").length'),5);
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .incident-sources a").length'),7);

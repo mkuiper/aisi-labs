@@ -227,6 +227,9 @@ from the hub only, and checked for active/external SVG content in tests. A
 capturing error listener restores a text badge if loading fails; no inline
 event handlers or third-party asset requests are introduced. CLI and chatbot
 logo mappings are distinct, so GitHub Copilot is not used for Microsoft Copilot.
+A third `org` mapping serves marks for organisations named in the incident
+walkthrough (`incidentOrgs()` in `web/app.js`). It deliberately has no
+government entries: government bodies appear as text, never as a crest.
 All eight desktop entries have local icons. Terminal uses Ghostty (the actual
 launcher); Files uses an authored generic folder because xdg-open selects the
 system default. SVG tests allow the passive masks/filters in native VS Code

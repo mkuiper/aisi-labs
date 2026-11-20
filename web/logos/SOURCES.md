@@ -108,3 +108,20 @@ Marks belong to their respective owners and identify learning links/tools;
 their display does not imply endorsement. Keep these provenance notes with the
 assets. Confirm applicable collection licences and brand-use requirements as
 part of the existing distribution review before publishing an image.
+
+## Incident organisation marks — 20 November 2026
+
+The incident walkthrough in `agent-incidents` shows organisation marks beside
+the visible organisation names. It reuses `openai.svg`, `huggingface.svg` and
+`microsoftcopilot.svg` (Microsoft 365 Copilot in the EchoLeak case) and adds
+one new file. Organisations without a bundled mark (Services Australia, Wiz
+Research, Invariant Labs, Aim Security, Modal) are shown as text only. No
+government crest or agency logo is used.
+
+- github.svg: Simple Icons 16.33.0,
+  https://unpkg.com/simple-icons@16.33.0/icons/github.svg
+  (upstream sha256-O/jM7q2CCuxQ1O6CWj/QLFoc1mZcyc9Mvz2ciGGiBLs=). Shape
+  unchanged; explicit display fill #181717 (the collection's GitHub colour) and
+  a final newline added. Simple Icons lists https://github.com/logos as the
+  source and guidelines. CC0 collection licence in SIMPLE-ICONS-LICENSE.txt;
+  the trademark remains GitHub's.
