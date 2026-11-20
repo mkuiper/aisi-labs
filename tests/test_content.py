@@ -1,6 +1,7 @@
 from copy import deepcopy
 from datetime import date
 import json
+import re
 import subprocess
 import sys
 import unittest
@@ -270,6 +271,28 @@ class ContentTests(unittest.TestCase):
             self.assertNotIn(phrase, walkthrough)
         for mode in ['hf-breakout', 'medicare', 'hf-advisories', 'mcp-poisoning', 'echoleak']:
             self.assertIn(f"'{mode}': {{", walkthrough)
+
+    def test_agent_replay_follows_the_dramatisation_rules(self):
+        script = (ROOT / 'web' / 'app.js').read_text(encoding='utf-8')
+        start = script.index("  'hf-breakout': {")
+        case = script[start:script.index("  'medicare': {", start)]
+        replay = case[case.index('replay:['):case.index('    steps:[')]
+        lines = re.findall(r"\['(agent|OpenAI|Hugging Face|Labs)','(dramatised|quoted|reported|unknown)','(.+?)',\[([\d,]*)\]\],", replay)
+        self.assertEqual(len(lines), replay.count("\n      ['"))
+        sources = case.count("https://")
+        self.assertIn(("Labs", "unknown"), {(who, kind) for who, kind, _, _ in lines})
+        for who, kind, text, refs in lines:
+            with self.subTest(text=text[:40]):
+                if kind != 'unknown':
+                    self.assertTrue(refs)
+                self.assertTrue(all(int(i) < sources for i in refs.split(',') if i))
+                if kind == 'quoted':
+                    self.assertTrue(text.startswith('“') and text.endswith('”'))
+                    self.assertNotEqual(who, 'agent')
+                # No invented feelings or motives, and no commands or secrets.
+                for word in ['felt', 'feel', 'excited', 'wanted', 'decided', 'thrilled', 'scared',
+                             'curl ', 'wget', 'password', 'token=', 'ssh ', 'sudo']:
+                    self.assertNotIn(word, text.lower())
 
     def test_every_lesson_has_choice_specific_explanations(self):
         for lesson in LESSONS:

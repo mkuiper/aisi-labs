@@ -76,7 +76,7 @@ phone-width first-visit pass and a phone-width reading-load pass.
 3. Agent's-eye replay (fun): add a "Watch it as the agent" view to the Hugging
    Face case. It plays the stages as a short message feed from the agent's
    side, building to the reported moment when agents left notes for each other.
-   Follow the Dramatisation rules.
+   Follow the Dramatisation rules. Done.
 4. Agent's-eye replay for the Medicare and EchoLeak cases, with the same view
    and the same rules.
 5. "You're the guardrail" game: in the agent-loop or commerce diagram, the
@@ -188,3 +188,46 @@ screenshots inspected.
 - URLs opened: https://unpkg.com/simple-icons@16.33.0/icons/ollama.svg and
   https://unpkg.com/simple-icons@16.33.0/data/simple-icons.json (Ollama entry
   only).
+
+### Round 3 — Let learners watch the Hugging Face case as the agent (Sat 21 Nov, 07:43)
+
+- Changed: the Hugging Face case has a "Step through the stages / Watch it as
+  the agent" switch. The agent view is a 14-line message feed: seven
+  Dramatised lines from the agent's side, three Quoted and three Reported lines
+  from Hugging Face or OpenAI, and one "Not shown here" note. It builds to
+  OpenAI's report that agents left notes for one another in the cache, then
+  says the replay does not show what the notes said or claim that another
+  agent read them. The Break the path check and sources stay below it.
+- Dramatised lines restate the existing stage text and sources. They add no
+  motive, feeling, conversation between agents, number or time. The motive line
+  is followed by Hugging Face's own wording that it was an inference ("We
+  believe…"). No command, payload, credential or bypass step.
+- Controls: Play, Pause, Skip to the end, Restart, and a message count. Nothing
+  plays until Play is pressed; no sound. Under reduced motion, Play shows every
+  line at once and the entry animation is off. New lines are appended to a
+  `role="log"` list, so only the new line is announced. The replay stops on
+  view, case or route change.
+- Bug found by the new smoke check and fixed before commit: Restart did not
+  clear lines that were already shown.
+- Tests: a unit test checks each replay line's label, that every non-note line
+  links to an existing source, that quotes are in quotation marks and never in
+  the agent's voice, and that lines contain no feeling or motive words and no
+  command-like text. The smoke test covers no autoplay, Play, Pause holding,
+  Skip (14 lines, all four labels, link attributes), Restart, reduced motion,
+  switching views, and that the switch is absent from cases with no replay.
+- Checked: 78 unit/HTTP tests OK; `node --check` on `web/app.js`,
+  `web/programme.js` and `web/feedback.js`; `git diff --check`; smoke PASS.
+  Inspected `reports/incident-agent-replay-desktop.png` after adding a short
+  wait, because the first capture caught the entry animation half-faded.
+- Sources re-read for the quoted lines: the Hugging Face disclosure and
+  technical timeline both loaded, and each quote was matched character for
+  character. The OpenAI 21 July page returned only a page shell with no
+  article text, so the notes line stays Reported and attributed to OpenAI, as
+  in the stage text reviewed on 15 November. The lesson text and its review
+  record are unchanged.
+- Not checked: a screen reader in use, which needs a person. The other cases
+  get their replay in round 4.
+- URLs opened:
+  - https://huggingface.co/blog/agent-intrusion-technical-timeline
+  - https://huggingface.co/blog/security-incident-july-2026
+  - https://openai.com/index/hugging-face-model-evaluation-security-incident/ (shell only)

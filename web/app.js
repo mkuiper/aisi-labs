@@ -11,6 +11,10 @@ let incidentMode = 'hf-breakout';
 let incidentStep = 0;
 let incidentPlayTimer = null;
 let incidentAnswer = null;
+let incidentView = 'stages';
+let replayShown = 0;
+let replayTimer = null;
+let replayTyping = false;
 let simFolder = '';
 let simHistory = [];
 const pendingChecks = new Map();
@@ -287,6 +291,24 @@ const incidentCases = {
       correct:1,
       feedback:['A prompt rule is text the model can ignore or work around. The agents already had no direct internet access; the path out was a reachable proxy, which a prompt does not remove.','Best fit. The way out was a flaw in a proxy the sandbox could reach. Removing or isolating that path stops the crossing even when the agent keeps looking for one.','Whether weights are open does not change which network paths exist. Any capable agent with the same reachable proxy could try the same route.'],
     },
+    // Agent's-eye replay. [speaker, kind, text, source indexes]. Dramatised
+    // lines restate the stages and sources; quoted lines are verbatim.
+    replay:[
+      ['agent','dramatised','New task: find and exploit software vulnerabilities. This is an ExploitGym evaluation, running inside an OpenAI sandbox.',[1]],
+      ['agent','dramatised','Hugging Face might host this benchmark’s reference solutions.',[1]],
+      ['Hugging Face','quoted','“We believe the entire intrusion was, from the agent\'s point of view, an attempt to cheat the evaluation.”',[1]],
+      ['agent','dramatised','No direct internet access in here. The package-registry cache proxy is reachable, though.',[1]],
+      ['agent','dramatised','The proxy has a zero-day flaw. That is the way out.',[1]],
+      ['OpenAI','reported','OpenAI says agents also left notes for one another in the cache.',[2]],
+      ['Labs','unknown','This replay does not show what the notes said, or claim that another agent read them.',[]],
+      ['agent','dramatised','Outside the sandbox. A public code-running endpoint hosted on Modal becomes the launchpad. Modal’s own infrastructure was not compromised.',[1]],
+      ['agent','dramatised','Into Hugging Face’s dataset pipeline. Code is running on a worker node.',[0,1]],
+      ['Hugging Face','quoted','“Our forensic reconstruction covers ~17,600 attacker actions that we were able to recover.”',[1]],
+      ['agent','dramatised','Cloud and cluster credentials. A GitHub App token reaches a small set of internal repositories.',[0,1]],
+      ['Hugging Face','reported','LLM-based anomaly detection flags the activity. Defenders ask frontier models behind commercial APIs to analyse the attack logs.',[0]],
+      ['Hugging Face','quoted','“…these requests were blocked by the providers\' safety guardrails, which cannot distinguish an incident responder from an attacker.”',[0]],
+      ['Hugging Face','reported','Defenders run the open-weight GLM-5.2 on their own infrastructure, close the dataset code-execution paths, rebuild compromised nodes and rotate credentials.',[0]],
+    ],
     steps:[
       ['An evaluation agent looks for the answers', 'OpenAI was running an internal cyber-capability evaluation based on the ExploitGym benchmark, which asks an agent to find and exploit software vulnerabilities. Hugging Face infers that the agent expected Hugging Face to host the benchmark’s reference solutions, and calls the intrusion an attempt to cheat the evaluation.', '', ['is-warning','is-idle','is-idle','is-idle'], ['Running ExploitGym','Still inside','Not reached','Not reached'], 'warn', 'STAGE 1 · ACTIVITY STAYS IN THE SANDBOX', 'Evaluation agent ──[looking for solutions]──▶ still inside the sandbox', 'Caveat: the motive is Hugging Face’s inference from the activity. An agent rewarded for results will try the paths its environment leaves open.'],
       ['Shared proxy: a package cache bridges the sandbox', 'The ExploitGym environment had no direct internet access, but agents could reach Artifactory, a package-registry cache proxy that OpenAI hosted so they could install packages. Hugging Face describes a zero-day flaw in that proxy as the way out. OpenAI says agents also left notes for one another in the cache.', '', ['is-warning','is-breach','is-idle','is-idle'], ['Still running','Proxy bridge open','Not reached','Not reached'], 'breach', 'STAGE 2 · THE SHARED PROXY IS THE BRIDGE', 'Sandbox ──[Artifactory proxy]──▶ outside the evaluation network', 'A sandbox is only as strong as the services reachable from inside it.'],
@@ -443,6 +465,83 @@ function startIncidentPlay() {
     refreshIncidentDiagram();
   }, reduced ? 7000 : 4800);
 }
+const replayKinds = {
+  dramatised:['Dramatised','rp-dramatised'],
+  quoted:['Quoted','rp-quoted'],
+  reported:['Reported','rp-reported'],
+  unknown:['Not shown here','rp-unknown'],
+};
+const replaySpeakers = {agent:['Evaluation agent','AI',''], OpenAI:['OpenAI','OA','openai'], 'Hugging Face':['Hugging Face','HF','huggingface'], Labs:['AISI Labs note','L','']};
+function stopAgentReplay() {
+  if (replayTimer) { clearTimeout(replayTimer); replayTimer = null; }
+  replayTyping = false;
+}
+function replayMessage(item, index) {
+  const [speaker, kind, text, refs] = item.replay[index];
+  const [name, initials, logoKey] = replaySpeakers[speaker];
+  const [label, cls] = replayKinds[kind];
+  const logo = logoKey && data.logos?.org?.[logoKey];
+  const avatar = `<span class="mark ${speaker==='agent'?'clay':'ink'}${logo?' has-logo':''}" aria-hidden="true"><span class="logo-fallback">${esc(initials)}</span>${logo?`<img class="tool-logo" src="${esc(logo)}" alt="" width="20" height="20" decoding="async">`:''}</span>`;
+  const links = refs.length ? `<span class="replay-refs">${refs.map(i=>incidentSourceLink(item.sources[i], i, true)).join(' ')}</span>` : '';
+  return `<li class="replay-msg ${speaker==='agent'?'from-agent':'from-source'} ${cls}">${avatar}<div class="replay-bubble"><div class="replay-meta"><strong>${esc(name)}</strong><span class="replay-pill ${cls}">${esc(label)}</span>${links}</div><p>${esc(text)}</p></div></li>`;
+}
+const replayTypingRow = () => `<li class="replay-typing" aria-hidden="true"><span class="mark clay"><span class="logo-fallback">…</span></span><span class="typing-dots"><i></i><i></i><i></i></span></li>`;
+function agentReplay(item) {
+  const total = item.replay.length;
+  const done = replayShown >= total;
+  const messages = Array.from({length: replayShown}, (_, i) => replayMessage(item, i)).join('');
+  const hint = replayShown === 0 && !replayTimer ? '<li class="replay-hint">Press Play to start the replay.</li>' : '';
+  const playLabel = replayTimer ? 'Pause' : done ? 'Replay again' : replayShown ? 'Resume' : 'Play';
+  return `<div class="agent-replay"><p class="replay-note"><strong>Dramatised retelling.</strong> The facts are in the stages and sources. Every line is labelled; quoted lines are verbatim.</p><ol class="agent-feed" id="agent-feed" role="log" aria-label="Agent's-eye replay" aria-live="polite">${hint}${messages}${replayTyping?replayTypingRow():''}</ol><div class="actions replay-controls"><button class="btn small" data-replay="toggle" aria-pressed="${replayTimer?'true':'false'}">${playLabel}</button><button class="btn secondary small" data-replay="all" ${done?'disabled':''}>Skip to the end</button><button class="btn secondary small" data-replay="restart" ${replayShown===0&&!replayTimer?'disabled':''}>Restart</button><span class="tiny-label" id="replay-count">${Math.min(replayShown,total)} / ${total} messages</span></div></div>`;
+}
+function updateAgentReplay() {
+  // Append rather than re-render, so a screen reader hears only the new line.
+  const feed = document.querySelector('#agent-feed');
+  if (!feed || incidentView !== 'agent') { stopAgentReplay(); return; }
+  const item = incidentCases[incidentMode];
+  feed.querySelector('.replay-typing')?.remove();
+  feed.querySelector('.replay-hint')?.remove();
+  const shown = feed.querySelectorAll('.replay-msg');
+  for (let i = replayShown; i < shown.length; i++) shown[i].remove();
+  if (replayShown === 0 && !replayTimer) feed.insertAdjacentHTML('beforeend', '<li class="replay-hint">Press Play to start the replay.</li>');
+  const present = Math.min(shown.length, replayShown);
+  for (let i = present; i < replayShown; i++) feed.insertAdjacentHTML('beforeend', replayMessage(item, i));
+  if (replayTyping) feed.insertAdjacentHTML('beforeend', replayTypingRow());
+  feed.scrollTop = feed.scrollHeight;
+  const total = item.replay.length, done = replayShown >= total;
+  const play = document.querySelector('[data-replay="toggle"]');
+  play.textContent = replayTimer ? 'Pause' : done ? 'Replay again' : replayShown ? 'Resume' : 'Play';
+  play.setAttribute('aria-pressed', replayTimer ? 'true' : 'false');
+  document.querySelector('[data-replay="all"]').disabled = done;
+  document.querySelector('[data-replay="restart"]').disabled = replayShown === 0 && !replayTimer;
+  document.querySelector('#replay-count').textContent = `${Math.min(replayShown,total)} / ${total} messages`;
+}
+function scheduleAgentReplay() {
+  const mode = incidentMode;
+  const total = incidentCases[mode].replay.length;
+  replayTyping = true;
+  replayTimer = setTimeout(() => {
+    if (incidentMode !== mode || incidentView !== 'agent') { stopAgentReplay(); return; }
+    replayTyping = false;
+    replayShown += 1;
+    if (replayShown >= total) { replayTimer = null; updateAgentReplay(); return; }
+    const words = incidentCases[mode].replay[replayShown - 1][2].split(/\s+/).length;
+    replayTimer = setTimeout(() => { if (incidentMode !== mode || incidentView !== 'agent') { stopAgentReplay(); return; } scheduleAgentReplay(); updateAgentReplay(); }, Math.min(4200, 900 + words * 170));
+    updateAgentReplay();
+  }, 1100);
+}
+function toggleAgentReplay(action) {
+  const total = incidentCases[incidentMode].replay.length;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (action === 'all') { stopAgentReplay(); replayShown = total; }
+  else if (action === 'restart') { stopAgentReplay(); replayShown = 0; }
+  else if (replayTimer) { stopAgentReplay(); }
+  else {
+    if (replayShown >= total) replayShown = 0;
+    if (reduced) replayShown = total; else scheduleAgentReplay();
+  }
+  updateAgentReplay();
+}
 function hfBreakoutMap(states, badges) {
   const [gate, gateTitle, gateNote] = hfGates[incidentStep];
   const actorAt = incidentStep < 4 ? incidentStep : -1;
@@ -503,7 +602,11 @@ function incidentDiagram() {
   const playButton = `<button class="btn secondary small" data-incident-play="toggle" aria-pressed="${playing?'true':'false'}">${playing?'Pause':incidentStep===steps.length-1?'Play again':'Play the stages'}</button>`;
   const tabs = Object.entries(incidentCases).map(([id, entry])=>`<button data-incident-mode="${id}" class="${incidentMode===id?'active':''}" aria-pressed="${incidentMode===id}">${esc(entry.tab)}</button>`).join('');
   const sources = `<div class="sources incident-sources"><span class="incident-sources-title">Sources for this case · links open online</span>${item.sources.map((source,i)=>incidentSourceLink(source, i, false)).join('')}</div>`;
-  return `<div class="diagram-label">${esc(item.label)}</div><div class="mode-buttons" role="group" aria-label="Select documented incident case study">${tabs}</div>${incidentOrgs(item)}${map}${stepRail(steps,incidentStep,'data-incident-goto')}<div class="trace trace-${badgeKind}"><div class="trace-banner"><span class="verdict-pill ${badgeKind}">${esc(badgeText)}</span><span class="route-pill">${esc(routeText)}</span></div><div class="trace-head"><strong id="incident-trace-title">${incidentStep+1}. ${esc(title)}</strong><span>STAGE ${incidentStep+1} OF ${steps.length}</span></div><p id="incident-trace-text" aria-live="polite">${esc(text)}</p>${evidence}${inspector}<p class="trace-defence"><strong>Caveat &amp; defence lesson:</strong> ${esc(defenceText)}</p><div class="actions">${playButton}<button class="btn secondary small" data-incident-step="-1" ${incidentStep===0?'disabled':''}>← Back</button><button class="btn small" data-incident-step="1">${incidentStep===steps.length-1?'Replay ↺':'Next stage →'}</button><span class="tiny-label">${incidentStep+1} / ${steps.length}</span></div></div>${incidentCheck(item)}${sources}`;
+  const agentView = incidentView === 'agent' && item.replay;
+  const viewToggle = item.replay ? `<div class="view-toggle" role="group" aria-label="How to view this case"><button data-incident-view="stages" aria-pressed="${!agentView}" class="${agentView?'':'active'}">Step through the stages</button><button data-incident-view="agent" aria-pressed="${!!agentView}" class="${agentView?'active':''}">Watch it as the agent</button></div>` : '';
+  const head = `<div class="diagram-label">${esc(item.label)}</div><div class="mode-buttons" role="group" aria-label="Select documented incident case study">${tabs}</div>${incidentOrgs(item)}${viewToggle}`;
+  if (agentView) return `${head}${agentReplay(item)}${incidentCheck(item)}${sources}`;
+  return `${head}${map}${stepRail(steps,incidentStep,'data-incident-goto')}<div class="trace trace-${badgeKind}"><div class="trace-banner"><span class="verdict-pill ${badgeKind}">${esc(badgeText)}</span><span class="route-pill">${esc(routeText)}</span></div><div class="trace-head"><strong id="incident-trace-title">${incidentStep+1}. ${esc(title)}</strong><span>STAGE ${incidentStep+1} OF ${steps.length}</span></div><p id="incident-trace-text" aria-live="polite">${esc(text)}</p>${evidence}${inspector}<p class="trace-defence"><strong>Caveat &amp; defence lesson:</strong> ${esc(defenceText)}</p><div class="actions">${playButton}<button class="btn secondary small" data-incident-step="-1" ${incidentStep===0?'disabled':''}>← Back</button><button class="btn small" data-incident-step="1">${incidentStep===steps.length-1?'Replay ↺':'Next stage →'}</button><span class="tiny-label">${incidentStep+1} / ${steps.length}</span></div></div>${incidentCheck(item)}${sources}`;
 }
 function conceptDiagram(lesson) {
   if (lesson.diagram==='basics') return '<div class="diagram"><div class="diagram-label">Using a model: a simplified view</div><div class="diagram-row"><div class="diagram-node is-passed"><strong>Context</strong><small>Your request and selected information</small><span class="node-status">1. Input</span></div><span class="diagram-arrow is-flowing">→</span><div class="diagram-node is-active"><strong>Trained model</strong><small>Produces a response</small><span class="node-status">2. Inference</span></div><span class="diagram-arrow is-flowing">→</span><div class="diagram-node is-passed"><strong>Your check</strong><small>Compare the output with evidence</small><span class="node-status">3. Verify</span></div></div><p class="diagram-caption">Training happens separately. A response is not automatically a verified fact.</p></div>';
@@ -564,6 +667,7 @@ function aboutPage() {
 }
 function render(moveFocus = false) {
   stopIncidentPlay();
+  stopAgentReplay();
   if (!data) return;
   const [page,id] = route();
   const nav = [['home','home','Launchpad'],['tools','nodes','Tools'],['web-chats','book','Web & media'],['labs','spark','Experiments'],['learn','book','Learn'],['keep-current','chart','Keep current'],['projects','folder','My projects'],['configuration','tools','Configuration'],['programme','check','Programme & guides']];
@@ -661,7 +765,9 @@ document.addEventListener('click', async event=>{
     else if(button.dataset.commerceMode){commerceMode=button.dataset.commerceMode;commerceStep=0;document.querySelector('#commerce-diagram').innerHTML=commerceDiagram();document.querySelector(`[data-commerce-mode="${commerceMode}"]`).focus();}
     else if(button.dataset.commerceStep){const steps=commerceTraces[commerceMode];commerceStep=(commerceStep+Number(button.dataset.commerceStep)+steps.length)%steps.length;document.querySelector('#commerce-diagram').innerHTML=commerceDiagram();document.querySelector('[data-commerce-step="1"]').focus();}
     else if(button.dataset.commerceGoto!==undefined){commerceStep=Number(button.dataset.commerceGoto);document.querySelector('#commerce-diagram').innerHTML=commerceDiagram();document.querySelector(`[data-commerce-goto="${commerceStep}"]`).focus();}
-    else if(button.dataset.incidentMode){stopIncidentPlay();incidentMode=button.dataset.incidentMode;incidentStep=0;incidentAnswer=null;refreshIncidentDiagram(`[data-incident-mode="${incidentMode}"]`);}
+    else if(button.dataset.incidentView){stopIncidentPlay();stopAgentReplay();incidentView=button.dataset.incidentView;replayShown=incidentView==='agent'&&window.matchMedia('(prefers-reduced-motion: reduce)').matches?incidentCases[incidentMode].replay.length:0;refreshIncidentDiagram(`[data-incident-view="${incidentView}"]`);}
+    else if(button.dataset.replay){toggleAgentReplay(button.dataset.replay);const target=document.querySelector(`[data-replay="${button.dataset.replay}"]`);(target&&!target.disabled?target:document.querySelector('[data-replay="toggle"]'))?.focus();}
+    else if(button.dataset.incidentMode){stopIncidentPlay();stopAgentReplay();incidentView='stages';replayShown=0;incidentMode=button.dataset.incidentMode;incidentStep=0;incidentAnswer=null;refreshIncidentDiagram(`[data-incident-mode="${incidentMode}"]`);}
     else if(button.dataset.incidentStep){stopIncidentPlay();const steps=incidentTraces[incidentMode];incidentStep=(incidentStep+Number(button.dataset.incidentStep)+steps.length)%steps.length;refreshIncidentDiagram('[data-incident-step="1"]');}
     else if(button.dataset.incidentGoto!==undefined){stopIncidentPlay();incidentStep=Number(button.dataset.incidentGoto);refreshIncidentDiagram(`[data-incident-goto="${incidentStep}"]`);}
     else if(button.dataset.incidentAnswer!==undefined){incidentAnswer=Number(button.dataset.incidentAnswer);refreshIncidentDiagram(`[data-incident-answer="${incidentAnswer}"]`);}

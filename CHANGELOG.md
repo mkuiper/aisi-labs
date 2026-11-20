@@ -1,5 +1,11 @@
 # Changes
 
+## 21 November 2026 — agent's-eye replay
+
+- The Hugging Face case in *When agents cross boundaries* can now be watched as the agent: a fourteen-line message feed with typing dots that builds to OpenAI's report that agents left notes for one another in the cache. Every line is labelled Dramatised, Quoted, Reported or Not shown here and links to its sources. Quotes are verbatim from Hugging Face's disclosure and timeline. The replay says it does not show what the notes said or claim another agent read them.
+- Play, Pause, Skip to the end and Restart. No autoplay and no sound. Reduced motion shows every line at once.
+- Verification: unit/HTTP tests, JavaScript syntax checks, `git diff --check` and the browser smoke test, with the desktop screenshot inspected.
+
 ## 21 November 2026 — named-product marks in lessons
 
 - *Models, tokens & where work happens*, *Understanding open models* and *Generating images and video responsibly* now open with a "Named in this lesson" strip. Each product the lesson names (Ollama; Hugging Face, Qwen, Ollama; Adobe Firefly, Midjourney, Runway, ComfyUI) shows its bundled mark, its visible name and a role taken from the lesson's own text. Marks are decorative and are not links.

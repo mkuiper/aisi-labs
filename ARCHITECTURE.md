@@ -142,6 +142,13 @@ or route change, and the crossing motion is disabled when the reader prefers
 reduced motion. The other modes keep the shared stage strip. The lesson's review fingerprint covers
 lessons.json only; the walkthrough in web/app.js needs manual source review, and
 tests/test_content.py blocks phrases removed as unsupported.
+A case with a `replay` array also offers "Watch it as the agent": a labelled
+message feed (Dramatised, Quoted, Reported, Not shown here), each line linked to
+the case sources. Nothing plays until the reader presses Play; Pause, Skip to the
+end and Restart are available. New lines are appended to a `role="log"` list so
+a screen reader hears only the new line. Under reduced motion, Play shows every
+line at once. The replay stops on view, mode or route change, saves nothing, and
+`tests/test_content.py` checks its labels, sources and wording rules.
 Term routes focus a validated existing ID; no user text is inserted
 into selectors or HTML. Related links return to the original lesson IDs.
 
