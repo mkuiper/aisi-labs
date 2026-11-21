@@ -1,5 +1,9 @@
 # Learning material history
 
+## 2026-11-22 — starters: full re-read
+
+- `starters`, revision 2, `reviewed_at` 2026-11-22. Re-read every starter in `templates.py` and compared each lab's declared files, prompt, steps and checks with the generated files. All match: six fictional submissions across three topics; six months of fictional service data; draft.md's three deliberate errors line up with evidence.md and the worked answer (12 of 20 is 60%, no comparison group, no cost analysis). No text changed. No model call; the exercises were not run with an assistant. No URLs opened.
+
 ## 2026-11-22 — tools-skills, memory, identity, responsible-use: source re-read
 
 - `lesson:tools-skills`, revision 5, `reviewed_at` 2026-11-22. Re-read against the MCP introduction, the MCP architecture page (tools, resources and prompts; stdio for local processes, Streamable HTTP for remote servers; a server is a program), MCP security best practices (local servers run with the client's privileges) and the Agent Skills overview (a SKILL.md folder with optional scripts, references and assets, loaded by progressive disclosure). Every claim held. The architecture and security pages are now listed as sources. Text and quiz unchanged.

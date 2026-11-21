@@ -87,7 +87,7 @@ phone-width first-visit pass and a phone-width reading-load pass.
    Re-read their sources and exercises, then refresh the records honestly.
    Done.
 7. Review debt: the `starters` bundle. Re-read every starter file, then
-   refresh the record.
+   refresh the record. Done.
 8. Review debt: `agentic-commerce` and `chat-agents`. Re-read their sources,
    then refresh the fingerprints.
 9. Accessibility of the interactive pieces, including items 3 to 5: keyboard
@@ -346,3 +346,28 @@ screenshots inspected.
   developers.openai.com/codex/guides/agents-md (308 to
   learn.chatgpt.com/docs/agent-configuration/agents-md); opencode.ai/docs/rules;
   genai.owasp.org LLM01. Full URLs are in `content/CHANGELOG.md`.
+
+### Round 7 — Re-read the starter bundle (Sun 22 Nov, 07:43)
+
+- Changed: the `starters` record only (`reviewed_at` 2026-11-22, new
+  fingerprint, revision 2 kept because no starter text changed), plus
+  `content/CHANGELOG.md`.
+- Read all 42 lines of `templates.py`: both HTML pages, the five briefs, the
+  shared BRIEF.md boundary text and the four data files. For each of the five
+  labs, `starter_files` produces exactly the files `catalogue.py` declares,
+  and the prompt, steps and checks refer only to what is there.
+- Data: `submissions.csv` has six rows (Access, Transport, Digital, two each).
+  `service-data.csv` has six months. `draft.md`'s three planted errors
+  (causation, 80% against 12 of 20, $2 million) match `evidence.md` E2–E4
+  and the worked answer in `catalogue.py`.
+- Small grey text in the blank page is #597268 on #f6f4ed, 4.73:1 (AA).
+- Considered and left alone: the first-steps brief asks the learner's page to
+  stay readable on a narrow screen. That is a property of the learner's
+  output, not phone work on the app.
+- Checked: 79 unit/HTTP tests OK; `node --check` on `web/app.js`,
+  `web/programme.js` and `web/feedback.js`; `git diff --check`; offline review
+  report (only `resource:helm` remains, unreviewed). No UI change, so smoke
+  was not rerun.
+- Not checked: the exercises with a real assistant (that needs a model call)
+  and how the HTML starters look in every browser.
+- URLs opened: none.

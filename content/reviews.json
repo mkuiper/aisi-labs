@@ -218,10 +218,10 @@
   },
   "starters": {
     "revision": 2,
-    "reviewed_at": "2026-11-13",
+    "reviewed_at": "2026-11-22",
     "review_after_days": 90,
-    "sha256": "959bdafd3f87ef8f71e4b0796aa87feb3f33700cbe1309ef7f7be243e003172b",
-    "notes": "Revision 2 on 2026-11-15 rewrote only the first-steps brief and index.html after reading https://code.claude.com/docs/en/permission-modes. The other starter files were not re-read. The 2026-11-13 date and fingerprint stay so this bundle remains visibly changed. No model call."
+    "sha256": "367426265a8b084734445d111a0ada8f2ec53b5df76345e8280f597d86f57bf7",
+    "notes": "Reviewed 2026-11-22: re-read all of templates.py: PAGE, FIRST_STEPS_PAGE, the five BRIEFS, the shared BRIEF.md boundary text and every generated file (submissions.csv, service-data.csv, evidence.md, draft.md). Compared each lab's declared files, prompt, steps and checks in catalogue.py with what starter_files produces; all match. submissions.csv has six rows across three topics; draft.md's three deliberate errors (causation, 80% against 12 of 20, the $2 million saving) match evidence.md E2–E4 and the worked answer. Small-text contrast in PAGE is 4.73:1. No content change; no model call; the exercises were not run with an assistant."
   },
   "doc:content-maintenance": {
     "revision": 9,
