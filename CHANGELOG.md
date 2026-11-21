@@ -1,5 +1,11 @@
 # Changes
 
+## 22 November 2026 — four lessons re-checked against their sources
+
+- *Tools, MCP & skills*, *Memory*, *“Soul”, identity & instructions* and *Permissions & responsible exploration* were re-read against current primary sources, and their review records are in date again.
+- One correction: the identity lesson now says Claude Code also reads AGENTS.md when there is no CLAUDE.md, and OpenCode falls back to CLAUDE.md. Five supporting source links were added across two lessons. No quiz changed.
+- Verification: unit/HTTP tests, JavaScript syntax checks, `git diff --check`, the offline review report and the browser smoke test.
+
 ## 21 November 2026 — You're the guardrail
 
 - *Chatbots, agents & harnesses* adds a short game under the agent-loop diagram. An agent building the fictional Harbour Library page makes six requests, and the learner chooses Allow, Ask a person first, or Block for each. Each choice shows the best fit and a one-line reason, with a running score and a recap that links to *Permissions & responsible exploration*. Nothing is saved.

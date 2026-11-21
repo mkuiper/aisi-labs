@@ -28,11 +28,11 @@
     "notes": "Reviewed 2026-11-13: re-read the lesson, Hilltop Sketch Club exercise, worked brief and quiz against Anthropic prompting best practices (https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices). The page is Claude guidance used as a transferable writing practice, not a test of other products. No live generation or model comparison."
   },
   "lesson:tools-skills": {
-    "revision": 4,
-    "reviewed_at": "2026-11-13",
+    "revision": 5,
+    "reviewed_at": "2026-11-22",
     "review_after_days": 90,
-    "sha256": "a20192b7720703a3dfb42bdf2c9ed879eaeb256299db26d3a94d287f22fcfbda",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes for Tool/MCP/Skill, three-role diagram and scenario question/option_feedback against Model Context Protocol introduction and Agent Skills overview documentation. Verified distinctions between tool execution, connection protocol and reusable task guidance. No live MCP server or model calls. 2026-11-15 editorial pass shortened wording only. Sources and the question were not re-read. reviewed_at and sha256 are unchanged, so this record stays visibly changed."
+    "sha256": "55c70ae1348638651718d61a1a9e0809680609e8663282900534ed77d69c834e",
+    "notes": "Reviewed 2026-11-22: re-read the full lesson, Tool/MCP/Skill deeper-detail notes, three-role diagram and scenario question/option_feedback against the MCP introduction, MCP architecture (tools, resources and prompts; stdio for local processes and Streamable HTTP for remote servers; a server is a program) and MCP security best practices (local servers run with the client's privileges), and the Agent Skills overview (a folder with SKILL.md plus optional scripts, references and assets, loaded by progressive disclosure). Added the architecture and security pages as sources. Lesson text and question unchanged. No MCP server was added and no model was called."
   },
   "lesson:checking": {
     "revision": 5,
@@ -43,24 +43,24 @@
   },
   "lesson:memory": {
     "revision": 4,
-    "reviewed_at": "2026-11-13",
+    "reviewed_at": "2026-11-22",
     "review_after_days": 90,
-    "sha256": "f18ddeb1d03d5f96937a0931244635895a3aa10c32269f6893683d1242c60b04",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on active context, persistent notes and RAG, diagram, controlled two-session comparison exercise and scenario question/option_feedback against OpenClaw memory documentation and local programme rules. No live model calls. 2026-11-15 editorial pass shortened wording only. Sources and the comparison exercise were not re-read. reviewed_at and sha256 are unchanged, so this record stays visibly changed."
+    "sha256": "d73197775d22b8ad7e46542c70304fa9e3a2f6637ed46c46f79a42aec67b4225",
+    "notes": "Reviewed 2026-11-22: re-read the full lesson, context/persistent-note/RAG deeper-detail notes, diagram, controlled two-session comparison exercise and scenario question/option_feedback against OpenClaw memory documentation (plain Markdown files such as MEMORY.md and daily notes; 'The model only remembers what gets saved to disk'; memory_search retrieval; a memory flush before compaction). Inspected the blank lab brief the exercise uses. Text unchanged. The exercise was not run because it needs a model call."
   },
   "lesson:identity": {
-    "revision": 4,
-    "reviewed_at": "2026-11-13",
+    "revision": 5,
+    "reviewed_at": "2026-11-22",
     "review_after_days": 90,
-    "sha256": "be9839542bf34380df9be4030efc9d7f0501f7eb6826ab5c4215e0e34941a97a",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes on instruction-file discovery and enforcement boundaries, diagram, ROLE.md comparison exercise and scenario question/option_feedback against OpenClaw agent-workspace conventions and local programme boundaries. No live model calls. 2026-11-15 editorial pass shortened wording only. Sources and the ROLE.md exercise were not re-read. reviewed_at and sha256 are unchanged, so this record stays visibly changed."
+    "sha256": "967ab4705a0ce842adf9133969242c9b3adcfad3a13d5ffc646ce1b5cf684f08",
+    "notes": "Reviewed 2026-11-22: re-read the full lesson, instruction-file and enforcement deeper-detail notes, diagram, ROLE.md exercise and scenario question/option_feedback against OpenClaw agent-workspace conventions (SOUL.md is persona, tone and boundaries; AGENTS.md is operating instructions; the workspace is the default cwd, not a hard sandbox), Claude Code memory docs, the Codex AGENTS.md guide and OpenCode rules. Corrected the instruction-file sentence: Claude Code reads AGENTS.md when there is no CLAUDE.md, and OpenCode falls back to CLAUDE.md. Added those three pages as sources. The ROLE.md exercise was not run because it needs a model call."
   },
   "lesson:responsible-use": {
     "revision": 4,
-    "reviewed_at": "2026-11-13",
+    "reviewed_at": "2026-11-22",
     "review_after_days": 90,
-    "sha256": "17e85dc5f4647936b6dbb0be6fb0abae16127a1d7c8ec91d4b9fab7c0ac4239a",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, permissions diagram and scenario question/option_feedback against programme charter, policy rules and OWASP LLM01:2025 prompt-injection guidance. Added canonical OWASP prompt-injection source link. Verified public-only, no-OFFICIAL and no-government-network boundaries. 2026-11-15 editorial pass shortened the introduction only. Sources and the question were not re-read. reviewed_at and sha256 are unchanged, so this record stays visibly changed."
+    "sha256": "f7b68389fa8ed357f2261fadd7b425b25b40003183a167184a7f77051d352316",
+    "notes": "Reviewed 2026-11-22: re-read the full lesson, permissions diagram and scenario question/option_feedback against the programme's non-negotiable boundaries in docs/PROGRAMME.md and OWASP LLM01:2025 (indirect injection through websites or files; least privilege, human approval for privileged operations and segregating external content as mitigations; no fool-proof prevention). Inspected the evidence lab brief. Text unchanged. No network, incident or key-revocation step was exercised."
   },
   "lesson:models-costs": {
     "revision": 6,

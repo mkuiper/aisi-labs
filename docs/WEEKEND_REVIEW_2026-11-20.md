@@ -85,6 +85,7 @@ phone-width first-visit pass and a phone-width reading-load pass.
    choice, then a short recap. Save nothing. Done.
 6. Review debt: `tools-skills`, `memory`, `identity` and `responsible-use`.
    Re-read their sources and exercises, then refresh the records honestly.
+   Done.
 7. Review debt: the `starters` bundle. Re-read every starter file, then
    refresh the record.
 8. Review debt: `agentic-commerce` and `chat-agents`. Re-read their sources,
@@ -311,3 +312,37 @@ screenshots inspected.
   places. That needs the observed pilot. No source page was opened; this round
   restates existing lesson rules.
 - URLs opened: none.
+
+### Round 6 — Re-check four lessons against their sources (Sun 22 Nov, 01:43)
+
+- Changed: `lesson:tools-skills`, `lesson:memory`, `lesson:identity` and
+  `lesson:responsible-use` are in date again (`reviewed_at` 2026-11-22, new
+  fingerprints) after re-reading each lesson, its deeper-detail notes, diagram,
+  exercise and quiz against current sources.
+- One correction, in identity: "Claude Code can read CLAUDE.md. Codex and
+  OpenCode can read AGENTS.md." was incomplete. Claude Code reads AGENTS.md
+  when there is no CLAUDE.md, and OpenCode falls back to CLAUDE.md. Rewritten,
+  with the Claude Code, Codex and OpenCode pages added as sources (revision 5).
+- tools-skills: the MCP intro alone does not say "tools, resources, prompts" or
+  name transports, so the architecture and security pages were read and added
+  as sources (revision 5). Lesson text unchanged.
+- memory and responsible-use: every claim held; text unchanged (revision 4).
+- `tests/test_content.py`: the pinned "today" in
+  `test_review_inventory_covers_every_unit` moved from 18 to 22 November, as
+  its comment requires (on or after the newest review date). No assertion
+  changed.
+- Checked: 79 unit/HTTP tests OK; `node --check` on `web/app.js`,
+  `web/programme.js` and `web/feedback.js`; `git diff --check`; offline
+  review report (only `resource:helm` unreviewed and `starters` changed
+  remain); smoke PASS.
+- Not checked: the memory comparison and ROLE.md exercises were not run,
+  because they need a model call; only their lab briefs were inspected. No
+  screenshot covers these lessons; the source list uses the same renderer as
+  the others. The full Claude Code memory page was truncated in the fetch; the
+  CLAUDE.md/AGENTS.md lines were read directly.
+- URLs opened (read-only, no account): modelcontextprotocol.io intro,
+  architecture and security best practices; agentskills.io/what-are-skills;
+  docs.openclaw.ai memory and agent-workspace; code.claude.com/docs/en/memory;
+  developers.openai.com/codex/guides/agents-md (308 to
+  learn.chatgpt.com/docs/agent-configuration/agents-md); opencode.ai/docs/rules;
+  genai.owasp.org LLM01. Full URLs are in `content/CHANGELOG.md`.

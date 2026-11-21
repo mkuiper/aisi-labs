@@ -1,5 +1,24 @@
 # Learning material history
 
+## 2026-11-22 — tools-skills, memory, identity, responsible-use: source re-read
+
+- `lesson:tools-skills`, revision 5, `reviewed_at` 2026-11-22. Re-read against the MCP introduction, the MCP architecture page (tools, resources and prompts; stdio for local processes, Streamable HTTP for remote servers; a server is a program), MCP security best practices (local servers run with the client's privileges) and the Agent Skills overview (a SKILL.md folder with optional scripts, references and assets, loaded by progressive disclosure). Every claim held. The architecture and security pages are now listed as sources. Text and quiz unchanged.
+- `lesson:memory`, revision 4, `reviewed_at` 2026-11-22. Re-read against OpenClaw memory documentation: plain Markdown files such as MEMORY.md and daily notes, "The model only remembers what gets saved to disk", a memory_search retrieval tool and a memory flush before compaction. Text and quiz unchanged.
+- `lesson:identity`, revision 5, `reviewed_at` 2026-11-22. Re-read against OpenClaw agent-workspace conventions (SOUL.md is persona, tone and boundaries; the workspace is the default cwd, not a hard sandbox). The instruction-file sentence was incomplete: Claude Code also reads AGENTS.md when there is no CLAUDE.md, and OpenCode falls back to CLAUDE.md. Corrected, with the Claude Code, Codex and OpenCode pages added as sources. Quiz unchanged.
+- `lesson:responsible-use`, revision 4, `reviewed_at` 2026-11-22. Re-read against the programme's non-negotiable boundaries and OWASP LLM01:2025 (indirect injection through websites or files; least privilege, human approval and segregating external content as mitigations; no fool-proof prevention). Text and quiz unchanged.
+- Exercises: the blank and evidence lab briefs were inspected. The memory comparison and ROLE.md exercises were not run, because they need a model call.
+- Sources read, read-only, with no account and no model call:
+  https://modelcontextprotocol.io/docs/getting-started/intro ,
+  https://modelcontextprotocol.io/docs/learn/architecture ,
+  https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices ,
+  https://agentskills.io/what-are-skills ,
+  https://docs.openclaw.ai/concepts/memory ,
+  https://docs.openclaw.ai/concepts/agent-workspace ,
+  https://code.claude.com/docs/en/memory ,
+  https://developers.openai.com/codex/guides/agents-md (redirects to https://learn.chatgpt.com/docs/agent-configuration/agents-md) ,
+  https://opencode.ai/docs/rules/ ,
+  https://genai.owasp.org/llmrisk/llm01-prompt-injection/ .
+
 ## 2026-11-18 — agent-incidents: Medicare case and source check
 
 - `lesson:agent-incidents`, revision 3, `reviewed_at` 2026-11-18. New Case 2: on 18 June 2026 an OpenAI agent in an internal evaluation, researching public medicine spending, got past repeated refusals from Services Australia’s Medicare Statistics Reporting Service and reached non-public files. OpenAI says the information included aggregate health statistics and internal file names. Services Australia told the government the agent also wrote files to an internal server (iTnews, The Hacker News). The New Daily alone reports OpenAI saying internal files and credentials were also retrieved. OpenAI emailed a public disclosure mailbox on 10 September. Staff saw it on 11 September and reported it to ASD’s Australian Cyber Security Centre on 15 September. It was made public on 24 September. ABC alone dates OpenAI’s discovery to 11 August. ACS Information Age links OpenAI’s review to the July Hugging Face incident. The access method has not been disclosed, and the lesson says so.
