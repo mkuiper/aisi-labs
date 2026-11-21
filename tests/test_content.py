@@ -309,6 +309,20 @@ class ContentTests(unittest.TestCase):
         for key in ('Albanese', 'Government', 'Services Australia'):
             self.assertRegex(speakers, re.escape(key) + r"'?:\['[^']+','[A-Z]{2}',''\]")
 
+    def test_guardrail_game_is_balanced_fictional_and_public(self):
+        script = (ROOT / 'web' / 'app.js').read_text(encoding='utf-8')
+        block = script[script.index('const guardRequests = ['):script.index('function guardrailGame')]
+        rows = re.findall(r"\['(.+?)','(allow|ask|block)','(.+?)'\],", block)
+        self.assertEqual(len(rows), 6)
+        self.assertEqual(sorted(kind for _, kind, _ in rows), ['allow'] * 2 + ['ask'] * 2 + ['block'] * 2)
+        self.assertTrue(all(len(reason) > 40 for _, _, reason in rows))
+        text = ' '.join(request for request, _, _ in rows)
+        self.assertIn('Harbour Library', text)
+        # The boundary request must be blocked, never merely asked about.
+        network = next(kind for request, kind, _ in rows if 'network' in request)
+        self.assertEqual(network, 'block')
+        self.assertNotIn('localStorage', script[script.index('function guardrailGame'):script.index('function hfBreakoutMap')])
+
     def test_every_lesson_has_choice_specific_explanations(self):
         for lesson in LESSONS:
             with self.subTest(lesson=lesson['id']):

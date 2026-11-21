@@ -122,7 +122,11 @@ walkthrough places the fictional cart against the $50 cap: inside, past the
 line, or not yet signed. The rejected ending still shows $0 settled. The image-video
 diagram is three steps: a public storyboard, optional generation, and a review.
 Its caption says generation is a choice and a provenance label is not proof.
-The leaderboard diagram is unchanged. The agent-incidents
+The leaderboard diagram is unchanged. The chat-agents lesson
+also renders "You're the guardrail" (#guardrail-game) from `guardRequests` in
+web/app.js: six fictional requests, an Allow / Ask / Block choice each, feedback,
+a score and a recap. State lives in memory only and resets with Play again.
+The agent-incidents
 lesson renders a five-mode offline interactive incident explainer
 (#incident-diagram) from one incidentCases object in web/app.js. It covers the July 2026
 evaluation sandbox escape and Hugging Face intrusion, the June–September 2026

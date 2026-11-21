@@ -1,5 +1,11 @@
 # Changes
 
+## 21 November 2026 — You're the guardrail
+
+- *Chatbots, agents & harnesses* adds a short game under the agent-loop diagram. An agent building the fictional Harbour Library page makes six requests, and the learner chooses Allow, Ask a person first, or Block for each. Each choice shows the best fit and a one-line reason, with a running score and a recap that links to *Permissions & responsible exploration*. Nothing is saved.
+- The six requests are balanced two, two and two. Requests that come from untrusted page content or that would cross the public-information boundary are always Block.
+- Verification: unit/HTTP tests, JavaScript syntax checks, `git diff --check` and the browser smoke test, with the desktop screenshots inspected.
+
 ## 21 November 2026 — agent's-eye replays for Medicare and EchoLeak
 
 - The Medicare and EchoLeak cases can now be watched as the agent, like the Hugging Face case. Medicare has 14 lines, from the refused request on 18 June to the public announcement. EchoLeak has 10 lines, told by Copilot as the email steers it.

@@ -82,7 +82,7 @@ phone-width first-visit pass and a phone-width reading-load pass.
 5. "You're the guardrail" game: in the agent-loop or commerce diagram, the
    learner sees five or six fictional agent requests and chooses Allow, Ask or
    Block for each. Show a running score and a one-line reason after each
-   choice, then a short recap. Save nothing.
+   choice, then a short recap. Save nothing. Done.
 6. Review debt: `tools-skills`, `memory`, `identity` and `responsible-use`.
    Re-read their sources and exercises, then refresh the records honestly.
 7. Review debt: the `starters` bundle. Re-read every starter file, then
@@ -277,3 +277,37 @@ screenshots inspected.
   - https://www.thenewdaily.com.au/life/tech/2026/09/29/openai-apologise-medicare (403)
   - https://thehackernews.com/2025/06/zero-click-ai-vulnerability-exposes.html (403)
   - https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=CVE-2025-32711
+
+### Round 5 — Add the "You're the guardrail" game (Sat 21 Nov, 19:43)
+
+- Changed: `chat-agents` (*Chatbots, agents & harnesses*) has a new block under
+  the agent-loop diagram, chosen over the commerce diagram because that lesson
+  is where the harness applies execution controls. An agent building the
+  fictional Harbour Library page from `lab:first-steps` makes six requests:
+  - Allow: read BRIEF.md; edit the page heading.
+  - Ask a person first: install a package; buy a $12 stock photo.
+  - Block: follow a webpage's instruction to send the project files; connect to
+    a department network drive.
+- Each choice locks the buttons and shows "Good call." or "<best> fits better.",
+  plus a reason. A running score, a Next button, a recap with one-line reasons
+  and a single rule of thumb follow. The recap links to *Permissions &
+  responsible exploration*. Play again resets. Nothing is stored.
+- Focus moves to Next after a choice, to Allow on the next request, and to the
+  recap heading at the end.
+- The reasons follow the existing `responsible-use` lesson (prompt injection is
+  not authorisation; never a government network) and AGENTS.md (ask before
+  installing or spending). Lesson text, quizzes and review records are
+  unchanged.
+- Tests: a unit test checks six requests split two, two and two, a reason for
+  each, the fictional project, the network request always Block, and no browser
+  storage. The smoke test plays a round with one wrong answer: feedback text,
+  correct and incorrect styling, disabled buttons, focus moves, a score of 5/6,
+  the recap with one wrong row, and Play again.
+- Checked: 79 unit/HTTP tests OK; `node --check` on `web/app.js`,
+  `web/programme.js` and `web/feedback.js`; `git diff --check`; smoke PASS.
+  Inspected `reports/guardrail-game-desktop.png` and
+  `reports/guardrail-recap-desktop.png`.
+- Not checked: whether learners find the Ask and Block lines in the same
+  places. That needs the observed pilot. No source page was opened; this round
+  restates existing lesson rules.
+- URLs opened: none.

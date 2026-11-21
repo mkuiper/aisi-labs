@@ -522,6 +522,30 @@ try{
   await click('[data-close]');
 
   await go('#learn/chat-agents');
+  // You're the guardrail: six fictional requests, feedback, score, recap, replay.
+  assert(await evaluate('document.querySelector("#guardrail-game .guard-request").textContent.includes("BRIEF.md")'));
+  assert.equal(await evaluate('document.querySelectorAll("#guardrail-game [data-guard-next]").length'),0);
+  await click('[data-guard="allow"]');
+  assert(await evaluate('document.querySelector(".guard-feedback").textContent.startsWith("Good call.")'));
+  assert.equal(await evaluate('document.querySelector("#guard-score").textContent'),'Score 1 / 1');
+  assert(await evaluate('[...document.querySelectorAll("[data-guard]")].every(b=>b.disabled)'));
+  assert(await evaluate('document.activeElement.matches("[data-guard-next]")'));
+  await click('[data-guard-next]');
+  assert(await evaluate('document.activeElement.matches("[data-guard=\'allow\']")'));
+  await click('[data-guard="block"]');
+  assert(await evaluate('document.querySelector(".guard-feedback").textContent.startsWith("Allow fits better.")'));
+  assert(await evaluate('document.querySelector("[data-guard=\'block\']").classList.contains("incorrect")&&document.querySelector("[data-guard=\'allow\']").classList.contains("correct")'));
+  for(const choice of ['ask','ask','block','block']){await click('[data-guard-next]');await click(`[data-guard="${choice}"]`);}
+  assert.equal(await evaluate('document.querySelector("#guard-score").textContent'),'Score 5 / 6');
+  await screenshot('guardrail-game-desktop');
+  await click('[data-guard-next]');
+  assert(await evaluate('document.querySelector("#guard-recap").textContent==="You matched 5 of 6"&&document.activeElement.id==="guard-recap"'));
+  assert.equal(await evaluate('document.querySelectorAll(".guard-recap li").length'),6);
+  assert.equal(await evaluate('document.querySelectorAll(".guard-recap li.guard-wrong").length'),1);
+  await noOverflow('guardrail recap desktop');
+  await screenshot('guardrail-recap-desktop');
+  await click('[data-guard-restart]');
+  assert(await evaluate('document.querySelector("#guardrail-game .tiny-label").textContent==="REQUEST 1 OF 6"'));
   await click('[data-mode="chat"]');
   assert(await evaluate('document.querySelector("#agent-diagram").textContent.includes("Ask a question")'));
   await click('[data-mode="agent"]');
