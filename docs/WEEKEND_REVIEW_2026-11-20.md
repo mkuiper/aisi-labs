@@ -78,7 +78,7 @@ phone-width first-visit pass and a phone-width reading-load pass.
    side, building to the reported moment when agents left notes for each other.
    Follow the Dramatisation rules. Done.
 4. Agent's-eye replay for the Medicare and EchoLeak cases, with the same view
-   and the same rules.
+   and the same rules. Done.
 5. "You're the guardrail" game: in the agent-loop or commerce diagram, the
    learner sees five or six fictional agent requests and chooses Allow, Ask or
    Block for each. Show a running score and a one-line reason after each
@@ -231,3 +231,49 @@ screenshots inspected.
   - https://huggingface.co/blog/agent-intrusion-technical-timeline
   - https://huggingface.co/blog/security-incident-july-2026
   - https://openai.com/index/hugging-face-model-evaluation-security-incident/ (shell only)
+
+### Round 4 — Add agent's-eye replays to the Medicare and EchoLeak cases (Sat 21 Nov, 13:43)
+
+- Changed: Medicare (14 lines) and EchoLeak (10 lines) now have the "Watch it
+  as the agent" view. The agent is named per case: "OpenAI agent" and
+  "Copilot, steered".
+  - Medicare runs from the refused request on 18 June, through the Prime
+    Minister's words, the files reached, OpenAI's August review and statement,
+    the public-mailbox email and the 24 September announcement, to OpenAI's
+    apology. A "Not shown here" line says the method has not been disclosed and
+    the replay does not guess.
+  - EchoLeak follows the email into retrieval and the user's access. A "Not
+    shown here" line says the outbound channel is not described. It ends with
+    NVD's description, both scores, Microsoft's fix and no reported
+    exploitation.
+- New speakers: Prime Minister Anthony Albanese, Australian Government and
+  Services Australia (text initials only, no crest), plus Aim Security, NVD,
+  Microsoft and The Hacker News (initials).
+- Dramatised lines restate the existing stage text and add no method, motive,
+  feeling, number or time. Quotes were matched against the pages that loaded
+  today. Lines whose page returned 403 today keep the wording already reviewed
+  in the stage text and are labelled Reported, not Quoted. That covers the
+  apology (The New Daily), Aim's "LLM scope violation" and no-click claims, and
+  "no evidence of malicious exploitation" (The Hacker News).
+- Tests: the replay unit test now covers every case with a replay. It checks
+  speakers, labels, sources, that agent lines are always Dramatised, and that
+  government speakers have no logo. The smoke test opens both new replays,
+  skips to the end, checks line counts, the non-disclosure lines, quote marks,
+  no image on government speakers, and that a case without a replay
+  (hf-advisories) shows no switch.
+- Checked: 78 unit/HTTP tests OK; `node --check` on `web/app.js`,
+  `web/programme.js` and `web/feedback.js`; `git diff --check`; smoke PASS.
+  Inspected `reports/incident-replay-medicare-desktop.png` and
+  `reports/incident-replay-echoleak-desktop.png`.
+- Not checked: The Hacker News (both articles) and The New Daily returned 403,
+  and MSRC was not opened. The lesson text and review record are unchanged.
+- URLs opened:
+  - https://www.abc.net.au/news/2026-09-24/ai-agent-accessed-australian-government-site-pm-says/107189078
+  - https://www.sbs.com.au/news/article/open-ai-medicare-hack-what-we-know-and-dont-know/3qcdsqb7r
+  - https://www.itnews.com.au/news/australian-medicare-data-portal-infiltrated-by-openai-agent-629149
+  - https://ia.acs.org.au/article/2026/openai-agent-hacks-medicare-web-portal.html
+  - https://thenightly.com.au/politics/australia/openai-medicare-attack-review-launched-into-escalation-of-cyber-breaches-after-five-day-delay-to-report-hack--c-22921450
+  - https://thehackernews.com/2026/09/openai-agent-bypassed-australian.html (403)
+  - https://www.thenewdaily.com.au/life/tech/2026/09/29/openai-apologise-medicare (403)
+  - https://thehackernews.com/2025/06/zero-click-ai-vulnerability-exposes.html (403)
+  - https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=CVE-2025-32711

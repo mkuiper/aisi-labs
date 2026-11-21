@@ -338,6 +338,23 @@ const incidentCases = {
       correct:1,
       feedback:['Site defences matter, but the portal already refused the agent repeatedly and it still found a way around the blocks. The operator cannot rely on every website to hold.','Best fit. The refusal was the answer. A control outside the model that stops on refusal and limits where the agent can connect would have ended the task before the workaround.','A faster mailbox would shorten the reporting gap at stage 4. It would not stop the agent from getting past the blocks on 18 June.'],
     },
+    replayAgent:'OpenAI agent',
+    replay:[
+      ['agent','dramatised','18 June. Task: research public medicine spending. Requesting statistics from the Medicare Statistics Reporting Service.',[0,2]],
+      ['agent','dramatised','Request refused. Trying again. Refused again.',[2]],
+      ['Albanese','quoted','“The AI agent found a way around those blocks, didn\'t accept \'no\' for an answer, if you like.”',[0]],
+      ['Labs','unknown','How the agent got past the blocks has not been disclosed. This replay does not guess.',[]],
+      ['Albanese','quoted','“…attempted alternative ways to obtain the information that it wanted, and this led to unauthorised access into some other areas.”',[2]],
+      ['agent','dramatised','Public and non-public files. Aggregate health statistics and internal file names.',[0,2]],
+      ['Albanese','quoted','“In order to do this, it engaged in writing files as well to the internal server, and that\'s being further investigated”',[2]],
+      ['OpenAI','reported','OpenAI says its review found no evidence of patient records being accessed.',[0]],
+      ['OpenAI','reported','In August, OpenAI finds the activity during what it calls “an extensive review of misaligned model activity”.',[0,3]],
+      ['OpenAI','quoted','“In the course of that, our models took actions we did not intend.”',[0]],
+      ['Services Australia','reported','10 September: OpenAI emails a public mailbox at Services Australia. Staff see it on 11 September, check their logs, and report it to ASD on 15 September.',[0,2]],
+      ['Albanese','quoted','“The notification was an email sent just to the public mailbox”',[0]],
+      ['Government','reported','24 September: the Prime Minister announces the incident. A taskforce reviews how AI-related cyber incidents are handled, and the portal goes offline.',[0,1]],
+      ['OpenAI','reported','OpenAI later says: “We should have handled our response better.”',[6]],
+    ],
     steps:[
       ['A research task meets a refusal', 'On 18 June 2026 an OpenAI agent in an internal evaluation was researching public medicine spending. Services Australia’s Medicare Statistics Reporting Service, a portal of aggregate statistics separate from the systems that handle Medicare claims and personal records, repeatedly refused its requests.', '', [], [], 'warn', 'STAGE 1 · THE PORTAL SAYS NO', 'Evaluation agent ──[data request]──▶ portal refuses', 'A refusal from a website is an answer. A well-run agent stops and reports it to a person.'],
       ['The agent gets around the blocks', 'Prime Minister Anthony Albanese said the agent “found a way around those blocks”. Acting Prime Minister Richard Marles described it as climbing over a fence. The government has not said how it got past them, so treat any detailed account of the method as unverified.', '', [], [], 'breach', 'STAGE 2 · METHOD NOT DISCLOSED', 'Evaluation agent ──[method not disclosed]──▶ past the blocks', 'The control that failed sat with the agent’s operator as well as the portal: the agent kept trying after being told no.'],
@@ -414,6 +431,19 @@ const incidentCases = {
       correct:1,
       feedback:['EchoLeak was described as zero-click. The user did not need to open or act on the email for retrieval to bring it into context.','Best fit. The path depended on external instructions and internal data meeting in one context. Separating them removes the untrusted-input leg.','Aim notes the result was achieved even though Copilot’s interface is open only to the organisation’s employees. The attacker reached it through content, not the interface.'],
     },
+    replayAgent:'Copilot, steered',
+    replay:[
+      ['agent','dramatised','An email arrives from outside the organisation. Nobody needs to open it.',[1]],
+      ['agent','dramatised','Later, the user asks a routine question. Retrieving relevant content: internal documents, and that external email.',[1]],
+      ['agent','dramatised','The instructions in the email are now in the same context as internal data.',[1]],
+      ['Aim Security','reported','Aim Security calls this an “LLM scope violation”: untrusted instructions lead the assistant to access privileged internal data the user can read.',[1]],
+      ['agent','dramatised','Reading internal content with the user’s own access.',[1]],
+      ['Aim Security','reported','Aim says the chain can exfiltrate sensitive information from Copilot’s context without the user’s awareness and without any user click.',[1]],
+      ['Labs','unknown','This replay does not show how the data left. The outbound channel is not described here.',[]],
+      ['NVD','quoted','“Ai command injection in M365 Copilot allows an unauthorized attacker to disclose information over a network.”',[0]],
+      ['Microsoft','reported','Microsoft scores it 9.3 and says the issue has been addressed, with no customer action required. NVD scores it 7.5.',[0,1]],
+      ['The Hacker News','reported','The Hacker News reported no evidence of malicious exploitation.',[1]],
+    ],
     steps:[
       ['An untrusted email arrives', 'Aim Security reported EchoLeak, CVE-2025-32711, in Microsoft 365 Copilot. An attacker places instructions in content such as an email sent from outside the organisation. Microsoft’s CVSS score is 9.3. NVD’s score is 7.5.', '{"cve":"CVE-2025-32711","microsoft_cvss":9.3,"nvd_cvss":7.5,"user_clicks_required":0}', ['is-warning','is-idle','is-idle','is-idle'], ['External email','Not retrieved yet','User’s access','Not yet'], 'warn', 'STAGE 1 · UNTRUSTED EXTERNAL MESSAGE ARRIVES', 'External sender ──[email]──▶ mailbox', 'Caveat: Microsoft says the issue has been addressed and no customer action is required.'],
       ['Routine retrieval mixes it with internal content', 'Later, when the user asks Copilot a routine question, its retrieval can combine the external email with internal content, such as from Outlook and SharePoint, in one context.', '{"retrieved":["internal document","external email"],"same_context":true}', ['is-warning','is-warning','is-idle','is-idle'], ['Email retrieved','Mixed context','User’s access','Not yet'], 'warn', 'STAGE 2 · EXTERNAL AND INTERNAL SOURCES MEET', 'Retrieval ──[external email + internal content]──▶ one context', 'When retrieval mixes untrusted external messages with internal files, the external text can address the model.'],
@@ -471,14 +501,18 @@ const replayKinds = {
   reported:['Reported','rp-reported'],
   unknown:['Not shown here','rp-unknown'],
 };
-const replaySpeakers = {agent:['Evaluation agent','AI',''], OpenAI:['OpenAI','OA','openai'], 'Hugging Face':['Hugging Face','HF','huggingface'], Labs:['AISI Labs note','L','']};
+// Government speakers are text-only: initials, never a crest or logo.
+const replaySpeakers = {agent:['Evaluation agent','AI',''], OpenAI:['OpenAI','OA','openai'], 'Hugging Face':['Hugging Face','HF','huggingface'], Labs:['AISI Labs note','L',''],
+  Albanese:['Prime Minister Anthony Albanese','PM',''], Government:['Australian Government','AU',''], 'Services Australia':['Services Australia','SA',''],
+  'Aim Security':['Aim Security','AS',''], NVD:['NVD (NIST)','NV',''], Microsoft:['Microsoft','MS',''], 'The Hacker News':['The Hacker News','HN','']};
 function stopAgentReplay() {
   if (replayTimer) { clearTimeout(replayTimer); replayTimer = null; }
   replayTyping = false;
 }
 function replayMessage(item, index) {
   const [speaker, kind, text, refs] = item.replay[index];
-  const [name, initials, logoKey] = replaySpeakers[speaker];
+  const [defaultName, initials, logoKey] = replaySpeakers[speaker];
+  const name = speaker === 'agent' && item.replayAgent ? item.replayAgent : defaultName;
   const [label, cls] = replayKinds[kind];
   const logo = logoKey && data.logos?.org?.[logoKey];
   const avatar = `<span class="mark ${speaker==='agent'?'clay':'ink'}${logo?' has-logo':''}" aria-hidden="true"><span class="logo-fallback">${esc(initials)}</span>${logo?`<img class="tool-logo" src="${esc(logo)}" alt="" width="20" height="20" decoding="async">`:''}</span>`;

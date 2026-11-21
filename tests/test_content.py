@@ -274,25 +274,40 @@ class ContentTests(unittest.TestCase):
 
     def test_agent_replay_follows_the_dramatisation_rules(self):
         script = (ROOT / 'web' / 'app.js').read_text(encoding='utf-8')
-        start = script.index("  'hf-breakout': {")
-        case = script[start:script.index("  'medicare': {", start)]
-        replay = case[case.index('replay:['):case.index('    steps:[')]
-        lines = re.findall(r"\['(agent|OpenAI|Hugging Face|Labs)','(dramatised|quoted|reported|unknown)','(.+?)',\[([\d,]*)\]\],", replay)
-        self.assertEqual(len(lines), replay.count("\n      ['"))
-        sources = case.count("https://")
-        self.assertIn(("Labs", "unknown"), {(who, kind) for who, kind, _, _ in lines})
-        for who, kind, text, refs in lines:
-            with self.subTest(text=text[:40]):
-                if kind != 'unknown':
-                    self.assertTrue(refs)
-                self.assertTrue(all(int(i) < sources for i in refs.split(',') if i))
-                if kind == 'quoted':
-                    self.assertTrue(text.startswith('“') and text.endswith('”'))
-                    self.assertNotEqual(who, 'agent')
-                # No invented feelings or motives, and no commands or secrets.
-                for word in ['felt', 'feel', 'excited', 'wanted', 'decided', 'thrilled', 'scared',
-                             'curl ', 'wget', 'password', 'token=', 'ssh ', 'sudo']:
-                    self.assertNotIn(word, text.lower())
+        cases = script[script.index('const incidentCases = {'):script.index('const incidentTraces =')]
+        speakers = script[script.index('const replaySpeakers = {'):script.index('function stopAgentReplay')]
+        names = set(re.findall(r"(?:'([^']+)'|(\w+)):\['", speakers.split('{', 1)[1]))
+        names = {a or b for a, b in names}
+        chunks = re.split(r"\n  '([a-z-]+)': \{", cases)[1:]
+        with_replay = set()
+        for mode, case in zip(chunks[::2], chunks[1::2]):
+            if 'replay:[' not in case:
+                continue
+            with_replay.add(mode)
+            replay = case[case.index('replay:['):case.index('    steps:[')]
+            lines = re.findall(r"\['([^']+)','(dramatised|quoted|reported|unknown)','(.+?)',\[([\d,]*)\]\],", replay)
+            self.assertEqual(len(lines), replay.count("\n      ['"), mode)
+            sources = case[case.index('sources:['):case.index('evidence:[')].count('https://')
+            self.assertIn(('Labs', 'unknown'), {(who, kind) for who, kind, _, _ in lines})
+            for who, kind, text, refs in lines:
+                with self.subTest(mode=mode, text=text[:40]):
+                    self.assertIn(who, names)
+                    if kind != 'unknown':
+                        self.assertTrue(refs)
+                    self.assertTrue(all(int(i) < sources for i in refs.split(',') if i))
+                    if kind == 'quoted':
+                        self.assertTrue(text.startswith('“') and text.endswith('”'))
+                        self.assertNotEqual(who, 'agent')
+                    if who == 'agent':
+                        self.assertEqual(kind, 'dramatised')
+                    # No invented feelings or motives, and no commands or secrets.
+                    for word in ['felt', 'feel', 'excited', 'wanted', 'decided', 'thrilled', 'scared',
+                                 'curl ', 'wget', 'password', 'token=', 'ssh ', 'sudo', 'http']:
+                        self.assertNotIn(word, text.lower().replace('information that it wanted', ''))
+        self.assertEqual(with_replay, {'hf-breakout', 'medicare', 'echoleak'})
+        # Government speakers never get a logo.
+        for key in ('Albanese', 'Government', 'Services Australia'):
+            self.assertRegex(speakers, re.escape(key) + r"'?:\['[^']+','[A-Z]{2}',''\]")
 
     def test_every_lesson_has_choice_specific_explanations(self):
         for lesson in LESSONS:

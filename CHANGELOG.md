@@ -1,5 +1,11 @@
 # Changes
 
+## 21 November 2026 — agent's-eye replays for Medicare and EchoLeak
+
+- The Medicare and EchoLeak cases can now be watched as the agent, like the Hugging Face case. Medicare has 14 lines, from the refused request on 18 June to the public announcement. EchoLeak has 10 lines, told by Copilot as the email steers it.
+- Each replay says what it does not show: how the Medicare agent got past the blocks has not been disclosed, and the EchoLeak outbound channel is not described. Government speakers appear as text with initials, never a crest.
+- Verification: unit/HTTP tests, JavaScript syntax checks, `git diff --check` and the browser smoke test, with the desktop screenshots inspected.
+
 ## 21 November 2026 — agent's-eye replay
 
 - The Hugging Face case in *When agents cross boundaries* can now be watched as the agent: a fourteen-line message feed with typing dots that builds to OpenAI's report that agents left notes for one another in the cache. Every line is labelled Dramatised, Quoted, Reported or Not shown here and links to its sources. Quotes are verbatim from Hugging Face's disclosure and timeline. The replay says it does not show what the notes said or claim another agent read them.

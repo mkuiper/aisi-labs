@@ -293,8 +293,24 @@ try{
   await click('[data-incident-view="stages"]');
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .boundary-map").length'),1);
   await click('[data-incident-view="agent"]');
-  await click('[data-incident-mode="medicare"]');
+  await click('[data-incident-mode="hf-advisories"]');
   assert.equal(await evaluate('document.querySelectorAll("[data-incident-view]").length'),0);
+  // Medicare and EchoLeak replays: own speakers, non-disclosure notes, no government logo.
+  for(const [mode, lines, phrase] of [['medicare',14,'has not been disclosed'],['echoleak',10,'does not show how the data left']]){
+    await click(`[data-incident-mode="${mode}"]`);
+    assert(await evaluate('document.querySelector("[data-incident-view=\'stages\']").getAttribute("aria-pressed")==="true"'));
+    await click('[data-incident-view="agent"]');
+    assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),0);
+    await click('[data-replay="all"]');
+    assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),lines);
+    assert(await evaluate(`document.querySelector("#agent-feed").textContent.includes(${JSON.stringify(phrase)})`));
+    assert(await evaluate('[...document.querySelectorAll("#agent-feed .rp-quoted p")].every(p=>p.textContent.startsWith("“")&&p.textContent.endsWith("”"))'));
+    await delay(800);await noOverflow('incident replay '+mode);await screenshot('incident-replay-'+mode+'-desktop');
+  }
+  assert(await evaluate('document.querySelector("#agent-feed").textContent.includes("Copilot, steered")'));
+  await click('[data-incident-mode="medicare"]');await click('[data-incident-view="agent"]');await click('[data-replay="all"]');
+  assert(await evaluate('[...document.querySelectorAll("#agent-feed .replay-msg")].filter(m=>/Prime Minister|Australian Government|Services Australia/.test(m.querySelector("strong").textContent)).every(m=>!m.querySelector("img"))'));
+  assert(await evaluate('document.querySelector("#agent-feed").textContent.includes("Prime Minister Anthony Albanese")'));
   await click('[data-incident-mode="hf-breakout"]');
   assert(await evaluate('document.querySelector("[data-incident-view=\'stages\']").getAttribute("aria-pressed")==="true"'));
   await click('[data-incident-mode="mcp-poisoning"]');
