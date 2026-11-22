@@ -14,6 +14,60 @@ deployment.
 The timer runs only while this Claude Code session is open. If the session
 closes, no further rounds run. The round notes show which rounds took place.
 
+## Monday summary (23 Nov, 07:43)
+
+All 11 queue items are done. Eleven rounds ran (0–10), one item each, plus
+this summary. Every commit is local on `main`; **nothing was pushed** and
+nothing here approves deployment. No model was called, no account was used,
+and no government mark was added.
+
+### Commits, oldest first
+
+| Commit | Round | What it did |
+|---|---|---|
+| `3d0fd8c` | 0 | Committed the Medicare case and evidence labels (18 Nov work) |
+| `6254d63` | 0 | Set up this log |
+| `56c0c7a` | — | Dropped the phone-width items (owner, 20 Nov) |
+| `b89f6f3` | — | Added the agent's-eye replays and guardrail game to the queue |
+| `28a7b6c` | 1 | Organisation marks in the five incident cases (GitHub mark new) |
+| `e7309fe` | 2 | Product marks in three lessons (Ollama mark new) |
+| `5d96e28` | 3 | "Watch it as the agent" replay for the Hugging Face case |
+| `65f8185` | 4 | Same replay for the Medicare and EchoLeak cases |
+| `bfeca68` | 5 | "You're the guardrail" game in the agents lesson |
+| `e7df051` | 6 | Re-read tools-skills, memory, identity, responsible-use; corrected the CLAUDE.md/AGENTS.md wording; refreshed records |
+| `ca5f5a0` | 7 | Re-read the starter bundle; refreshed its record |
+| `c6c7c3c` | 8 | Corrected agentic-commerce against current AP2/A2A/Visa/FIDO sources; re-read chat-agents |
+| `5ab0d8f` | 9 | Screen-reader announcements for every interactive step |
+| `9bb8808` | 10 | Plainer quiz explanations; fixed "Best fit. Best fit." in incident checks |
+
+Across these: 17 files, about 1,600 lines added. Final checks at round 10:
+80 unit/HTTP tests OK, `node --check` OK, `git diff --check` clean, smoke PASS.
+
+### Needs the owner
+
+1. **Push** when you are happy; rounds never push.
+2. **Five lessons show "Changed since recorded review"** after round 10's
+   wording-only edits (CONTENT_MAINTENANCE keeps the old fingerprint):
+   `tools-skills`, `responsible-use`, `agentic-commerce` (sources re-read
+   22 Nov, quick to clear) and `open-models`, `agent-incidents` (need a full
+   source pass). `resource:helm` remains unreviewed, as before the weekend.
+3. **Brand use** of the new GitHub and Ollama marks belongs to the existing
+   distribution review before any image is published.
+
+### Not checked this weekend
+
+- A real screen reader (Orca): the smoke test checks the announced text, not
+  speech. Suggest one pass in the observed pilot.
+- Exercises that need a model call (memory comparison, ROLE.md, starters with
+  a real assistant).
+- Whether learners find the guardrail game's Ask/Block lines fair: needs the
+  pilot.
+- Sources that refused automated fetches: The Hacker News and The New Daily
+  (403, Medicare case unchanged), Mastercard Agent Pay (403, Mastercard text
+  cut back to what other sources confirm); MSRC not opened.
+- Fairness of the quiz questions themselves (round 10 covered explanations
+  only).
+
 ## Aim
 
 Review and polish the learning material with the learner's experience in mind.
@@ -97,7 +151,7 @@ phone-width first-visit pass and a phone-width reading-load pass.
     plain words. Change a correct index only if a source shows it is wrong.
     Done.
 11. Monday summary: on Monday before 09:00 Canberra, summarise the log for the
-    owner. List the commits and anything left undone. Add no new feature.
+    owner. List the commits and anything left undone. Add no new feature. Done.
 
 ## Dramatisation rules
 
@@ -470,3 +524,11 @@ screenshots inspected.
   in scope); the incident checks' facts against sources (wording unchanged
   apart from the duplicate verdict).
 - URLs opened: none.
+
+### Round 11 — Monday summary (Mon 23 Nov, 07:43)
+
+- Wrote the "Monday summary" section near the top of this log: the commits,
+  what needs the owner, and what was not checked. No feature or content change.
+- Checked: unit/HTTP tests, `node --check` on all three files, `git diff --check`.
+  Smoke not run: no interface change.
+- URLs opened: none. The cron job is deleted by the first round after 09:00.
