@@ -28,7 +28,7 @@
     "notes": "Reviewed 2026-11-13: re-read the lesson, Hilltop Sketch Club exercise, worked brief and quiz against Anthropic prompting best practices (https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices). The page is Claude guidance used as a transferable writing practice, not a test of other products. No live generation or model comparison."
   },
   "lesson:tools-skills": {
-    "revision": 5,
+    "revision": 6,
     "reviewed_at": "2026-11-22",
     "review_after_days": 90,
     "sha256": "55c70ae1348638651718d61a1a9e0809680609e8663282900534ed77d69c834e",
@@ -56,7 +56,7 @@
     "notes": "Reviewed 2026-11-22: re-read the full lesson, instruction-file and enforcement deeper-detail notes, diagram, ROLE.md exercise and scenario question/option_feedback against OpenClaw agent-workspace conventions (SOUL.md is persona, tone and boundaries; AGENTS.md is operating instructions; the workspace is the default cwd, not a hard sandbox), Claude Code memory docs, the Codex AGENTS.md guide and OpenCode rules. Corrected the instruction-file sentence: Claude Code reads AGENTS.md when there is no CLAUDE.md, and OpenCode falls back to CLAUDE.md. Added those three pages as sources. The ROLE.md exercise was not run because it needs a model call."
   },
   "lesson:responsible-use": {
-    "revision": 4,
+    "revision": 5,
     "reviewed_at": "2026-11-22",
     "review_after_days": 90,
     "sha256": "f7b68389fa8ed357f2261fadd7b425b25b40003183a167184a7f77051d352316",
@@ -77,7 +77,7 @@
     "notes": "Reviewed 2026-11-14: re-read the community-garden exercise. The copied prompt now includes the full facts, including that address, booking and facilities were not supplied. Opened https://learn.chatgpt.com/docs/web.md. https://claude.ai/ returned a bot check, so the Claude citation was left unchanged. Quiz unchanged. No login or model call."
   },
   "lesson:open-models": {
-    "revision": 4,
+    "revision": 5,
     "reviewed_at": "2026-11-15",
     "review_after_days": 90,
     "sha256": "789d5574ef19b08c28e6cce4126b401aa7e4c011726d5db61f59dbff7af5df9a",
@@ -371,14 +371,14 @@
     "notes": "Reviewed 2026-11-13: re-checked setup guidance against official Codex/OpenAI API, Claude Code/Claude Console and Gemini CLI/AI Studio authentication and key documentation, plus local configuration.py adapters. Console URLs remain documented destinations, not a signed-in walkthrough. No live accounts, prices, keys or model calls tested."
   },
   "lesson:agentic-commerce": {
-    "revision": 3,
+    "revision": 4,
     "reviewed_at": "2026-11-22",
     "review_after_days": 90,
     "sha256": "10e05c99210a9b27d8b624533933e34dc621ff1b2143c7e78c1e4cadd8ac3dfb",
     "notes": "Reviewed 2026-11-22 against current primary pages: MCP intro, architecture and governance; Anthropic's MCP announcement; a2a-protocol.org (home, specification, agent discovery, extensions); ACP README, delegate_payment OpenAPI and agenticcommerce.dev; ucp.dev home and specification overview; ap2-protocol.org specification, flows, checkout and payment mandate pages; FIDO passkeys, payments and agentic AI pages; Visa developer pages for Intelligent Commerce and Trusted Agent Protocol; developer.mastercard.com. Corrected: AP2 v0.2 has Checkout and Payment Mandates (open and closed), not Intent/Cart/Payment; the Agent Card path is agent-card.json; A2A also binds gRPC and uses SendMessage. Removed claims no source supported: named pilots and banks (DBS, Revolut, BILL, Billtrust, Westpac, Santander), Cloudflare co-development of TAP, AP4M/x402, ChatGPT Instant Checkout with Etsy/Shopify, UCP surfaces and conformance suites, and Visa spend-limit tokens. Mastercard's Agent Pay page returned 403, so Mastercard text is limited to MDES and the Verifiable Intent contribution confirmed by FIDO. Quiz renamed to AP2 v0.2 terms; correct index unchanged. Interactive walkthrough in web/app.js (outside the fingerprint) updated to match. Offline simulation only; no payment, account or model call."
   },
   "lesson:agent-incidents": {
-    "revision": 3,
+    "revision": 4,
     "reviewed_at": "2026-11-18",
     "review_after_days": 60,
     "sha256": "a4e0e73a84ff27b06715c822053ae6fadd8780b154a9041618138aa83c9c6a54",

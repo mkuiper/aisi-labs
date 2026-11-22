@@ -95,6 +95,7 @@ phone-width first-visit pass and a phone-width reading-load pass.
    to one coherent fix set. Done.
 10. Quiz feedback: every option's feedback says why it is right or wrong, in
     plain words. Change a correct index only if a source shows it is wrong.
+    Done.
 11. Monday summary: on Monday before 09:00 Canberra, summarise the log for the
     owner. List the commits and anything left undone. Add no new feature.
 
@@ -439,4 +440,33 @@ screenshots inspected.
 - Not checked: a real screen reader (Orca) listening session. The smoke test
   checks the live region's text, not speech output. Recommend one Orca pass in
   the observed pilot.
+- URLs opened: none.
+
+### Round 10 — Make quiz explanations say why (Mon 23 Nov, 01:43)
+
+- Read every option and explanation in all 17 lesson quizzes and the five
+  incident *Break the path* checks.
+- Bug: the incident checks showed "Best fit. Best fit." because the correct
+  explanation repeated the verdict the interface adds. Removed from the five
+  strings in `web/app.js`.
+- Rewrote seven lesson explanations that did not plainly say why, or used
+  jargon: `tools-skills` (correct), `responsible-use` (correct), `open-models`
+  (correct), `agentic-commerce` (system-prompt and MCP distractors),
+  `agent-incidents` (open-weight distractor). The `feedback` field still
+  mirrors the correct option. No correct index changed; no new facts.
+- Records: editorial only, so per CONTENT_MAINTENANCE the five revisions were
+  incremented but dates and fingerprints kept. They report `changed` until a
+  source re-read. `tools-skills`, `responsible-use` and `agentic-commerce`
+  were re-read on 22 Nov, so that is quick; `open-models` and
+  `agent-incidents` need a full source pass.
+- Tests: new unit test that lesson explanations never start with the verdict
+  and that incident checks do not repeat it; smoke asserts no "Best fit. Best
+  fit." in the incident check.
+- Checked: 80 unit/HTTP tests OK; `node --check` on all three files;
+  `git diff --check`; smoke PASS. Inspected `reports/scenario-feedback-desktop.png`
+  and `reports/incident-breakout-desktop.png`: feedback renders normally; the
+  incidents page shows "Changed since recorded review", as intended.
+- Not checked: fairness of the questions themselves (only explanations were
+  in scope); the incident checks' facts against sources (wording unchanged
+  apart from the duplicate verdict).
 - URLs opened: none.

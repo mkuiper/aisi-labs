@@ -1,5 +1,16 @@
 # Learning material history
 
+## 2026-11-23 — editorial pass on quiz explanations
+
+- Editorial only, so the review dates and fingerprints are kept and these lessons now report `changed` until their next source review (docs/CONTENT_MAINTENANCE.md):
+  - `lesson:tools-skills` revision 6: the correct choice now says what a skill does for future sessions.
+  - `lesson:responsible-use` revision 5: the correct choice now says why a fresh public copy is safe to bring in.
+  - `lesson:open-models` revision 5: the correct choice now names the questions the ‘open’ label leaves unanswered.
+  - `lesson:agentic-commerce` revision 4: the system-prompt and MCP distractors are in plain words, without "defence-in-depth" or "schema field".
+  - `lesson:agent-incidents` revision 4: the open-weight distractor is shorter and plainer.
+- Every other option in all 17 lessons was read and already said why it fits or what it misses. No correct index changed; no facts were added.
+- The five incident *Break the path* checks in `web/app.js` (not fingerprinted) had "Best fit." in the correct option's text as well as the interface verdict; the duplicate was removed.
+
 ## 2026-11-22 — agentic-commerce corrected; chat-agents re-read
 
 - `lesson:agentic-commerce`, revision 3, `reviewed_at` 2026-11-22. AP2 v0.2 defines a Checkout Mandate (binding a merchant-signed checkout) and a Payment Mandate (payee, amount, instrument), each in open (user-signed limits) and closed (one checkout) forms. The lesson, worked example, quiz and walkthrough now use these terms instead of IntentMandate/CartMandate. The quiz's correct index is unchanged. A2A's Agent Card path is now `/.well-known/agent-card.json`, its bindings include gRPC, and the walkthrough uses `SendMessage`.

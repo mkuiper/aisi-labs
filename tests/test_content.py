@@ -333,6 +333,15 @@ class ContentTests(unittest.TestCase):
                 self.assertEqual(lesson['feedback'], lesson['option_feedback'][lesson['correct']])
                 self.assertTrue(all(isinstance(text, str) and len(text) > 40
                                     for text in lesson['option_feedback']))
+                # The interface adds the verdict; the text must not repeat it.
+                self.assertFalse(any(re.match(r'(Not the )?[Bb]est fit', text)
+                                     for text in lesson['option_feedback']))
+
+    def test_incident_check_feedback_does_not_repeat_the_verdict(self):
+        script = (ROOT / 'web/app.js').read_text(encoding='utf-8')
+        self.assertEqual(script.count("check:{"), 5)
+        self.assertNotIn(",'Best fit.", script)
+        self.assertNotIn("['Best fit.", script)
 
     def test_terminal_lesson_distinguishes_shortcuts_from_shell_commands(self):
         terminal = next(lesson for lesson in LESSONS if lesson['id'] == 'terminal')

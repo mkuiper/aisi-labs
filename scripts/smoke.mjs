@@ -353,6 +353,7 @@ try{
   assert(await evaluate('document.querySelector("#incident-diagram .incident-check .quiz-feedback").textContent.startsWith("Not the best fit.")'));
   await click('[data-incident-answer="1"]');
   assert(await evaluate('document.querySelector("#incident-diagram .incident-check .quiz-feedback").textContent.startsWith("Best fit.")'));
+  assert(!(await evaluate('document.querySelector("#incident-diagram .incident-check .quiz-feedback").textContent.includes("Best fit. Best fit.")')), 'Incident check verdict is repeated');
   assert(await evaluate('document.querySelector("[data-incident-answer=\'1\']").getAttribute("aria-pressed")==="true"'));
   await click('[data-incident-play]');
   assert(await evaluate('document.querySelector("[data-incident-play]").textContent.includes("Pause")'));

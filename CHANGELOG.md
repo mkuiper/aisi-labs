@@ -1,5 +1,11 @@
 # Changes
 
+## 23 November 2026 — clearer quiz explanations
+
+- The five incident *Break the path* checks no longer show "Best fit. Best fit." when the right answer is chosen. The verdict is added by the interface once.
+- Seven quiz explanations in five lessons now say plainly why the choice is right or wrong. No correct answer changed.
+- Verification: unit/HTTP tests (including a new check that explanation text never repeats the verdict), JavaScript syntax checks, `git diff --check` and the browser smoke test, which now fails if an incident verdict repeats.
+
 ## 22 November 2026 — screen readers hear each step
 
 - Changing step or mode in the agent loop, the commerce walkthrough, the incident stages (including autoplay) and the guardrail game is now announced by a screen reader: the step number, title, text and, for incidents, the evidence label. Guardrail choices announce the verdict, reason and score. Previously these regions were rebuilt on each step and often stayed silent.

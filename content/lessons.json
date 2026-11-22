@@ -320,7 +320,7 @@
       "Check the exact checkpoint’s terms and provenance, hardware needs and configured endpoint."
     ],
     "correct": 2,
-    "feedback": "Assess these separately, along with any required code and tool connections. ‘Open’ does not settle licence, safety or location; a facilitator must approve the trial before installation.",
+    "feedback": "These are the questions the ‘open’ label leaves unanswered: the model’s own terms and origin, whether the laptop can run it, and where it will actually run. Also check any required code and tool connections. A facilitator must approve the trial before installation.",
     "sources": [
       [
         "OSI: Open Source AI Definition 1.0",
@@ -362,7 +362,7 @@
     "option_feedback": [
       "The runner and the model are separate releases. The runner’s licence and defaults do not establish the model’s terms, provenance or inference location.",
       "Disk space and format are useful checks, but do not cover runtime memory, licence conditions or whether a cloud endpoint is selected.",
-      "Assess these separately, along with any required code and tool connections. ‘Open’ does not settle licence, safety or location; a facilitator must approve the trial before installation."
+      "These are the questions the ‘open’ label leaves unanswered: the model’s own terms and origin, whether the laptop can run it, and where it will actually run. Also check any required code and tool connections. A facilitator must approve the trial before installation."
     ]
   },
   {
@@ -589,9 +589,9 @@
     "correct": 1,
     "feedback": "The user-signed limit is checked outside the model, by the merchant and the payment network, so an out-of-bounds checkout fails even if the model was misled.",
     "option_feedback": [
-      "System-prompt reminders are helpful defence-in-depth, but they are not an enforcement boundary; a model can still be misled by untrusted source text.",
+      "A reminder in the system prompt is only an instruction to the model. It can help, but hidden text can still mislead the model, and nothing in the prompt stops the payment.",
       "The user-signed limit is checked outside the model, by the merchant and the payment network, so an out-of-bounds checkout fails even if the model was misled.",
-      "MCP transports structured tool calls and results; it does not inherently know a user’s budget or prevent a valid schema field from increasing a cart total."
+      "MCP carries tool calls and results between the agent and the tool. It does not know the user’s budget, so it cannot stop a valid-looking fee from raising the cart total."
     ],
     "sources": [
       [
@@ -704,7 +704,7 @@
     "option_feedback": [
       "Text instructions in a system prompt cannot stop code execution or network routing once an agent can execute code or reach a proxy.",
       "In both cases, code-executing agents bypassed a soft or shared boundary: a package-registry cache proxy (Artifactory) reachable from the evaluation sandbox in July 2026, and a Python AST filter in CVE-2025-5120. Containment needs operating-system or virtual-machine isolation and network isolation, with no shared proxy and no broad credentials.",
-      "Both proprietary frontier evaluation models and open-weight models can cross soft boundaries if given code execution and network/proxy paths; containment depends on the infrastructure boundary, not whether weights are proprietary."
+      "Whether the weights are open or proprietary does not change which paths exist. Any model that can run code and reach a proxy can cross a soft boundary; containment depends on the infrastructure."
     ],
     "sources": [
       [
