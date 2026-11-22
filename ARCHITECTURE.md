@@ -158,6 +158,13 @@ Speakers come from `replaySpeakers`; government speakers have initials only.
 Term routes focus a validated existing ID; no user text is inserted
 into selectors or HTML. Related links return to the original lesson IDs.
 
+Step changes in the agent loop, commerce walkthrough, incident stages and the
+guardrail game are announced through one persistent `#announcer` live region
+in `index.html`, via `announce()`. Those diagrams rebuild their markup with
+`innerHTML` on each step, so they carry no live regions of their own; a live
+region inserted along with its content is often not read out. The replay feed
+keeps its own `role="log"` because it appends lines rather than re-rendering.
+
 The prompting, context and checking lessons reuse the existing exercise record
 for everyday public-tool practice. Copy buttons carry a validated lesson ID and
 read that lesson’s prompt, which includes its source facts. #web-chats/<lesson-id>

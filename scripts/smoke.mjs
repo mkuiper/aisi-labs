@@ -230,6 +230,8 @@ try{
   await click('[data-commerce-mode="rejected"]');
   await click('[data-commerce-goto="4"]');
   assert(await evaluate('document.querySelector("#commerce-diagram").textContent.includes("MANDATE_LIMIT_EXCEEDED")'));
+  {const announced=async()=>{await delay(200);return evaluate('document.querySelector("#announcer").textContent');};const said=await announced();assert(said.startsWith('Step 5 of 5: Out-of-mandate'),said);}
+  assert.equal(await evaluate('document.querySelectorAll("#commerce-diagram [aria-live]").length'),0);
   assert(await evaluate('document.querySelector("#commerce-diagram .mandate-readout").textContent.includes("Settled $0")'));
   assert(await evaluate('document.querySelectorAll("#commerce-diagram .diagram-node.is-breach").length===1'));
   assert(await evaluate('!document.querySelector("#commerce-diagram").textContent.includes("IntentMandate")'));
@@ -260,6 +262,9 @@ try{
   assert(await evaluate('document.querySelector("[data-incident-play]").getAttribute("aria-pressed")==="false"'));
   await screenshot('incident-breakout-held-desktop');
   await click('[data-incident-goto="1"]');
+  // Step changes are announced through one persistent live region.
+  {const announced=async()=>{await delay(200);return evaluate('document.querySelector("#announcer").textContent');};const said=await announced();assert(said.startsWith('Step 2 of ')&&said.includes('Evidence: '),said);}
+  assert.equal(await evaluate('document.querySelectorAll("#incident-diagram [aria-live]:not(#agent-feed), #incident-diagram [role=status]").length'),0);
   assert(await evaluate('document.querySelector("#incident-diagram").textContent.includes("Artifactory")'));
   assert(await evaluate('document.querySelector("#incident-diagram .gate-state").textContent.includes("Boundary crossed")'));
   assert(await evaluate('document.querySelector("#incident-diagram .boundary-map").getAttribute("data-crossing")==="true"'));
@@ -534,11 +539,13 @@ try{
   assert.equal(await evaluate('document.querySelectorAll("#guardrail-game [data-guard-next]").length'),0);
   await click('[data-guard="allow"]');
   assert(await evaluate('document.querySelector(".guard-feedback").textContent.startsWith("Good call.")'));
+  {const announced=async()=>{await delay(200);return evaluate('document.querySelector("#announcer").textContent');};const said=await announced();assert(said.startsWith('Good call.')&&said.endsWith('Score 1 of 1.'),said);}
   assert.equal(await evaluate('document.querySelector("#guard-score").textContent'),'Score 1 / 1');
   assert(await evaluate('[...document.querySelectorAll("[data-guard]")].every(b=>b.disabled)'));
   assert(await evaluate('document.activeElement.matches("[data-guard-next]")'));
   await click('[data-guard-next]');
   assert(await evaluate('document.activeElement.matches("[data-guard=\'allow\']")'));
+  {const announced=async()=>{await delay(200);return evaluate('document.querySelector("#announcer").textContent');};const said=await announced();assert(said.startsWith('Request 2 of 6: '),said);}
   await click('[data-guard="block"]');
   assert(await evaluate('document.querySelector(".guard-feedback").textContent.startsWith("Allow fits better.")'));
   assert(await evaluate('document.querySelector("[data-guard=\'block\']").classList.contains("incorrect")&&document.querySelector("[data-guard=\'allow\']").classList.contains("correct")'));
@@ -552,6 +559,7 @@ try{
   await noOverflow('guardrail recap desktop');
   await screenshot('guardrail-recap-desktop');
   await click('[data-guard-restart]');
+  {const announced=async()=>{await delay(200);return evaluate('document.querySelector("#announcer").textContent');};const said=await announced();assert(said.startsWith('Restarted. Request 1 of 6: '),said);}
   assert(await evaluate('document.querySelector("#guardrail-game .tiny-label").textContent==="REQUEST 1 OF 6"'));
   await click('[data-mode="chat"]');
   assert(await evaluate('document.querySelector("#agent-diagram").textContent.includes("Ask a question")'));
@@ -560,6 +568,8 @@ try{
   assert(await evaluate('document.querySelector("#agent-diagram .cycle-c2g").textContent.includes("↑")'));
   await click('[data-trace="1"]');
   assert(await evaluate('document.querySelector("#trace-title").textContent.includes("requests a tool")'));
+  {const announced=async()=>{await delay(200);return evaluate('document.querySelector("#announcer").textContent');};const said=await announced();assert(said.startsWith('Step 2 of ')&&said.includes('requests a tool'),said);}
+  assert.equal(await evaluate('document.querySelectorAll("#agent-diagram [aria-live], #guardrail-game [aria-live], #guardrail-game [role=status]").length'),0);
   await click('[data-answer="1"]');
   assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("Best fit.")'));
   await click('[data-complete]');

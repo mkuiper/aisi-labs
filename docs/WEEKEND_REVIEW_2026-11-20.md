@@ -92,7 +92,7 @@ phone-width first-visit pass and a phone-width reading-load pass.
    then refresh the fingerprints. Done.
 9. Accessibility of the interactive pieces, including items 3 to 5: keyboard
    order, visible focus, announcing stage changes, and reduced motion. Keep it
-   to one coherent fix set.
+   to one coherent fix set. Done.
 10. Quiz feedback: every option's feedback says why it is right or wrong, in
     plain words. Change a correct index only if a source shows it is wrong.
 11. Monday summary: on Monday before 09:00 Canberra, summarise the log for the
@@ -405,3 +405,38 @@ screenshots inspected.
   claims resting on them were dropped or kept generic. The guardrail game
   restates existing rules and had no separate source check.
 - URLs opened: 30, all read-only, listed in `content/CHANGELOG.md`.
+
+### Round 9 — Announce step changes to screen readers (Sun 22 Nov, 19:43)
+
+- Audit of the incidents (stages, Break the path check, autoplay), the three
+  replays, commerce, the agent loop and the guardrail game:
+  - Keyboard order and focus: all controls are native buttons. Every handler
+    already moves focus to the pressed control or the next logical one.
+    `:focus-visible` gives a 3px outline. No change needed.
+  - Reduced motion: all seven animations (pulseGlow, pulseBreach, arrowPulse,
+    crossGateX, replay-in, typing, plus transitions) are switched off under
+    `prefers-reduced-motion`. The replay shows every line at once and
+    autoplay slows to 7 s. No change needed.
+  - Announcements: broken. The agent-loop, commerce and incident stage text,
+    the guardrail feedback and the incident check feedback were live regions
+    inside markup rebuilt with `innerHTML`. Screen readers often skip a live
+    region inserted together with its content, and the incident autoplay
+    announced nothing reliable.
+- Fix: one persistent `#announcer` (`sr-only`, `role="status"`, polite,
+  atomic) in `web/index.html`, plus `announce()` (clear, then set after 60 ms
+  so repeats are re-read). It is called on every step, mode and view change,
+  each autoplay tick, each check answer and each guardrail choice, Next and
+  restart. The live attributes inside rebuilt markup were removed to avoid
+  double announcements. The replay feed's `role="log"` stays, as it appends.
+  The quiz feedback stays, as it is not rebuilt.
+- Smoke: asserts the announcer text after an incident step, guardrail choice,
+  Next and restart, an agent-loop step and the final commerce step. It also
+  asserts that no rebuilt diagram has its own live region (except
+  `#agent-feed`).
+- Checked: 79 unit/HTTP tests OK; `node --check` on all three files;
+  `git diff --check`; smoke PASS. `reports/guardrail-game-desktop.png`
+  inspected: nothing new is visible.
+- Not checked: a real screen reader (Orca) listening session. The smoke test
+  checks the live region's text, not speech output. Recommend one Orca pass in
+  the observed pilot.
+- URLs opened: none.
