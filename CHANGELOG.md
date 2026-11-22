@@ -1,5 +1,12 @@
 # Changes
 
+## 22 November 2026 — commerce lesson corrected
+
+- *Agentic commerce & payment protocols* now matches the current sources. AP2 has Checkout and Payment Mandates, in open and closed forms, rather than Intent/Cart/Payment mandates. The A2A Agent Card path and method name are current. Named pilots, banks and partnerships that no readable source confirmed were removed. The walkthrough and quiz use the new terms; the correct answer is unchanged.
+- *Chatbots, agents & harnesses* was re-read against its sources and needed no change.
+- The smoke test now screenshots two walkthrough steps and checks the old mandate names are gone.
+- Verification: unit/HTTP tests, JavaScript syntax checks, `git diff --check` and the browser smoke test, with the desktop screenshots inspected.
+
 ## 22 November 2026 — four lessons re-checked against their sources
 
 - *Tools, MCP & skills*, *Memory*, *“Soul”, identity & instructions* and *Permissions & responsible exploration* were re-read against current primary sources, and their review records are in date again.

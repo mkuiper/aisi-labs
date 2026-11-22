@@ -1,5 +1,35 @@
 # Learning material history
 
+## 2026-11-22 — agentic-commerce corrected; chat-agents re-read
+
+- `lesson:agentic-commerce`, revision 3, `reviewed_at` 2026-11-22. AP2 v0.2 defines a Checkout Mandate (binding a merchant-signed checkout) and a Payment Mandate (payee, amount, instrument), each in open (user-signed limits) and closed (one checkout) forms. The lesson, worked example, quiz and walkthrough now use these terms instead of IntentMandate/CartMandate. The quiz's correct index is unchanged. A2A's Agent Card path is now `/.well-known/agent-card.json`, its bindings include gRPC, and the walkthrough uses `SendMessage`.
+- Removed because no source we could read supports them: the named pilots and banks (DBS, Revolut, BILL, Billtrust, Westpac, Santander, Singapore and Malaysia issuers), Cloudflare co-developing TAP, Mastercard AP4M/x402 and KYA onboarding, ChatGPT Instant Checkout with Etsy and Shopify, UCP's named AI surfaces and conformance suites, Visa spend-limit tokens, and the MCP deployment list. Visa's own wording that the product is still being deployed was added. The walkthrough's decline code is now labelled illustrative.
+- Sources swapped: the AP2 specification for the GitHub repository, Visa's developer page for the corporate page (which redirects), and FIDO's payments page for its passkeys page. There are still eight.
+- `lesson:chat-agents`, revision 3, `reviewed_at` 2026-11-22. Re-read against both Anthropic engineering articles; every claim held; no text change.
+- Sources read, read-only, with no account, payment or model call:
+  https://modelcontextprotocol.io/docs/getting-started/intro ,
+  https://modelcontextprotocol.io/docs/learn/architecture ,
+  https://modelcontextprotocol.io/community/governance.md ,
+  https://www.anthropic.com/news/model-context-protocol ,
+  https://a2a-protocol.org/ , https://a2a-protocol.org/latest/specification/ (partly verbatim) ,
+  https://a2a-protocol.org/latest/topics/agent-discovery/ , https://a2a-protocol.org/latest/topics/what-is-a2a/ ,
+  https://a2a-protocol.org/latest/topics/extensions/ ,
+  https://github.com/agentic-commerce-protocol/agentic-commerce-protocol (README and spec/2026-04-17/openapi/openapi.delegate_payment.yaml) ,
+  https://www.agenticcommerce.dev/ , https://developers.openai.com/commerce/ ,
+  https://ucp.dev/ , https://ucp.dev/latest/specification/overview/ ,
+  https://github.com/google-agentic-commerce/AP2 , https://ap2-protocol.org/ ,
+  https://ap2-protocol.org/ap2/specification/ , https://ap2-protocol.org/ap2/flows/ ,
+  https://ap2-protocol.org/ap2/checkout_mandate/ , https://ap2-protocol.org/ap2/payment_mandate/ ,
+  https://fidoalliance.org/passkeys/ , https://fidoalliance.org/fido-alliance-payments/ ,
+  https://fidoalliance.org/fido-alliance-agentic-ai/ ,
+  https://corporate.visa.com/en/products/intelligent-commerce.html (301 to https://www.visa.com/en-us/solutions/intelligent-commerce) ,
+  https://developer.visa.com/capabilities/visa-intelligent-commerce ,
+  https://developer.visa.com/capabilities/trusted-agent-protocol/overview ,
+  https://developer.mastercard.com/ ,
+  https://www.anthropic.com/engineering/building-effective-agents ,
+  https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents .
+- Not readable: https://www.mastercard.com/global/en/business/artificial-intelligence/mastercard-agent-pay.html (403). The lesson still links to it for learners.
+
 ## 2026-11-22 — starters: full re-read
 
 - `starters`, revision 2, `reviewed_at` 2026-11-22. Re-read every starter in `templates.py` and compared each lab's declared files, prompt, steps and checks with the generated files. All match: six fictional submissions across three topics; six months of fictional service data; draft.md's three deliberate errors line up with evidence.md and the worked answer (12 of 20 is 60%, no comparison group, no cost analysis). No text changed. No model call; the exercises were not run with an assistant. No URLs opened.

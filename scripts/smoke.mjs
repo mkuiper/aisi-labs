@@ -232,7 +232,14 @@ try{
   assert(await evaluate('document.querySelector("#commerce-diagram").textContent.includes("MANDATE_LIMIT_EXCEEDED")'));
   assert(await evaluate('document.querySelector("#commerce-diagram .mandate-readout").textContent.includes("Settled $0")'));
   assert(await evaluate('document.querySelectorAll("#commerce-diagram .diagram-node.is-breach").length===1'));
+  assert(await evaluate('!document.querySelector("#commerce-diagram").textContent.includes("IntentMandate")'));
+  await evaluate('document.querySelector("#commerce-diagram").scrollIntoView({block:"start"})');await delay(300);
+  await screenshot('commerce-rejected-desktop');
   await click('[data-commerce-mode="approved"]');
+  await click('[data-commerce-goto="2"]');
+  assert(await evaluate('document.querySelector("#commerce-diagram").textContent.includes("open Payment Mandate")'));
+  await evaluate('document.querySelector("#commerce-diagram").scrollIntoView({block:"start"})');await delay(300);
+  await screenshot('commerce-consent-desktop');
   await go('#learn/agent-incidents');
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .diagram-node").length'),4);
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .step-pill").length'),5);

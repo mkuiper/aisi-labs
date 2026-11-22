@@ -1,10 +1,10 @@
 {
   "lesson:chat-agents": {
     "revision": 3,
-    "reviewed_at": "2026-11-13",
+    "reviewed_at": "2026-11-22",
     "review_after_days": 90,
     "sha256": "eea34cd9234cfc88c815fd607474b3dd95f211e0161ca1ecbf10cbfd57927cf1",
-    "notes": "Reviewed 2026-11-13: inspected full lesson, expandable deeper-detail notes for Model/Chatbot/Harness/Agent/Workflow, interactive agent/chat diagram, five-step authored trace and scenario question/option_feedback against Anthropic building-effective-agents and effective-harnesses-for-long-running-agents articles, and local programme boundaries. No live model calls or paid exercises."
+    "notes": "Reviewed 2026-11-22: re-read the full lesson, Model/Chatbot/Harness/Agent/Workflow deeper-detail notes and scenario question/option_feedback against Anthropic's Building effective agents (workflows run on predefined code paths, agents dynamically direct their own tool use; ground truth from the environment; stopping conditions; higher costs and compounding errors) and Effective harnesses for long-running agents (the Claude Agent SDK as a general-purpose agent harness; progress files and git across context windows). Every claim held; text unchanged. The You're the guardrail game (added 2026-11-21, in web/app.js, outside the fingerprint) restates responsible-use rules and was not source-checked separately. No model call."
   },
   "lesson:terminal": {
     "revision": 3,
@@ -371,11 +371,11 @@
     "notes": "Reviewed 2026-11-13: re-checked setup guidance against official Codex/OpenAI API, Claude Code/Claude Console and Gemini CLI/AI Studio authentication and key documentation, plus local configuration.py adapters. Console URLs remain documented destinations, not a signed-in walkthrough. No live accounts, prices, keys or model calls tested."
   },
   "lesson:agentic-commerce": {
-    "revision": 2,
-    "reviewed_at": "2026-11-13",
+    "revision": 3,
+    "reviewed_at": "2026-11-22",
     "review_after_days": 90,
-    "sha256": "b21229624f928e29c601e5582525f7cca7f76cd726e8c1a17b52b4f18e73af13",
-    "notes": "Authored and reviewed 2026-11-13 against primary protocol specifications and payment-network documentation: Model Context Protocol (modelcontextprotocol.io), Linux Foundation Agent2Agent Protocol (a2a-protocol.org), OpenAI/Stripe Agentic Commerce Protocol (github.com/agentic-commerce-protocol/agentic-commerce-protocol), Google/Shopify Universal Commerce Protocol (ucp.dev), Google/FIDO Agent Payments Protocol AP2 (github.com/google-agentic-commerce/AP2), FIDO Alliance passkeys/payments guidance (fidoalliance.org), Visa Intelligent Commerce & Trusted Agent Protocol (corporate.visa.com), and Mastercard Agent Pay & MDES Agentic Tokens (mastercard.com). Ordered sections by protocol layer (Layer 1 Connectivity -> Layer 2 Storefront -> Layer 3 Consent -> Layer 4 Settlement) and inspected interactive mandate/tamper simulation. Offline simulation only; no live payment instruments, merchant accounts or model calls."
+    "sha256": "10e05c99210a9b27d8b624533933e34dc621ff1b2143c7e78c1e4cadd8ac3dfb",
+    "notes": "Reviewed 2026-11-22 against current primary pages: MCP intro, architecture and governance; Anthropic's MCP announcement; a2a-protocol.org (home, specification, agent discovery, extensions); ACP README, delegate_payment OpenAPI and agenticcommerce.dev; ucp.dev home and specification overview; ap2-protocol.org specification, flows, checkout and payment mandate pages; FIDO passkeys, payments and agentic AI pages; Visa developer pages for Intelligent Commerce and Trusted Agent Protocol; developer.mastercard.com. Corrected: AP2 v0.2 has Checkout and Payment Mandates (open and closed), not Intent/Cart/Payment; the Agent Card path is agent-card.json; A2A also binds gRPC and uses SendMessage. Removed claims no source supported: named pilots and banks (DBS, Revolut, BILL, Billtrust, Westpac, Santander), Cloudflare co-development of TAP, AP4M/x402, ChatGPT Instant Checkout with Etsy/Shopify, UCP surfaces and conformance suites, and Visa spend-limit tokens. Mastercard's Agent Pay page returned 403, so Mastercard text is limited to MDES and the Verifiable Intent contribution confirmed by FIDO. Quiz renamed to AP2 v0.2 terms; correct index unchanged. Interactive walkthrough in web/app.js (outside the fingerprint) updated to match. Offline simulation only; no payment, account or model call."
   },
   "lesson:agent-incidents": {
     "revision": 3,

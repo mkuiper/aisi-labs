@@ -89,7 +89,7 @@ phone-width first-visit pass and a phone-width reading-load pass.
 7. Review debt: the `starters` bundle. Re-read every starter file, then
    refresh the record. Done.
 8. Review debt: `agentic-commerce` and `chat-agents`. Re-read their sources,
-   then refresh the fingerprints.
+   then refresh the fingerprints. Done.
 9. Accessibility of the interactive pieces, including items 3 to 5: keyboard
    order, visible focus, announcing stage changes, and reduced motion. Keep it
    to one coherent fix set.
@@ -371,3 +371,37 @@ screenshots inspected.
 - Not checked: the exercises with a real assistant (that needs a model call)
   and how the HTML starters look in every browser.
 - URLs opened: none.
+
+### Round 8 — Correct the commerce lesson and re-read the agents lesson (Sun 22 Nov, 13:43)
+
+- `chat-agents`: every claim held against both Anthropic articles. Record
+  refreshed (2026-11-22); text and fingerprint unchanged.
+- `agentic-commerce` needed real corrections, so this round rewrote it
+  rather than just re-dating it (revision 3):
+  - AP2 v0.2 uses Checkout and Payment Mandates, open (user-signed limits)
+    and closed (one checkout). The old IntentMandate/CartMandate wording was
+    replaced in the lesson, worked example, quiz and walkthrough. The correct
+    index is unchanged.
+  - A2A: `agent-card.json`, gRPC binding, `SendMessage` (verbatim on the
+    extensions page).
+  - Removed unsupported specifics: named pilots and banks, Cloudflare and
+    TAP, AP4M/x402, KYA onboarding, Instant Checkout with Etsy/Shopify, UCP
+    surfaces and conformance suites, Visa spend-limit tokens, and the MCP
+    deployment list.
+  - Added Visa's own note that the product is still being deployed. The
+    decline code is labelled illustrative.
+  - Three sources were swapped for pages that were actually read, keeping
+    eight, as the test requires.
+- Smoke: the commerce block now asserts that "IntentMandate" is gone and that
+  the consent step says "open Payment Mandate". It saves
+  `reports/commerce-rejected-desktop.png` and
+  `reports/commerce-consent-desktop.png`; both were inspected.
+- Checked: 79 unit/HTTP tests OK; `node --check` on all three files;
+  `git diff --check`; review report (only `resource:helm` outstanding);
+  smoke PASS.
+- Not checked: Mastercard's Agent Pay page returned 403, so Mastercard text
+  is cut back to what developer.mastercard.com and FIDO confirm. A2A section
+  9 (JSON-RPC) and parts of ucp.dev came through only as fetch summaries;
+  claims resting on them were dropped or kept generic. The guardrail game
+  restates existing rules and had no separate source check.
+- URLs opened: 30, all read-only, listed in `content/CHANGELOG.md`.
