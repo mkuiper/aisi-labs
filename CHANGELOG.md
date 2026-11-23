@@ -1,5 +1,11 @@
 # Changes
 
+## 24 November 2026 — three lessons re-checked against their sources
+
+- *Tools, MCP & skills*, *Permissions & responsible use* and *Agentic commerce & payment protocols* are back in date after their sources were re-read.
+- Agentic commerce gets four small corrections: the ACP "firsts" (ChatGPT, Stripe's Shared Payment Token) are credited to the ACP site rather than OpenAI; ACP's April 2026 version adds consumer authentication (3-D Secure), not general sign-in; AP2 is described the way its own site describes it; and A2A's August 2026 move to the Agentic AI Foundation is noted. The FIDO link now points to FIDO's agentic AI page, which carries the working-group claims.
+- Verification: unit/HTTP tests, JavaScript syntax checks, `git diff --check` and the browser smoke test.
+
 ## 24 November 2026 — a robot cast for the agent's-eye replays
 
 - Agent-side lines in the three replays now have small robot avatars: the evaluation agent, a Copilot on marionette strings for EchoLeak, a robot holding up a message-board post, a robot with thought bubbles for reasoning, and a bespectacled robot for AISI Labs notes. They are original inline drawings with no image files, and are decorative (hidden from screen readers).

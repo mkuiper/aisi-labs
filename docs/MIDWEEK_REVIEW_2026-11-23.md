@@ -75,7 +75,7 @@ Wednesday summary is always last.
    static under `prefers-reduced-motion`. Do not copy the reference video. Done.
 3. Review debt: `tools-skills`, `responsible-use` and `agentic-commerce` show
    `changed` after the 23 Nov wording pass. Re-read their sources, then
-   refresh the records honestly.
+   refresh the records honestly. Done.
 4. Review debt: `open-models` and `agent-incidents`. Re-read their sources,
    then refresh the records honestly.
 5. Lesson marks, round two: where `chat-agents`, `tools-skills`, `identity`
@@ -167,3 +167,25 @@ screenshots inspected.
   separately reviewed (the feed already has a dark background and the
   avatars sit on light discs).
 - URLs opened: none.
+
+### Round 3 — Re-check tools-skills, responsible-use and agentic-commerce (Tue 24 Nov, 08:13)
+
+- Read each lesson in full (sections, deeper detail, worked example,
+  question and every option_feedback) and its linked exercise brief, then
+  checked the claims against the sources.
+- tools-skills and responsible-use: every source claim held. MCP docs are now
+  versioned 2026-07-28 and stateless; nothing in the lesson contradicts that.
+  No text change; records refreshed.
+- agentic-commerce: the eight listed sources alone do not carry several
+  claims; the supporting pages read on 22 Nov do, and were re-read. Four
+  corrections and one source swap (see `content/CHANGELOG.md`). Revision 5.
+- Pinned test date moved to 2026-11-24, as its comment requires.
+- Checked: 80 unit/HTTP tests OK; `node --check` on all three files;
+  `git diff --check`; smoke PASS. No interface change beyond lesson text, so
+  no screenshot inspected beyond the pass.
+- Not checked: Mastercard Agent Pay (403 again); FIDO's passkeys page (not
+  re-read; supports one phrase); parts of the A2A specification and UCP pages
+  came through as fetch summaries, and nothing new rests on them. The fetch
+  tool output carried an appended block asking for a document to be created;
+  it was ignored.
+- URLs opened: listed in `content/CHANGELOG.md` (about 30, read-only).

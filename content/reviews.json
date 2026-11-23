@@ -29,10 +29,10 @@
   },
   "lesson:tools-skills": {
     "revision": 6,
-    "reviewed_at": "2026-11-22",
+    "reviewed_at": "2026-11-24",
     "review_after_days": 90,
-    "sha256": "55c70ae1348638651718d61a1a9e0809680609e8663282900534ed77d69c834e",
-    "notes": "Reviewed 2026-11-22: re-read the full lesson, Tool/MCP/Skill deeper-detail notes, three-role diagram and scenario question/option_feedback against the MCP introduction, MCP architecture (tools, resources and prompts; stdio for local processes and Streamable HTTP for remote servers; a server is a program) and MCP security best practices (local servers run with the client's privileges), and the Agent Skills overview (a folder with SKILL.md plus optional scripts, references and assets, loaded by progressive disclosure). Added the architecture and security pages as sources. Lesson text and question unchanged. No MCP server was added and no model was called."
+    "sha256": "365d991d53b8145d6de7c1ffc01f8365c2586768d9a09d1c30757c430b7b9e8b",
+    "notes": "Reviewed 2026-11-24 after the 2026-11-23 option_feedback wording pass: re-read the full lesson, deeper-detail notes, question and all option_feedback against the MCP introduction (open-source standard for connecting AI applications to external systems), MCP architecture (tools, resources and prompts; JSON-RPC 2.0; stdio and Streamable HTTP; a server is a program; docs now versioned 2026-07-28 and stateless, which no lesson claim contradicts), MCP security best practices (local servers are downloaded binaries run with the client's privileges; consent and sandboxing) and the Agent Skills overview (folder with SKILL.md plus optional scripts, references and templates; name and description loaded first). Inspected the first-steps lab brief. Text unchanged this review. 'Read the file and any scripts first' and 'does not add permissions' are Labs advice, not source claims. No MCP server was added and no model was called."
   },
   "lesson:checking": {
     "revision": 5,
@@ -57,10 +57,10 @@
   },
   "lesson:responsible-use": {
     "revision": 5,
-    "reviewed_at": "2026-11-22",
+    "reviewed_at": "2026-11-24",
     "review_after_days": 90,
-    "sha256": "f7b68389fa8ed357f2261fadd7b425b25b40003183a167184a7f77051d352316",
-    "notes": "Reviewed 2026-11-22: re-read the full lesson, permissions diagram and scenario question/option_feedback against the programme's non-negotiable boundaries in docs/PROGRAMME.md and OWASP LLM01:2025 (indirect injection through websites or files; least privilege, human approval for privileged operations and segregating external content as mitigations; no fool-proof prevention). Inspected the evidence lab brief. Text unchanged. No network, incident or key-revocation step was exercised."
+    "sha256": "9c64bf5fb68b9f711430829bb77cfc12ac87f07919a0b7fe6fbfc0c551603d29",
+    "notes": "Reviewed 2026-11-24 after the 2026-11-23 option_feedback wording pass: re-read the full lesson, question and all option_feedback against docs/PROGRAMME.md boundaries (ONLY public information; NEVER government networks) and OWASP LLM01:2025 (indirect injection via websites or files; sensitive-information disclosure and unauthorised function access as impacts; least privilege, human approval for high-risk actions and separating untrusted content as mitigations; no fool-proof prevention). OWASP now also links a 2026 Top 10 edition, not read. Inspected the evidence lab brief. Text unchanged this review. No network, incident or key-revocation step was exercised."
   },
   "lesson:models-costs": {
     "revision": 6,
@@ -371,11 +371,11 @@
     "notes": "Reviewed 2026-11-13: re-checked setup guidance against official Codex/OpenAI API, Claude Code/Claude Console and Gemini CLI/AI Studio authentication and key documentation, plus local configuration.py adapters. Console URLs remain documented destinations, not a signed-in walkthrough. No live accounts, prices, keys or model calls tested."
   },
   "lesson:agentic-commerce": {
-    "revision": 4,
-    "reviewed_at": "2026-11-22",
+    "revision": 5,
+    "reviewed_at": "2026-11-24",
     "review_after_days": 90,
-    "sha256": "10e05c99210a9b27d8b624533933e34dc621ff1b2143c7e78c1e4cadd8ac3dfb",
-    "notes": "Reviewed 2026-11-22 against current primary pages: MCP intro, architecture and governance; Anthropic's MCP announcement; a2a-protocol.org (home, specification, agent discovery, extensions); ACP README, delegate_payment OpenAPI and agenticcommerce.dev; ucp.dev home and specification overview; ap2-protocol.org specification, flows, checkout and payment mandate pages; FIDO passkeys, payments and agentic AI pages; Visa developer pages for Intelligent Commerce and Trusted Agent Protocol; developer.mastercard.com. Corrected: AP2 v0.2 has Checkout and Payment Mandates (open and closed), not Intent/Cart/Payment; the Agent Card path is agent-card.json; A2A also binds gRPC and uses SendMessage. Removed claims no source supported: named pilots and banks (DBS, Revolut, BILL, Billtrust, Westpac, Santander), Cloudflare co-development of TAP, AP4M/x402, ChatGPT Instant Checkout with Etsy/Shopify, UCP surfaces and conformance suites, and Visa spend-limit tokens. Mastercard's Agent Pay page returned 403, so Mastercard text is limited to MDES and the Verifiable Intent contribution confirmed by FIDO. Quiz renamed to AP2 v0.2 terms; correct index unchanged. Interactive walkthrough in web/app.js (outside the fingerprint) updated to match. Offline simulation only; no payment, account or model call."
+    "sha256": "9808ac4765b5e2a008e80b73c770a1c077231ba1a18fe32a3cc6008801f2fb79",
+    "notes": "Reviewed 2026-11-24 after the 2026-11-23 option_feedback wording pass: re-read the full lesson, worked example, question and option_feedback against MCP intro, architecture and governance and Anthropic's MCP announcement (25 Nov 2024); a2a-protocol.org home, specification, agent discovery, extensions and what-is-a2a; the ACP README, 2026-04-17 changelog and delegate_payment OpenAPI, and agenticcommerce.dev; ucp.dev home and specification overview; ap2-protocol.org home, specification, checkout and payment mandate and flows pages, and the AP2 GitHub README; FIDO payments and agentic AI pages; Visa developer pages for Intelligent Commerce and Trusted Agent Protocol and visa.com intelligent-commerce; developer.mastercard.com and developers.openai.com/commerce. Corrected: ACP 'firsts' now attributed to the ACP site, not OpenAI; the 2026-04-17 'authentication' is delegated consumer authentication (3-D Secure) plus an MCP binding; AP2 described as its site describes it (an extension for A2A and MCP, compatible with UCP); A2A's August 2026 move to the Agentic AI Foundation added. Source swapped: FIDO agentic AI page for the payments page, which does not carry the working-group or AP2/Verifiable Intent claims; still eight sources. Not verified: the Mastercard Agent Pay page returned 403 again, so the one-line Agent Pay description rests on Mastercard's own naming; FIDO passkeys' 'public-key cryptography' rests on the passkeys page read 2026-11-22. No payment, account or model call."
   },
   "lesson:agent-incidents": {
     "revision": 4,

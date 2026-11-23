@@ -534,7 +534,7 @@
       [
         "Layer 1 · A2A (Agent2Agent Protocol): coordinating across independent agents",
         "A2A is an open protocol, originated by Google and donated to the Linux Foundation, that lets independent agents work together. The agents can be built on different frameworks or run by different organisations.",
-        "MCP connects one agent to a tool. A2A lets a buyer’s assistant hand a task to a merchant’s own agent without either side exposing its internal state, memory or tools. Each agent publishes an Agent Card, normally at `/.well-known/agent-card.json`, describing its skills and how to authenticate. Messages travel over JSON-RPC 2.0, gRPC or HTTP+JSON, with Server-Sent Events for streamed updates. AP2 is available as an A2A extension, so payment mandates can travel with a task."
+        "MCP connects one agent to a tool. A2A lets a buyer’s assistant hand a task to a merchant’s own agent without either side exposing its internal state, memory or tools. Each agent publishes an Agent Card, normally at `/.well-known/agent-card.json`, describing its skills and how to authenticate. Messages travel over JSON-RPC 2.0, gRPC or HTTP+JSON, with Server-Sent Events for streamed updates. AP2 is available as an A2A extension, so payment mandates can travel with a task. In August 2026 A2A joined the Agentic AI Foundation, a Linux Foundation-directed body."
       ],
       [
         "Layer 2 · UCP (Universal Commerce Protocol): open schemas for multi-surface retail",
@@ -544,7 +544,7 @@
       [
         "Layer 2 · ACP (Agentic Commerce Protocol): conversational checkout and delegated tokens",
         "ACP is an open standard maintained by OpenAI and Stripe, licensed under Apache 2.0 and still in beta. It defines how an AI agent and a business handle checkout, while the business stays the merchant of record.",
-        "ACP publishes OpenAPI specifications for checkout and delegated payment, with JSON Schema for the messages. Its 2026-04-17 version adds cart, product feed, orders, authentication and MCP. To keep the card number away from the agent, a payment provider issues a delegated token whose allowance sets a maximum amount and the one merchant allowed to use it. Stripe’s Shared Payment Token is the first compatible implementation. OpenAI says ChatGPT is the first AI platform to implement ACP."
+        "ACP publishes OpenAPI specifications for checkout and delegated payment, with JSON Schema for the messages. Its 2026-04-17 version adds cart, product feed, orders, delegated consumer authentication (3-D Secure) and an MCP binding. To keep the card number away from the agent, a payment provider issues a delegated token whose allowance sets a maximum amount and the one merchant allowed to use it. The ACP site names Stripe, with its Shared Payment Token, as the first compatible payment provider, and OpenAI, with ChatGPT, as the first AI platform to implement ACP."
       ],
       [
         "Layer 3 · FIDO passkeys & agentic authentication: binding human consent to agent limits",
@@ -553,7 +553,7 @@
       ],
       [
         "Layer 3 · AP2 (Agent Payments Protocol): signed mandates for checkout and payment",
-        "AP2 is an open protocol from Google, donated to the FIDO Alliance for standardisation. It is an extension for A2A and MCP that answers three questions about an agent’s payment: was it authorised, is the request authentic, and who is accountable?",
+        "AP2 is an open protocol from Google, donated to the FIDO Alliance for standardisation. Its site describes it as an open extension for A2A and MCP, and as compatible with UCP. It answers three questions about an agent’s payment: was it authorised, is the request authentic, and who is accountable?",
         "AP2 v0.2 defines two mandates, each a signed SD-JWT. A Checkout Mandate binds a merchant-signed checkout: the exact items and total. A Payment Mandate binds the payee, amount and payment instrument. When the user is present, they approve on a trusted surface. When they are not (for example, ‘buy this ticket when it drops below $80’), they first sign open mandates with limits such as allowed merchants, an amount range or execution dates. The agent later signs closed mandates for one checkout and presents both. The merchant checks the checkout against the limits, and the credential provider and network check the payment. A failed check returns a receipt with an error."
       ],
       [
@@ -615,8 +615,8 @@
         "https://ap2-protocol.org/ap2/specification/"
       ],
       [
-        "FIDO Alliance: payments working group",
-        "https://fidoalliance.org/fido-alliance-payments/"
+        "FIDO Alliance: agentic AI working groups",
+        "https://fidoalliance.org/fido-alliance-agentic-ai/"
       ],
       [
         "Visa Intelligent Commerce (developer)",
