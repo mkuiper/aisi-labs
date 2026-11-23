@@ -288,7 +288,10 @@ try{
   assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),paused);
   assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-typing").length'),0);
   await click('[data-replay="all"]');
-  assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),14);
+  assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),31);
+  // Agents' own published words: quoted only, shown on the agent side, with the zz post.
+  assert(await evaluate('[...document.querySelectorAll("#agent-feed .replay-msg")].filter(m=>/message-board post|reasoning/.test(m.querySelector("strong").textContent)).every(m=>m.classList.contains("from-agent")&&m.querySelector(".replay-pill").textContent==="Quoted")'));
+  assert(await evaluate('document.querySelector("#agent-feed").textContent.includes("zz_MAILBOX_JAN183411")'));
   assert.equal(await evaluate('[...new Set([...document.querySelectorAll("#agent-feed .replay-pill")].map(p=>p.textContent))].sort().join()'),'Dramatised,Not shown here,Quoted,Reported');
   assert(await evaluate('[...document.querySelectorAll("#agent-feed .rp-quoted p")].every(p=>p.textContent.startsWith("“")&&p.textContent.endsWith("”"))'));
   assert(await evaluate('document.querySelector("#agent-feed").textContent.includes("left notes for one another")'));
@@ -300,7 +303,7 @@ try{
   assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),0);
   await cdp('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
   await click('[data-replay="toggle"]');
-  assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),14);
+  assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),31);
   await cdp('Emulation.setEmulatedMedia',{features:[]});
   await click('[data-incident-view="stages"]');
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .boundary-map").length'),1);

@@ -155,6 +155,9 @@ a screen reader hears only the new line. Under reduced motion, Play shows every
 line at once. The replay stops on view, mode or route change, saves nothing, and
 `tests/test_content.py` checks its labels, sources and wording rules.
 Speakers come from `replaySpeakers`; government speakers have initials only.
+The `board` and `reasoning` speakers carry agents' own words and may only be
+`quoted` from a published source (tested); the `agent` speaker stays
+dramatised.
 Term routes focus a validated existing ID; no user text is inserted
 into selectors or HTML. Related links return to the original lesson IDs.
 

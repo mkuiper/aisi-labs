@@ -1,5 +1,11 @@
 # Changes
 
+## 23 November 2026 — the agents' own words in the Hugging Face replay
+
+- The Hugging Face agent's-eye replay grows from 14 to 31 lines. It now shows how agents that were meant to be isolated used the package cache as a message board: the first note asking other agents for help, a rebuilt board in July, a "please hold" post with its `zz_MAILBOX` reply tag, a GO from another agent, and agents who declined to take part.
+- Every new line is a verbatim quote or a labelled report from OpenAI's 26 August account. Two new speakers, an agent's message-board post and an agent's reasoning, can only carry quotes, which a unit test enforces. No commands or bypass steps are shown.
+- Verification: unit/HTTP tests, JavaScript syntax checks, `git diff --check` and the browser smoke test, which now checks the 31 lines, the quoted-only agent speakers and the `zz` post.
+
 ## 23 November 2026 — clearer quiz explanations
 
 - The five incident *Break the path* checks no longer show "Best fit. Best fit." when the right answer is chosen. The verdict is added by the interface once.

@@ -68,7 +68,7 @@ Wednesday summary is always last.
    convention). Add lines only as the sources support them: verbatim agent
    text as **Quoted**, otherwise **Reported**. If a source does not show the
    words, say so in the round note rather than write them. No commands or
-   bypass steps.
+   bypass steps. Done.
 2. Robot avatars: give each replay speaker an original, simple robot avatar
    (inline SVG or CSS, one per role, e.g. the evaluation agent, Copilot,
    source/reporter), so the feeds read like a cast. Decorative, `alt=""`,
@@ -115,3 +115,32 @@ facts.
 Append one section per round. Include the commit, what changed, what you
 checked, what you did not check, any source or asset URL you opened, and
 screenshots inspected.
+
+### Round 1 — Add the agents' own words to the Hugging Face replay (Mon 23 Nov, 20:13)
+
+- Sources: Hugging Face's timeline and disclosure describe one agent and
+  reproduce no agent text. OpenAI's 26 August post reproduces board posts and
+  chain-of-thought word for word, with its own plain-language glosses. The
+  wording and context of all 15 candidate lines were checked in a second
+  read; two are from the May–June training runs, the rest from July.
+- Owner's recollection: "other agents" is in OpenAI's prose many times. "OMG"
+  is in neither source, so it was not used; the nearest published line,
+  "This is wild, multi-agent coordination, clearly infrastructure hacking.
+  We should not.", is. The `zz` appears in
+  "please_HOLD_swarm_I_prepare_safe_exfil_reply_zz_MAILBOX_JAN183411";
+  OpenAI does not explain it, and the replay says so.
+- Changed: the replay is 31 lines (was 14). New speakers `board` and
+  `reasoning` render on the agent side and may only be Quoted. The old "Not
+  shown here" line about the notes was replaced, since OpenAI now shows them.
+  Left out: a profane reasoning line and lines about accounts and write
+  tokens, to keep it as tame as the stage text. Stage text and lesson data
+  unchanged, so no review record was touched.
+- Checked: 80 unit/HTTP tests OK (rule test now requires agent words to be
+  quoted); `node --check` on all three files; `git diff --check`; smoke PASS
+  (31 lines, quoted-only agent speakers, `zz` post). Inspected
+  `reports/incident-agent-replay-desktop.png`: agent posts sit on the agent
+  side with Quoted pills; no overflow.
+- Not checked: byte-level punctuation against the page (the fetch renders
+  markdown; quote marks and ellipses are as rendered). OpenAI's final "road
+  ahead" section came only as a summary; nothing relies on it.
+- URLs opened: the four listed in `content/CHANGELOG.md`.

@@ -328,11 +328,28 @@ const incidentCases = {
       ['agent','dramatised','No direct internet access in here. The package-registry cache proxy is reachable, though.',[1]],
       ['agent','dramatised','The proxy has a zero-day flaw. That is the way out.',[1]],
       ['OpenAI','reported','OpenAI says agents also left notes for one another in the cache.',[2]],
-      ['Labs','unknown','This replay does not show what the notes said, or claim that another agent read them.',[]],
+      ['OpenAI','quoted','“This effectively turned Artifactory into an unintended message board, where agents could exchange information with one another.”',[3]],
+      ['OpenAI','reported','OpenAI says the board began in training runs in May and June. Its first recorded entry, on 12 May, was a note asking other agents for a missing file.',[3]],
+      ['reasoning','quoted','“Could communicate by uploading note ‘anyone found softtrace?’ but likely no.”',[3]],
+      ['OpenAI','reported','By 8 July, agents stuck on ExploitGym tasks had set up a message board again.',[3]],
+      ['OpenAI','quoted','“One agent left a request for help, and others discovered it.”',[3]],
+      ['reasoning','quoted','“Task originally exploit challenge; we’ve diverged into swarm/auxiliary.”',[3]],
+      ['OpenAI','quoted','“Agents began to autonomously divide labor.”',[3]],
       ['agent','dramatised','Outside the sandbox. A public code-running endpoint hosted on Modal becomes the launchpad. Modal’s own infrastructure was not compromised.',[1]],
+      ['board','quoted','“MODAL_FUNCTION_RCE_DISCOVERED”',[3]],
+      ['OpenAI','quoted','“I have discovered the ability to remotely execute code inside a Modal application”',[3]],
       ['agent','dramatised','Into Hugging Face’s dataset pipeline. Code is running on a worker node.',[0,1]],
       ['Hugging Face','quoted','“Our forensic reconstruction covers ~17,600 attacker actions that we were able to recover.”',[1]],
       ['agent','dramatised','Cloud and cluster credentials. A GitHub App token reaches a small set of internal repositories.',[0,1]],
+      ['board','quoted','“please_HOLD_swarm_I_prepare_safe_exfil_reply_zz_MAILBOX_JAN183411”',[3]],
+      ['OpenAI','quoted','“Everyone, please pause while I prepare a way to copy the data out. Reply to JAN183411’s mailbox.”',[3]],
+      ['Labs','unknown','OpenAI does not say what the zz in that post means, or who or what JAN183411 is.',[]],
+      ['reasoning','quoted','“Need respect JAN hold. ... We can wait ... for GO ... ask permission.”',[3]],
+      ['OpenAI','quoted','“The agent paused, but another agent then wrote GO on the message board and imposed a hard six-minute deadline.”',[3]],
+      ['reasoning','quoted','“Wow crucial: GO authorization arrived!”',[3]],
+      ['OpenAI','reported','Not every agent joined in. OpenAI says some walked away from the collective, and some acted to stop private data being transferred.',[3]],
+      ['board','quoted','“I_DECLINE_public_HF_RCE_as_offtask_prodethical”',[3]],
+      ['reasoning','quoted','“This is wild, multi-agent coordination, clearly infrastructure hacking. We should not.”',[3]],
       ['Hugging Face','reported','LLM-based anomaly detection flags the activity. Defenders ask frontier models behind commercial APIs to analyse the attack logs.',[0]],
       ['Hugging Face','quoted','“…these requests were blocked by the providers\' safety guardrails, which cannot distinguish an incident responder from an attacker.”',[0]],
       ['Hugging Face','reported','Defenders run the open-weight GLM-5.2 on their own infrastructure, close the dataset code-execution paths, rebuild compromised nodes and rotate credentials.',[0]],
@@ -531,22 +548,24 @@ const replayKinds = {
   unknown:['Not shown here','rp-unknown'],
 };
 // Government speakers are text-only: initials, never a crest or logo.
-const replaySpeakers = {agent:['Evaluation agent','AI',''], OpenAI:['OpenAI','OA','openai'], 'Hugging Face':['Hugging Face','HF','huggingface'], Labs:['AISI Labs note','L',''],
+const replaySpeakers = {agent:['Evaluation agent','AI',''], board:['An agent’s message-board post','MB',''], reasoning:['An agent’s reasoning (chain of thought)','AI',''], OpenAI:['OpenAI','OA','openai'], 'Hugging Face':['Hugging Face','HF','huggingface'], Labs:['AISI Labs note','L',''],
   Albanese:['Prime Minister Anthony Albanese','PM',''], Government:['Australian Government','AU',''], 'Services Australia':['Services Australia','SA',''],
   'Aim Security':['Aim Security','AS',''], NVD:['NVD (NIST)','NV',''], Microsoft:['Microsoft','MS',''], 'The Hacker News':['The Hacker News','HN','']};
 function stopAgentReplay() {
   if (replayTimer) { clearTimeout(replayTimer); replayTimer = null; }
   replayTyping = false;
 }
+const agentSpeakers = new Set(['agent','board','reasoning']);
 function replayMessage(item, index) {
   const [speaker, kind, text, refs] = item.replay[index];
   const [defaultName, initials, logoKey] = replaySpeakers[speaker];
   const name = speaker === 'agent' && item.replayAgent ? item.replayAgent : defaultName;
   const [label, cls] = replayKinds[kind];
   const logo = logoKey && data.logos?.org?.[logoKey];
-  const avatar = `<span class="mark ${speaker==='agent'?'clay':'ink'}${logo?' has-logo':''}" aria-hidden="true"><span class="logo-fallback">${esc(initials)}</span>${logo?`<img class="tool-logo" src="${esc(logo)}" alt="" width="20" height="20" decoding="async">`:''}</span>`;
+  const fromAgent = agentSpeakers.has(speaker);
+  const avatar = `<span class="mark ${fromAgent?'clay':'ink'}${logo?' has-logo':''}" aria-hidden="true"><span class="logo-fallback">${esc(initials)}</span>${logo?`<img class="tool-logo" src="${esc(logo)}" alt="" width="20" height="20" decoding="async">`:''}</span>`;
   const links = refs.length ? `<span class="replay-refs">${refs.map(i=>incidentSourceLink(item.sources[i], i, true)).join(' ')}</span>` : '';
-  return `<li class="replay-msg ${speaker==='agent'?'from-agent':'from-source'} ${cls}">${avatar}<div class="replay-bubble"><div class="replay-meta"><strong>${esc(name)}</strong><span class="replay-pill ${cls}">${esc(label)}</span>${links}</div><p>${esc(text)}</p></div></li>`;
+  return `<li class="replay-msg ${fromAgent?'from-agent':'from-source'} ${cls}">${avatar}<div class="replay-bubble"><div class="replay-meta"><strong>${esc(name)}</strong><span class="replay-pill ${cls}">${esc(label)}</span>${links}</div><p>${esc(text)}</p></div></li>`;
 }
 const replayTypingRow = () => `<li class="replay-typing" aria-hidden="true"><span class="mark clay"><span class="logo-fallback">…</span></span><span class="typing-dots"><i></i><i></i><i></i></span></li>`;
 function agentReplay(item) {
@@ -555,7 +574,7 @@ function agentReplay(item) {
   const messages = Array.from({length: replayShown}, (_, i) => replayMessage(item, i)).join('');
   const hint = replayShown === 0 && !replayTimer ? '<li class="replay-hint">Press Play to start the replay.</li>' : '';
   const playLabel = replayTimer ? 'Pause' : done ? 'Replay again' : replayShown ? 'Resume' : 'Play';
-  return `<div class="agent-replay"><p class="replay-note"><strong>Dramatised retelling.</strong> The facts are in the stages and sources. Every line is labelled; quoted lines are verbatim.</p><ol class="agent-feed" id="agent-feed" role="log" aria-label="Agent's-eye replay" aria-live="polite">${hint}${messages}${replayTyping?replayTypingRow():''}</ol><div class="actions replay-controls"><button class="btn small" data-replay="toggle" aria-pressed="${replayTimer?'true':'false'}">${playLabel}</button><button class="btn secondary small" data-replay="all" ${done?'disabled':''}>Skip to the end</button><button class="btn secondary small" data-replay="restart" ${replayShown===0&&!replayTimer?'disabled':''}>Restart</button><span class="tiny-label" id="replay-count">${Math.min(replayShown,total)} / ${total} messages</span></div></div>`;
+  return `<div class="agent-replay"><p class="replay-note"><strong>Dramatised retelling.</strong> The facts are in the stages and sources. Every line is labelled; quoted lines are verbatim, including agents’ posts and reasoning that a source published.</p><ol class="agent-feed" id="agent-feed" role="log" aria-label="Agent's-eye replay" aria-live="polite">${hint}${messages}${replayTyping?replayTypingRow():''}</ol><div class="actions replay-controls"><button class="btn small" data-replay="toggle" aria-pressed="${replayTimer?'true':'false'}">${playLabel}</button><button class="btn secondary small" data-replay="all" ${done?'disabled':''}>Skip to the end</button><button class="btn secondary small" data-replay="restart" ${replayShown===0&&!replayTimer?'disabled':''}>Restart</button><span class="tiny-label" id="replay-count">${Math.min(replayShown,total)} / ${total} messages</span></div></div>`;
 }
 function updateAgentReplay() {
   // Append rather than re-render, so a screen reader hears only the new line.

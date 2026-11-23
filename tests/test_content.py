@@ -300,6 +300,9 @@ class ContentTests(unittest.TestCase):
                         self.assertNotEqual(who, 'agent')
                     if who == 'agent':
                         self.assertEqual(kind, 'dramatised')
+                    # Agents' own words appear only as published, verbatim quotes.
+                    if who in ('board', 'reasoning'):
+                        self.assertEqual(kind, 'quoted')
                     # No invented feelings or motives, and no commands or secrets.
                     for word in ['felt', 'feel', 'excited', 'wanted', 'decided', 'thrilled', 'scared',
                                  'curl ', 'wget', 'password', 'token=', 'ssh ', 'sudo', 'http']:

@@ -1,5 +1,11 @@
 # Learning material history
 
+## 2026-11-23 — Hugging Face replay extended from the agents' published words
+
+- `web/app.js` incident replay for `hf-breakout` (not part of a lesson fingerprint): 17 lines added from OpenAI, "The Hugging Face incident and the road ahead" (26 August 2026). Ten are verbatim agent board posts, agent reasoning or OpenAI prose and glosses; four are labelled reports; one notes what OpenAI does not explain (the `zz` tag and JAN183411). The 12 May note is placed as training-period context; the rest are tied by OpenAI to the July episode.
+- Checked and not used: neither Hugging Face page reproduces agent text or describes several agents; neither source contains "OMG". The nearest published line, "This is wild, multi-agent coordination…", is used instead. A profane reasoning line was left out.
+- Sources read, read-only: https://huggingface.co/blog/agent-intrusion-technical-timeline , https://huggingface.co/blog/security-incident-july-2026 , https://openai.com/index/hugging-face-model-evaluation-security-incident/ , https://openai.com/index/hugging-face-incident-and-the-road-ahead/ (verbatim text to about 80% of the page; the final "road ahead" section came only as a fetch summary and nothing rests on it).
+
 ## 2026-11-23 — editorial pass on quiz explanations
 
 - Editorial only, so the review dates and fingerprints are kept and these lessons now report `changed` until their next source review (docs/CONTENT_MAINTENANCE.md):
