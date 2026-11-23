@@ -1,5 +1,11 @@
 # Changes
 
+## 24 November 2026 — a robot cast for the agent's-eye replays
+
+- Agent-side lines in the three replays now have small robot avatars: the evaluation agent, a Copilot on marionette strings for EchoLeak, a robot holding up a message-board post, a robot with thought bubbles for reasoning, and a bespectacled robot for AISI Labs notes. They are original inline drawings with no image files, and are decorative (hidden from screen readers).
+- Organisations keep their logos and government speakers keep their initials. The newest robot blinks; under reduced motion it stays still.
+- Verification: unit/HTTP tests (robots must be inline with no images or links), JavaScript syntax checks, `git diff --check` and the browser smoke test, which checks each robot role, that organisations keep logos and that government speakers get no robot.
+
 ## 23 November 2026 — the agents' own words in the Hugging Face replay
 
 - The Hugging Face agent's-eye replay grows from 14 to 31 lines. It now shows how agents that were meant to be isolated used the package cache as a message board: the first note asking other agents for help, a rebuilt board in July, a "please hold" post with its `zz_MAILBOX` reply tag, a GO from another agent, and agents who declined to take part.

@@ -308,6 +308,11 @@ class ContentTests(unittest.TestCase):
                                  'curl ', 'wget', 'password', 'token=', 'ssh ', 'sudo', 'http']:
                         self.assertNotIn(word, text.lower().replace('information that it wanted', ''))
         self.assertEqual(with_replay, {'hf-breakout', 'medicare', 'echoleak'})
+        # Robot avatars are original inline SVG: no images, links or remote files.
+        robots = script[script.index('const robotAvatars = {'):script.index('function robotKey')]
+        self.assertEqual(set(re.findall(r"\n  (\w+):`", robots)), {'agent', 'steered', 'board', 'reasoning', 'labs'})
+        for banned in ('<img', 'href', 'http', 'url('):
+            self.assertNotIn(banned, robots)
         # Government speakers never get a logo.
         for key in ('Albanese', 'Government', 'Services Australia'):
             self.assertRegex(speakers, re.escape(key) + r"'?:\['[^']+','[A-Z]{2}',''\]")

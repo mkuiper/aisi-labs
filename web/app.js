@@ -477,6 +477,7 @@ const incidentCases = {
       feedback:['EchoLeak was described as zero-click. The user did not need to open or act on the email for retrieval to bring it into context.','The path depended on external instructions and internal data meeting in one context. Separating them removes the untrusted-input leg.','Aim notes the result was achieved even though Copilot’s interface is open only to the organisation’s employees. The attacker reached it through content, not the interface.'],
     },
     replayAgent:'Copilot, steered',
+    replayRobot:'steered',
     replay:[
       ['agent','dramatised','An email arrives from outside the organisation. Nobody needs to open it.',[1]],
       ['agent','dramatised','Later, the user asks a routine question. Retrieving relevant content: internal documents, and that external email.',[1]],
@@ -556,6 +557,21 @@ function stopAgentReplay() {
   replayTyping = false;
 }
 const agentSpeakers = new Set(['agent','board','reasoning']);
+// Original, decorative robot avatars (inline SVG, no external files). One per
+// role; organisations keep their logos and government speakers keep initials.
+const robotEyes = (y) => `<circle class="eye" cx="12.5" cy="${y}" r="1.9"/><circle class="eye" cx="19.5" cy="${y}" r="1.9"/>`;
+const robotAvatars = {
+  agent:`<path d="M16 4v4"/><circle class="fill" cx="16" cy="3.2" r="1.7"/><rect x="7" y="8" width="18" height="15" rx="4"/>${robotEyes(15)}<path d="M12.5 19.5h7M4.5 13.5v5M27.5 13.5v5"/>`,
+  steered:`<path d="M5 2.5h22M10 2.5v6M22 2.5v6M16 2.5v5"/><rect x="7" y="8" width="18" height="15" rx="4"/>${robotEyes(15)}<path d="M12.5 19.5c2 1.4 5 1.4 7 0"/>`,
+  board:`<path d="M16 2v3"/><rect x="9.5" y="5" width="13" height="10" rx="3"/><circle class="eye" cx="13.5" cy="10" r="1.5"/><circle class="eye" cx="18.5" cy="10" r="1.5"/><rect x="5" y="17.5" width="22" height="11" rx="1.5"/><path d="M8.5 21.5h15M8.5 25h9"/>`,
+  reasoning:`<rect x="4" y="11" width="16" height="14" rx="4"/><circle class="eye" cx="9" cy="17.5" r="1.7"/><circle class="eye" cx="15" cy="17.5" r="1.7"/><path d="M9.5 21.5h5"/><circle cx="23.5" cy="8.5" r="1.4"/><circle cx="27.5" cy="4.5" r="2.2"/>`,
+  labs:`<path d="M10 6.5 8 3M22 6.5 24 3"/><circle cx="16" cy="16.5" r="10"/><circle cx="12" cy="15.5" r="2.6"/><circle cx="20" cy="15.5" r="2.6"/><path d="M14.6 15.5h2.8M13 21.5h6"/>`,
+};
+function robotKey(item, speaker) {
+  if (speaker === 'agent') return item.replayRobot || 'agent';
+  if (speaker === 'Labs') return 'labs';
+  return agentSpeakers.has(speaker) ? speaker : '';
+}
 function replayMessage(item, index) {
   const [speaker, kind, text, refs] = item.replay[index];
   const [defaultName, initials, logoKey] = replaySpeakers[speaker];
@@ -563,7 +579,8 @@ function replayMessage(item, index) {
   const [label, cls] = replayKinds[kind];
   const logo = logoKey && data.logos?.org?.[logoKey];
   const fromAgent = agentSpeakers.has(speaker);
-  const avatar = `<span class="mark ${fromAgent?'clay':'ink'}${logo?' has-logo':''}" aria-hidden="true"><span class="logo-fallback">${esc(initials)}</span>${logo?`<img class="tool-logo" src="${esc(logo)}" alt="" width="20" height="20" decoding="async">`:''}</span>`;
+  const robot = robotKey(item, speaker);
+  const avatar = robot ? `<span class="mark robot robot-${robot}" aria-hidden="true"><svg viewBox="0 0 32 32" focusable="false">${robotAvatars[robot]}</svg></span>` : `<span class="mark ${fromAgent?'clay':'ink'}${logo?' has-logo':''}" aria-hidden="true"><span class="logo-fallback">${esc(initials)}</span>${logo?`<img class="tool-logo" src="${esc(logo)}" alt="" width="20" height="20" decoding="async">`:''}</span>`;
   const links = refs.length ? `<span class="replay-refs">${refs.map(i=>incidentSourceLink(item.sources[i], i, true)).join(' ')}</span>` : '';
   return `<li class="replay-msg ${fromAgent?'from-agent':'from-source'} ${cls}">${avatar}<div class="replay-bubble"><div class="replay-meta"><strong>${esc(name)}</strong><span class="replay-pill ${cls}">${esc(label)}</span>${links}</div><p>${esc(text)}</p></div></li>`;
 }

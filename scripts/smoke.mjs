@@ -292,6 +292,10 @@ try{
   // Agents' own published words: quoted only, shown on the agent side, with the zz post.
   assert(await evaluate('[...document.querySelectorAll("#agent-feed .replay-msg")].filter(m=>/message-board post|reasoning/.test(m.querySelector("strong").textContent)).every(m=>m.classList.contains("from-agent")&&m.querySelector(".replay-pill").textContent==="Quoted")'));
   assert(await evaluate('document.querySelector("#agent-feed").textContent.includes("zz_MAILBOX_JAN183411")'));
+  // Robot cast: every agent-side line and the Labs note get an inline robot; organisations keep logos.
+  assert(await evaluate('[...document.querySelectorAll("#agent-feed .replay-msg.from-agent")].every(m=>m.querySelector(".mark.robot svg")&&!m.querySelector(".mark img"))'));
+  assert(await evaluate('["robot-agent","robot-board","robot-reasoning","robot-labs"].every(c=>document.querySelector("#agent-feed .mark."+c))'));
+  assert(await evaluate('[...document.querySelectorAll("#agent-feed .replay-msg")].filter(m=>/^(OpenAI|Hugging Face)$/.test(m.querySelector("strong").textContent)).every(m=>!m.querySelector(".robot"))'));
   assert.equal(await evaluate('[...new Set([...document.querySelectorAll("#agent-feed .replay-pill")].map(p=>p.textContent))].sort().join()'),'Dramatised,Not shown here,Quoted,Reported');
   assert(await evaluate('[...document.querySelectorAll("#agent-feed .rp-quoted p")].every(p=>p.textContent.startsWith("“")&&p.textContent.endsWith("”"))'));
   assert(await evaluate('document.querySelector("#agent-feed").textContent.includes("left notes for one another")'));
@@ -323,8 +327,9 @@ try{
     await delay(800);await noOverflow('incident replay '+mode);await screenshot('incident-replay-'+mode+'-desktop');
   }
   assert(await evaluate('document.querySelector("#agent-feed").textContent.includes("Copilot, steered")'));
+  assert(await evaluate('[...document.querySelectorAll("#agent-feed .replay-msg.from-agent .mark")].every(m=>m.classList.contains("robot-steered"))'));
   await click('[data-incident-mode="medicare"]');await click('[data-incident-view="agent"]');await click('[data-replay="all"]');
-  assert(await evaluate('[...document.querySelectorAll("#agent-feed .replay-msg")].filter(m=>/Prime Minister|Australian Government|Services Australia/.test(m.querySelector("strong").textContent)).every(m=>!m.querySelector("img"))'));
+  assert(await evaluate('[...document.querySelectorAll("#agent-feed .replay-msg")].filter(m=>/Prime Minister|Australian Government|Services Australia/.test(m.querySelector("strong").textContent)).every(m=>!m.querySelector("img")&&!m.querySelector(".robot"))'));
   assert(await evaluate('document.querySelector("#agent-feed").textContent.includes("Prime Minister Anthony Albanese")'));
   await click('[data-incident-mode="hf-breakout"]');
   assert(await evaluate('document.querySelector("[data-incident-view=\'stages\']").getAttribute("aria-pressed")==="true"'));

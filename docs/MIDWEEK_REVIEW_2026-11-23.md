@@ -72,7 +72,7 @@ Wednesday summary is always last.
 2. Robot avatars: give each replay speaker an original, simple robot avatar
    (inline SVG or CSS, one per role, e.g. the evaluation agent, Copilot,
    source/reporter), so the feeds read like a cast. Decorative, `alt=""`,
-   static under `prefers-reduced-motion`. Do not copy the reference video.
+   static under `prefers-reduced-motion`. Do not copy the reference video. Done.
 3. Review debt: `tools-skills`, `responsible-use` and `agentic-commerce` show
    `changed` after the 23 Nov wording pass. Re-read their sources, then
    refresh the records honestly.
@@ -144,3 +144,26 @@ screenshots inspected.
   markdown; quote marks and ellipses are as rendered). OpenAI's final "road
   ahead" section came only as a summary; nothing relies on it.
 - URLs opened: the four listed in `content/CHANGELOG.md`.
+
+### Round 2 — Give the replays a robot cast (Tue 24 Nov, 02:13)
+
+- Changed: `robotAvatars` in `web/app.js` holds five original inline SVG
+  robots (32×32, stroke only): `agent` (antenna and ears), `steered`
+  (marionette strings, used by EchoLeak via `replayRobot`), `board` (holding
+  a posted note), `reasoning` (thought bubbles) and `labs` (spectacles, for
+  the AISI Labs note). Each has its own soft colour. Organisations keep their
+  logos; government speakers keep initials. `aria-hidden`; no image files,
+  no new logo, nothing fetched. The newest robot blinks; still under
+  `prefers-reduced-motion`. Not modelled on the owner's reference video,
+  which was not opened.
+- Checked: 80 unit/HTTP tests OK (robots inline, no `<img>`, links or URLs);
+  `node --check` on all three files; `git diff --check`; smoke PASS (each
+  role present, agent-side lines all robots, OpenAI/Hugging Face keep logos,
+  government speakers no robot, EchoLeak agent uses `steered`). Inspected
+  crops of `reports/incident-agent-replay-desktop.png` and
+  `reports/incident-replay-echoleak-desktop.png` at 6×, plus standalone
+  renders of the agent and steered robots: all legible at 30 px.
+- Not checked: how the robots look to learners; dark-mode contrast was not
+  separately reviewed (the feed already has a dark background and the
+  avatars sit on light discs).
+- URLs opened: none.

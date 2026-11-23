@@ -336,3 +336,16 @@ footer .feedback-link{display:block}
 .guard-recap strong{font-size:13px;font-weight:600}
 .guard-recap span{font-size:12px;color:#506448}
 .guard-recap small{font-size:12px;color:#6f7b68}
+
+/* Replay robot avatars: original inline SVG, decorative. */
+.replay-msg .mark.robot{border-radius:50%}
+.mark.robot svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mark.robot .eye,.mark.robot .fill{fill:currentColor;stroke:none}
+.robot-agent,.robot-steered{background:#f2e2d7;color:#a65336}
+.robot-board{background:#f3e7cc;color:#86601c}
+.robot-reasoning{background:#e2e8f1;color:#4d6788}
+.robot-labs{background:#e0e9d9;color:#496243}
+.replay-msg:last-child .mark.robot .eye{animation:robot-blink 3.6s infinite}
+@keyframes robot-blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.15)}}
+.mark.robot .eye{transform-box:fill-box;transform-origin:center}
+@media(prefers-reduced-motion:reduce){.replay-msg:last-child .mark.robot .eye{animation:none}}

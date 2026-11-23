@@ -157,7 +157,10 @@ line at once. The replay stops on view, mode or route change, saves nothing, and
 Speakers come from `replaySpeakers`; government speakers have initials only.
 The `board` and `reasoning` speakers carry agents' own words and may only be
 `quoted` from a published source (tested); the `agent` speaker stays
-dramatised.
+dramatised. Agent-side speakers and the Labs note get an original inline-SVG
+robot from `robotAvatars` (agent, steered, board, reasoning, labs; a case can
+set `replayRobot`). Organisations keep their logos and government speakers
+keep initials. The newest robot blinks unless reduced motion is set.
 Term routes focus a validated existing ID; no user text is inserted
 into selectors or HTML. Related links return to the original lesson IDs.
 
