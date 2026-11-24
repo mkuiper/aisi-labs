@@ -14,6 +14,51 @@ deployment.
 The timer runs only while this Claude Code session is open. If the session
 closes, no further rounds run. The round notes show which rounds took place.
 
+## Wednesday summary (25 Nov, 08:13)
+
+All seven queue items are done. Six rounds ran (1–6), one item each, plus
+this summary. Every commit is local on `main`; **nothing was pushed** and
+nothing here approves deployment. No model was called, no account was used,
+and no government mark was added.
+
+### Commits, oldest first
+
+| Commit | Round | What it did |
+|---|---|---|
+| `956efe6` | — | Set up this log (pushed with the weekend work) |
+| `e77c2df` | 1 | Hugging Face replay grows from 14 to 31 lines with the agents' published words (message board, `zz_MAILBOX` post, GO, dissent) |
+| `eca1e83` | 2 | Original robot avatars for every replay role |
+| `01d5e66` | 3 | Re-read tools-skills, responsible-use, agentic-commerce; four commerce corrections and a FIDO source swap |
+| `608e8f6` | 4 | Re-read open-models and agent-incidents; fixed the OpenAI apology misquote (missing "also"), re-sourced it to OpenAI's own post, and corrected the Medicare attributions and taskforce list |
+| `ffbff9b` | 5 | "Named in this lesson" strips for chat-agents, tools-skills, identity and web-chat (Model Context Protocol mark new) |
+| `2a4f6cc` | 6 | "Watch it as the agent" replay for the Invariant Labs GitHub MCP case |
+
+Final checks at round 6: 80 unit/HTTP tests OK, `node --check` OK, `git diff
+--check` clean, smoke PASS. All 17 lessons are in date; `resource:helm`
+remains unreviewed, as before.
+
+### Needs the owner
+
+1. **Push** the six local commits when you are happy; rounds never push.
+2. **Brand use** of the new Model Context Protocol mark belongs to the
+   existing distribution review before any image is published, as for the
+   GitHub and Ollama marks.
+3. **The "OMG there are other agents" line** is not in any source read. The
+   nearest published line is used. If you know where it appeared, a link
+   would let it be checked and added as a quote.
+
+### Not checked this week
+
+- Sources that refuse automated reading: Mastercard Agent Pay, The New Daily,
+  and both Hacker News articles. Claims resting only on them were not
+  re-verified, and the review notes say so.
+- The ends of Hugging Face's 27 July timeline and OpenAI's 26 August post
+  (fetch summaries only), Invariant's screenshots and linked agent trace.
+- Dark-mode rendering of the black MCP mark; a real screen reader on the new
+  replays.
+- The *Try a chatbot* strip names ChatGPT and Claude through its two sources
+  rather than its text; drop it if that feels like a stretch.
+
 ## Aim
 
 The owner liked the agent's-eye replays, the other demos and the logos (23
@@ -85,7 +130,7 @@ Wednesday summary is always last.
    view, rules and smoke coverage as the other replays. Done.
 7. Wednesday summary: on Wednesday before 09:00 Canberra, summarise this log
    for the owner. List the commits and anything left undone. Add no new
-   feature.
+   feature. Done.
 
 ## Dramatisation rules
 
@@ -280,3 +325,10 @@ screenshots inspected.
   records are untouched.
 - URLs opened, read-only: https://invariantlabs.ai/blog/mcp-github-vulnerability ,
   https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks .
+
+### Round 7 — Wednesday summary (Wed 25 Nov, 08:13)
+
+- Wrote the Wednesday summary above "Aim". No feature added, no source opened.
+- Checked: 80 unit/HTTP tests OK; `node --check` on all three files; `git diff
+  --check`. No interface change, so the smoke test was not rerun (it passed
+  at round 6).
