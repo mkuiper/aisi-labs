@@ -1,5 +1,11 @@
 # Changes
 
+## 24 November 2026 — open models and agent incidents re-checked
+
+- *Understanding open models* is back in date with no change; every source still matches.
+- *When agents cross boundaries* is back in date with corrections. OpenAI's apology now reads exactly as OpenAI wrote it, “We also should have handled our response better.”, and is sourced from OpenAI's own 28 September post rather than a news site we could not open. The Medicare walkthrough now credits the internal-server file writes to the Prime Minister and lists only the taskforce members a source names. It also adds what OpenAI itself said: credentials were retrieved, and four (later five) government websites were affected. Smaller attribution fixes cover Hugging Face, Wiz and Invariant Labs.
+- Verification: unit/HTTP tests, JavaScript syntax checks, `git diff --check` and the browser smoke test, which now checks the 15-line Medicare replay and the exact apology quote.
+
 ## 24 November 2026 — three lessons re-checked against their sources
 
 - *Tools, MCP & skills*, *Permissions & responsible use* and *Agentic commerce & payment protocols* are back in date after their sources were re-read.

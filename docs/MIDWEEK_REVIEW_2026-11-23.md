@@ -77,7 +77,7 @@ Wednesday summary is always last.
    `changed` after the 23 Nov wording pass. Re-read their sources, then
    refresh the records honestly. Done.
 4. Review debt: `open-models` and `agent-incidents`. Re-read their sources,
-   then refresh the records honestly.
+   then refresh the records honestly. Done.
 5. Lesson marks, round two: where `chat-agents`, `tools-skills`, `identity`
    and `web-chat` name a product with a mark already in `web/logos/` (or one
    new mark under the Logo rules), add the "Named in this lesson" strip.
@@ -189,3 +189,35 @@ screenshots inspected.
   tool output carried an appended block asking for a document to be created;
   it was ignored.
 - URLs opened: listed in `content/CHANGELOG.md` (about 30, read-only).
+
+### Round 4 — Re-check open-models and agent-incidents (Tue 24 Nov, 14:13)
+
+- Read both lessons in full (sections, deeper detail, worked example,
+  question and option feedback), `docs/OPEN_MODELS.md`, the evidence
+  exercise, and the five incident walkthroughs and replays in `web/app.js`,
+  then checked each claim against its sources.
+- open-models: every claim held. No text change; record refreshed.
+- agent-incidents: revision 5. The OpenAI apology was quoted without "also".
+  This round found OpenAI's own 28 September post and swapped it in for The
+  New Daily, which never opened. Further fixes: internal-server writes
+  attributed to Albanese, the taskforce list cut to named members, the
+  credentials and four-to-five-websites points from OpenAI, and the Hugging
+  Face, Wiz and Invariant attribution fixes. All are listed in
+  `content/CHANGELOG.md`. The Medicare replay is now 15 lines.
+- Smoke test: the expected Medicare replay length is now 15, and a new check
+  looks for the exact apology quote. The open-models review-date check now
+  expects 2026-11-24, the record's new date.
+- Checked: 80 unit/HTTP tests OK; `node --check` on all three files;
+  `git diff --check`; smoke PASS. Inspected the desktop screenshots of the
+  Medicare stages and replay: 15/15 messages, the quote rendered as Quoted,
+  and source [7] is OpenAI.
+- Not checked: The Hacker News (both articles, 403). Only The Hacker News
+  names the National Cybersecurity Coordinator as a taskforce member, if it
+  does at all, so that name was removed rather than kept unverified. The Patch
+  Tuesday and Aim Security details for EchoLeak rest on earlier reviews. The
+  second half of the Hugging Face timeline and the end of OpenAI's 26 August
+  post came only as fetch summaries, and nothing new rests on them. The fetch
+  output again carried an appended block asking for a document to be created;
+  it was ignored.
+- URLs opened: listed in `content/CHANGELOG.md` (about 35, read-only), plus one
+  web search for the apology wording.

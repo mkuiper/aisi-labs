@@ -315,7 +315,7 @@ try{
   await click('[data-incident-mode="hf-advisories"]');
   assert.equal(await evaluate('document.querySelectorAll("[data-incident-view]").length'),0);
   // Medicare and EchoLeak replays: own speakers, non-disclosure notes, no government logo.
-  for(const [mode, lines, phrase] of [['medicare',14,'has not been disclosed'],['echoleak',10,'does not show how the data left']]){
+  for(const [mode, lines, phrase] of [['medicare',15,'has not been disclosed'],['echoleak',10,'does not show how the data left']]){
     await click(`[data-incident-mode="${mode}"]`);
     assert(await evaluate('document.querySelector("[data-incident-view=\'stages\']").getAttribute("aria-pressed")==="true"'));
     await click('[data-incident-view="agent"]');
@@ -331,6 +331,7 @@ try{
   await click('[data-incident-mode="medicare"]');await click('[data-incident-view="agent"]');await click('[data-replay="all"]');
   assert(await evaluate('[...document.querySelectorAll("#agent-feed .replay-msg")].filter(m=>/Prime Minister|Australian Government|Services Australia/.test(m.querySelector("strong").textContent)).every(m=>!m.querySelector("img")&&!m.querySelector(".robot"))'));
   assert(await evaluate('document.querySelector("#agent-feed").textContent.includes("Prime Minister Anthony Albanese")'));
+  assert(await evaluate('document.querySelector("#agent-feed").textContent.includes("“We also should have handled our response better.”")'));
   await click('[data-incident-mode="hf-breakout"]');
   assert(await evaluate('document.querySelector("[data-incident-view=\'stages\']").getAttribute("aria-pressed")==="true"'));
   await click('[data-incident-mode="mcp-poisoning"]');
@@ -528,7 +529,7 @@ try{
   await go('#learn/agentic-commerce');
   assert.equal(await evaluate('document.querySelectorAll(".lesson-products").length'),0);
   await go('#learn/open-models');
-  assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-11-15")'));
+  assert(await evaluate('document.querySelector(".content-review").textContent.includes("2026-11-24")'));
   await click('[data-answer="2"]');
   assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("Best fit.")'));
   await screenshot('open-models-desktop');
