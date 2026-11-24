@@ -80,7 +80,7 @@ Wednesday summary is always last.
    then refresh the records honestly. Done.
 5. Lesson marks, round two: where `chat-agents`, `tools-skills`, `identity`
    and `web-chat` name a product with a mark already in `web/logos/` (or one
-   new mark under the Logo rules), add the "Named in this lesson" strip.
+   new mark under the Logo rules), add the "Named in this lesson" strip. Done.
 6. Agent's-eye replay for the Invariant Labs GitHub MCP case, with the same
    view, rules and smoke coverage as the other replays.
 7. Wednesday summary: on Wednesday before 09:00 Canberra, summarise this log
@@ -221,3 +221,32 @@ screenshots inspected.
   it was ignored.
 - URLs opened: listed in `content/CHANGELOG.md` (about 35, read-only), plus one
   web search for the apology wording.
+
+### Round 5 — Lesson marks, round two (Tue 24 Nov, 20:13)
+
+- `lessonProducts` gains four lessons, each role taken from that lesson's
+  text: chat-agents (Claude Code, Codex, Gemini CLI, OpenCode), identity
+  (Claude Code, Codex, OpenCode and their instruction files; OpenClaw by name
+  and initials, as no collection mark was added), web-chat (ChatGPT and
+  Claude, named through its two sources) and tools-skills (Model Context
+  Protocol).
+- One new mark, the round's single graphic change:
+  `web/logos/modelcontextprotocol.svg` from Simple Icons 16.33.0, with its
+  shape unchanged and an explicit #000000 fill. It is recorded in
+  `SOURCES.md` with its upstream sha256 and served through the existing
+  `LOGO_FILES` allowlist as `product`/`mcp`.
+- Tests: the lesson-mark test now covers the seven lessons and allows an empty
+  key (initials). The smoke test checks each new strip's local, decorative,
+  loaded marks and OpenClaw's lack of an image. It also takes four new
+  desktop screenshots.
+- Checked: 80 unit/HTTP tests OK; `node --check` on all three files;
+  `git diff --check`; smoke PASS. Inspected the identity, tools-skills,
+  chat-agents and web-chat screenshots: the strips sit under the review line
+  and do not overflow.
+- Not checked: dark-mode rendering of the black MCP mark. It uses the same
+  treatment as the Ollama mark, which has no dark-mode screenshot either. No
+  lesson text changed, so the review records are untouched.
+- URLs opened (read-only downloads): Simple Icons
+  modelcontextprotocol.svg, the same version's `data/simple-icons.json` for
+  colour and source, and HEAD-style status checks of Lobe Icons `mcp.svg`
+  and `openclaw.svg` and Simple Icons `openclaw.svg` (404).

@@ -716,6 +716,10 @@ const incidentOrgs = item => nameStrip(item.orgs.map(([name, role, key])=>[name,
 const lessonProducts = {
   'models-costs':[['Ollama','Local model runner; serves on 127.0.0.1 by default','product','ollama']],
   'open-models':[['Hugging Face','Safetensors and pickle guidance','chat','huggingface'],['Qwen','Publisher of the Qwen3-0.6B example','chat','qwen-chat'],['Ollama','Local runner; also offers cloud options','product','ollama']],
+  'chat-agents':[['Claude Code','Terminal and editor assistant; harness runs on the laptop','tool','claude'],['Codex','Terminal and editor assistant; harness runs on the laptop','tool','codex'],['Gemini CLI','Terminal and editor assistant; harness runs on the laptop','tool','gemini'],['OpenCode','Terminal and editor assistant; harness runs on the laptop','tool','opencode']],
+  'tools-skills':[['Model Context Protocol','Connects an application to servers offering tools, resources or prompts','product','mcp']],
+  'identity':[['Claude Code','Reads CLAUDE.md; AGENTS.md only when there is no CLAUDE.md','tool','claude'],['Codex','Reads AGENTS.md','tool','codex'],['OpenCode','Reads AGENTS.md; falls back to CLAUDE.md','tool','opencode'],['OpenClaw','Uses SOUL.md for persona, tone and boundaries','product','']],
+  'web-chat':[['ChatGPT','Its web-interface guide is a source','chat','chatgpt'],['Claude','Its web sign-in page is a source','chat','claude-chat']],
   'image-video':[['Adobe Firefly','Its own and partner models in one studio','chat','firefly'],['Midjourney','Creations can appear on Explore','chat','midjourney'],['Runway','Switch video models; credits vary','chat','runway'],['ComfyUI','Node-based; local install or cloud calls','chat','comfyui']],
 };
 const lessonProductStrip = lesson => lessonProducts[lesson.id] ? `<div class="lesson-products"><span class="eyebrow">Named in this lesson</span>${nameStrip(lessonProducts[lesson.id], 'Products named in this lesson')}</div>` : '';

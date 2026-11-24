@@ -140,3 +140,20 @@ and `comfyui.svg` from the web-chat set and adds one new file.
   https://github.com/ollama/ollama/issues/2152#issuecomment-1905286922 as the
   source. CC0 collection licence in SIMPLE-ICONS-LICENSE.txt; the trademark
   remains with its owner.
+
+## Lesson product marks, round two — 24 November 2026
+
+*Chatbots, agents & harnesses*, *“Soul”, identity & instructions* and *Try a
+chatbot* now reuse existing tool and web-chat marks (`claudecode.svg`,
+`codex.svg`, `geminicli.svg`, `opencode.svg`, `openai.svg`, `claude.svg`).
+OpenClaw has no bundled mark and is shown by name with initials. One new
+file serves *Tools, MCP & skills*:
+
+- modelcontextprotocol.svg: Simple Icons 16.33.0,
+  https://unpkg.com/simple-icons@16.33.0/icons/modelcontextprotocol.svg
+  (upstream sha256-R5a8V2BTzyrkck6hgT2fTsBbxnEVSr3YChi3kGE8fYE=). Shape
+  unchanged; explicit display fill #000000 (the collection's colour for it)
+  and a final newline added. Simple Icons cites
+  https://github.com/modelcontextprotocol/docs/blob/573dc60c2e7aab2605b29d0bf27194aa7b02e4fb/logo/light.svg
+  as the source. CC0 collection licence in SIMPLE-ICONS-LICENSE.txt; the mark
+  remains with its owner.

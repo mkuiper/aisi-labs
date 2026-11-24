@@ -1,5 +1,11 @@
 # Changes
 
+## 24 November 2026 — "Named in this lesson" strips for four more lessons
+
+- *Chatbots, agents & harnesses* shows Claude Code, Codex, Gemini CLI and OpenCode, and *“Soul”, identity & instructions* shows which instruction file each tool reads, with OpenClaw by name and initials. *Try a chatbot* shows ChatGPT and Claude, whose pages are its sources. *Tools, MCP & skills* shows the Model Context Protocol.
+- All reuse bundled marks except one new local file, the Model Context Protocol mark from Simple Icons 16.33.0 (CC0), recorded with its sha256 in `web/logos/SOURCES.md`.
+- Verification: unit/HTTP tests (each name must appear in its lesson), JavaScript syntax checks, `git diff --check` and the browser smoke test, which checks every strip's marks load locally and are decorative, and that OpenClaw has no image.
+
 ## 24 November 2026 — open models and agent incidents re-checked
 
 - *Understanding open models* is back in date with no change; every source still matches.

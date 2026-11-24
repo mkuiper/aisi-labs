@@ -36,14 +36,15 @@ class LogoTests(unittest.TestCase):
         app = (ROOT/'web/app.js').read_text()
         block = app[app.index('const lessonProducts = {'):app.index('const lessonProductStrip')]
         entries = re.findall(r"'([a-z-]+)':\[(.*?)\],\n", block)
-        self.assertEqual({lesson for lesson, _ in entries}, {'models-costs', 'open-models', 'image-video'})
+        self.assertEqual({lesson for lesson, _ in entries}, {'models-costs', 'open-models', 'image-video', 'chat-agents', 'tools-skills', 'identity', 'web-chat'})
         catalogue = logo_catalogue()
         for lesson, body in entries:
-            for name, role, kind, key in re.findall(r"\['([^']+)','([^']+)','([a-z]+)','([a-z-]+)'\]", body):
+            for name, role, kind, key in re.findall(r"\['([^']+)','([^']+)','([a-z]+)','([a-z-]*)'\]", body):
                 with self.subTest(lesson=lesson, name=name):
                     self.assertIn(name.removeprefix('Adobe '), lessons[lesson])
-                    self.assertIn(key, catalogue[kind])
-        self.assertEqual(set(PRODUCT_LOGOS), {'ollama'})
+                    if key:  # An empty key shows initials.
+                        self.assertIn(key, catalogue[kind])
+        self.assertEqual(set(PRODUCT_LOGOS), {'ollama', 'mcp'})
 
     def test_product_variants_are_not_mislabelled(self):
         self.assertNotEqual(TOOL_LOGOS['claude'], CHAT_LOGOS['claude-chat'])

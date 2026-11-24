@@ -517,14 +517,21 @@ try{
   await go('#learn/open-models');
   assert(await evaluate('document.querySelector(".diagram").textContent.includes("Hosted runner")'));
   // Named-product marks: local, decorative, loaded, beside visible names.
-  for(const [hash, srcs] of [['#learn/open-models','/logos/huggingface.svg,/logos/qwen.svg,/logos/ollama.svg'],['#learn/image-video','/logos/firefly.svg,/logos/midjourney.svg,/logos/runway.svg,/logos/comfyui.svg'],['#learn/models-costs','/logos/ollama.svg']]){
+  for(const [hash, srcs] of [['#learn/open-models','/logos/huggingface.svg,/logos/qwen.svg,/logos/ollama.svg'],['#learn/image-video','/logos/firefly.svg,/logos/midjourney.svg,/logos/runway.svg,/logos/comfyui.svg'],['#learn/models-costs','/logos/ollama.svg'],['#learn/chat-agents','/logos/claudecode.svg,/logos/codex.svg,/logos/geminicli.svg,/logos/opencode.svg'],['#learn/tools-skills','/logos/modelcontextprotocol.svg'],['#learn/identity','/logos/claudecode.svg,/logos/codex.svg,/logos/opencode.svg'],['#learn/web-chat','/logos/openai.svg,/logos/claude.svg']]){
     await go(hash);
     await evaluate('Promise.all([...document.querySelectorAll(".lesson-products img")].map(img=>img.decode().catch(()=>null)))');
     assert.equal(await evaluate('[...document.querySelectorAll(".lesson-products img")].map(i=>i.getAttribute("src")).join()'),srcs);
     assert(await evaluate('[...document.querySelectorAll(".lesson-products img")].every(i=>i.alt===""&&i.naturalWidth>0&&i.closest(".mark").getAttribute("aria-hidden")==="true")'));
     assert(await evaluate('[...document.querySelectorAll(".lesson-products li strong")].every(s=>s.textContent.trim().length>0)'));
+    if(hash==='#learn/chat-agents'||hash==='#learn/web-chat') await screenshot('lesson-products-'+hash.slice(7)+'-desktop');
   }
   await screenshot('lesson-products-models-costs-desktop');
+  // OpenClaw has no bundled mark: its name shows with initials only.
+  await go('#learn/identity');
+  assert.equal(await evaluate('document.querySelectorAll(".lesson-products li").length'),4);
+  assert(await evaluate('[...document.querySelectorAll(".lesson-products li")].some(li=>li.textContent.includes("OpenClaw")&&!li.querySelector("img"))'));
+  await screenshot('lesson-products-identity-desktop');
+  await go('#learn/tools-skills');await screenshot('lesson-products-tools-skills-desktop');
   await go('#learn/image-video');await screenshot('lesson-products-image-video-desktop');
   await go('#learn/agentic-commerce');
   assert.equal(await evaluate('document.querySelectorAll(".lesson-products").length'),0);

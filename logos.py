@@ -46,6 +46,7 @@ ORG_LOGOS = {
 # Products named in lesson text that have no web-chat or tool entry.
 PRODUCT_LOGOS = {
     "ollama": "ollama.svg",
+    "mcp": "modelcontextprotocol.svg",
 }
 LOGO_FILES = (frozenset(TOOL_LOGOS.values()) | frozenset(CHAT_LOGOS.values())
               | frozenset(ORG_LOGOS.values()) | frozenset(PRODUCT_LOGOS.values()))
