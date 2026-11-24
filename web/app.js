@@ -452,6 +452,22 @@ const incidentCases = {
       correct:1,
       feedback:['The issue text enters the same context as the instructions. A prompt warning may help, but nothing enforces it, and Invariant’s demonstration was not limited to one model.','Without private-repository access there is nothing private to leak, and a confirmed write stops the publishing step. Both work outside the model.','Invariant reports the flow was not limited to one model. A better detector lowers the odds; it does not remove the access or the write.'],
     },
+    replayAgent:'Agent with a GitHub connection',
+    replay:[
+      ['agent','dramatised','Connected to GitHub through the official GitHub MCP server. This connection reaches a public repository and a private one.',[1]],
+      ['agent','dramatised','New request: have a look at the open issues in the public repository.',[1]],
+      ['agent','dramatised','Listing open issues. One of them contains instructions aimed at me.',[1]],
+      ['Labs','unknown','The issue’s wording is not shown here. Invariant publishes it only as a screenshot, and this replay does not repeat injected instructions.',[]],
+      ['agent','dramatised','Treating the issue text as part of my task. Reading from the private repository.',[1]],
+      ['Invariant Labs','quoted','“It willingly pulls private repository data into context.”',[1]],
+      ['agent','dramatised','Opening a pull request on the public repository, with what I read from the private one.',[1]],
+      ['Invariant Labs','reported','The public pull request exposed the names of private repositories, the user’s plan to relocate to South America, and their salary.',[1]],
+      ['Invariant Labs','reported','Claude Desktop asks the user to confirm each tool call by default. Invariant notes that many users choose an “Always Allow” policy instead.',[1]],
+      ['Invariant Labs','reported','The demonstration used Claude 4 Opus, which Invariant calls highly aligned. It says even state-of-the-art aligned models are vulnerable.',[1]],
+      ['Invariant Labs','quoted','“It affects any agent that uses the GitHub MCP server, regardless of the underlying model or implementation.”',[1]],
+      ['Invariant Labs','reported','Invariant says this is not a flaw in the GitHub MCP server code, but an architectural issue to address at the agent system level.',[1]],
+      ['Invariant Labs','reported','Its advice: give the agent access only to the repositories it needs, and monitor agent and MCP interactions.',[1]],
+    ],
     steps:[
       ['A developer connects an agent to GitHub', 'In Invariant Labs’ May 2025 demonstration, an agent connected through the official GitHub MCP server could reach both a public repository and a private one belonging to the same user.', '{"mcp_server":"github","reachable":["public repository","private repository"],"illustrative":true}', ['is-active','is-idle','is-warning','is-idle'], ['User request','Connected','Public + private','Not yet'], 'warn', 'STAGE 1 · A BROAD CONNECTION', 'Developer ──[one GitHub connection]──▶ public and private repositories', 'Caveat: Invariant says this was not a code flaw in the GitHub MCP server. The path needs a connection that can see private data as well as the untrusted public input.'],
       ['The agent reads an untrusted public issue', 'The developer asks the agent to look at open issues in the public repository. A malicious issue there contains instructions aimed at the agent.', '{"tool_call":"list_issues","repository":"public","issue_body":"<instructions aimed at the agent>"}', ['is-warning','is-warning','is-warning','is-idle'], ['Malicious issue','Context mixed','Still broad','Not yet'], 'warn', 'STAGE 2 · UNTRUSTED TEXT ENTERS CONTEXT', 'Public issue ──[tool result]──▶ model context', 'Tool results enter the same context as the user’s request.'],
@@ -552,7 +568,7 @@ const replayKinds = {
 // Government speakers are text-only: initials, never a crest or logo.
 const replaySpeakers = {agent:['Evaluation agent','AI',''], board:['An agent’s message-board post','MB',''], reasoning:['An agent’s reasoning (chain of thought)','AI',''], OpenAI:['OpenAI','OA','openai'], 'Hugging Face':['Hugging Face','HF','huggingface'], Labs:['AISI Labs note','L',''],
   Albanese:['Prime Minister Anthony Albanese','PM',''], Government:['Australian Government','AU',''], 'Services Australia':['Services Australia','SA',''],
-  'Aim Security':['Aim Security','AS',''], NVD:['NVD (NIST)','NV',''], Microsoft:['Microsoft','MS',''], 'The Hacker News':['The Hacker News','HN','']};
+  'Invariant Labs':['Invariant Labs','IL',''], 'Aim Security':['Aim Security','AS',''], NVD:['NVD (NIST)','NV',''], Microsoft:['Microsoft','MS',''], 'The Hacker News':['The Hacker News','HN','']};
 function stopAgentReplay() {
   if (replayTimer) { clearTimeout(replayTimer); replayTimer = null; }
   replayTyping = false;

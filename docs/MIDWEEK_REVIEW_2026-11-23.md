@@ -82,7 +82,7 @@ Wednesday summary is always last.
    and `web-chat` name a product with a mark already in `web/logos/` (or one
    new mark under the Logo rules), add the "Named in this lesson" strip. Done.
 6. Agent's-eye replay for the Invariant Labs GitHub MCP case, with the same
-   view, rules and smoke coverage as the other replays.
+   view, rules and smoke coverage as the other replays. Done.
 7. Wednesday summary: on Wednesday before 09:00 Canberra, summarise this log
    for the owner. List the commits and anything left undone. Add no new
    feature.
@@ -250,3 +250,33 @@ screenshots inspected.
   modelcontextprotocol.svg, the same version's `data/simple-icons.json` for
   colour and source, and HEAD-style status checks of Lobe Icons `mcp.svg`
   and `openclaw.svg` and Simple Icons `openclaw.svg` (404).
+
+### Round 6 — Agent's-eye replay for the GitHub MCP case (Wed 25 Nov, 02:13)
+
+- Re-read Invariant Labs' 26 May 2025 GitHub MCP post and checked the 1 April
+  2025 tool-poisoning post's date and definition. The demo prompt, the agent's
+  full chat and tool calls, the malicious issue and the leaking pull request
+  appear only as images, so no agent text is quoted. The agent's five lines
+  are dramatised and restate the post's prose. The injected instructions are
+  not repeated, and a Labs note says so.
+- Quoted lines, verbatim from the post's prose: “It willingly pulls private
+  repository data into context.” and “It affects any agent that uses the GitHub
+  MCP server, regardless of the underlying model or implementation.” The
+  reported lines cover the leaked data (private repository names, a
+  relocation plan, a salary), Claude Desktop's default confirmation and
+  “Always Allow”, Claude 4 Opus, "not a flaw in the GitHub MCP server code",
+  and the advice.
+- The demo account's username is left out. The default `agent` robot is used,
+  and Invariant Labs is shown with initials, as no mark is bundled for it.
+- Tests: the replay rules test now expects four replays. The smoke test
+  replays the case (13 lines, the phrase "does not repeat injected
+  instructions", quoted-line format, robot-agent marks, and no logo or robot
+  for Invariant Labs).
+- Checked: 80 unit/HTTP tests OK; `node --check` on all three files;
+  `git diff --check`; smoke PASS. Inspected the desktop replay screenshot:
+  13/13 messages, labels and source links correct, and no overflow.
+- Not checked: Invariant Explorer's linked agent trace (not opened), and the
+  screenshot text itself (images). No lesson text changed, so the review
+  records are untouched.
+- URLs opened, read-only: https://invariantlabs.ai/blog/mcp-github-vulnerability ,
+  https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks .

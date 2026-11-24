@@ -307,7 +307,7 @@ class ContentTests(unittest.TestCase):
                     for word in ['felt', 'feel', 'excited', 'wanted', 'decided', 'thrilled', 'scared',
                                  'curl ', 'wget', 'password', 'token=', 'ssh ', 'sudo', 'http']:
                         self.assertNotIn(word, text.lower().replace('information that it wanted', ''))
-        self.assertEqual(with_replay, {'hf-breakout', 'medicare', 'echoleak'})
+        self.assertEqual(with_replay, {'hf-breakout', 'medicare', 'echoleak', 'mcp-poisoning'})
         # Robot avatars are original inline SVG: no images, links or remote files.
         robots = script[script.index('const robotAvatars = {'):script.index('function robotKey')]
         self.assertEqual(set(re.findall(r"\n  (\w+):`", robots)), {'agent', 'steered', 'board', 'reasoning', 'labs'})

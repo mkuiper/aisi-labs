@@ -315,7 +315,7 @@ try{
   await click('[data-incident-mode="hf-advisories"]');
   assert.equal(await evaluate('document.querySelectorAll("[data-incident-view]").length'),0);
   // Medicare and EchoLeak replays: own speakers, non-disclosure notes, no government logo.
-  for(const [mode, lines, phrase] of [['medicare',15,'has not been disclosed'],['echoleak',10,'does not show how the data left']]){
+  for(const [mode, lines, phrase] of [['medicare',15,'has not been disclosed'],['echoleak',10,'does not show how the data left'],['mcp-poisoning',13,'does not repeat injected instructions']]){
     await click(`[data-incident-mode="${mode}"]`);
     assert(await evaluate('document.querySelector("[data-incident-view=\'stages\']").getAttribute("aria-pressed")==="true"'));
     await click('[data-incident-view="agent"]');
@@ -326,6 +326,11 @@ try{
     assert(await evaluate('[...document.querySelectorAll("#agent-feed .rp-quoted p")].every(p=>p.textContent.startsWith("“")&&p.textContent.endsWith("”"))'));
     await delay(800);await noOverflow('incident replay '+mode);await screenshot('incident-replay-'+mode+'-desktop');
   }
+  await click('[data-incident-mode="mcp-poisoning"]');await click('[data-incident-view="agent"]');await click('[data-replay="all"]');
+  assert(await evaluate('document.querySelector("#agent-feed").textContent.includes("Agent with a GitHub connection")'));
+  assert(await evaluate('[...document.querySelectorAll("#agent-feed .replay-msg.from-agent .mark")].every(m=>m.classList.contains("robot-agent"))'));
+  assert(await evaluate('[...document.querySelectorAll("#agent-feed .replay-msg")].filter(m=>m.querySelector("strong").textContent==="Invariant Labs").every(m=>!m.querySelector("img")&&!m.querySelector(".robot"))'));
+  await click('[data-incident-mode="echoleak"]');await click('[data-incident-view="agent"]');await click('[data-replay="all"]');
   assert(await evaluate('document.querySelector("#agent-feed").textContent.includes("Copilot, steered")'));
   assert(await evaluate('[...document.querySelectorAll("#agent-feed .replay-msg.from-agent .mark")].every(m=>m.classList.contains("robot-steered"))'));
   await click('[data-incident-mode="medicare"]');await click('[data-incident-view="agent"]');await click('[data-replay="all"]');

@@ -146,7 +146,7 @@ or route change, and the crossing motion is disabled when the reader prefers
 reduced motion. The other modes keep the shared stage strip. The lesson's review fingerprint covers
 lessons.json only; the walkthrough in web/app.js needs manual source review, and
 tests/test_content.py blocks phrases removed as unsupported.
-A case with a `replay` array (currently the Hugging Face, Medicare and EchoLeak
+A case with a `replay` array (currently the Hugging Face, Medicare, Invariant Labs GitHub MCP and EchoLeak
 cases; `replayAgent` names the agent) also offers "Watch it as the agent": a labelled
 message feed (Dramatised, Quoted, Reported, Not shown here), each line linked to
 the case sources. Nothing plays until the reader presses Play; Pause, Skip to the

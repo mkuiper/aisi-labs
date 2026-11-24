@@ -1,5 +1,11 @@
 # Changes
 
+## 25 November 2026 — an agent's-eye replay for the GitHub MCP case
+
+- The Invariant Labs GitHub MCP case now has a *Watch it as the agent* view, like the other three replays: 13 lines from connecting to GitHub, through the malicious public issue and the private read, to the public pull request, then Invariant's findings and advice.
+- The agent's lines are labelled dramatised, because Invariant shows the agent's chat and the malicious issue only as screenshots. Two lines quote Invariant's own sentences word for word; the rest are labelled reports. The injected instructions are not reproduced.
+- Verification: unit/HTTP tests (the dramatisation rules now cover four replays), JavaScript syntax checks, `git diff --check` and the browser smoke test, which checks the 13 lines, the quoted-line format, the agent robot and that Invariant Labs has no logo or robot.
+
 ## 24 November 2026 — "Named in this lesson" strips for four more lessons
 
 - *Chatbots, agents & harnesses* shows Claude Code, Codex, Gemini CLI and OpenCode, and *“Soul”, identity & instructions* shows which instruction file each tool reads, with OpenClaw by name and initials. *Try a chatbot* shows ChatGPT and Claude, whose pages are its sources. *Tools, MCP & skills* shows the Model Context Protocol.
