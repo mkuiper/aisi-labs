@@ -1,5 +1,16 @@
 # Changes
 
+## 28 November 2026 — learner checkpoints in the agent loop
+
+- Each loop stage now states the learner's decision or evidence check. The
+  guardrail introduction connects its requests to the pre-execution permission
+  decision. Checkpoints are included in step announcements.
+- The authored example distinguishes a completed tool read from a correct
+  result and says its checks do not establish a real tool's safety.
+- Browser coverage includes all five stages at 320, 390 and 1440 pixels,
+  reduced motion, keyboard progression and request-free inspection.
+- Source-review dates and fingerprints are unchanged.
+
 ## 28 November 2026 — replay starts on request with reduced motion
 
 - Opening an incident replay now waits for Play when reduced motion is enabled.

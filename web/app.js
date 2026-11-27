@@ -172,6 +172,13 @@ const traces = [
   ['A check gives feedback', 'A filter shows the wrong count. A check exposes the mismatch; the result is supplied back to the model.', ['is-active','is-warning','is-warning'], ['Re-evaluating','Check ran','Count mismatch!'], 'warn', 'STEP 4 · SELF-CORRECTION LOOP'],
   ['The work is reviewed', 'The agent corrects the filter and repeats the check. You inspect the page and decide whether it meets the brief.', ['is-passed','is-passed','is-passed'], ['Goal met ✓','Verified ✓','6 / 6 matched ✓'], 'pass', 'STEP 5 · HUMAN VERIFICATION'],
 ];
+const agentCheckpoints = [
+  'Before starting, define the expected result: the page should filter the six fictional submissions correctly.',
+  'Before execution, decide whether the requested action fits the task and permissions: allow it, ask a person first, or block it. Practise this decision in “You’re the guardrail” below.',
+  'After execution, inspect the returned rows. A completed read supplies evidence; it does not show that the page filters correctly.',
+  'Compare the filter count with the source rows. A mismatch is a reason to revise and check again, or stop the loop.',
+  'Inspect the corrected page against the brief. Passing this example’s count check does not establish that a real tool is safe.',
+];
 // One persistent live region. Diagram markup is rebuilt on each step, and a
 // live region inserted with new content is often not announced.
 let announceTimer = null;
@@ -185,6 +192,9 @@ function announce(message) {
 function stepAnnouncement(steps, current) {
   const [title, text] = steps[current];
   return `Step ${current+1} of ${steps.length}: ${title}. ${text}`;
+}
+function agentAnnouncement() {
+  return `${stepAnnouncement(traces,traceStep)} Your checkpoint: ${agentCheckpoints[traceStep]}`;
 }
 function incidentAnnouncement() {
   const [kind] = incidentCases[incidentMode].evidence[incidentStep];
@@ -232,8 +242,9 @@ function agentCycle() {
 }
 function agentDiagram() {
   const [title, text, , , badgeKind, badgeText] = traces[traceStep];
+  const checkpoint = agentCheckpoints[traceStep];
   const chat = '<div class="diagram-row"><div class="diagram-node is-passed"><strong>You</strong><small>Ask a question</small><span class="node-status">Prompt</span></div><span class="diagram-arrow is-flowing">→</span><div class="diagram-node is-active"><strong>Model</strong><small>Generate a reply</small><span class="node-status">Single turn</span></div><span class="diagram-arrow is-flowing">→</span><div class="diagram-node is-passed"><strong>You</strong><small>Review the answer</small><span class="node-status">Check</span></div></div><p class="diagram-caption">A basic exchange. Chat applications can also offer tools and agent loops.</p>';
-  const agent = `<div class="harness"><div class="harness-title"><strong>THE HARNESS</strong><span>Context · permissions · execution</span></div>${agentCycle()}</div>${stepRail(traces,traceStep,'data-trace-goto')}<div class="trace trace-${badgeKind}"><div class="trace-banner"><span class="verdict-pill ${badgeKind}">${esc(badgeText)}</span><span class="trace-tag">AUTHORED EXAMPLE · NO AI CALLS</span></div><div class="trace-head"><strong id="trace-title">${traceStep+1}. ${esc(title)}</strong></div><p id="trace-text">${esc(text)}</p><div class="actions"><button class="btn secondary small" data-trace="-1" ${traceStep===0?'disabled':''}>← Back</button><button class="btn small" data-trace="1">${traceStep===traces.length-1?'Replay ↺':'Next step →'}</button><span class="tiny-label">${traceStep+1} / ${traces.length}</span></div></div>`;
+  const agent = `<div class="harness"><div class="harness-title"><strong>THE HARNESS</strong><span>Context · permissions · execution</span></div>${agentCycle()}</div>${stepRail(traces,traceStep,'data-trace-goto')}<div class="trace trace-${badgeKind}"><div class="trace-banner"><span class="verdict-pill ${badgeKind}">${esc(badgeText)}</span><span class="trace-tag">AUTHORED EXAMPLE · NO AI CALLS</span></div><div class="trace-head"><strong id="trace-title">${traceStep+1}. ${esc(title)}</strong></div><p id="trace-text">${esc(text)}</p><p class="trace-defence" id="trace-checkpoint"><strong>Your checkpoint:</strong> ${esc(checkpoint)}</p><div class="actions"><button class="btn secondary small" data-trace="-1" ${traceStep===0?'disabled':''}>← Back</button><button class="btn small" data-trace="1">${traceStep===traces.length-1?'Replay ↺':'Next step →'}</button><span class="tiny-label">${traceStep+1} / ${traces.length}</span></div></div>`;
   return `<div class="diagram-label">One goal. Different ways of working.</div><div class="mode-buttons" role="group" aria-label="Compare interaction patterns"><button data-mode="chat" class="${traceMode==='chat'?'active':''}" aria-pressed="${traceMode==='chat'}">Simple chat</button><button data-mode="agent" class="${traceMode==='agent'?'active':''}" aria-pressed="${traceMode==='agent'}">Agent loop</button></div>${traceMode==='chat'?chat:agent}`;
 }
 const commerceTraces = {
@@ -672,7 +683,7 @@ const guardRequests = [
 function guardrailGame() {
   const total = guardRequests.length;
   const score = guardChoices.filter((choice, i) => choice === guardRequests[i][1]).length;
-  const head = `<div class="diagram-label">You’re the guardrail · a fictional practice project</div><p class="guard-intro">An agent is building the Harbour Library afternoon page. For each request, decide what the harness should do. Nothing is saved.</p>`;
+  const head = `<div class="diagram-label">You’re the guardrail · a fictional practice project</div><p class="guard-intro">Practise the loop’s permission checkpoint with a different fictional task: building the Harbour Library afternoon page. Each request is awaiting your decision before execution. Choose Allow, Ask a person first, or Block. This exercise runs no tools and saves nothing.</p>`;
   if (guardIndex >= total) {
     const rows = guardRequests.map(([request, best, reason], i) => { const mine = guardChoices[i]; return `<li class="${mine===best?'guard-right':'guard-wrong'}"><strong>${esc(request)}</strong><span>You chose ${esc(guardChoicesMeta[mine])}${mine===best?' ✓':` · best fit: ${esc(guardChoicesMeta[best])}`}</span><small>${esc(reason)}</small></li>`; }).join('');
     return `${head}<h3 class="guard-recap-title" id="guard-recap" tabindex="-1">You matched ${score} of ${total}</h3><p class="guard-rule">Allow what the task needs inside the project. Ask before anything that installs, spends or publishes. Block what comes from untrusted content or crosses the public-information boundary.</p><ol class="guard-recap">${rows}</ol><div class="actions"><button class="btn small" data-guard-restart="1">Play again</button><a class="text-link" href="#learn/responsible-use">Read Permissions &amp; responsible exploration →</a></div>`;
@@ -910,9 +921,9 @@ document.addEventListener('click', async event=>{
     else if(button.dataset.create)createModal(button.dataset.create);
     else if(button.dataset.tool)toolModal(button.dataset.tool);
     else if(button.dataset.filter){toolFilter=button.dataset.filter;render();document.querySelector(`[data-filter="${toolFilter}"]`).focus();}
-    else if(button.dataset.mode){traceMode=button.dataset.mode;document.querySelector('#agent-diagram').innerHTML=agentDiagram();document.querySelector(`[data-mode="${traceMode}"]`).focus();announce(traceMode==='chat'?'Simple chat shown.':`Agent loop shown. ${stepAnnouncement(traces,traceStep)}`);}
-    else if(button.dataset.trace){traceStep=(traceStep+Number(button.dataset.trace)+traces.length)%traces.length;document.querySelector('#agent-diagram').innerHTML=agentDiagram();document.querySelector('[data-trace="1"]').focus();announce(stepAnnouncement(traces,traceStep));}
-    else if(button.dataset.traceGoto!==undefined){traceStep=Number(button.dataset.traceGoto);document.querySelector('#agent-diagram').innerHTML=agentDiagram();document.querySelector(`[data-trace-goto="${traceStep}"]`).focus();announce(stepAnnouncement(traces,traceStep));}
+    else if(button.dataset.mode){traceMode=button.dataset.mode;document.querySelector('#agent-diagram').innerHTML=agentDiagram();document.querySelector(`[data-mode="${traceMode}"]`).focus();announce(traceMode==='chat'?'Simple chat shown.':`Agent loop shown. ${agentAnnouncement()}`);}
+    else if(button.dataset.trace){traceStep=(traceStep+Number(button.dataset.trace)+traces.length)%traces.length;document.querySelector('#agent-diagram').innerHTML=agentDiagram();document.querySelector('[data-trace="1"]').focus();announce(agentAnnouncement());}
+    else if(button.dataset.traceGoto!==undefined){traceStep=Number(button.dataset.traceGoto);document.querySelector('#agent-diagram').innerHTML=agentDiagram();document.querySelector(`[data-trace-goto="${traceStep}"]`).focus();announce(agentAnnouncement());}
     else if(button.dataset.commerceMode){commerceMode=button.dataset.commerceMode;commerceStep=0;document.querySelector('#commerce-diagram').innerHTML=commerceDiagram();document.querySelector(`[data-commerce-mode="${commerceMode}"]`).focus();announce(`${commerceMode==='approved'?'Within the $50 mandate':'Prompt-injected cart'}. ${stepAnnouncement(commerceTraces[commerceMode],commerceStep)}`);}
     else if(button.dataset.commerceStep){const steps=commerceTraces[commerceMode];commerceStep=(commerceStep+Number(button.dataset.commerceStep)+steps.length)%steps.length;document.querySelector('#commerce-diagram').innerHTML=commerceDiagram();document.querySelector('[data-commerce-step="1"]').focus();announce(stepAnnouncement(steps,commerceStep));}
     else if(button.dataset.commerceGoto!==undefined){commerceStep=Number(button.dataset.commerceGoto);document.querySelector('#commerce-diagram').innerHTML=commerceDiagram();document.querySelector(`[data-commerce-goto="${commerceStep}"]`).focus();announce(stepAnnouncement(commerceTraces[commerceMode],commerceStep));}

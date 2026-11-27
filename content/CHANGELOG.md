@@ -1,5 +1,22 @@
 # Learning material history
 
+## 2026-11-28 — learner decisions alongside the agent loop
+
+- One instructional improvement for queue item 3: the five authored loop stages
+  now pair agent activity with a learner checkpoint, from defining the expected
+  result to inspecting the corrected page. The guardrail introduction identifies
+  the same permission decision before execution in a different fictional task.
+- Inspected local loop/game code, exercise choices and feedback, motion CSS
+  and isolated browser behaviour. No external source pages were fetched and no
+  product claims changed. The loop's check is explicitly not proof of tool safety.
+- These interactions in web/app.js are outside the lesson fingerprint. The
+  chat-agents lesson increments to revision 4 for the instructional change;
+  dates and fingerprints remain unchanged. No fresh source review is claimed.
+  The programme guide increments to revision 12; its editorial
+  addition retains the previous review date and fingerprint so the offline
+  audit shows it as changed.
+- The weekend review log records verification, layouts and remaining work.
+
 ## 2026-11-28 — reduced-motion replay starts on request
 
 - Interaction-only review of incident replay controls. Opening a replay with

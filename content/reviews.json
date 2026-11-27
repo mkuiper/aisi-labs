@@ -1,6 +1,6 @@
 {
   "lesson:chat-agents": {
-    "revision": 3,
+    "revision": 4,
     "reviewed_at": "2026-11-22",
     "review_after_days": 90,
     "sha256": "eea34cd9234cfc88c815fd607474b3dd95f211e0161ca1ecbf10cbfd57927cf1",
@@ -175,7 +175,7 @@
     "notes": "Reviewed 2026-11-13: inspected open-model field guide and comparison worksheet against OSI Open Source AI Definition 1.0, Hugging Face model-card/quantisation documentation and Ollama local/cloud documentation; no downloads or live inference. Public-only programme boundaries retained."
   },
   "doc:programme": {
-    "revision": 11,
+    "revision": 12,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "5fd6f6cc6c98e67ffb6dad559df0bc878c37e977f707e1a66a407ffcdc92d5c2",

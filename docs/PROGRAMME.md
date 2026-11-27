@@ -20,6 +20,12 @@ session supports manual handover but cannot certify logout or device readiness.
 The improvement schedule proposes pilot and deployment gates; it does not
 approve dates or schedule work.
 
+The agent-loop walkthrough pairs each stage with a learner checkpoint: define
+the expected result, decide before a tool runs, inspect its returned evidence,
+compare the result and review the work. The accompanying guardrail exercise
+practises the permission decision with fictional requests. Both are offline
+teaching examples, not demonstrations that a real tool is safe.
+
 ## Creative media and keeping current
 
 Web & media includes image/video learning profiles and a no-install workflow

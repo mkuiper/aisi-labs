@@ -56,9 +56,9 @@ Five-hour spacing limits frequency; bounded scope limits token use.
    incident replays. Fix a demonstrated readability problem. Completed in round 1 below.
 2. [x] Inspect replay playback, pause, restart, keyboard access and reduced motion.
    Improve one interaction that helps learners follow the evidence. Completed in round 2 below.
-3. Review the agent-loop animation and guardrail exercise together. Make the
+3. [x] Review the agent-loop animation and guardrail exercise together. Make the
    goal, tool result and learner decision easier to follow, without suggesting
-   that the animation proves a real tool is safe.
+   that the animation proves a real tool is safe. Completed in round 3 below.
 4. Review prompting, context and checking as a learner journey. Polish one
    worked example or question, with plausible alternatives and useful feedback.
 5. Review AI basics and glossary wording for a mixed-experience audience.
@@ -190,3 +190,56 @@ force to the existing remote; preserve a local commit if the push fails.
 - Next round starts at queue item 3. Items 3–9 remain unfinished. This round's
   commit is identified by `Wait for Play before showing reduced-motion replays`.
   The final handover reports the push outcome; no success is assumed here.
+
+## Round 3 — 28 November 2026, learner checkpoints in the agent loop
+
+- Completed queue item 3 only. Clean main checkout at entry. Inspected the
+  five loop stages, goal/tool/result/check diagram, all six guardrail requests,
+  choice feedback and recap, focus/announcement handlers and reduced-motion
+  styles in web/app.js, web/style.css and scripts/smoke.mjs.
+- Found that the loop described agent activity without consistently stating
+  the learner's decision, while the guardrail introduction did not locate its
+  choices within that loop. One focused improvement: a Your checkpoint paragraph
+  at each stage connects the goal, pre-execution permission, returned evidence,
+  mismatch and final review. The game explicitly practises the permission
+  checkpoint in a different fictional task, before anything runs.
+- The final checkpoint says a passing count check does not establish a real
+  tool's safety. Existing authored-example/no-AI-call labels, public-only,
+  NO OFFICIAL and NEVER government-network/account boundaries remain. No tool
+  execution, backend API, state path or project change was introduced.
+- Sources are the local implementation and isolated Chromium renders only.
+  No external primary-source destinations were fetched, no current product
+  claims were changed and no new source/exercise review date is claimed.
+- Incremented lesson:chat-agents to revision 4 for its instructional change
+  outside the lesson fingerprint, and doc:programme to revision 12 for the
+  corresponding teaching description. All previous dates and fingerprints
+  remain. Audit: 53 in-date, one changed (doc:programme), one unreviewed
+  (resource:helm). The programme's visible editorial debt is intentional.
+- Updated architecture, programme guide and both changelogs. Next round starts
+  at item 4; items 4–9 remain unfinished. The focused commit subject is
+  `Connect agent loop stages to learner checkpoints`.
+- Verification on this Omarchy host: all 80 unit/HTTP tests pass; syntax checks
+  pass for app.js, programme.js, session.js, feedback.js and smoke.mjs. Full
+  isolated Chromium smoke and Git whitespace checks pass. The final unit run
+  emitted the previously recorded fixture HTTP 404 cleanup ResourceWarning.
+- Initial smoke attempts exposed two mistakes in the new test code: a
+  case-sensitive text assertion and a synthetic Enter event missing the text
+  field used by the suite's existing keyboard tests. Corrected both and reran
+  the full suite successfully. No application failure was hidden or test weakened.
+- Browser coverage checks all five loop stages at 320, 390 and 1440 pixels in
+  normal and reduced motion, disabled node/arrow animations under reduced
+  motion, keyboard Next, focus retention, Back/Replay and checkpoint text in
+  announcements. Loop/game inspection sends no requests. Existing coverage
+  still checks all six choices, incorrect feedback, recap and restart.
+- Visually inspected the permission checkpoint and guardrail choices at 320
+  and 1440 pixels, plus the final review checkpoint at 390. Text wraps, focus
+  remains visible and controls stay contained. Captures remain ignored under
+  reports/weekend-*.png. Automated checks do not establish screen-reader
+  usability, factual currency, real-tool safety, authentication, hardware
+  acceptance, network separation or deployment approval.
+- No learner data, profiles or credentials were inspected. Fixtures and browser
+  roots are isolated and temporary. No external source fetches, installs,
+  upgrades, model calls, account connections, image generation, deployment or
+  schedule edits.
+- Staged changes are inspected before the focused commit. The final response
+  reports the push outcome to existing origin main; no success is assumed here.

@@ -113,7 +113,13 @@ includes a detail field rendered inside a native details/summary disclosure
 on demand. Lesson sections also accept an optional third string ([title, body,
 detail]) rendered as a native section-detail disclosure. The chat-agents diagram (#agent-diagram) contrasts one chat turn with an offline
 agent cycle of goal, tool, result and check. A failed check returns to the goal,
-and the same five authored steps stay under the cycle. The agentic-commerce
+and the same five authored steps stay under the cycle.
+Each agent-loop step includes a learner checkpoint: define the expected result,
+decide before tool execution, inspect returned evidence, compare the result, and
+review the work. Checkpoints join the persistent step announcement. The guardrail
+introduction places its six requests at the same permission checkpoint, before
+execution, in a different fictional task. These are authored offline examples;
+passing their checks does not establish a real tool's safety. The agentic-commerce
 lesson renders an offline interactive four-layer protocol and mandate walkthrough
 (#commerce-diagram) comparing within-mandate checkout and out-of-mandate cart
 rejection across MCP, A2A, ACP, UCP, AP2, FIDO passkeys, Visa Intelligent

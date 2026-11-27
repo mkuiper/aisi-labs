@@ -634,7 +634,14 @@ try{
   assert(await evaluate('document.querySelector("#agent-diagram .cycle-c2g").textContent.includes("↑")'));
   await click('[data-trace="1"]');
   assert(await evaluate('document.querySelector("#trace-title").textContent.includes("requests a tool")'));
+  assert(await evaluate('document.querySelector("#trace-checkpoint").textContent.includes("Before execution")'));
   {const announced=async()=>{await delay(200);return evaluate('document.querySelector("#announcer").textContent');};const said=await announced();assert(said.startsWith('Step 2 of ')&&said.includes('requests a tool'),said);}
+  assert(await evaluate('document.querySelector("#announcer").textContent.includes(document.querySelector("#trace-checkpoint").textContent)'));
+  await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',text:'\r',windowsVirtualKeyCode:13});
+  await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  await waitFor('document.querySelector(".agent-cycle").dataset.cycle==="result"');
+  assert(await evaluate('document.querySelector("#trace-checkpoint").textContent.includes("does not show that the page filters correctly")'));
+  assert(await evaluate('document.activeElement.matches("[data-trace=\'1\']")'));
   assert.equal(await evaluate('document.querySelectorAll("#agent-diagram [aria-live], #guardrail-game [aria-live], #guardrail-game [role=status]").length'),0);
   await click('[data-answer="1"]');
   assert(await evaluate('document.querySelector("#quiz-feedback").textContent.startsWith("Best fit.")'));
@@ -924,6 +931,30 @@ try{
     await checkEvidenceContrast();
     await evaluate('document.querySelector(".lesson-products").scrollIntoView()');
     await screenshot('weekend-product-marks-'+width,false);
+    const checkpointRequests=requests.length;
+    for(const motion of ['no-preference','reduce']){
+      await cdp('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});
+      await click('[data-mode="agent"]');
+      for(let step=0;step<5;step++){
+        await click(`[data-trace-goto="${step}"]`);
+        await noOverflow('agent checkpoint '+step+' '+motion+' '+width);
+        assert(await evaluate('document.querySelector("#trace-checkpoint").getBoundingClientRect().width>0'));
+        if(motion==='reduce')assert(await evaluate('[...document.querySelectorAll("#agent-diagram .diagram-node,#agent-diagram .diagram-arrow")].every(el=>getComputedStyle(el).animationName==="none")'));
+        if(motion==='reduce'&&(step===1||step===4)){
+          await evaluate('document.querySelector("#trace-checkpoint").scrollIntoView({block:"center"})');
+          await screenshot('weekend-agent-checkpoint-'+step+'-'+width,false);
+        }
+      }
+      await click('[data-trace="1"]');
+      assert.equal(await evaluate('document.querySelector(".agent-cycle").dataset.cycle'),'goal');
+      await click('[data-trace="1"]');await click('[data-trace="-1"]');
+      assert.equal(await evaluate('document.querySelector(".agent-cycle").dataset.cycle'),'goal');
+    }
+    await cdp('Emulation.setEmulatedMedia',{features:[]});
+    assert(await evaluate('document.querySelector(".guard-intro").textContent.includes("before execution")'));
+    await evaluate('document.querySelector("#guardrail-game").scrollIntoView({block:"start"})');
+    await noOverflow('guardrail checkpoint '+width);await screenshot('weekend-guardrail-checkpoint-'+width,false);
+    assert.equal(requests.length,checkpointRequests,'Loop and guardrail inspection makes no requests');
     await go('#learn/agent-incidents');
     for(const mode of ['hf-breakout','medicare','mcp-poisoning','echoleak']){
       await click(`[data-incident-mode="${mode}"]`);await click('[data-incident-view="agent"]');await click('[data-replay="all"]');
