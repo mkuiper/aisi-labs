@@ -151,8 +151,11 @@ cases; `replayAgent` names the agent) also offers "Watch it as the agent": a lab
 message feed (Dramatised, Quoted, Reported, Not shown here), each line linked to
 the case sources. Nothing plays until the reader presses Play; Pause, Skip to the
 end and Restart are available. New lines are appended to a `role="log"` list so
-a screen reader hears only the new line. Under reduced motion, Play shows every
-line at once. The replay stops on view, mode or route change, saves nothing, and
+a screen reader hears only the new line. Opening the replay waits for Play in
+both motion modes. Under reduced motion, Play shows every line at once without
+a playback timer. Browser checks cover all four cases, keyboard play and pause,
+restart focus and cancellation on view, mode or route change. The replay saves
+nothing, and
 `tests/test_content.py` checks its labels, sources and wording rules.
 Speakers come from `replaySpeakers`; government speakers have initials only.
 The `board` and `reasoning` speakers carry agents' own words and may only be

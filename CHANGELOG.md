@@ -1,5 +1,14 @@
 # Changes
 
+## 28 November 2026 — replay starts on request with reduced motion
+
+- Opening an incident replay now waits for Play when reduced motion is enabled.
+  Play still reveals all messages at once without timed animation. The hint,
+  announcement and initial message count now agree.
+- Browser checks cover reduced motion in all four replays, keyboard play and
+  pause, restart focus, and cancellation on view, case or route change.
+- Incident claims and source-review metadata are unchanged.
+
 ## 27 November 2026 — lesson evidence-label contrast
 
 - Darkened the Reported replay label and product-caption text. Their contrast

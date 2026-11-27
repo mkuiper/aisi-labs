@@ -54,8 +54,8 @@ Five-hour spacing limits frequency; bounded scope limits token use.
 
 1. [x] Inspect dark-theme contrast and narrow layouts for lesson product marks and
    incident replays. Fix a demonstrated readability problem. Completed in round 1 below.
-2. Inspect replay playback, pause, restart, keyboard access and reduced motion.
-   Improve one interaction that helps learners follow the evidence.
+2. [x] Inspect replay playback, pause, restart, keyboard access and reduced motion.
+   Improve one interaction that helps learners follow the evidence. Completed in round 2 below.
 3. Review the agent-loop animation and guardrail exercise together. Make the
    goal, tool result and learner decision easier to follow, without suggesting
    that the animation proves a real tool is safe.
@@ -149,3 +149,44 @@ force to the existing remote; preserve a local commit if the push fails.
 - This round's focused commit is identified by the subject
   `Improve lesson label contrast and narrow replay wrapping` in Git history.
   The final handover reports the push outcome.
+
+## Round 2 — 28 November 2026, replay starts on request
+
+- Completed queue item 2 only. Inspected replay scheduling, pause/resume,
+  restart, keyboard focus, view/case/route cancellation and reduced-motion CSS
+  in `web/app.js`, `web/style.css` and `scripts/smoke.mjs`.
+- Demonstrated that entering the replay with reduced motion revealed all 31
+  Hugging Face messages while the announcement said to press Play. A browser
+  assertion failed with 31 messages against an expected zero before the fix.
+- One focused improvement: every replay now waits for Play on entry, including
+  under reduced motion. Reduced-motion Play still reveals all lines at once,
+  without a timer. Labels, sources and incident claims are unchanged.
+- Browser checks cover zero messages before Play in all four reduced-motion
+  cases, full counts after Play, no playback timer, disabled message/eye
+  animations and smooth scrolling, Enter to play, Space to pause, Tab to
+  Skip, focus after Restart, and timer cancellation on view/case/route changes.
+- Sources are local code and isolated Chromium renders only. No external
+  destinations were fetched. This interaction review does not establish the
+  accuracy of incident claims or constitute a source/exercise re-review.
+- Verification: all 80 unit/HTTP tests pass on this Omarchy host. The run emitted
+  the previously recorded Python ResourceWarning about cleanup of a fixture
+  HTTP 404. Syntax checks pass for app.js, programme.js, session.js, feedback.js
+  and smoke.mjs. Full isolated Chromium smoke and Git whitespace checks pass.
+  No tests were weakened.
+- Browser checks include replay layouts at 320, 390 and 1440 pixels. Visually
+  inspected the reduced-motion Hugging Face desktop view, Hugging Face at 320
+  and Medicare at 390. Labels wrap and controls remain visible and contained.
+  Captures are ignored `reports/weekend-*.png`. Automated keyboard and CSS
+  checks do not establish screen-reader usability, source accuracy, live
+  authentication, hardware acceptance, network separation or deployment approval.
+- Offline audit remains 54 in-date items and one unreviewed item,
+  `resource:helm`. No review dates, lesson revisions or fingerprints changed.
+  `web/app.js` interactions are outside the lesson fingerprint, as documented
+  in the architecture. Updated architecture and both changelogs; programme
+  rules and learning objectives are unchanged.
+- No learner data, profiles or credentials were inspected. Tests use fake
+  fixtures and fresh temporary state/profile roots. No installs, model calls,
+  account connections, image generation, deployment or schedule changes.
+- Next round starts at queue item 3. Items 3–9 remain unfinished. This round's
+  commit is identified by `Wait for Play before showing reduced-motion replays`.
+  The final handover reports the push outcome; no success is assumed here.

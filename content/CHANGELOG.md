@@ -1,5 +1,16 @@
 # Learning material history
 
+## 2026-11-28 — reduced-motion replay starts on request
+
+- Interaction-only review of incident replay controls. Opening a replay with
+  reduced motion enabled now waits for Play. Play reveals every labelled line
+  at once, without a timer. Previously the view revealed all lines on entry
+  while its announcement said to press Play.
+- Inspected local replay code, CSS and isolated browser behaviour. No external
+  pages were fetched or incident claims changed. Lesson revisions, review dates
+  and fingerprints are unchanged. This is not a fresh source or exercise review.
+- The weekend review log records keyboard checks, layouts and remaining work.
+
 ## 2026-11-27 — evidence-label readability
 
 - Presentation-only review of lesson product marks and incident replays.

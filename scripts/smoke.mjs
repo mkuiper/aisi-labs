@@ -291,16 +291,24 @@ try{
   assert(await evaluate('document.querySelector(".replay-note").textContent.includes("Dramatised retelling")'));
   assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),0);
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .boundary-map").length'),0);
-  await click('[data-replay="toggle"]');
+  await evaluate('document.querySelector("[data-replay=\'toggle\']").focus()');
+  await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',text:'\r',windowsVirtualKeyCode:13});
+  await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
   assert(await evaluate('document.querySelector("[data-replay=\'toggle\']").getAttribute("aria-pressed")==="true"'));
   await delay(1500);
   assert(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length>=1'));
   assert(await evaluate('document.querySelector("#agent-feed .replay-msg .replay-pill").textContent==="Dramatised"'));
-  await click('[data-replay="toggle"]');
+  await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
+  await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
+  assert.equal(await evaluate('document.activeElement.dataset.replay'),'toggle');
+  assert.equal(await evaluate('document.activeElement.textContent'),'Resume');
   const paused=await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length');
   await delay(2500);
   assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),paused);
   assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-typing").length'),0);
+  await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
+  await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
+  assert.equal(await evaluate('document.activeElement.dataset.replay'),'all');
   await click('[data-replay="all"]');
   assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),31);
   // Agents' own published words: quoted only, shown on the agent side, with the zz post.
@@ -319,14 +327,36 @@ try{
   await delay(800);await screenshot('incident-agent-replay-desktop');
   await click('[data-replay="restart"]');
   assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),0);
+  assert.equal(await evaluate('document.activeElement.dataset.replay'),'toggle','Disabled Restart returns focus to Play');
   await cdp('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
-  await click('[data-replay="toggle"]');
-  assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),31);
+  for(const [mode,lines] of [['medicare',15],['mcp-poisoning',13],['echoleak',10],['hf-breakout',31]]){
+    await click(`[data-incident-mode="${mode}"]`);await click('[data-incident-view="agent"]');
+    await delay(1200);
+    assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),0,'Reduced motion must wait for Play when entering the replay');
+    assert.equal(await evaluate('document.querySelector("[data-replay=\'toggle\']").textContent'),'Play');
+    assert.equal(await evaluate('document.querySelector("#replay-count").textContent'),`0 / ${lines} messages`);
+    await click('[data-replay="toggle"]');
+    assert.equal(await evaluate('document.querySelectorAll("#agent-feed .replay-msg").length'),lines);
+    assert(await evaluate('replayTimer===null&&!replayTyping'));
+    assert(await evaluate('[...document.querySelectorAll(".replay-msg,.robot .eye")].every(el=>getComputedStyle(el).animationName==="none")'));
+    assert.equal(await evaluate('getComputedStyle(document.querySelector("#agent-feed")).scrollBehavior'),'auto');
+    await noOverflow('reduced-motion replay '+mode);
+  }
+  await evaluate('document.querySelector(".agent-replay").scrollIntoView()');
+  await screenshot('weekend-replay-reduced-motion-desktop',false);
   await cdp('Emulation.setEmulatedMedia',{features:[]});
+  await click('[data-replay="restart"]');await click('[data-replay="toggle"]');
   await click('[data-incident-view="stages"]');
+  assert(await evaluate('replayTimer===null&&!replayTyping'),'Leaving the replay cancels playback');
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .boundary-map").length'),1);
   await click('[data-incident-view="agent"]');
+  await click('[data-replay="toggle"]');
+  await go('#learn');
+  assert(await evaluate('replayTimer===null&&!replayTyping'),'Leaving the lesson cancels playback');
+  await go('#learn/agent-incidents');
+  await click('[data-incident-view="agent"]');await click('[data-replay="toggle"]');
   await click('[data-incident-mode="hf-advisories"]');
+  assert(await evaluate('replayTimer===null&&!replayTyping'),'Changing case cancels playback');
   assert.equal(await evaluate('document.querySelectorAll("[data-incident-view]").length'),0);
   // Medicare and EchoLeak replays: own speakers, non-disclosure notes, no government logo.
   for(const [mode, lines, phrase] of [['medicare',15,'has not been disclosed'],['echoleak',10,'does not show how the data left'],['mcp-poisoning',13,'does not repeat injected instructions']]){
