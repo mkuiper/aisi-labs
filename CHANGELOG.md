@@ -1,5 +1,15 @@
 # Changes
 
+## 27 November 2026 — paced weekend review schedule
+
+- Added a date-bounded maintainer runner and review queue for explicitly
+  authorised five-hour reviews. The local user timer runs through Monday
+  morning; the runner skips dirty checkouts and non-main branches, prevents
+  overlap and limits runtime. It uses the pinned installed Codex binary.
+- Verified unit/HTTP tests, JavaScript syntax, systemd unit validation and
+  mocked worker checks. No live authentication test or learner-facing change.
+  Timer status and cancellation commands are in the weekend review log.
+
 ## 25 November 2026 — an agent's-eye replay for the GitHub MCP case
 
 - The Invariant Labs GitHub MCP case now has a *Watch it as the agent* view, like the other three replays: 13 lines from connecting to GitHub, through the malicious public issue and the private read, to the public pull request, then Invariant's findings and advice.

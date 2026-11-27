@@ -366,6 +366,13 @@ unchanged. Keep provider guide IDs aligned with configuration.PROVIDERS.
 
 ## Verification
 
+The explicitly requested November 2026 weekend maintenance schedule uses
+`scripts/weekend_review.py` and local systemd user units, separate from the hub.
+It does not run when a learner opens the app. Its date window, bounded scope,
+existing-account access, checks and cancellation commands are documented in
+`docs/WEEKEND_REVIEW_2026-11-27.md`. It is not deployment approval or a general
+automatic updater. The learning programme and learner state are unchanged.
+
 Run `python3 -m unittest discover -s tests -v`, JavaScript syntax checks, and
 `node scripts/smoke.mjs`. Tests use fake credentials, temporary state, mocked
 processes and mocked external release metadata. Browser checks do not launch

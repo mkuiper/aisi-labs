@@ -7,9 +7,42 @@ log, not a learner guide or deployment approval.
 
 The owner requested one bounded chunk about every five hours, with regular
 commits and pushes to the existing remote. Proposed finish: Monday 30 November
-at 09:00 Australia/Canberra. A scheduler has **not** been activated: this
-session exposes no scheduler for local repository work. Timer choice is pending
-the owner's response. This file alone does not start future rounds.
+at 09:00 Australia/Canberra. The owner then explicitly requested scheduling.
+A local systemd user timer is configured for 13 five-hour rounds starting
+Friday 27 November at 19:30, followed by a summary on Monday at 08:30.
+The last ordinary slot is Monday at 07:30. No new run starts after 09:00.
+The runner also limits each invocation to 90 minutes or the remaining window.
+
+The machine must be awake and the user manager running. Missed rounds do not
+accumulate. Closing this chat does not stop the timer. No login linger, sleep
+settings, network controls or system-wide services were changed. The worker
+uses existing Codex account/configuration and the same local filesystem access
+as this editing session, without reading or copying credentials. Its prompt
+prohibits installs, other model calls, account connections and learner data.
+
+Local units: `~/.config/systemd/user/aisi-weekend-review-20261127.{timer,service}`.
+The runner is `scripts/weekend_review.py`; its Codex binary is pinned in the
+service environment, so it never invokes an updating wrapper. Unit paths are
+local installation details, not portable checkout requirements.
+
+Inspect or stop the schedule:
+
+```sh
+systemctl --user list-timers aisi-weekend-review-20261127.timer
+journalctl --user -u aisi-weekend-review-20261127.service
+systemctl --user disable --now aisi-weekend-review-20261127.timer
+```
+
+Stopping the timer prevents future starts. To stop a running round as well:
+
+```sh
+systemctl --user stop aisi-weekend-review-20261127.service
+```
+
+The runner skips dirty checkouts and branches other than main. A runtime lock
+prevents overlapping invocations. A timeout preserves unfinished edits for
+inspection; later rounds skip them. Scheduled starts are verified separately
+from successful future model access. No live authentication test was performed.
 
 Each round takes the first unfinished item, reads the relevant source and
 implementation, makes at most one focused improvement, verifies it and records
@@ -71,5 +104,13 @@ force to the existing remote; preserve a local commit if the push fails.
   app.js, programme.js, session.js and feedback.js; isolated Chromium smoke
   passes; Git whitespace check passes. Tests do not establish factual accuracy,
   live authentication, screen-reader usability or deployment acceptance.
-- No module or animation has changed in this setup round. Scheduling remains
-  pending; the queue does not imply future work has run.
+- No module or animation has changed in this setup round. The queue does not
+  imply future work has run.
+- Scheduling checks: systemd unit validation passes; mocked workers confirm
+  dirty/non-main skips and one bounded invocation from a clean checkout.
+  An actual pre-window invocation exits without calling Codex. All 80 tests
+  and required syntax checks pass. No provider login or paid call was tested.
+- Read-only scheduling documentation destinations: OpenAI's
+  `https://developers.openai.com/codex/noninteractive` and
+  `https://developers.openai.com/codex/app/automations`, which redirect to
+  their ChatGPT Learn pages. CLI help was inspected from the pinned binary.
