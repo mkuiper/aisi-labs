@@ -1,5 +1,16 @@
 # Learning material history
 
+## 2026-11-27 — evidence-label readability
+
+- Presentation-only review of lesson product marks and incident replays.
+  Darkened Reported labels and product captions to improve text contrast.
+  Long replay words now wrap within their bubbles on narrow screens.
+- Sources inspected were the local CSS, replay markup and isolated browser
+  renders. No external pages were fetched or factual claims changed. Review
+  dates, fingerprints and lesson revisions are unchanged. This is not a fresh
+  review of the incident evidence or exercises.
+- The weekend review log records viewport checks and remaining work.
+
 ## 2026-11-24 — open-models and agent-incidents re-reviewed
 
 - `lesson:open-models` revision 5, `reviewed_at` 2026-11-24: all nine sources, the field guide and the exercise re-read. No text change. The Qwen3-0.6B card now shows an apache-2.0 licence label, as the field guide says.

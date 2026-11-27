@@ -52,8 +52,8 @@ Five-hour spacing limits frequency; bounded scope limits token use.
 
 ## Queue
 
-1. Inspect dark-theme contrast and narrow layouts for lesson product marks and
-   incident replays. Fix a demonstrated readability problem.
+1. [x] Inspect dark-theme contrast and narrow layouts for lesson product marks and
+   incident replays. Fix a demonstrated readability problem. Completed in round 1 below.
 2. Inspect replay playback, pause, restart, keyboard access and reduced motion.
    Improve one interaction that helps learners follow the evidence.
 3. Review the agent-loop animation and guardrail exercise together. Make the
@@ -114,3 +114,38 @@ force to the existing remote; preserve a local commit if the push fails.
   `https://developers.openai.com/codex/noninteractive` and
   `https://developers.openai.com/codex/app/automations`, which redirect to
   their ChatGPT Learn pages. CLI help was inspected from the pinned binary.
+
+## Round 1 — 27 November 2026, lesson-label readability
+
+- Completed queue item 1 only. The app uses a fixed light palette with a dark
+  replay panel. Inspected product backplates, captions, evidence labels and
+  narrow replay layouts. No factual lesson or playback changes.
+- Found Reported badge text at 4.27:1 contrast against `#e6ebf3`, and product
+  captions at 4.38:1 against `#fffdf6`. Darkened the text to `#526785` and
+  `#64705e`, giving 4.82:1 and 5.13:1 respectively.
+- The added 320-pixel feed check initially failed because replay content
+  overflowed horizontally. Allowed long words to wrap within flex message
+  bubbles using `min-width:0` and `overflow-wrap:anywhere`.
+- Sources and evidence were local `web/style.css`, the `nameStrip()` and replay
+  rendering in `web/app.js`, and isolated Chromium renders. No primary-source
+  destinations were contacted. No new factual or source-review claim is made.
+- Browser coverage now checks computed caption/badge contrast, page overflow
+  and feed overflow for all four replay cases at 320, 390 and 1440 pixels.
+  Captures are ignored `reports/weekend-*.png`. Visually inspected product
+  strips at 320 and 1440, July replay at 320, GitHub MCP replay at 390 and
+  Medicare replay at 1440. Marks, labels and controls remain visible.
+- Verification: 80 unit/HTTP tests pass. Syntax checks pass for app.js,
+  programme.js, session.js, feedback.js and smoke.mjs. Isolated browser smoke
+  passes, including the new cases. Git whitespace check passes. A repeat unit
+  run emitted a Python ResourceWarning about cleanup of a fixture HTTP 404;
+  all tests still passed. No tests were weakened.
+- Offline audit remains 54 in-date and one unreviewed item, `resource:helm`.
+  Review dates, revisions and fingerprints are unchanged. Source accuracy,
+  live authentication, screen-reader usability, hardware acceptance and network
+  separation were not established. Learner data and credentials were not read.
+- Updated architecture and both changelogs for the presentation/check coverage.
+  No programme rule or learner workflow changed. Next round starts at queue
+  item 2. Queue items 2–9 remain unfinished.
+- This round's focused commit is identified by the subject
+  `Improve lesson label contrast and narrow replay wrapping` in Git history.
+  The final handover reports the push outcome.

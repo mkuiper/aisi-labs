@@ -48,6 +48,20 @@ try{
     await waitFor('[...document.querySelectorAll("main .tool-logo")].every(i=>i.complete&&i.naturalWidth>0)');
     assert(await evaluate('[...document.querySelectorAll("main .tool-logo")].every(i=>new URL(i.src).origin===location.origin&&i.alt===""&&i.closest(".mark").getAttribute("aria-hidden")==="true")'));
   }
+  async function checkEvidenceContrast(){
+    const ratios=await evaluate(`(()=>{
+      const luminance=colour=>{
+        const channels=colour.match(/[\\d.]+/g).slice(0,3).map(v=>Number(v)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);
+        return channels.reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
+      };
+      return [...document.querySelectorAll('.org-strip small,.rp-reported .replay-pill')].map(el=>{
+        const foreground=luminance(getComputedStyle(el).color);
+        const background=luminance(getComputedStyle(el.matches('small')?el.closest('li'):el).backgroundColor);
+        return (Math.max(foreground,background)+.05)/(Math.min(foreground,background)+.05);
+      });
+    })()`);
+    assert(ratios.length>0&&ratios.every(ratio=>ratio>=4.5),'Product captions and Reported labels need at least 4.5:1 contrast: '+ratios);
+  }
   async function screenshot(name,full=true){if(full)await evaluate('window.scrollTo(0,0)');await delay(50);const result=await cdp('Page.captureScreenshot',{format:'png',captureBeyondViewport:full});await writeFile(join(reports,name+'.png'),Buffer.from(result.data,'base64'));}
   async function noOverflow(label){const sizes=await evaluate('({width:innerWidth,body:document.documentElement.scrollWidth})');if(sizes.body>sizes.width+1){console.log(await evaluate('[...document.querySelectorAll("body *")].filter(e=>e.getBoundingClientRect().right>innerWidth+1).map(e=>({tag:e.tagName,class:e.className,right:e.getBoundingClientRect().right})).slice(0,15)'));await screenshot('overflow');}assert(sizes.body<=sizes.width+1,`${label}: overflow ${JSON.stringify(sizes)}`);}
   await cdp('Page.enable');await cdp('Runtime.enable');await cdp('Log.enable');await cdp('Network.enable');
@@ -873,6 +887,23 @@ try{
   await click('[data-incident-mode="medicare"]');await click('[data-incident-goto="3"]');await noOverflow('incident medicare mobile');await screenshot('incident-medicare-mobile');await click('[data-incident-mode="hf-breakout"]');
   await go('#tools');await click('[data-filter="Desktop tools"]');await checkLogos(8);await noOverflow('mobile desktop logos');
   await go('#home');await screenshot('launchpad-mobile');
+  // Evidence labels and product captions must remain readable beside the dark replay.
+  for(const width of [320,390,1440]){
+    await cdp('Emulation.setDeviceMetricsOverride',{width,height:1080,deviceScaleFactor:1,mobile:false});
+    await go('#learn/chat-agents');await noOverflow('lesson product marks '+width);
+    await checkEvidenceContrast();
+    await evaluate('document.querySelector(".lesson-products").scrollIntoView()');
+    await screenshot('weekend-product-marks-'+width,false);
+    await go('#learn/agent-incidents');
+    for(const mode of ['hf-breakout','medicare','mcp-poisoning','echoleak']){
+      await click(`[data-incident-mode="${mode}"]`);await click('[data-incident-view="agent"]');await click('[data-replay="all"]');
+      await delay(400);await noOverflow('replay '+mode+' '+width);
+      await checkEvidenceContrast();
+      assert(await evaluate('document.querySelector("#agent-feed").scrollWidth<=document.querySelector("#agent-feed").clientWidth+1'),'Replay feed must not scroll horizontally');
+      await evaluate('document.querySelector(".agent-replay").scrollIntoView()');
+      await screenshot('weekend-replay-'+mode+'-'+width,false);
+    }
+  }
   assert.deepEqual(errors,[],'Browser errors');
   assert.equal(serverErrors,'','Server errors');
   console.log('PASS: offline Omarchy help before acknowledgement, shortcut guidance/search/recovery, bundled tool/chat logos and fallback, launchpad, web-chat confirmation/gate/search, open-model diagrams/reviews/quiz, credentials without leaks, models/persistence, inventory, optional first-session route, manual finish checklist/key removal/failure/reload checks, nine documents, fifteen lessons, three beginner routes, glossary navigation/search, offline chatbot exercise and worked examples, five current-awareness resources, five projects and responsive layouts.');

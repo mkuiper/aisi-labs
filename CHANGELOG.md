@@ -1,5 +1,14 @@
 # Changes
 
+## 27 November 2026 — lesson evidence-label contrast
+
+- Darkened the Reported replay label and product-caption text. Their contrast
+  against the existing backgrounds is now 4.82:1 and 5.13:1 respectively.
+- Long replay words wrap within their message bubbles on narrow screens.
+- Added browser checks for those colours and for product marks and all four
+  incident replays at 320, 390 and 1440 pixels. Lesson facts, playback and
+  source-review metadata are unchanged.
+
 ## 27 November 2026 — paced weekend review schedule
 
 - Added a date-bounded maintainer runner and review queue for explicitly

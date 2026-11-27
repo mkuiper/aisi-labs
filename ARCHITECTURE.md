@@ -262,6 +262,9 @@ lesson, the products shown in its "Named in this lesson" strip; a unit test
 checks each name appears in that lesson's text. An entry with an empty key
 (OpenClaw) shows initials only. `nameStrip()` renders both the
 lesson strip and the incident organisation strip.
+Product captions and Reported replay labels have computed-colour contrast
+checks in the browser suite. Product strips and all four replays are checked
+at 320, 390 and 1440 pixels, including horizontal overflow within the feed.
 All eight desktop entries have local icons. Terminal uses Ghostty (the actual
 launcher); Files uses an authored generic folder because xdg-open selects the
 system default. SVG tests allow the passive masks/filters in native VS Code
