@@ -338,6 +338,8 @@ questions use options, a zero-based correct index and aligned option_feedback
 strings. Feedback is escaped plain text; the general feedback remains a fallback.
 Answer selection is page-local, permits retries and uses aria-pressed plus
 explicit text, not colour alone. It sends no answer or score to the server.
+The context question supplies fictional notice excerpts with an explicit
+replacement statement, so source priority can be judged from the evidence.
 The separate Explored bookmark retains its existing persisted semantics.
 
 The Omarchy help priority_shortcuts array references stable shortcut IDs in

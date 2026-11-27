@@ -14,7 +14,7 @@
     "notes": "Reviewed 2026-11-13: inspected full lesson, diagram, seven-step command_practice walkthrough, simulated terminal behaviour (pwd, ls, cat BRIEF.md, cd examples, cd .., clear, error boundaries) and scenario question against GNU Bash manual, Omarchy hotkeys documentation and local Bash/Coreutils behaviour. No real shell execution from the simulation or live learner trial."
   },
   "lesson:context": {
-    "revision": 5,
+    "revision": 6,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "042d7c7592ad5d00b770f172b072093ab952c33d78c485c91987cecc724276c3",
@@ -175,7 +175,7 @@
     "notes": "Reviewed 2026-11-13: inspected open-model field guide and comparison worksheet against OSI Open Source AI Definition 1.0, Hugging Face model-card/quantisation documentation and Ollama local/cloud documentation; no downloads or live inference. Public-only programme boundaries retained."
   },
   "doc:programme": {
-    "revision": 12,
+    "revision": 13,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "5fd6f6cc6c98e67ffb6dad559df0bc878c37e977f707e1a66a407ffcdc92d5c2",

@@ -1,5 +1,13 @@
 # Changes
 
+## 28 November 2026 — evidence for the context question
+
+- The context question now gives fictional start times and an organiser's
+  explicit replacement statement. Learners can judge source priority using
+  the supplied evidence. Feedback explains why merging times or preferring
+  detail fails, and why a later date alone does not establish authority.
+- Source-review dates and fingerprints remain unchanged.
+
 ## 28 November 2026 — learner checkpoints in the agent loop
 
 - Each loop stage now states the learner's decision or evidence check. The

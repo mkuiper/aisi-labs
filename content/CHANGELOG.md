@@ -1,5 +1,19 @@
 # Learning material history
 
+## 2026-11-28 — source priority in the context question
+
+- Queue item 4: inspected the prompting, context and checking journey, including
+  briefs, fictional exercises, worked examples, diagrams, questions and feedback.
+  One change: the context question now supplies evidence that the organiser's
+  final notice replaces the earlier plan. Alternatives practise recognising an
+  invented arrival window and an unsupported preference for detail.
+- Sources are local catalogue.py and web/app.js only. No external pages were
+  fetched or provider claims changed. This is an editorial pass, not a full
+  primary-source review. No model call or live exercise was performed.
+- Incremented lesson:context to revision 6 and doc:programme to revision 13.
+  Previous dates and fingerprints remain, leaving both units visibly changed.
+  The weekend review log records checks, layout inspection and remaining work.
+
 ## 2026-11-28 — learner decisions alongside the agent loop
 
 - One instructional improvement for queue item 3: the five authored loop stages

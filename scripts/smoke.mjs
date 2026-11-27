@@ -924,6 +924,18 @@ try{
   await click('[data-incident-mode="medicare"]');await click('[data-incident-goto="3"]');await noOverflow('incident medicare mobile');await screenshot('incident-medicare-mobile');await click('[data-incident-mode="hf-breakout"]');
   await go('#tools');await click('[data-filter="Desktop tools"]');await checkLogos(8);await noOverflow('mobile desktop logos');
   await go('#home');await screenshot('launchpad-mobile');
+  const contextQuestionRequests=requests.length;
+  for(const width of [320,390,1440]){
+    await cdp('Emulation.setDeviceMetricsOverride',{width,height:1080,deviceScaleFactor:1,mobile:false});
+    await go('#learn/context');
+    for(const answer of [0,2,1]){
+      await click('[data-answer="'+answer+'"]');
+      await noOverflow('context question feedback '+answer+' at '+width);
+      await evaluate('document.querySelector(".quiz").scrollIntoView()');
+      await screenshot('weekend-context-question-'+answer+'-'+width,false);
+    }
+  }
+  assert.equal(requests.length,contextQuestionRequests,'Context question and retries make no requests');
   // Evidence labels and product captions must remain readable beside the dark replay.
   for(const width of [320,390,1440]){
     await cdp('Emulation.setDeviceMetricsOverride',{width,height:1080,deviceScaleFactor:1,mobile:false});

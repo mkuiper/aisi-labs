@@ -26,6 +26,10 @@ compare the result and review the work. The accompanying guardrail exercise
 practises the permission decision with fictional requests. Both are offline
 teaching examples, not demonstrations that a real tool is safe.
 
+The prompting, context and checking journey moves from a task brief to source
+selection and verification. The context question uses fictional conflicting
+notices and an explicit replacement statement to practise source priority.
+
 ## Creative media and keeping current
 
 Web & media includes image/video learning profiles and a no-install workflow

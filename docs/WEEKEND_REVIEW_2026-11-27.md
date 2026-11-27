@@ -59,8 +59,9 @@ Five-hour spacing limits frequency; bounded scope limits token use.
 3. [x] Review the agent-loop animation and guardrail exercise together. Make the
    goal, tool result and learner decision easier to follow, without suggesting
    that the animation proves a real tool is safe. Completed in round 3 below.
-4. Review prompting, context and checking as a learner journey. Polish one
+4. [x] Review prompting, context and checking as a learner journey. Polish one
    worked example or question, with plausible alternatives and useful feedback.
+   Completed in round 4 below.
 5. Review AI basics and glossary wording for a mixed-experience audience.
    Keep concise definitions and optional technical detail.
 6. Review the commerce walkthrough's instructional motion. Keep the fictional
@@ -243,3 +244,49 @@ force to the existing remote; preserve a local commit if the push fails.
   schedule edits.
 - Staged changes are inspected before the focused commit. The final response
   reports the push outcome to existing origin main; no success is assumed here.
+
+## Round 4 — 28 November 2026, evidence for source priority
+
+- Completed queue item 4 only. Started from clean main at dc2f3b1. Read the
+  required repository guidance and tracked review skill. Inspected the prompting,
+  context and checking lessons in catalogue.py, their authored facts/prompts,
+  flawed samples, worked examples, questions, option feedback and next links,
+  plus their diagrams and escaped rendering in web/app.js.
+- One focused instructional improvement: the context question previously called
+  one notice current without showing why it governed. It now gives fictional
+  competing times and the organiser's explicit statement replacing the earlier
+  plan. Alternatives propose merging times into an invented arrival window or
+  preferring detail. Feedback explains each mistake, supports the 10 am answer
+  and requires checking the actual notice and summary. Recency alone is not
+  presented as authority. Prompting and checking content remain unchanged.
+- Evidence and sources are local catalogue.py, web/app.js and isolated browser
+  checks. No external primary-source pages were fetched, no current provider
+  claims changed and no source access failures occurred. This is an editorial
+  inspection, not a complete primary-source re-review or a live learner trial.
+- Incremented lesson:context to revision 6 and doc:programme to revision 13.
+  Earlier review dates and fingerprints remain. Offline audit: 52 in-date,
+  two changed (lesson:context and doc:programme), one unreviewed (resource:helm).
+  Updated architecture, programme guide and both changelogs.
+- All 80 unit/HTTP tests pass on this Omarchy host. The known fixture HTTP 404
+  cleanup ResourceWarning recurred. JavaScript syntax checks pass for app.js,
+  programme.js, session.js, feedback.js and smoke.mjs. No tests were weakened.
+- Full isolated Chromium smoke passes, including all question choices and
+  retries, existing native disclosure keyboard checks and external-navigation
+  gates. Added all three context answers at 320, 390 and 1440 pixels, overflow
+  checks and an assertion that the question/retries send no requests.
+  Visually inspected wrong-arrival feedback at 320, correct feedback at 390,
+  wrong-detail feedback at 1440 and the expanded context exercise on desktop.
+  Text wraps, controls stay contained and feedback is readable. Captures are
+  ignored reports/weekend-context-question-*.png and everyday-context-desktop.png.
+  Git whitespace check passes. Automated checks do not establish screen-reader
+  usability, source currency, authentication, real-tool safety, network separation,
+  hardware acceptance or deployment approval.
+- No learner data, profiles or credentials were inspected. Browser and HTTP
+  checks use fresh temporary roots and fake fixtures. No installs, upgrades,
+  model calls, account connections, image generation, deployment, network-control
+  changes, runner edits or schedule edits. Public-only, NO OFFICIAL and NEVER
+  government-network/account boundaries remain.
+- Next round starts at item 5. Items 5–9 remain unfinished. The focused commit
+  subject is `Supply source-priority evidence in the context question`.
+- Staged changes are inspected before committing. The final response reports
+  the push outcome to existing origin main; no push success is assumed here.
