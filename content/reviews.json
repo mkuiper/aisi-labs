@@ -175,7 +175,7 @@
     "notes": "Reviewed 2026-11-13: inspected open-model field guide and comparison worksheet against OSI Open Source AI Definition 1.0, Hugging Face model-card/quantisation documentation and Ollama local/cloud documentation; no downloads or live inference. Public-only programme boundaries retained."
   },
   "doc:programme": {
-    "revision": 13,
+    "revision": 14,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "5fd6f6cc6c98e67ffb6dad559df0bc878c37e977f707e1a66a407ffcdc92d5c2",
@@ -357,7 +357,7 @@
     "notes": "Reviewed 2026-11-13: inspected five-stage proposed improvement schedule, owner roles and acceptance gates against current local stage-1 implementation and docs/REVIEW.md. Proposal only; not an approved schedule or deployment sign-off."
   },
   "lesson:ai-basics": {
-    "revision": 3,
+    "revision": 4,
     "reviewed_at": "2026-11-14",
     "review_after_days": 90,
     "sha256": "ae54ff77eb1dd2b6abd4fe813ef6fe5f3ed7b1922d302cab746d1f50699a08dc",

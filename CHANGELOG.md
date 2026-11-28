@@ -1,5 +1,11 @@
 # Changes
 
+## 28 November 2026 — explain training parameters
+
+- AI basics and the glossary now explain parameters as learned numbers in
+  their short training definitions. Deeper notes remain optional.
+- This partial wording review retains earlier review dates and fingerprints.
+
 ## 28 November 2026 — evidence for the context question
 
 - The context question now gives fictional start times and an organiser's

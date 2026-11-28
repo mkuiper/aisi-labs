@@ -222,6 +222,33 @@ try{
   assert.equal(await evaluate('document.querySelector("#term-api .glossary-detail").open'),true);
   await click('a[href="#glossary/api"]');
   assert.equal(await evaluate('document.activeElement.id'),'term-api');
+  const basicsRequests=requests.length;
+  for(const width of [320,390,1440]){
+    await cdp('Emulation.setDeviceMetricsOverride',{width,height:1080,deviceScaleFactor:1,mobile:false});
+    await go('#learn/ai-basics');
+    await evaluate('document.querySelectorAll(".section-detail summary")[1].focus()');
+    await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
+    await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
+    assert(await evaluate('document.querySelectorAll(".section-detail")[1].open'));
+    await noOverflow('AI basics expanded training '+width);
+    await evaluate('document.querySelectorAll(".article-section")[1].scrollIntoView()');
+    await screenshot('weekend-basics-training-'+width,false);
+    for(const answer of [0,1,2]){
+      await click('[data-answer="'+answer+'"]');
+      assert(await evaluate('document.querySelector("#quiz-feedback").textContent.length>0'));
+      await noOverflow('AI basics answer '+answer+' '+width);
+    }
+    await go('#glossary/training');
+    assert.equal(await evaluate('document.activeElement.id'),'term-training');
+    await evaluate('document.querySelector("#term-training summary").focus()');
+    await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',text:'\r',windowsVirtualKeyCode:13});
+    await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+    assert(await evaluate('document.querySelector("#term-training details").open'));
+    await noOverflow('glossary expanded training '+width);
+    await evaluate('document.querySelector("#term-training").scrollIntoView()');
+    await screenshot('weekend-glossary-training-'+width,false);
+  }
+  assert.equal(requests.length,basicsRequests,'Training disclosures and question retries make no requests');
   await go('#search/endpoint');
   await click('main a[href="#glossary/endpoint"]');
   assert.equal(await evaluate('document.activeElement.id'),'term-endpoint');

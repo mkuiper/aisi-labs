@@ -17,7 +17,7 @@
       ],
       [
         "Training and using a model are different",
-        "Training sets a model’s parameters from examples. Inference uses the trained model to produce a response. Text in a chat is context for that response. It does not by itself retrain the model. Check the provider’s terms for whether inputs are stored or later used for training.",
+        "Training uses examples to adjust a model’s learned numbers, called parameters. Inference uses the trained model to produce a response. Text in a chat is context for that response. It does not by itself retrain the model. Check the provider’s terms for whether inputs are stored or later used for training.",
         "Training often starts with pre-training on a large dataset. Fine-tuning is a later pass that changes parameters for a narrower task. During inference those parameters stay fixed. A new chat, or a note loaded into that chat, does not update the weights."
       ],
       [
@@ -159,7 +159,7 @@
       {
         "id": "training",
         "term": "Training",
-        "definition": "Adjusting a model’s parameters by reading examples. Supplying text for one reply is not training.",
+        "definition": "Using examples to adjust a model’s learned numbers, called parameters. Supplying text for one reply is not training.",
         "detail": "Pre-training uses a broad dataset. Fine-tuning is a later pass that changes parameters for a narrower task. Pasting a document into a prompt does not do either. A provider may still store chats and use them to train a later model, so read the current terms before a live exercise.",
         "lesson": "ai-basics"
       },

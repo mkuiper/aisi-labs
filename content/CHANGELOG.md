@@ -1,5 +1,22 @@
 # Learning material history
 
+## 2026-11-28 — explain training parameters
+
+- Queue item 5: read AI basics, its twelve glossary entries, the simplified
+  diagram and registration question with all option feedback. One improvement:
+  explain parameters as learned numbers in the lesson and glossary training
+  definitions. Existing technical disclosures, IDs and question stay intact.
+- Read Google's primary machine-learning glossary parameter and training
+  entries on 28 November after disclosing the destination:
+  https://developers.google.com/machine-learning/glossary#parameter and
+  https://developers.google.com/machine-learning/glossary#training.
+  Both entries support the description of training as adjusting parameters
+  using examples. No source access failure. Other lesson sources were not
+  re-reviewed; no provider account, price or model call was tested.
+- Incremented lesson:ai-basics to revision 4 and doc:programme to revision 14.
+  Earlier dates and fingerprints remain. This partial review leaves visible
+  editorial debt. Checks and layout evidence are in the weekend review log.
+
 ## 2026-11-28 — source priority in the context question
 
 - Queue item 4: inspected the prompting, context and checking journey, including

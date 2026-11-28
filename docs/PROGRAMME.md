@@ -30,6 +30,9 @@ The prompting, context and checking journey moves from a task brief to source
 selection and verification. The context question uses fictional conflicting
 notices and an explicit replacement statement to practise source priority.
 
+AI basics and the glossary explain training parameters as learned numbers.
+Technical detail remains optional in the Dig deeper disclosures.
+
 ## Creative media and keeping current
 
 Web & media includes image/video learning profiles and a no-install workflow

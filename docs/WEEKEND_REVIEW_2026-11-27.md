@@ -62,8 +62,8 @@ Five-hour spacing limits frequency; bounded scope limits token use.
 4. [x] Review prompting, context and checking as a learner journey. Polish one
    worked example or question, with plausible alternatives and useful feedback.
    Completed in round 4 below.
-5. Review AI basics and glossary wording for a mixed-experience audience.
-   Keep concise definitions and optional technical detail.
+5. [x] Review AI basics and glossary wording for a mixed-experience audience.
+   Keep concise definitions and optional technical detail. Completed in round 5 below.
 6. Review the commerce walkthrough's instructional motion. Keep the fictional
    amounts, mandate limits and distinction between a demonstration and enforcement.
 7. Inspect HELM's unreviewed resource against its primary methodology. Leave
@@ -290,3 +290,52 @@ force to the existing remote; preserve a local commit if the push fails.
   subject is `Supply source-priority evidence in the context question`.
 - Staged changes are inspected before committing. The final response reports
   the push outcome to existing origin main; no push success is assumed here.
+
+## Round 5 — 28 November 2026, explain training parameters
+
+- Completed queue item 5 only, starting from clean main at 983cda3. Read the
+  required guidance and tracked review skill. Inspected all six AI basics
+  sections, twelve glossary headlines and deeper notes, the simplified
+  context/model/check diagram, registration question, all three answers and
+  their feedback, search, term navigation and native disclosure rendering.
+- One focused improvement: training introduced parameters without explaining
+  the term. The lesson and glossary now explain them as learned numbers.
+  The concise definitions still distinguish training from supplying chat
+  context; pre-training and fine-tuning remain optional deeper notes.
+- Disclosed https://developers.google.com/machine-learning/glossary before
+  fetching it. Read its parameter and training entries, which describe
+  training as adjusting parameters using examples. Canonical anchors:
+  https://developers.google.com/machine-learning/glossary#parameter and
+  https://developers.google.com/machine-learning/glossary#training.
+  No source access failure. Other primary sources, provider terms and prices
+  were not re-reviewed. This partial wording pass is not a full factual review.
+- Incremented lesson:ai-basics to revision 4 and doc:programme to revision 14.
+  Review dates and fingerprints remain unchanged. Offline audit: 51 in-date,
+  three changed (lesson:ai-basics, lesson:context, doc:programme) and one
+  unreviewed (resource:helm). Updated architecture, programme and both changelogs.
+- All 80 unit/HTTP tests pass on this Omarchy host with Python 3.14.8.
+  The known fixture HTTP 404 cleanup ResourceWarning recurred. Syntax checks
+  pass for app.js, programme.js, session.js, feedback.js and smoke.mjs with
+  Node 26.13.1. No tests were weakened.
+- Added isolated browser checks for training disclosures with Space and Enter,
+  glossary route focus, all three question answers/retries, zero requests from
+  these interactions and page overflow at 320, 390 and 1440 pixels.
+  Visually inspected lesson training and glossary training at all three widths,
+  with notes expanded and keyboard focus visible. Text and controls remain
+  readable and contained. Captures are ignored reports/weekend-basics-training-*
+  and reports/weekend-glossary-training-*. Automated checks do not establish
+  screen-reader usability or learner comprehension.
+- No learner data, credentials or existing browser profiles were read. Tests
+  use fake fixtures and fresh temporary state/profile roots. Public-only,
+  NO OFFICIAL and NEVER government-network/account boundaries remain. No
+  installs, upgrades, model calls, account connections, image generation,
+  deployment, network controls, runner or schedule changes.
+- Next round starts at item 6; items 6–9 remain unfinished. For item 8, a
+  possible source-review target is the existing AI basics statement that many
+  image models generate in one pass. It was outside the two glossary entries
+  checked here and remains unchanged; verify against architecture-specific
+  primary sources before deciding whether to revise it.
+- This round's focused commit subject is `Explain training parameters in AI basics`.
+  Full isolated Chromium smoke and Git whitespace checks pass. No unrelated
+  edits appeared. The staged diff is inspected before committing.
+  The final response reports the push outcome; no success is assumed here.

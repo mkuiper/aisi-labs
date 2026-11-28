@@ -110,7 +110,9 @@ ai-basics's glossary array is the canonical source for #glossary, #glossary/<ter
 and search. Each glossary entry keeps a concise beginner definition up front and
 includes a detail field rendered inside a native details/summary disclosure
 (Dig deeper: <term>) so learners can inspect technical mechanics and boundaries
-on demand. Lesson sections also accept an optional third string ([title, body,
+on demand. The training section and glossary definition explain parameters as
+learned numbers before the optional technical detail. Lesson sections also
+accept an optional third string ([title, body,
 detail]) rendered as a native section-detail disclosure. The chat-agents diagram (#agent-diagram) contrasts one chat turn with an offline
 agent cycle of goal, tool, result and check. A failed check returns to the goal,
 and the same five authored steps stay under the cycle.
