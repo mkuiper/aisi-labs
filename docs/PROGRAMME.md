@@ -33,6 +33,10 @@ notices and an explicit replacement statement to practise source priority.
 AI basics and the glossary explain training parameters as learned numbers.
 Technical detail remains optional in the Dig deeper disclosures.
 
+The commerce walkthrough uses brief activity highlights for each selected step.
+Learners pace both fictional carts with step controls. Its arrows connect layers,
+and the simulation does not enforce spending limits. Reduced motion is static.
+
 ## Creative media and keeping current
 
 Web & media includes image/video learning profiles and a no-install workflow

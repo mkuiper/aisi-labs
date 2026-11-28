@@ -64,8 +64,9 @@ Five-hour spacing limits frequency; bounded scope limits token use.
    Completed in round 4 below.
 5. [x] Review AI basics and glossary wording for a mixed-experience audience.
    Keep concise definitions and optional technical detail. Completed in round 5 below.
-6. Review the commerce walkthrough's instructional motion. Keep the fictional
+6. [x] Review the commerce walkthrough's instructional motion. Keep the fictional
    amounts, mandate limits and distinction between a demonstration and enforcement.
+   Completed in round 6 below.
 7. Inspect HELM's unreviewed resource against its primary methodology. Leave
    it unreviewed if the source cannot be read adequately.
 8. Review one remaining lesson or exercise selected from evidence found above.
@@ -338,4 +339,50 @@ force to the existing remote; preserve a local commit if the push fails.
 - This round's focused commit subject is `Explain training parameters in AI basics`.
   Full isolated Chromium smoke and Git whitespace checks pass. No unrelated
   edits appeared. The staged diff is inspected before committing.
+  The final response reports the push outcome; no success is assumed here.
+
+## Round 6 — 28 November 2026, commerce activity pulses end
+
+- Completed queue item 6 only, starting from clean main at a8050c4. Read the
+  required guidance and tracked review skill. Inspected both five-step commerce
+  traces, the cart scale, step announcements, focus handlers and motion styles.
+- Found that every reached connection kept pulsing, including after approved
+  settlement or rejection. One focused improvement: only connections into an
+  active layer pulse, and commerce node and arrow pulses run once per selected
+  step. The longest cycle is 2.4 seconds. Completed and rejected connections
+  stay static. Back, Next, Replay and direct step selection pace the walkthrough.
+- The caption explains the visual meaning: arrows connect layers, show no live
+  traffic and do not enforce spending limits. Reduced motion disables pulses.
+  The fictional $42 and $68 carts, signed $50 cap, $0 rejected settlement,
+  payloads and protocol/product claims remain unchanged.
+- Sources are local web/app.js, web/style.css, scripts/smoke.mjs and isolated
+  Chromium renders. No external destinations fetched and no source access
+  failures. This interaction pass is not a full source or exercise re-review.
+- Incremented lesson:agentic-commerce to revision 6 and doc:programme to 15.
+  Earlier review dates and fingerprints remain. The commerce interaction lives
+  outside the lesson fingerprint. Offline audit remains 51 in-date, three
+  changed items and one unreviewed item, resource:helm. Updated architecture,
+  programme and both changelogs.
+- All 80 unit/HTTP tests pass on this Omarchy host with Python 3.14.8. The known
+  fixture HTTP 404 cleanup ResourceWarning recurred. Syntax checks pass for
+  app.js, programme.js, session.js, feedback.js and smoke.mjs with Node 26.13.1.
+- Added isolated browser checks for both scenarios and all five steps at 320,
+  390 and 1440 pixels in normal and reduced motion. Checks cover finite pulses,
+  static final arrows, keyboard Next, Back, Replay, focus retention, settlement
+  labels, overflow and zero requests during interaction. A timed check confirms
+  that activity ends without automatically advancing the step.
+- Visually inspected desktop consent and rejected-payment layouts at 320 and
+  390 pixels. Captions wrap, labels remain readable and the $0 ending is visible.
+  Captures are ignored reports/weekend-commerce-*.png. Automated checks do not
+  establish screen-reader usability, comprehension, protocol currency, live
+  authentication, spend enforcement, hardware acceptance or network separation.
+- No unrelated edits appeared. No learner data, credentials or existing browser
+  profiles were read. Tests use fake fixtures and fresh temporary roots. The
+  public-only, NO OFFICIAL and NEVER government-network/account boundaries
+  remain. No installs, upgrades, model calls, account connections, image
+  generation, deployment, network-control, runner or schedule changes.
+- Next round starts at item 7, HELM methodology. Items 7–9 remain unfinished.
+  Full isolated Chromium smoke and Git whitespace checks pass. No tests were
+  weakened. The staged diff is inspected before committing.
+  The focused commit subject is `End commerce activity pulses between steps`.
   The final response reports the push outcome; no success is assumed here.

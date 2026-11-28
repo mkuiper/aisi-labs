@@ -175,7 +175,7 @@
     "notes": "Reviewed 2026-11-13: inspected open-model field guide and comparison worksheet against OSI Open Source AI Definition 1.0, Hugging Face model-card/quantisation documentation and Ollama local/cloud documentation; no downloads or live inference. Public-only programme boundaries retained."
   },
   "doc:programme": {
-    "revision": 14,
+    "revision": 15,
     "reviewed_at": "2026-11-13",
     "review_after_days": 90,
     "sha256": "5fd6f6cc6c98e67ffb6dad559df0bc878c37e977f707e1a66a407ffcdc92d5c2",
@@ -371,7 +371,7 @@
     "notes": "Reviewed 2026-11-13: re-checked setup guidance against official Codex/OpenAI API, Claude Code/Claude Console and Gemini CLI/AI Studio authentication and key documentation, plus local configuration.py adapters. Console URLs remain documented destinations, not a signed-in walkthrough. No live accounts, prices, keys or model calls tested."
   },
   "lesson:agentic-commerce": {
-    "revision": 5,
+    "revision": 6,
     "reviewed_at": "2026-11-24",
     "review_after_days": 90,
     "sha256": "9808ac4765b5e2a008e80b73c770a1c077231ba1a18fe32a3cc6008801f2fb79",

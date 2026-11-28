@@ -283,6 +283,53 @@ try{
   assert(await evaluate('document.querySelector("#commerce-diagram").textContent.includes("open Payment Mandate")'));
   await evaluate('document.querySelector("#commerce-diagram").scrollIntoView({block:"start"})');await delay(300);
   await screenshot('commerce-consent-desktop');
+  for(const width of [320,390,1440]){
+    await cdp('Emulation.setDeviceMetricsOverride',{width,height:1080,deviceScaleFactor:1,mobile:false});
+    const commerceRequests=requests.length;
+    for(const motion of ['no-preference','reduce']){
+      await cdp('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});
+      for(const mode of ['approved','rejected']){
+        await click(`[data-commerce-mode="${mode}"]`);
+        assert.equal(await evaluate('document.activeElement.dataset.commerceMode'),mode);
+        for(let step=0;step<5;step++){
+          await click(`[data-commerce-goto="${step}"]`);
+          await noOverflow('commerce '+mode+' '+step+' '+motion+' '+width);
+          assert.equal(await evaluate('document.activeElement.dataset.commerceGoto'),String(step));
+          const animation=await evaluate(`(()=>{
+            const diagram=document.querySelector('#commerce-diagram');
+            return [...diagram.querySelectorAll('.diagram-node,.diagram-arrow')].map(el=>{
+              const style=getComputedStyle(el);
+              return {name:style.animationName,count:style.animationIterationCount,duration:parseFloat(style.animationDuration)};
+            });
+          })()`);
+          if(motion==='reduce')assert(animation.every(a=>a.name==='none'));
+          else assert(animation.every(a=>a.name==='none'||(a.count==='1'&&a.duration<=2.4)),'Commerce motion must end after one brief cycle');
+          if(step===4){
+            assert.equal(await evaluate('document.querySelectorAll("#commerce-diagram .diagram-arrow.is-flowing").length'),0);
+            assert(await evaluate(`document.querySelector('.mandate-readout').textContent.includes(${JSON.stringify(mode==='approved'?'$42 cart settled':'Settled $0')})`));
+          }
+          if(motion==='no-preference'&&(step===2||step===4)){
+            await evaluate('document.querySelector("#commerce-diagram").scrollIntoView({block:"start"})');
+            await screenshot('weekend-commerce-'+mode+'-'+step+'-'+width,false);
+          }
+        }
+        await click('[data-commerce-step="1"]');
+        assert.equal(await evaluate('commerceStep'),0,'Replay returns to the first step');
+        await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',text:'\r',windowsVirtualKeyCode:13});
+        await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+        assert.equal(await evaluate('commerceStep'),1,'Keyboard Next advances one step');
+        await click('[data-commerce-step="-1"]');
+        assert.equal(await evaluate('commerceStep'),0);
+      }
+    }
+    assert.equal(requests.length,commerceRequests,'Commerce controls make no requests');
+  }
+  await cdp('Emulation.setEmulatedMedia',{features:[]});
+  await cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1080,deviceScaleFactor:1,mobile:false});
+  await click('[data-commerce-mode="approved"]');await click('[data-commerce-goto="2"]');
+  await delay(2600);
+  assert(await evaluate('document.querySelector("#commerce-diagram").getAnimations({subtree:true}).every(a=>a.playState!=="running")'),'Commerce activity settles without an automatic next step');
+  assert.equal(await evaluate('commerceStep'),2);
   await go('#learn/agent-incidents');
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .diagram-node").length'),4);
   assert.equal(await evaluate('document.querySelectorAll("#incident-diagram .step-pill").length'),5);

@@ -1,5 +1,13 @@
 # Changes
 
+## 28 November 2026 — commerce activity settles between steps
+
+- Commerce pulses run once per selected step. Only connections into active
+  layers pulse, so completed and declined payments have static arrows.
+- The caption explains that arrows connect layers, show no live traffic and
+  do not enforce spending limits. Reduced motion remains static.
+- Earlier source-review dates and fingerprints are retained.
+
 ## 28 November 2026 — explain training parameters
 
 - AI basics and the glossary now explain parameters as learned numbers in

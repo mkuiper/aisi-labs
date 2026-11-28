@@ -127,7 +127,12 @@ lesson renders an offline interactive four-layer protocol and mandate walkthroug
 rejection across MCP, A2A, ACP, UCP, AP2, FIDO passkeys, Visa Intelligent
 Commerce and Mastercard Agent Pay with no real payment calls. A scale on that
 walkthrough places the fictional cart against the $50 cap: inside, past the
-line, or not yet signed. The rejected ending still shows $0 settled. The image-video
+line, or not yet signed. The rejected ending still shows $0 settled. Commerce
+activity pulses run once per selected step; only connections into active layers
+pulse. Completed and rejected connections stay static. Existing step controls
+pace the walkthrough, and reduced motion disables pulses. Its caption distinguishes
+layer connections from live traffic and the simulation from spend enforcement.
+The image-video
 diagram is three steps: a public storyboard, optional generation, and a review.
 Its caption says generation is a choice and a provenance label is not proof.
 The leaderboard diagram is unchanged. The chat-agents lesson

@@ -1,5 +1,17 @@
 # Learning material history
 
+## 2026-11-28 — commerce activity settles between steps
+
+- Queue item 6: inspected both five-step commerce scenarios, fictional $42/$68
+  carts, $50 cap, $0 declined settlement, step controls and reduced-motion CSS.
+  One improvement: brief activity pulses replace perpetual motion; completed
+  and rejected connections stay static. A caption explains the visual meaning
+  and distinguishes the authored simulation from spend enforcement.
+- Sources are local implementation and isolated Chromium inspection only.
+  No external source fetched; protocol/product claims were not re-reviewed.
+- Incremented lesson:agentic-commerce to revision 6 and doc:programme to 15.
+  Review dates and fingerprints remain unchanged; this is an interaction pass.
+
 ## 2026-11-28 — explain training parameters
 
 - Queue item 5: read AI basics, its twelve glossary entries, the simplified
